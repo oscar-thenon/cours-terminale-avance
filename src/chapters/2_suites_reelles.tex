@@ -1,0 +1,566 @@
+\chapter{Suites réelles}
+
+\section{Fondamentaux sur les suites}
+
+\subsection{Qu'est-ce qu'une suite ?}
+
+\defi{\programme On appelle \textit{suite de réels} toute famille d'éléments réels indicée par des entiers naturels. On appelle \emph{termes de la suite} les éléments de cette suite.}
+\ex{La famille $(a_0,a_1,a_2)$ telle que $a_0=5$, $a_1=\pi$, $a_2=\sqrt{2}$ est une suite de réels, comportant donc 3 éléments. Elle est indicée par les entiers naturels 0, 1 et 2.}
+
+Quelques conventions :
+\begin{itemize}
+\item Les indices sont généralement successifs.
+\item Il est d'usage que le premier indice égale 0 (mais ce n'est pas une obligation).
+\item La plupart des suites que nous allons étudier compteront un nombre infini d'éléments, si bien qu'en vertu des points précédents, la plupart de nos suites auront des indices parcourant tout $\N$, dans l'ordre.
+\end{itemize}
+
+\nota{\programme On note $(u_n)_{n\in\N}$ pour désigner la suite $(u_0,u_1,...)$.}
+\rems{\item En adaptant cette notation, on peut désigner la suite $(w_1,w_2,...)$ par $(w_n)_{n\in\N\backslash\{0\}}$ si on ne veut pas commencer à 0 par exemple.
+\item Chez les élèves les notations sont souvent mal employées~:
+\begin{enumerate}
+\item $(u_n)_{n\in\N}$ est la façon \emph{rigoureuse} de désigner la suite $(u_0,u_1,...)$.
+\item $(u_n)$ est une \emph{notation raccourcie pour désigner la suite} $(u_n)_{n\in\N}$ qu'on peut utiliser lorsqu'il n'y aucune ambiguité (notamment par rapport aux indices) et \emph{seulement lorsqu'on a déjà définie la suite à l'aide de la notation précédente}, donc en particulier on a pas le droit d'écrire "soit $(u_n)$ la suite...".
+\item Enfin, $u_n$ désigne le \emph{terme} de rang $n$ de la suite $(u_n)_{n\in\N}$, $u_n$ est donc une \textit{quantité réelle}, ce n'est pas une suite. Par conséquent écrire "la suite $u_n$ est croissante" n'a pas de sens.
+\end{enumerate}
+\item Attention : le $n$-ième terme d'une suite n'est pas la même chose que le terme d'indice $n$ de cette même suite. Par exemple le premier terme de la suite $(u_n)_{n\in\N}$ est $u_0$ et son terme d'indice 1 est $u_1$.}
+
+Définir un à un les termes d'une suite pour la définir (comme on l'a fait pour le premier exemple) n'est pas pratique. Il existe essentiellement deux manières (ce ne sont pas les seules) de définir d'un coup tous les termes d'une suite : par \textit{récurrence} ou de manière \textit{explicite}.
+
+\begin{description}
+\item[Définition par récurrence] On donne la valeur du premier terme de la suite puis on donne de façon générique la valeur de $u_{n+1}$ en fonction de $u_n$, de sorte qu'on peut calculer tout terme de la suite grâce à son précédent. Voici un exemple de définition d'une suite par récurrence valide~:
+
+"Soit $(v_n)_{n\in\N}$ la suite définie par $v_0=1$ et tel que pour tout $n\in\N$, $v_{n+1}=v_n+2$."
+
+On peut par conséquent déterminer tous les termes de $(v_n)$ : $v_1=v_0+2=1+2=3$, $v_2=v_1+2=3+2=5$ et ainsi de suite (haha).
+
+Si tout terme de la suite ne dépend \textbf{que} du terme précédent, on dit que la suite est \textit{récurrente d'ordre 1}. Si elle ne dépend \textbf{que} des $n\in\N$ termes précédents on dit qu'elle est \textit{récurrente d'ordre} $n$.
+
+
+\item[Définition explicite] On donne une relation entre $u_n$ et son rang $n$ (et seulement son rang~$n$). Voici un exemple de définition explicite d'une suite valide :
+
+"Soit $(w_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $w_n=2n+1$".
+
+On peut ainsi déterminer tous les termes de $(w_n)$ : $w_0=2\times0+1=1$, $w_1=2\times 1+1=3$ et ainsi de suite.
+\end{description}
+
+\rem{Il est aussi possible de définir une suite par récurrence en donnant une relation entre un terme et ses \textit{deux} précédents, dans ce cas il faut renseigner les \textit{deux} premiers termes de la suite (voir la suite de Fibonacci définie en-dessous).}
+
+Il y a un inconvénient évident à la définition par récurrence : si $(u_n)_{n\in\N}$ est une suite définie par récurrence, pour déterminer $u_{100}$ par exemple il faut connaître impérativement $u_{99}$, donc $u_{98}$ et ainsi de suite jusqu'à redescendre à $u_0$ qu'on connaît. Cela nous oblige donc à établir 100 calculs pour déterminer $u_{100}$, contre 1 seul (!) si $(u_n)$ est définie de manière explicite.
+Par conséquent, il faut toujours privilégier les définitions explicites si possible.
+
+Parfois, il est facile de déterminer de manière explicite une suite définie par récurrence, par exemple la suite $(w_n)$ telle que définie précédemment n'est que la définition explicite de la suite $(v_n)$ définie auparavant. Mais parfois c'est très difficile, par exemple la suite de Fibonacci $(f_n)_{n\in\N}$ définie par $f_0=0$, $f_1=1$ et tel que pour tout $n\in\N$, $f_{n+2}=f_{n+1}+f_n$, dont on connait une définition explicite mais qui n'est pas du tout évidente à trouver (pour information elle utilise le nombre d'or).
+
+Nous conseillons fortement au lecteur de prendre pour modèle les exemples donnés au-dessus pour définir ses suites afin d'éviter les maladresses.
+
+\exo{Expliquer pourquoi les suites suivantes sont mal définies.
+\begin{enumerate}
+\item Soit $(v_n)$ la suite définie par $v_0=1$ et tel que pour tout $n\in\N$, $v_{n+1}=v_n+2$.
+\item Soit $(a_n)_{n\in\N}$ la suite définie par $a_0=1$ et tel que $a_{n+1}=a_n+2$.
+\item Soit $(b_n)_{n\in\N^*}$ la suite définie pour $n\in\N$ par $b_n=0$.
+\item Soit $(d_n)_{n\in\N}$ la suite définie par $d_0=\pi$ et tel que pour tout $n\in\N$, $d_{n+2}=10 d_{n+1}-d_n$.
+\item Soit $(f_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $f_{n}=4+3f_{n-1}$
+\end{enumerate}}
+
+\subsection{Définitions}
+
+Dans cette sous-section, \suite{a} est une suite réelle.
+
+\defi{\programme (croissance, décroissance)
+\begin{itemize}
+\item Si pour tout $n\in\N$, $a_{n}\le a_{n+1}$ (resp. $a_{n}< a{n+1}$) alors on dit que $(a_n)$ est \textit{croissante} (sur $\N$) (resp. \textit{strictement croissante}).
+\item Si pour tout $n\in\N$, $a_{n}\ge a_{n+1}$ (resp. $a_{n}> a_{n+1}$) alors on dit que $(a_n)$ est \textit{croissante} (sur $\N$) (resp. \textit{strictement croissante}).
+\end{itemize}}
+
+\defi{(croissance, décroissance sur un intervalle) Soit $n_0$ et $n_1$ deux entiers naturels tels que $n_0<n_1$.
+
+\begin{itemize}
+\item On dit que $(a_n)$ est \textit{croissante} (resp. \textit{strictement croissante}) \textit{sur} $\lint n_0;n_1 \rint$ si pour tout $n\in \lint n_0;n_1 \lint$, $a_n\le u_{n+1}$ (resp. $a_n< u_{n+1}$).
+\item On dit que $(a_n)$ est \textit{décroissante} (resp. \textit{strictement décroissante}) \textit{sur} $\lint n_0;n_1 \rint$ si pour tout $n\in \lint n_0;n_1 \lint$, $a_n\ge u_{n+1}$ (resp. $a_n > a_{n+1}$).
+\end{itemize}}
+
+\defi{\programme (constante) On dit que $(a_n)$ est \textit{constante} si tous ses termes sont égaux, \ie si pour tout $n\in\N$, $a_{n+1}-a_n=0$.}
+
+\rem{Si $(a_n)$ ne s'annule pas, on peut aussi montrer que $\dfrac{a_{n+1}}{a_n}=1$ pour tout $n\in\N$.}
+
+\defi{(suite extraite) Soit $(s_n)_{n\in\N}$. On dit que $(s_n)$ est une \textit{suite extraite} (ou \textit{sous-suite}) de $(a_n)$ s'il existe \fone{\varphi}{\N}{\N} une fonction \textit{strictement croissante} telle que pour tout $n\in\N$, $s_n=a_{\varphi(n)}$.}
+
+\rem{Cette définition un peu compliquée correspond exactement à l'intuition que l'on se fait : une sous-suite est une suite fabriquée en ne prenant que certains termes d'une autre. La fonction n'a pour rôle que de garantir qu'on les prend de façon ordonnée.}
+
+\defi{\programme (à partir d'un certain rang) Soit $P$ une propriété sur les suites. Soit $n_r\in\N$, \fons{\phi}{\N}{\N}{n}{n_r+n} et \suite{s} la suite extraite de $(a_n)$ définie pour tout $n\in\N$ par $s_n=a_{\phi(n)}$.
+
+\begin{itemize}
+\item On dit que $(a_n)$ \textit{vérifie $P$ à partir du rang $n_r$} si $(s_n)$ vérifie $P$.
+\item On dit que $(a_n)$ \textit{vérifie $P$ à partir d'un certain rang} s'il existe $n_r\in\N$ tel que $(a_n)$ vérifie $P$ à partir du rang $n_r$.
+\end{itemize}}
+
+\rem{Cette définition formelle n'est pas au programme. Mais l'intuition de la notion d'«~à partir d'un certain rang~» l'est.}
+
+\defi{\programme (stationnaire) On dit que $(a_n)$ est \textit{stationnaire} si elle est constante à partir d'un certain rang.}
+
+\defi{(majorant, minorant) On dit que $M\in\R$ (resp. $m\in\R$) est un \textit{majorant} (resp. \textit{minorant}) de $(a_n)$ si pour tout $n\in\N$, $a_n\le M$ (resp. $a_n\ge m$). On dit alors que $(a_n)$ est \textit{majorée} (resp. \textit{minorée}).}
+
+\rem{$(a_n)$ est majorée \ssi il existe $M\in\R_+$ tel que pour tout $n\in\N$, $a_n\le M$ (et on a un résultat similaire pour la minoration). Cette propriété peut être utile dans certaines preuves.}
+
+\ex{\begin{itemize}
+\item La suite $(U_n)$ de l'exercice \ref{exrecu} est majorée par $\dfrac{4}{5}$. Elle n'est en revanche pas minorée. 
+\item La suite $(v_n)_{n\in\N}$ définie pour tout $n\in\N$ par $v_n=n(-1)^n$ n'est ni majorée ni minorée. Prouvons qu'elle n'est pas majorée. Supposons qu'elle est majorée et soit $M$ un de ses majorants. $M\ge0$ puisque $u_0=0$. Soit $n_M$ l'entier pair le plus proche de $M$ et strictement supérieur à $M$. Alors $v_{n_M}=\lceil M \rceil$ ou $v_{n_M}=\lceil M \rceil +1$ ou $v_{n_M}=\lceil M \rceil +2$. Dans tous les cas $v_{n_M}>M$, ce qui est absurde puisqu'on a supposé que $M$ majore $(v_n)$. Donc cette suite n'est pas majorée.
+\end{itemize}}
+
+\defi{(suite bornée) On dit que $(a_n)$ est \textit{bornée} si elle est à la fois minorée et majorée.}
+
+\rem{\label{caraborn} $(a_n)$ est bornée si et seulement si il existe $M\in\R_+$ tel que pour tout $n\in\N$, $|a_n|<M$. $M$ majore alors $(a_n)$ et $-M$ minore $(a_n)$. Cette propriété peut être utile dans certaines preuves.}
+
+\rem{\label{bornesup} $\bigoplus$ Les trois définitions ci-dessous s'étendent aux sous-ensembles de réels en général. La \textit{propriété de la borne supérieure} énonce en plus un résultat important : toute partie $P$ (sous-ensemble) non vide et majorée de $\R$ possède un plus petit majorant, c'est-à-dire que l'ensemble des majorants de $P$ admet un minimum. On l'appelle \textit{borne supérieure} de $P$ et on le note $\sup P$. De même, toute partie $P$ non vide et minorée de $\R$ admet un plus grand minorant, appelé \textit{borne inférieure de $P$} que l'on note $\inf P$. Par exemple, $\sup ]0;1[=1$ et $\inf ]0;1[ = 0$. Cette propriété peut être vue comme un des axiomes nécessaires à la construction de $\R$, c'est pourquoi ne nous nous aventurerons pas dans une tentative de démonstration.}
+
+
+
+
+
+\section{Comportement à l'infini}
+
+Soit $(a_n)_{n\in\N}$ une suite réelle. On s'intéresse au comportement de $(a_n)$ quand $n$ tend vers $+\infty$. 
+
+\subsection{Définitions}
+
+
+
+\defi{\programme (convergence) \begin{itemize}
+\item Soit $l\in\R$. On dit que $(u_n)$ \textit{converge vers} (ou \textit{tend vers}) $l$ si pour tout réel $r>0$, l'intervalle $]l-r;l+r[$ contient tous les termes de $(u_n)$ à partir d'un certain rang, \ie si pour tout réel $r>0$, il existe $n_r\in\N$ tel que pour tout $n\ge n_r$, $a_n\in]l-r;l+r[$. On dit alors que $l$ est \textit{la limite} de $(a_n)$. 
+\item On dit que $(a_n)$ \textit{converge} s'il existe $l\in\R$ tel que $(a_n)$ converge vers $l$.
+\end{itemize}}
+
+\rem{\begin{itemize}
+\item Voici une vision intuitive : prenons n'importe quel «~tuyau~» qui entoure $l$. Si à partir d'un certain rang tous les termes de la suite sont dans le tuyau, c'est qu'elle converge vers $l$.
+\item Officiellement, la définition de la convergence est la suivante : «~$(a_n)$ converge vers $l\in\R$ si tout intervalle ouvert contenant $l$ contient toutes les valeurs de $(a_n)$ à partir d'un certain rang~». Elle est équivalente à celle que nous donnons, la nôtre a l'avantage d'être beaucoup plus pratique dans les preuves.
+\item Dans la définition, $n_r$ dépend de $r$ (c'est pourquoi je l'écris ainsi).
+\item $a_n\in]l-r;l+r[$ peut s'écrire aussi $l-r<a_n<l+r$ mais aussi $|a_n-l|< r$ (qui est peut être moins facile à voir). Selon les démonstrations, l'une de ces trois écritures équivalentes peut être plus commode que les autres, c'est pourquoi il faut savoir reconnaître, comprendre et utiliser les trois.
+\item Traditionnellement, dans le supérieur on note plutôt $\epsilon$ au lieu de $r$. J'ai choisi cette notation qui se rapproche plus de l'image du tuyau, $r$ étant en quelque sorte son rayon.
+\end{itemize}}
+
+\defi{(divergence)
+
+\begin{itemize}
+\item $(a_n)$ ne \textit{converge pas vers} (ou \textit{ne tend pas vers}) $l\in\R$ s'il existe un réel $r>0$ tel que pour tout $n_s\in\N$, il existe un entier $n_{\sigma}\ge n_s$ tel que $a_{\sigma}\not\in ]l-r;l+r[$.
+\item $(a_n)$ \textit{diverge} (ou \textit{ne converge pas}) si pour tout $l\in\R$, $(a_n)$ ne converge pas vers $l$.
+\end{itemize}}
+
+\rem{\begin{itemize}
+\item La définition de «~ne converge pas vers~» est en fait la stricte négation de celle de «~converge vers~». Intuitivement elle se comprend comme suit : $(a_n)$ ne converge pas vers $l\in\R$ s'il existe \textit{un tuyau particulier} entourant $l$ tel que pour toute barre verticale, on peut trouver \textit{un terme particulier} de la suite qui est à la fois à droite de cette barre et qui est en-dehors du tuyau.
+\item Attention : dans la définition de «~ne converge pas vers~», $n_s$ \textit{ne dépend pas de} $r$, d'où le nom, et $n_{\sigma}$ \textit{dépend} de $n_s$, d'où le nom. De manière générale en mathématiques, nier une proposition implique d'inverser les dépendances des objets.
+\end{itemize}}
+
+\ex{Nier "$(u_n)_{n\in\N}$ ne converge pas".}
+
+\ex{\label{exsuitegeo} Montrons que la suite $(g_n)_{n\in\N}$ définie par $g_0=42$ et pour tout $n\in\N$ par $g_{n+1}=\dfrac{g_n}{3}$ converge vers $0$. On montre par récurrence que pour tout $n\in\N$, $g_n> 0$. Soit $n\in\N$. $\dfrac{g_{n+1}}{g_n}=\dfrac{1}{3}$. $(g_n)$ est une suite géométrique de premier terme $g_0=42$ et de raison $q=\dfrac{1}{3}$. Donc pour tout $n\in\N$, $g_n=\dfrac{42}{3^n}$. Soit un réel $r>0$. On veut montrer qu'il existe $n_r\in\N$ tel que pour tout $n\ge n_r$, $g_n\in]-r;r[$. Résolvons l'équation $g_n<r$ sur $\N$. Après une série d'inégalités on trouve que l'ensemble des solutions est $S=\{n\in\N|n>\dfrac{\ln(42)-\ln(r)}{\ln(3)}\}$. Posons $n_r=\left\lceil \dfrac{\ln(42)-\ln(r)}{\ln(3)} \right\rceil+1$. $n_r\in S$ donc $g_{n_r}<r$. Par récurrence on prouve que $(g_n)$ est décroissante sur $\N$ et de plus pour tout $n\in\N$, $g_n> 0$. Soit un entier $n\ge n_r$. Alors $g_n\in ]0;r[$ donc $g_n\in ]-r;r[$. Conclusion : $(g_n)$ converge vers 0.}
+
+\nota{\programme \label{conv}\textit{Dans le cas} où $(u_n)_{n\in\N}$ converge vers $l\in\R$ et \textit{seulement dans ce cas}, alors on note $\limc{n}{+\infty} u_n = l$ (lire "la limite de $u_n$ quand $n$ tend vers plus infini est $l$")}
+\textbf{Attention} : il est interdit d'utiliser la notation $\limc{n}{+\infty} u_n$ \textit{avant} d'avoir prouvé la convergence de la suite car l'écrire suppose \textit{a priori} l'existence d'une limite !
+\rem{On trouve parfois la notation $u_n\underset{n\rightarrow +\infty}{\longrightarrow} l$ (lire "$u_n$ tend vers $l$ quand $n$ tend vers plus infini").}
+
+\defi{\programme (divergence) Soit $(u_n)_{n\in\N}$ une suite réelle. Si $(u_n)$ ne converge pas, on dit que $(u_n)$ \textit{diverge}.}
+
+\ex{\begin{itemize}
+\item La suite $(u_n)_{n\in\N}$ définie pour tout $n\in\N$ par $u_n=n$ diverge.
+\item La suite $(u_n)_{n\in\N}$ définie pour tout $n\in\N$ par $u_n=(-1)^n$ diverge.
+\item La suite $(u_n)_{n\in\N}$ définie pour tout $n\in\N$ par $u_n=n(-1)^n$ diverge.
+\end{itemize}}
+
+\defi{\programme Soit $(u_n)_{n\in\N}$ une suite réelle. Si pour tout $M\in\R$ (resp. $m\in\R$), il existe $n_M\in\N$ (resp. $n_m\in\N$) tel que pour tout entier $n\ge n_M$, $u_n>M$ (resp. $u_n < m$) alors on dit que $(u_n)$ \textit{diverge vers} $+\infty$ (resp. \textit{diverge vers} $-\infty$).}
+
+\rem{\begin{itemize}
+\item Officiellement la définition de la divergence vers $+\infty$ est la suivante : «~$(u_n)$ diverge vers $+\infty$ si tout intervalle de la forme $]A;+\infty[$ contient toutes les valeurs de $(u_n)$ à partir d'un certain rang~». Elle est équivalente à celle que nous donnons.
+\item De façon intuitive : on fixe n'importe quelle "barre". Si au bout d'un moment tous les termes de la suite se trouvent au-dessus, c'est qu'elle diverge vers $+\infty$.
+\end{itemize}}
+
+\nota{\programme \textit{Dans le cas} où $(u_n)_{n\in\N}$ diverge vers $+\infty$ (resp. vers $-\infty$) et \textit{seulement dans ce cas}, alors on note $\limc{n}{+\infty} u_n = +\infty$ (resp. $\limc{n}{+\infty} u_n = -\infty$).}
+\rem{La mise en garde et la remarque suivants la notation \ref{conv} sont toujours valables ici.}
+
+\subsection{Propositions générales}
+
+Démontrer des convergences ou des divergences est fastidieux en utilisant les définitions. Nous allons ici donner tout un arsenal de propositions afin d'aller beaucoup plus vite. En effet, selon les caractéristiques de la suite qu'on étudie (monotonie, majorée...) on peut souvent déduire des choses sur son comportement à l'infini.
+
+\subsubsection{Convergence}
+\pro{Si une suite converge alors sa limite est unique.}
+
+\preuve{Soit $(u_n)_{n\in\N}$ convergente et supposons qu'elle converge vers les deux limites $l_1\in\R$ et $l_2\in\R$ avec $l_1<l_2$. Soit $r=\dfrac{l_2-l_1}{2}$. Posons $n_1\in\N$ (resp. $n_2\in\N$) tel que pour tout entier $n\ge n_1$ (resp. $n\ge n_2$), $u_n\in]l_1-r;l_1+r[$ (resp. $u_n\in]l_2-r;l_2+r[$). Posons $n_0=\max(n_1,n_2)$ et soit un entier $n\ge n_0$. Alors on a à la fois $l_1-r<u_n<l_1+r$ et $l_2-r<u_n<l_2+r$. Or $l_1+r=l_2-r$ donc on a $l_1+r<u_n<l_1+r$ ce qui est absurde. Donc $l_1=l_2$.}
+
+\pro{Toute suite convergente est bornée.}
+
+\preuve{Soit $(u_n)_{n\in\N}$ une suite convergent vers $l\in\R$. Soit un réel $r>0$. Alors il existe $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $u_n\in]l-r;l+r[$. Posons un tel $n_r$. l'ensemble $E=\{u_n|n\in\lint 0;n_r\lint\}$ est fini donc possède un minimum $m_E$ et un maximum $M_E$. Posons $m=\min(m_E,l-r)$ et $M=\max(M_E,l+r)$. $M$ majore $(u_n)$ et $m$ la minore, donc $(u_n)$ est bornée.}
+
+\rem{\textbf{Attention} : la réciproque est fausse. Par exemple la suite $(u_n)_{n\in\N}$ définie pour tout $n\in\N$ par $u_n=(-1)^n$ est bornée mais ne converge pas.}
+
+\cor{Une suite non majorée ou non minorée diverge.}
+
+\preuve{C'est la contraposée de la proposition précédente.}
+
+\rem{Par contre, ce n'est pas parce qu'une suite est non majorée qu'elle diverge nécessairement vers $+\infty$. Par exemple la suite $(u_n)_{n\in\N}$ défnie pour tout $n\in\N$ par $u_n=n(-1)^n$ est non majorée mais ne diverge pas vers $\pm\infty$.}
+
+\theo{(de la convergence monotone) Toute suite croissante (strictement ou non) majorée converge. Toute suite décroissante (strictement ou non) minorée converge.}
+
+\preuve{Montrons le cas décroissant (pour changer). Soit $(u_n)_{n\in\N}$ une suite décroissante minorée. L'ensemble $U=\{u_n|n\in\N\}$ est non vide et minorée donc par la propriété de la borne inférieure (voir remarque \ref{bornesup}), $U$ possède une borne inférieure. Soit $l=\inf U$. Montrons que $(u_n)$ converge vers $l$. Soit un réel $r>0$. Si $[l;l+r[$ ne contenait aucun terme de $(u_n)$, alors $l+r$ serait un de ses minorants ce qui est absurde puisque $l$ est le plus grand d'entre eux. Donc il existe $n_r\in\N$ tel que $u_{n_r}\in[l;l+r[$. Soit un entier $n\ge n_r$. Comme $(u_n)$ est décroissante et minorée par $l$ alors $u_n\in[l;l+r[$ donc $u_n\in]l-r;l+r[$, donc $(u_n)$ converge vers $l$.}
+
+\pro{Soit $(a_n)_{n\in\N}$, $(b_n)_{n\in\N}$ et $(p_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $p_n=a_n b_n$. Si $(a_n)$ est bornée et si $(b_n)$ converge vers $0$, alors $(p_n)$ converge vers 0.}
+
+\preuve{D'après la remarque \ref{caraborn}, posons $M>0$ tel que pour tout $n\in\N$, $|a_n|<M$. Soit un réel $r>0$ et posons $\varepsilon=\dfrac{r}{M}>0$. Posons $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $b_n\in]-\varepsilon;\varepsilon[$ et soit un entier $n\ge n_r$. Alors $|a_n|<M$ et $|b_n|<\varepsilon$ donc par multiplication, $|a_n b_n|<M\varepsilon$ \cad $|p_n|<r$ donc $(p_n)$ converge vers 0.}
+
+\cor{\label{pnul} Soit $(a_n)_{n\in\N}$, $(b_n)_{n\in\N}$ et $(p_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $p_n=a_n b_n$. Si $(a_n)$ converge et si $(b_n)$ converge vers $0$, alors $(p_n)$ converge vers 0.}
+
+\preuve{Toute suite convergente est bornée donc la proposition précédente s'applique.}
+
+\pro{\programme Soit $(a_n)_{n\in\N}$ une suite croissante et convergente vers $l\in\R$. Alors pour tout $n\in\N$, $a_n\le l$.}
+
+\preuve{\programme Supposons qu'il existe $n_s\in\N$ tel que $a_{n_s}>l$. Montrons alors que $(a_n)$ ne converge pas vers $l$. Explicitons la définition de \gug~$(a_n)$ ne converge pas vers $l$~\gud : \gug il existe un réel $r>0$ tel que pour tout entier $n_0\in\N$, il existe un entier $n_{\sigma}\ge n_0$ tel que $a_{n_{\sigma}}\not\in]l-r;l+r[$~».  Posons $r=a_{n_s}-l>0$ et soit $n_0\in\N$. Posons $n_{\sigma}=\max(n_0, n_s)$. Donc on a d'une part $n_{\sigma}\ge n_0$ et d'autre part comme $n_{\sigma}\ge n_s$ et que $(a_n)$ est croissante alors $a_{n_{\sigma}}\ge a_{n_{s}}$. On a $]l-r;l+r[=]2l-a_{n_{s}};a_{n_{s}}[$ donc $a_{n_{\sigma}}\not\in]l-r;l+r[$. Donc $(a_n)$ ne converge pas vers $l$ ce qui est absurde.}
+
+\subsubsection{Divergence}
+
+\pro{Une suite qui diverge vers $\pm\infty$ diverge.}
+
+\preuve{Nous allons montrer le cas $+\infty$, l'autre étant similaire. Soit $(u_n)_{n\in\N}$ une suite divergeant vers $+\infty$. Supposons qu'il existe $l\in\R$ tel que $(u_n)$ converge vers $l$. Soit un réel $r>0$. Alors il existe $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $u_n\in]l-r;l+r[$. Posons un tel $n_r$. Posons $M=l+r$. Comme $(u_n)$ diverge vers $+\infty$, il existe $n_M\in\N$ tel que pour tout entier $n\ge n_M$, $u_n>M$. Posons un tel $n_M$. Soit enfin $n_0=\max(n_r,n_M)$. On a donc à la fois $u_{n_0}\in]l-r;l+r[$ et $u_{n_0}>l+r$, c'est absurde. Donc $(u_n)$ ne converge pas.}
+
+\pro{Toute suite divergente vers $+\infty$ est non majorée.}
+
+\preuve{Soit $(u_n)_{n\in\N}$ une suite divergente vers $+\infty$. Supposons que $(u_n)$ est majorée et soit $M\in\R$ un de ses majorants. Il existe $n_M\in\N$ tel que $u_{n_M}>M$ donc $M$ ne majore pas $(u_n)$, c'est absurde.}
+
+\pro{La croissance ou la décroissance d'une suite n'est pas une condition suffisante à la divergence.}
+
+\preuve{La suite de l'exemple \ref{exsuitegeo} est décroissante strictement mais converge vers $0$.}
+
+\pro{Toute suite croissante non majorée diverge vers $+\infty$. Toute suite décroissante non minorée diverge vers $-\infty$.}
+
+\preuve{Montrons le cas croissant. Soit $(u_n)_{n\in\N}$ une suite croissante non majorée. Soit $M\in\R$. $(u_n)$ est non majorée donc il existe $n_M\in\N$ tel que $u_{n_M}>M$. Soit un entier $n\ge n_M$. $(u_n)$ étant croissante, $u_n\ge u_{n_M}>M$, donc $(u_n)$ diverge vers $+\infty$.}
+
+\pro{Toute suite croissante non convergente diverge vers $+\infty$. Toute suite décroissante non convergente diverge vers $-\infty$.}
+
+\preuve{Montrons le cas croissant. Soit $(u_n)_{n\in\N}$ une suite croissante qui ne converge pas. La contraposée de la proposition précédente nous indique que toute suite divergente est non croissante ou non majorée. Or $(u_n)$ est croissante donc elle est non majorée. Or on sait qu'une suite croissante et non majorée diverge vers $+\infty$.}
+
+\pro{Soit \suite{a} une suite convergente vers $l\in\R$. Alors toute sous-suite de $(a_n)$ converge également vers $l$.}
+
+\preuve{Préambule : on montre facilement (par récurrence par exemple) que si \fone{\phi}{\N}{\N} est strictement croissante alors pour tout $n\in\N$, $\phi(n)\ge n$. Soit \suite{s} une sous-suite de $(a_n)$ et soit \fone{\phi}{\N}{\N} strictement croissante telle que pour tout $n\in\N$, $s_n=a_{\phi(n)}$. Soit un réel $r>0$ et posons un entier $n_r$ tel que pour tout entier $n\ge n_r$, $a_n\in]l-r;l+r[$. Soit un entier $n\ge n_r$. Puisque $\phi$ est strictement croissante, $\phi(n)\ge \phi(n_r)\ge n_r$. Donc $a_{\phi(n)}\in]l-r;l+r[$ \cad $s_n\in]l-r;l+r[$. Donc $(s_n)$ converge vers $l$.}
+
+\rem{Ce sont surtout les deux corollaires ci-dessous de cette proposition qu'on utilise en pratique.}
+
+\cor{Soit \suite{a}. S'il existe une sous-suite de $(a_n)$ divergente, alors $(a_n)$ diverge.}
+
+\preuve{Supposons que $(a_n)$ converge vers $l\in\R$ et qu'il existe une sous-suite de $(a_n)$ divergente. Alors d'après la proposition précédente, toute sous-suite de $(a_n)$ converge vers $l$, or il en existe une qui diverge. Donc $(a_n)$ ne converge pas, donc diverge.}
+
+\cor{Soit \suite{a}. S'il existe deux sous-suites de $(a_n)$ qui convergent vers des limites différentes, alors $(a_n)$ diverge.}
+
+\preuve{Similaire à la précédente.}
+
+\subsection{Comparaison de suites}
+
+\pro{\programme Soit $(a_n)_{n\in\N}$ et $(b_n)_{n\in\N}$ telles que :
+
+\begin{enumerate}[i)]
+\item $(a_n)$ diverge vers $+\infty$,
+\item Pour tout $n\in\N$, $b_n\ge a_n$.
+\end{enumerate}
+Alors $(b_n)$ diverge vers $+\infty$.}
+
+\rem{On a la même chose avec le cas $(a_n)$ divergente vers $-\infty$ et $b_n\le a_n$.}
+
+\preuve{\programme Soit un réel $M\in\R$. Soit $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $a_n>M$. Soit un entier $n\ge n_r$. Alors puisque $b_n\ge a_n$ on a $b_n>M$ donc $(b_n)$ diverge vers $+\infty$.}
+
+\rem{La proposition est aussi vraie si $b_n\ge a_n$ seulement à partir d'un certain rang $n_0$. C'est d'ailleurs la proposition officielle. La démonstration s'adapte très simplement en prenant $n_r\ge n_0$.}
+
+\pro{Soit $(a_n)_{n\in\N}$ et $(b_n)_{n\in\N}$ deux suites. Soit $(d_n)_{n\in\N}$ définie pour tout $n\in\N$ par $d_n=|a_n-b_n|$ et supposons que $(d_n)$ converge vers 0. Alors $(a_n)$ et $(b_n)$ ont le même comportement, \cad que soit elles convergent toutes les deux auquel cas leur limite est la même, soit elles divergent toutes les deux vers $\pm \infty$ soit elles divergent toutes les deux.}
+
+\defi{\label{adj} (adjacence) Soit deux suites $(u_n)_{n\in\N}$ et $(v_n)_{n\in\N}$. Soit $(d_n)_{n\in\N}$ définie pour tout $n\in\N$ par $d_n=|u_n-v_n|$. On dit que $(u_n)$ et $(v_n)$ sont adjacentes si :
+
+\begin{enumerate}[i)]
+\item $(u_n)$ est croissante,
+\item $(v_n)$ est décroissante,
+\item $(d_n)$ converge vers 0.
+\end{enumerate}}
+
+\rem{La définition est équivalente en posant $d_n=u_n-v_n$ ou $d_n=v_n-u_n$ et cela a l'avantage de rendre la démonstration qui va suivre moins pénible en évitant des distinctions de cas. Toutefois, il m'a semblé que garder la valeur absolue correspond mieux à l'intuition~: c'est la distance entre les deux suites qui tend à s'annuler.}
+
+\pro{Si deux suites sont adjacentes alors elles convergent et leur limite est la même.}
+
+\preuve{Soit $(u_n)_{n\in\N}$ et $(v_n)_{n\in\N}$ adjacentes et soit $(d_n)_{n\in\N}$ définie pour tout $n\in\N$ par $d_n=|u_n-v_n|$. Supposons que $(u_n)$ ne converge pas. On sait qu'une suite croissante non convergente diverge vers $+\infty$ donc $(u_n)$ diverge vers $+\infty$. Soit un réel $r>0$. $(d_n)$ converge vers $0$ donc il existe $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $d_n\in]-r;r[$. Posons un tel $n_r$. $(u_n)$ diverge vers $+\infty$ et n'est donc pas majorée, donc en particulier pas par $v_0+r$. Il existe donc un entier $n_0\ge n_r$ tel que $u_{n_0}>v_0+r$. Or $(v_n)$ est décroissante donc $u_{n_0}>v_{n_0}+r$ c'est-à-dire $u_{n_0}-v_{n_0}>r$ \cad $|u_{n_0}-v_{n_0}|>r$ \cad $d_{n_0}>r$ ce qui est absurde puisque $d_{n_0}\in]-r;r[$. Donc $(u_n)$ converge et de même, $(v_n)$ aussi. Appelons $l_u$ et $l_v$ leurs limites respectives et supposons $l_u< l_v$. Donc pour tout $n\in\N$, $v_n>u_n$ et donc pour tout $n\in\N$, $d_n=v_n-u_n$. Soit $r=\dfrac{l_v-l_u}{3}$. Il existe $n_u$ (resp. $n_v$) tel que pour tout entier $n\ge n_u$ (resp. $n\ge n_v$), $u_n\in]l_u-r;l_u+r[$ (resp. $v_n\in]l_v-r;l_v+r[$). Posons $n_0=\max(n_u,n_v)$ et soit un entier $n\ge n_0$. On a donc à la fois $u_n\in]l_u-r;l_u+r[$ et $v_n\in]l_v-r;l_v+r[$, \cad $|u_n-l_u|<r$ et $|v_n-l_v|<r$ \cad $l_u-u_n<r$ et $v_n-l_v<r$. En additionant ces deux inégalités on obtient $v_n-u_n<2r-l_u+l_v$ \cad $v_n-u_n<-r$. Mais alors $d_n=v_n-u_n<-r$ ce qui est absurde puisque $(d_n)$ tend vers $0$. De même en supposant cette fois $l_u> l_v$ on trouve une contradiction (attention cependant : dans ce cas $d_n=u_n-v_n$ seulement à partir d'un certain rang et pas pour tout $n\in\N$, une fois ce détail réglé la démarche est la même). Donc $l_u=l_v$.}
+
+\theo{\programme (des gendarmes, ou des sandwichs) Soit $(a_n)_{n\in\N}$, $(b_n)_{n\in\N}$ et $(c_n)_{n\in\N}$ trois suites telles que :
+\begin{enumerate}[i)]
+\item $(a_n)$ et $(c_n)$ sont adjacentes,
+\item pour tout $n\in\N$, $a_n\le b_n \le c_n$.
+\end{enumerate}
+Alors ces trois suites convergent vers la même limite.}
+
+\preuve{$(a_n)$ et $(c_n)$ sont adjacentes donc convergent vers la même limite. Notons-la $l$. Soit un réel $r>0$. Posons un entier $n_a$ (resp. $n_c$) tel que pour tout entier $n\ge n_a$ (resp. $n\ge n_c$), $a_n\in]l-r;l+r[$ (resp. $c_n\in]l-r;l+r[$). Posons $n_0=\max(n_a,n_c)$ et soit un entier $n\ge n_0$. Donc on a à la fois $l-r<a_n<l+r$ et $l-r<b_n<l+r$. On sait que $b_n\ge a_n$ donc $l-r<b_n$. On sait que $b_n\le c_n$ donc $b_n< l+r$. Donc $b_n\in]l-r;l+r[$ donc $(b_n)$ converge vers $l$.}
+\rem{Ce théorème est également valide si on a $a_n\le b_n \le c_n$ seulement à partir d'un certain rang $n_b$. En ce cas il faudra simplement poser $n_0=\max(n_a,n_b,n_c)$ dans la démonstration.}
+
+\subsection{Par la valeur absolue}
+
+\pro{Soit $(u_n)_{n\in\N}$ et $(a_n)_{n\in\N}$ définie pour tout $n\in\N$ par $a_n=|u_n|$. Si $(u_n)$ converge alors $(a_n)$ aussi (et sa limite est alors la valeur absolue de celle de $(u_n)$).}
+
+\preuve{Préambule : l'\textit{inégalité triangulaire inverse} nous affirme que pour tout $x,y\in\R$, \newline $||x|-|y||<|x-y|$. Soit $l\in\R$ la limite de $(u_n)$ et soit $r>0$. Soit $n_r$ un entier tel que pour tout entier $n\ge n_r$, $|u_n-l|<r$ et soit un entier $n\ge n_r$. Alors $|u_n-l|<r$ donc par l'inégalité triangulaire inverse, $||u_n|-|l||<|u_n-l|<r$ \cad $|a_n-|l||<r$. Donc $(a_n)$ converge vers $|l|$.}
+
+\rem{\textbf{Attention} : la réciproque n'est pas vraie. Par exemple si $u_n=(-1)^n$ alors $a_n=1$, et alors $(a_n)$ converge mais pas $(u_n)$. Comme nous le verrons dans la proposition suivante, la réciproque ne marche en général que si $(a_n)$ converge vers 0.}
+
+\cor{\label{divabs} Soit $(u_n)_{n\in\N}$ et $(a_n)_{n\in\N}$ définie pour tout $n\in\N$ par $a_n=|u_n|$. Si $(a_n)$ diverge alors $(u_n)$ aussi.}
+
+\preuve{C'est la contraposée de la proposition précédente.}
+
+\pro{\label{convabsz}Soit $(u_n)_{n\in\N}$ et $(a_n)_{n\in\N}$ définie pour tout $n\in\N$ par $a_n=|u_n|$. Si $(a_n)$ converge vers 0 alors $(u_n)$ aussi.}
+
+\preuve{Soit $r>0$. Soit $n_r$ un entier tel que pour tout entier $n\ge n_r$, $-r<|a_n|<r$ et soit un entier $n\ge n_r$. Si $a_n\ge0$ alors $|a_n|=a_n$ donc $-r<a_n<r$. Si $a_n\le0$ alors $|a_n|=-a_n$ donc $-r<-a_n<r$ donc $-r<a_n<r$. Dans tous les cas $-r<a_n<r$ et donc $(a_n)$ converge vers 0.}
+
+\subsection{Par les fonctions}
+
+\theo{\label{caraseq} (caractérisation séquentielle des limites) Soit $l\in\R$, \suite{u} une suite qui converge vers $l$, $E\subset \R$ tel que tous les termes de $(u_n)$ sont dans $E$ et \fone{f}{E}{\R}. Alors $f$ admet une limite en $l$ \ssi la suite \suite{f(u_n)} converge vers $f(l)$.}
+
+\rem{On peut remplacer $l$ par $\pm\infty$.}
+
+\preuve{La démonstration est au programme du chapitre d'analyse réelle.}
+
+\ex{Soit \suite{u} la suite définie pour tout $n\in\N$ par $u_n=\sqrt{\dfrac{n^2+3}{2n^2+n+1}}$. Étudions son comportement. Posons \suite{v} la suite définie pour tout $n\in\N$ par $v_n=\dfrac{n^2+3}{2n^2+n+1}$. On a donc, pour tout $n\in\N$, $u_n=\sqrt{v_n}$. On montre en factorisant que $v_n$ converge vers $\dfrac{1}{2}$. Or $\limc{x}{1/2}\sqrt{x}=\dfrac{\sqrt{2}}{2}$. D'où $u_n$ converge vers $\dfrac{\sqrt{2}}{2}$.}
+
+\defi{Soit \suite{a} une suite récurrente d'ordre 1, c'est-à-dire qu'il existe une \fone{f}{\R}{\R} telle que pour tout $n\in\N$, $f(a_n)=a_{n+1}$. Une telle fonction est appelée \textit{fonction associée à} $(a_n)$.}
+
+\theo{\label{ptfixe} (du point fixe) Soit \suite{a} une suite récurrente d'ordre 1, \fone{f}{\R}{\R} une fonction associée à $(a_n)$ et $F=\{x\in\R|f(x)=x\}$ \cad l'ensemble des points fixes de $f$. Si $(a_n)$ converge vers $l\in\R$ et si $f$ est continue en $l$, alors $l\in F$.}
+
+\preuve{$f$ est continue en $l$ donc $\limc{x}{l} f(x)=f(l)$. Par la caractérisation séquentielle des limites, puisque $\limc{n}{+\infty} a_{n}=l$ alors $\limc{n}{+\infty} f(a_n)=f(l)$. Or $\limc{n}{+\infty} f(a_n) = \limc{n}{+\infty} a_{n+1}=\limc{n}{+\infty} a_n=l$. Par conséquent on a $f(l)=l$ \cad que $l\in F$.}
+
+\cor{Soit \suite{a} une suite récurrente d'ordre 1, \fone{f}{\R}{\R} une fonction associée à $(a_n)$ et $F=\{x\in\R|f(x)=x\}$. Soit $l\not\in F$. Alors $(a_n)$ ne converge pas vers $l$ ou bien $f$ n'est pas continue en $l$.}
+
+\rem{Ce corollaire permet d'établir les limites candidates. C'est particulièrment efficace si les fonctions associées ne sont pas continues seulement en quelques points (et c'est le cas de la plupart des fonctions usuelles).}
+
+\preuve{C'est la contraposée de la proposition précédente.}
+
+\ex{\begin{itemize}
+\item Supposons que $a_0\in\R^*$ et pour tout $n\in\N$, $a_{n+1}=\dfrac{1}{a_n}$. \fons{f}{\R^*}{\R}{x}{\dfrac{1}{x}} est une fonction associée à $(a_n)$. Dans ce cas $F=\{-1;1\}$. $f$ est continue sur $x\in\R\backslash\{0\}$ et par conséquent, si $(a_n)$ converge vers $l\in\R$ alors $l\in\{-1;0;1\}$.
+
+\item Supposons que $a_0\in\R$ et pour tout $n\in\N$, $a_{n+1}=a_n^2-a_n+2$. \fons{f}{\R}{\R}{x}{x^2-x+2} est une fonction associée à $(a_n)$. Dans ce cas $F=\emptyset$. $f$ est continue sur $\R$ donc $(a_n)$ diverge.
+\end{itemize}}
+
+\pro{Soit \suite{a} une suite qui converge vers  $\alpha\in\R$. Soit $T=\{a_n|n\in\N\}$, $I$ une partie de $\R$ tel que $T\subseteq I$ et \fone{f}{I}{\R}. Alors si $\limc{x}{\alpha} f(x) = \beta$, alors la suite \suite{F} définie pour tout $n\in\N$ par $F_n=f(u_n)$ converge vers $\beta$.}
+
+%\defi{(fonction associée) Soit \suite{a} une suite récurrente d'ordre 1. Soit $T=\{a_n|n\in\N\}$. On appelle \textit{fonction associée} à $(a_n)$ toute fonction \fone{f}{I}{\R} telle que $T\subseteq I\subseteq\R$ et telle que pour tout $n\in\N$, $f(a_n)=a_{n+1}$.}
+
+%\ex{Si pour tout $n\in\N$, $a_{n+1}=2a_n-3$ alors la fonction \fone{f}{\R}{\R} telle que pour tout $x\in\R$, $f(x)=2x-3$ est une fonction associée à $(a_n)$.}
+
+%\rem{L'existence d'une telle fonction est garantie en réalité par la définition même de suite récurrente d'ordre 1.}
+
+\defi{Soit \suite{a} une suite telle que chacun de ses termes ne dépendent que de leur rang. On appelle \textit{fonction associée} à $(a_n)$ toute fonction \fone{f}{I}{\R} telle que $I$ est un intervalle de $\R$ et telle que pour tout $n\in\N\cap I$, $f(n)=a_{n}$.}
+
+\ex{Si pour tout $n\in\N$, $a_{n}=\dfrac{1}{n+1}$ alors la fonction \fone{f}{\R_+}{\R} telle que pour tout $x\in\R$, $f(x)=\dfrac{1}{x+1}$ est une fonction associée à $(a_n)$.}
+
+\pro{Soit \suite{a} une suite telle que chacun de ses termes ne dépendent que de leur rang. Soit $I$ un intervalle de $\R$ contenant au moins deux entiers naturels consécutifs et soit \fone{f}{I}{\R} une fonction associée à $(a_n)$. Soit enfin $n_0$ et $n_1$ le plus petit et le plus grand entier naturel de $I$ respectivement. Si $f$ est croissante (resp. décroissante) sur $I$ alors $(a_n)$ est croissante (resp. décroissante) sur $\lint n_0;n_1 \rint$.}
+
+\preuve{Supposons $f$ croissante sur $I$, \cad que pour tout $x,y\in I$ avec $x<y$, $f(x)\le f(y)$.  Soit $n\in \lint n_0; n_1 \lint$. On a $n<n+1$ et comme $n, n+1\in I$ alors $f(n)\le f(n+1)$ \cad $a_n \le a_{n+1}$, donc $(a_n)$ est croissante sur $I$.}
+
+\rem{Cette proposition fonctionne aussi avec le "strictement".}
+
+\pro{Soit \suite{a} une suite telle que chacun de ses termes ne dépendent que de leur rang. Soit $I$ un intervalle de $\R$ contenant $\N$ (typiquement $\R_+$) et soit \fone{f}{I}{\R} une fonction associée à $(a_n)$. Si $f$ est croissante (resp. décroissante) sur $I$ alors $(a_n)$ est croissante (resp. décroissante).}
+
+\preuve{Immédiat en se servant de la preuve précédente comme modèle.}
+
+\rem{Les deux propositions précédentes sont extrêmement pratiques pour prouver la monotonie d'une fonction, il ne faut donc pas hésiter à les utiliser au lieu de rédiger une longue récurrence.}
+
+\subsection{Opérations sur les limites}
+\label{oplim}
+
+Connaissant le comportement de deux suites, que peut-on dire du comportement d'une opération sur elles deux ? C'est ce que nous allons voir ici. Dans toute cette section, $(a_n)_{n\in\N}$ et $(b_n)_{n\in\N}$ sont deux suites réelles.
+
+\subsubsection{Multiplication par un scalaire}
+
+\pro{\programme Si $(a_n)$ converge vers $\alpha\in\R$ alors pour tout $\lambda\in\R$, la suite $(c_n)_{n\in\N}$ définie pour tout $n\in\N$ par $c_n=\lambda a_n$ converge vers $\lambda\alpha$.}
+
+\preuve{Supposons $\lambda> 0$ et soit un réel $r>0$. Posons $q=\dfrac{r}{\lambda}>0$. Posons $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $a_n\in]\alpha-q;\alpha+q[$. Soit un entier $n\ge n_r$. Alors $\alpha-q<a_n<\alpha+q$ \cad $\lambda(\alpha-q)<\lambda a_n<\lambda(\alpha+q)$ \cad $\lambda\alpha-r<c_n<\lambda\alpha+r$ ce qui prouve que $(c_n)$ converge vers $\lambda\alpha$. Le cas $\lambda< 0$ est similaire en posant $q=-\dfrac{r}{\lambda}$. Le cas $\lambda=0$ nous donne immédiatement que pour tout $n\in\N$, $c_n=0$ donc $(c_n)$ converge vers $0=\lambda\alpha$.}
+
+\pro{\programme Si $(a_n)$ diverge alors pour tout réel $\lambda\neq 0$, la suite $(c_n)_{n\in\N}$ définie pour tout $n\in\N$ par $c_n=\lambda a_n$ diverge. Si $\lambda=0$ alors $(c_n)$ converge vers $0$.}
+
+\preuve{Le cas $\lambda=0$ est immédiat. Supposons donc $\lambda> 0$. Supposons que $(c_n)$ converge vers $l\in\R$. Soit un réel $r>0$ et $q=\lambda r$. Posons $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $c_n\in]l-q;l+q[$. Soit un entier $n\ge n_r$. Alors $l-q<c_n<l+q$ \cad $\dfrac{l-q}{\lambda}<\dfrac{c_n}{\lambda}<\dfrac{l+q}{\lambda}$ \cad $\dfrac{l}{\lambda}-r<a_n<\dfrac{l}{\lambda}+r$. Donc $(a_n)$ converge vers $\dfrac{l}{\lambda}$, c'est absurde. Le cas $\lambda<0$ est similaire en posant $q=-\lambda r$.}
+
+\pro{\programme Soit $(a_n)$ divergente vers $+\infty$. Soit $\lambda\in\R$ et soit la suite $(c_n)_{n\in\N}$ définie pour tout $n\in\N$ par $c_n=\lambda a_n$.
+
+\begin{enumerate}
+\item Si $\lambda=0$ alors $(c_n)$ converge vers $0$.
+\item Si $\lambda>0$ alors $(c_n)$ diverge vers $+\infty$.
+\item Si $\lambda<0$ alors $(c_n)$ diverge vers $-\infty$.
+\end{enumerate}}
+\rem{Comme d'habitude, on a la même chose pour $(a_n)$ divergente vers $-\infty$ en adaptant.}
+
+\preuve{Le cas $\lambda=0$ est immédiat. Soit $\lambda>0$. Soit un réel $M>0$ et $M'=\dfrac{M}{\lambda}>0$. Posons un entier $n_M$ tel que pour tout entier $n\ge n_M$, $a_n > M'$. Soit un entier $n\ge n_M$. Alors $a_n > M'$ \cad $\lambda a_n > \lambda M'$ \cad $c_n > M$. Donc $(c_n)$ diverge vers $+\infty$. Le cas $\lambda<0$ est similaire en posant $M'=-\dfrac{M}{\lambda}$.}
+
+Voici un tableau récapitulatif.
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+$(a_n)_{n\in\N}$ & $\lambda < 0$ & $\lambda = 0$ & $\lambda > 0$ \\ \hline
+Converge vers $l\in\R$ & $\lambda l$ & 0 & $\lambda l$ \\ \hline
+Diverge vers $+\infty$ & $-\infty$ &  0 & $+\infty$ \\ \hline
+Diverge vers $-\infty$ & $+\infty$ & 0 & $-\infty$ \\ \hline
+Diverge & Diverge & 0 & Diverge \\ \hline
+\end{tabular}
+
+\subsubsection{Addition de suites}
+
+Dans cette sous-section $(s_n)_{n\in\N}$ est la suite définie pour tout $n\in\N$ par $s_n=a_n+b_n$. Bien entendu, ce que nous allons voir ici s'applique à la soustraction en considérant par exemple l'opposé de la suite $(b_n)$. 
+
+\pro{\programme Si $(a_n)$ converge vers $\alpha$ et $(b_n)$ vers $\beta$ alors $(s_n)$ converge vers $\alpha+\beta$.}
+
+\preuve{Posons $\sigma=\alpha+\beta$. Soit un réel $r>0$ et posons $n_a$ (resp. $n_b$) un entier tel que pour tout entier $n\ge n_a$ (resp. $n\ge n_b$), $a_n\in]\alpha-r;\alpha+r[$ (resp. $b_n\in]\beta-r;\beta+r[$). Soit $n_0=\max(n_a,n_b)$ et soit un entier $n\ge n_0$. On a donc à la fois $a_n\in]\alpha-r;\alpha+r[$ et $b_n\in]\beta-r;\beta+r[$. Donc $s_n=a_n+b_n\in]\sigma-2r;\sigma+2r[$ donc $s_n\in]\sigma-r;\sigma+r[$ et donc $(s_n)$ converge vers $\sigma$.}
+
+\pro{\programme Si $(a_n)$ converge vers $\alpha$ et $(b_n)$ diverge vers $+\infty$ (resp. $-\infty$) alors $(s_n)$ diverge vers $+\infty$ (resp. $-\infty$).}
+
+\preuve{Traitons le cas $+\infty$. Soit un réel $M>0$ et $M'=2M-\alpha$. Posons un entier $n_a$ (resp. $n_b$) tel que pour tout entier $n\ge n_a$ (resp. $n\ge n_b$), $a_n\in]\alpha-M;\alpha+M[$ (resp. $b_n>M'$). Soit $n_0=\max(n_a,n_b)$ et soit un entier $n\ge n_0$. On a donc à la fois $a_n>\alpha-M$ et $b_n>M'$ donc par addition, $s_n>\alpha-M+M'$ \cad $s_n>M$. Donc $(s_n)$ diverge vers $+\infty$ (le lecteur pourrait reprocher à juste titre qu'on a pris seulement $M>0$ et non $M\in\R$ qui est exigé par la définition mais dans le cas de la divergence vers $+\infty$ c'est la même chose).}
+
+\pro{\programme Si $(a_n)$ et $(b_n)$ divergent vers $+\infty$ (resp. $-\infty$) alors $(s_n)$ diverge vers $+\infty$ (resp. $-\infty$).}
+
+\preuve{Traitons le cas $-\infty$ pour changer. Soit $m<0$. Posons un entier $n_a$ (resp. $n_b$) tel que pour tout entier $n\ge n_a$ (resp. $n\ge n_b$), $a_n<m$ (resp. $b_n<m$). Soit $n_0=\max(n_a,n_b)$ et soit un entier $n\ge n_0$. On a donc à la fois $a_n<m$ et $b_n<m$ donc par addition, $s_n<2m$ \cad $s_n<m$. Donc $(s_n)$ diverge vers $-\infty$ (même remarque que précédemment : prendre $m<0$ dans le cas de la divergence vers $-\infty$ suffit).}
+
+\pro{\programme Si $(a_n)$ diverge vers $+\infty$ et $(b_n)$ diverge vers $-\infty$, $(s_n)$ peut soit converger (et pas nécessairement vers $0$) soit diverger (et pas nécessairement vers $\pm\infty$). Bref : \textbf{on ne peut rien dire}.}
+
+\preuve{\begin{itemize}
+\item Supposons que $(a_n)$ et $(b_n)$ soient définis pour tout $n\in\N$ par $a_n=n$ et $b_n=1-n$. $(a_n)$ est croissante et non majorée donc divergente vers $+\infty$ et de même, $(b_n)$ est divergente vers $-\infty$. Pour tout $n\in\N$, $s_n=1$ donc $(s_n)$ converge vers 1.
+\item Supposons que $(a_n)$ et $(b_n)$ soient définis pour tout naturel $n$ pair par $a_n=n$ et $b_n=-n$ et pour tout naturel $n$ impair par $a_n=n-1$ et $b_n=-n-1$. Alors on montre par récurrence que $(a_n)$ est croissante et non majorée donc divergente vers $+\infty$, que $(b_n)$ est décroissante et non minorée donc divergente vers $-\infty$ et que que pour tout $n\in\N$, $s_n=2\times(-1)^n$ qui est divergente (et pas en $\pm\infty$ puisqu'elle est bornée).
+\end{itemize}}
+Finalement, voici une table récapitulative concernant la somme des limites :
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+\backslashbox{$\limc{n}{+\infty} b_n$}{$\limc{n}{+\infty} a_n$} & $\alpha\in\R$ & $+\infty$ & $-\infty$ \\ \hline
+$\beta\in\R$ & $\alpha+\beta$ & $+\infty$ & $-\infty$ \\ \hline
+$+\infty$ & $+\infty$ & $+\infty$ & Ind \\ \hline
+$-\infty$ & $-\infty$ & Ind & $-\infty$ \\ \hline
+\end{tabular}
+
+\subsubsection{Multiplication de suites}
+
+Dans cette sous-section $(p_n)_{n\in\N}$ est la suite définie pour tout $n\in\N$ par $p_n=a_nb_n$. Bien entendu, ce que nous allons voir ici s'applique à la division en considérant par exemple l'inverse de la suite $(b_n)$ \textit{pourvu qu'elle ne s'annule pas}.
+
+\pro{\programme Si $(a_n)$ converge vers $\alpha\in\R$ et $(b_n)$ converge vers $\beta\in\R$ alors $(p_n)$ converge vers $\alpha\beta$.}
+
+
+
+\preuve{Soit $(u_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $u_n=a_n(b_n -\beta)$ et $(v_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $v_n=(a_n-\alpha)\beta$. Montrons que $(u_n)$ converge vers 0. $(b_n)$ converge vers $\beta$ donc par addition, $\limc{n}{+\infty} (b_n-\beta)=\beta-\beta=0$. On sait de plus que $(a_n)$ converge donc le corollaire \ref{pnul} s'applique, donc $(u_n)$ converge vers 0. De même on montre que $(v_n)$ converge également vers 0. Donc par addition, $\limc{n}{+\infty}(u_n+v_n)=0$. Or pour tout $n\in\N$, $u_n+v_n=p_n-\alpha\beta$ donc $\limc{n}{+\infty}(p_n-\alpha\beta)=0$ donc par addition, $(p_n)$ converge vers $\alpha\beta$.}
+
+\pro{\programme Si $(a_n)$ converge vers $\alpha\in\R_+^*$ et $(b_n)$ diverge vers $+\infty$ alors $(p_n)$ diverge vers $+\infty$.}
+
+\preuve{Soit un réel $M>0$. Soit $r\in]0;\alpha[$. Posons $n_r\in\N$ \tq \pt entier $n\ge n_r$, $\alpha-r<a_n<\alpha+r$. Soit $q=\dfrac{M}{\alpha-r}>0$. Posons $n_q\in\N$ \tq \pt entier $n\ge n_q$, $q<b_n$. Posons $n_0=\max(n_r,n_q)$. Soit un entier $n\ge n_0$. Alors on a à la fois $0<\alpha-r<a_n$ et $0<q<b_n$ donc par multiplication termes à termes de ces deux inégalités, on obtient $M<p_n$, conclusion $p_n$ diverge vers $+\infty$.}
+
+\pro{\programme Si $(a_n)$ diverge vers $+\infty$ et $(b_n)$ diverge vers $-\infty$ alors $(p_n)$ diverge vers $-\infty$.}
+
+\preuve{Soit un réel $m<0$, un réel $M_a>0$ et $m_b=\dfrac{m}{M_q}<0$. Posons $n_a\in\N$ \tq \pt entier $n\ge n_a$, $a_n>M_a$. Posons $n_b\in\N$ \tq \pt entier $n\ge n_b$, $b_n<m_b$. Posons $n_0=\max(n_a,n_b)$. Soit un entier $n\ge n_0$. Alors on a à la fois $0<M_a<a_n$ et $b_n<m_b<0$ \ie $0<-m_b<-b_n$ donc par multiplication termes à termes de ces deux inégalités, on obtient $p_n<m$, conclusion $p_n$ diverge vers $-\infty$.}
+
+\pro{\programme Si $(a_n)$ converge vers $0$ et $(b_n)$ diverge vers $+\infty$ alors \textbf{on ne peut rien dire} sur le comportement de $(p_n)$ en général.}
+
+\ex{\begin{itemize}
+\item Si pour tout $n\in\N$, $a_n=0$ et $b_n=n$ alors $(a_n)$ converge vers 0, $(b_n)$ diverge vers $+\infty$ et $(p_n)$ qui est constante à 0 \textcolor{blue}{converge vers 0}. 
+\item Si pour tout $n\in\N$, $a_n=\dfrac{1}{n+1}$ et $b_n=n+1$ alors $(a_n)$ converge vers 0, $(b_n)$ diverge vers $+\infty$ et $(p_n)$ qui est constante à 1 \textcolor{blue}{converge vers 1}. 
+\item Si pour tout $n\in\N$, $a_n=\dfrac{1}{n+1}$ et $b_n=(n+1)^2$ alors $(a_n)$ converge vers 0, $(b_n)$ diverge vers $+\infty$ et $(p_n)$ \textcolor{blue}{diverge vers $+\infty$}.
+\item Si pour tout $n\in\N$, $a_n=\dfrac{(-1)^n}{n+1}$ et $b_n=n+1$ alors $(a_n)$ converge vers 0 (car produit d'une suite bornée et d'une suite convergente vers 0), $(b_n)$ diverge vers $+\infty$ et $(p_n)$ \textcolor{blue}{diverge}.
+\end{itemize}}
+
+En adaptant ces démonstrations aux autres cas, nous obtenons ainsi le tableau récapitulatif~:
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\backslashbox{$\limc{n}{+\infty} b_n$}{$\limc{n}{+\infty} a_n$} & $\alpha<0$ & $\alpha=0$ & $\alpha>0$ & $-\infty$ & $+\infty$ \\ \hline
+$\beta<0$ & $\alpha\beta$ & 0 & $\alpha\beta$ & $+\infty$ & $-\infty$ \\ \hline
+$\beta=0$ & 0 & 0 & 0 & Ind & Ind \\ \hline
+$\beta>0$ & $\alpha\beta$ & 0 & $\alpha\beta$ & $-\infty$ & $+\infty$ \\ \hline
+$-\infty$ & $+\infty$ & Ind & $-\infty$ & $+\infty$ & $-\infty$ \\ \hline
+$+\infty$ & $-\infty$ & Ind & $+\infty$ & $-\infty$ & $+\infty$ \\ \hline
+\end{tabular}
+
+\subsubsection{Quotient de suites}
+
+\section{Suites remarquables}
+
+En classe de Première vous avez rencontré deux types de suites : les suites \emph{arithmétiques} et les suites \emph{géométriques}. Nous allons rappeler leurs définitions et leurs propriétés. Mise en garde toutefois : les preuves ne peuvent être comprises qu'après avoir lu la section "comportement à l'infini des suites".
+
+\subsubsection{Suites arithmétiques}
+
+\defi{\programme (suites arithmétiques) Soit $r\in\R$ et $\alpha\in\R$. On appelle \emph{suite arithmétique de premier terme $\alpha$ et de raison $r$} la suite $(a_n)_{n\in\N}$ définie par $a_0=\alpha$ et tel que pour tout $n\in\N$, $a_{n+1}=a_n+r$.}
+
+Il s'agit fondamentalement d'une suite dont la différence entre un terme et son précédent est constante et égale à $r$. La définition ci-dessus est bien sûr donnée par récurrence mais une telle suite peut aussi être définie explicitement comme suit.
+
+\pro{\programme Soit $(a_n)_{n\in\N}$. $(a_n)$ est une suite arithmétique de premier terme $\alpha\in\R$ et de raison $r\in\R$ \ssi pour tout $n\in\N$, $a_n=\alpha+rn$.}
+
+\preuve{Cela se montre par simple récurrence.}
+
+Dans la pratique, pour déterminer si une suite donnée $(u_n)_{n\in\N}$ est arithmétique, on calcule pour tout $n\in\N$ la quantité $u_{n+1}-u_n$ et si cette dernière égale $r$ alors on peut affirmer que $(u_n)$ est arithmétique de raison $r$ et de premier terme $u_0$. Et pour déterminer un terme quelconque d'une telle suite, on va utiliser la définition explicite.
+
+\exo{Soit $(v_n)_{n\in\N}$ la suite définie par $v_0=0$ et tel que pour $n\in\N$, $v_{n+1}=v_n+n+1$. Soit $(w_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $w_n=\dfrac{n^2-1}{2}$. Enfin soit $(y_n)_{n\in\N}$ la suite définie pour tout $n\in\N$ par $y_n=v_n-w_n$. Montrer que $(y_n)$ est arithmétique (on précisera sa raison et son premier terme) puis montrer que $y_{99}=50$.}
+
+\pro{\programme Soit $(a_n)_{n\in\N}$ une suite arithmétique de premier terme $\alpha\in\R$ et de raison $r\in\R$. Alors :
+
+\begin{enumerate}[i)]
+\item si $r=0$ alors $(a_n)$ est stationnaire et converge vers $\alpha$,
+\item si $r>0$ alors $(a_n)$ est strictement croissante et diverge vers $+\infty$,
+\item si $r<0$ alors $(a_n)$ est strictement décroissante et diverge vers $-\infty$
+\end{enumerate}}
+
+\rem{Les termes de convergence et divergence seront étudiées plus tard.}
+
+\preuve{Cette preuve ne sera accessible qu'une fois la section "limite de suite" étudiée. Si $r=0$ alors pour tout $n\in\N$, $a_n=\alpha$ donc $(a_n)$ est stationnaire donc converge vers $\alpha$. Si $r>0$ alors pour tout $n\in\N$, $a_{n+1}-a_n=\alpha+r(n+1)-\alpha-rn=1$ donc $(a_n)$ est strictement croissante. Supposons que $(a_n)$ est majorée par $M\in\R$. L'équation $\alpha+rn>M$ a pour ensemble de solutions $S=\{n\in\N|n>\dfrac{M-\alpha}{r}\}$. Posons donc $n_0=\left\lceil \dfrac{M-\alpha}{r} \right\rceil+1$. Alors $n_0\in S$ donc $a_{n_0}>M$ ce qui est absurde. Donc $(a_n)$ n'est pas majorée et est de plus croissante, donc $(a_n)$ diverge vers $+\infty$. Le cas $r<0$ est similaire.}
+
+Soit $(a_n)_{n\in\N}$ une suite et soit $(s_n)_{n\in\N}$ définie pour tout $n\in\N$ par $s_n=\somme{k=0}{n} a_n$.
+
+\pro{\programme Si $(a_n)$ est une suite arithmétique de premier terme $\alpha\in\R$ et de raison $r\in\R$ alors pour tout $n\in\N$, $s_n=\dfrac{(n+1)(\alpha+a_n)}{2}$.}
+
+\rem{\begin{itemize}
+\item Pour le retenir, retenir la phrase \gug nombre de termes fois la moyenne des termes extrêmes\gud.
+\item En effet, aussi surprenant que cela puisse paraître, $r$ n'apparaît pas dans la formule. 
+\end{itemize}}
+
+\preuve{Par récurrence simple.}
+
+\subsubsection{Suites géométriques}
+
+defi{\programme Soit $q\in\R$ et $\alpha\in\R$. On appelle \emph{suite géométrique de premier terme $\alpha$ et de raison $q$} la suite $(a_n)_{n\in\N}$ définie par $a_0=\alpha$ et tel que pour tout $n\in\N$, $a_{n+1}=q a_n$.}
+
+\pro{\programme Soit $(a_n)_{n\in\N}$ géométrique de premier terme $\alpha$ et de raison $q$. Alors pour tout $n\in\N$, $a_n=\alpha q^n$.}
+
+\preuve{Cela se montre par simple récurrence.}
+
+\pro{\programme Soit $(a_n)_{n\in\N}$ une suite géométrique de premier terme $\alpha\in\R$ et de raison $q\in\R$. Alors :
+
+\begin{enumerate}[i)]
+\item Si $\alpha=0$ alors $(a_n)$ est constante et converge vers 0.
+\item Si $\alpha > 0$ et :
+\begin{enumerate}
+\item si $|q|<1$ alors $(a_n)$ est décroissante (strictement si $q\neq0$) et converge vers 0,
+\item si $q=1$ alors $(a_n)$ est constante et converge vers $\alpha$,
+\item si $q\le -1$ alors $(a_n)$ diverge.
+\item si $q>1$ alors $(a_n)$ est strictement croissante et diverge vers $+\infty$.
+\end{enumerate}
+\item Si $\alpha < 0$ et :
+\begin{enumerate}
+\item si $|q|<1$ alors $(a_n)$ converge vers 0 (\textbf{attention} : elle n'est croissante que si $q\in[0;1|$~!),
+\item si $q=1$ alors $(a_n)$ est constante et converge vers $\alpha$,
+\item si $q\le -1$ alors $(a_n)$ diverge.
+\item si $q>1$ alors $(a_n)$ est strictement décroissante et diverge vers $-\infty$.
+\end{enumerate}
+\end{enumerate}}
+
+\rem{Il n'est pas question d'apprendre tout ça par coeur. Ce qu'il faut retenir c'est que quel que soit le premier terme, si $q\in]-1;1]$ la suite converge et autrement elle diverge. Le reste se retrouve facilement en calculant les deux premiers termes.}
+
+\preuve{Nous n'allons donner que les idées de la preuve qui serait beaucoup trop longue si nous détaillions.
+
+\begin{enumerate}[i)]
+\item C'est immédiat.
+\item
+\begin{enumerate}
+\item On montre que la suite est décroissante et minorée par 0 donc par le théorème de convergence monotone, elle converge puis on montre par l'absurde que sa limite ne peut être supérieure à 0.
+\item C'est immédiat.
+\item Si $q=-1$ on montre qu'elle admet deux sous-suites de limites différentes, si $q<-1$ on montre que la valeur absolue de la suite n'est pas majorée, donc par le corollaire \ref{divabs} elle diverge.
+\item On montre que la suite est strictement croissante et non majorée.
+\end{enumerate}
+\item
+\begin{enumerate}
+\item Si $q\in[0;1[$ on montre que la suite est croissante et majorée par 0 donc par le théorème de convergence monotone, elle converge puis on montre par l'absurde que sa limite ne peut être inférieure à 0. Si $q\in]-1;0[$, on montre que la suite $(|q^n|)_{n\in\N}$ converge vers 0 (par le théorème de convergence monotone...) donc par la proposition \ref{convabsz} et par multiplication par un scalaire, la suite converge vers 0.
+\item C'est immédiat.
+\item Si $q=-1$ on montre qu'elle admet deux sous-suites de limites différentes, si $q<-1$ on montre que la valeur absolue de la suite n'est pas majorée, donc par le corollaire \ref{divabs} elle diverge.
+\item On montre que la suite est strictement décroissante et non minorée.
+\end{enumerate}
+\end{enumerate}}
+
+\pro{\programme Si $(a_n)$ est une suite géométrique de premier terme $\alpha\in\R$ et de raison $q\in\R$ alors pour tout $n\in\N$, $s_n=\alpha\dfrac{(1-q)^{n+1}}{1-q}$ si $q\neq 1$ et $s_n=\alpha(n+1)$ si $q=1$.}
+
+\rem{Pour le retenir, retenir la phrase... Heu...}
+
+\preuve{Par récurrence simple.}

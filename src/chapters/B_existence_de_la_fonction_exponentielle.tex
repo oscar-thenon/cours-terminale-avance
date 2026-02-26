@@ -1,0 +1,153 @@
+\chapter{Existence de la fonction exponentielle}
+\label{annexp}
+
+Nous présentons ici une preuve de l'existence de cette fonction. Elle est très longue et astucieuse mais accessible à un solide élève de TS. De plus, tout lecteur qui aura vue cette preuve sera largement récompensé : il disposera d'une définition de l'exponentielle qui permet facilement de démontrer tout un tas de propriétés sur elle. Tout n'est pas développé dans cette preuve, ce qui n'est pas montré sont des résultats faciles mais un peu lourds : ils sont laissés en exercice au lecteur. Cette preuve est issue essentiellement inspirée de \href{http://tsmaths.free.fr/Prepa/existenceexpo.pdf}{cette preuve}, revue et complétée.
+
+\section{Stratégie}
+Pour tout $x\in\R$ nous définissons les suites de réels, dépendant de $x$, $(u_n(x))_{n\ge\eta}$ et $(v_n(x))_{n\ge\eta}$  avec $\eta\in\N$ tel que $\eta>|x|$ (que nous noterons dorénavant simplement $(u_n)$ et $(v_n)$ pour alléger, en oubliant jamais la dépendance à $x$) définies pour tout $n\ge\eta$ par $u_n(x)=\left(1+\dfrac{x}{n}\right)^n$ et $v_n(x)=\left(1-\dfrac{x}{n}\right)^{-n}$. Nous faisons commencer la suite à partir de $\eta$, car autrement la suite $(v_n)$ pourrait ne pas être définie, exemple : $v_3(3)$ n'est pas défini. En posant ainsi $\eta$, il n'y plus de problème de définition. \\
+Nous commencerons par montrer que $(u_n)$ et $(v_n)$ sont adjacentes (voir la définition \ref{adj}) et qu'elles admettent donc une limite commune dépendant de $x$, nous construirons ainsi $\exp$ comme la limite de $(u_n)$. Nous montrerons ensuite que $\exp$ ainsi définie satisfait les propriétés voulues (à savoir qu'elle est égale à sa dérivée et que $\exp(0)=1$), ce qui prouvera bien l'existence d'une telle fonction. \\
+Sauf mention contraire, dans tout ce qui suit $x$ est un réel quelconque et $n$ un entier naturel non nul.
+
+\section{\texorpdfstring{Adjacence de $(u_n)$ et $(v_n)$}{Adjacence de (u\_n) et (v\_n)}}
+Montrons que $(u_n)$ et $(v_n)$ sont adjacentes. Pour rappel il y a deux choses à montrer~:
+\begin{enumerate}
+\item l'une de ces suites est croissante à partir d'un certain rang, l'autre décroissante à partir d'un certain rang,
+\item $\lim\limits_{n\to +\infty} v_n(x)-u_n(x)=0$.
+\end{enumerate}
+
+\subsection{\texorpdfstring{Croissance de $(u_n)$}{Croissance de (u\_n)}}
+C'est le premier gros morceau de la preuve, le second étant l'établissement de l'égalité de $\exp$ avec sa dérivée. \\
+\\
+Montrons que $(u_n)$ est croissante à partir du rang $\eta$, c'est-à-dire que pour tout $n\ge \eta$, $u_{n+1}(x)\ge u_n(x)$. \\
+\\
+Nous allons plusieurs fois utiliser le résultat suivant :
+
+\pro{(inégalité de Bernoulli) Pour tout $n\in\N$, tout réel $\alpha> -1$, on a $(1+\alpha)^n\ge1+n\alpha$.\label{inbernoulli}}
+Cette inégalité se montre par un raisonnement par récurrence facile. Remarque : il n'y a pas qu'une version de cette inégalité.
+
+Soit $n\ge \eta$ et posons $f_n(x)=1+\dfrac{x}{n}$ et $g_n(x)=1-\dfrac{x}{n(n+1)\left(1+\dfrac{x}{n}\right)}$. L'existence de $f_n(x)$ est justifié par la non nullité de $n$. Prouvons l'existence de $g_n(x)$. On a $n\ge \eta>-x$ et $n>-x\imp n+x>0\imp \dfrac{n+x}{n}>0\imp 1+\dfrac{x}{n}>0$. Donc $1+\dfrac{x}{n}>0$. De plus $n(n+1)>0$. Donc $n(n+1)\left(1+\dfrac{x}{n}\right)>0$. Donc le dénominateur ne s'annule pas, ce qui prouve l'existence de $g_n(x)$. \\
+\\
+Nous avons :
+\begin{equation}
+\forall n\ge \eta, 1+\dfrac{x}{n+1}=f_n(x)g_n(x)
+\label{fg}
+\end{equation}
+Cela se montre par exemple en calculant la différence des deux membres et en constatant qu'elle est nulle.\\
+\\
+Pour tout $n\ge \eta$ on a $u_{n+1}(x)=\left(1+\dfrac{x}{n+1}\right)^{n+1}$ donc par~\eqref{fg} nous avons~:
+\begin{equation}
+\forall n\ge \eta,u_{n+1}(x)=f_n(x)^{n+1}g_n(x)^{n+1}.
+\label{defun}
+\end{equation}
+Montrons que pour tout $n\ge \eta$ on a $g_n(x)>0$. Soit $n\ge \eta$. \\
+$g_n(x)>0\eqv \dfrac{x}{n(n+1)\left(1+\dfrac{x}{n}\right)}<1\eqv n^2+n+nx>0\eqv n+x+1>0$. \\
+Or $n>-x\imp n+x>0\imp n+x+1>1>0$ donc on a bien $n+x+1>0$. Finalement on a bien $g_n(x)>0$ pour tout $n\ge \eta$. \\
+\\
+Soit $n\ge \eta$. Posons $\alpha_n(x)=-\dfrac{x}{n(n+1)\left(1+\dfrac{x}{n}\right)}$. On a $g_n(x)^{n+1}=(1+\alpha_n(x))^{n+1}$. \\
+De plus $g_n(x)>0\eqv \alpha_n(x)>-1$ donc $\alpha_n(x)>-1$. \\
+\\
+Nous pouvons ainsi appliquer l'inégalité de Bernoulli au rang $n+1$ et ainsi $(1+\alpha_n(x))^{n+1}\ge 1+(n+1)\alpha_n(x)$ et donc :
+\begin{equation}
+\forall n\ge \eta, g_n(x)^{n+1}\ge 1+(n+1)\alpha_n(x)
+\label{gp}
+\end{equation}
+De plus nous avons :
+\begin{equation}
+\forall n\ge \eta, 1+(n+1)\alpha_n(x)=\dfrac{n}{n+x}
+\label{egalpha}
+\end{equation}
+Cela se montre facilement par calcul direct. \\
+\\
+Donc par~\eqref{gp} et~\eqref{egalpha}, nous avons :
+\begin{equation}
+\forall n\ge \eta, g_n(x)^{n+1}\ge\dfrac{n}{n+x}
+\label{finalg}
+\end{equation}
+Recollons les morceaux. Soit $n\ge \eta$. Par~\eqref{defun} et~\eqref{finalg} nous avons $u_{n+1}(x)\ge f_n(x)^{n+1}\dfrac{n}{n+x}=f_n(x)^n\left(1+\dfrac{x}{n}\right)\left(\dfrac{n}{n+x}\right)=f_n(x)^n\left(\dfrac{x+n}{n}\right)\left(\dfrac{n}{n+x}\right)=f_n(x)^n=u_n(x)$. \\
+\\
+Conclusion, pour tout $n\ge \eta$ on a $u_{n+1}(x)\ge u_n(x)$ donc $(u_n)$ est croissante à partir d'un certain rang (ouf !).
+
+\subsection{\texorpdfstring{Décroissance de $(v_n)$}{Décroissance de (v\_n)}}
+Soit $n\ge \eta$.
+On a montré que $f_n(x)>0$ (en prouvant l'existence de $g_n(x)$). Or $u_n(x)=f_n(x)^n$ donc $u_n(x)> 0$. \\
+On a $u_{n+1}(-x)\ge u_{n}(-x)$. Puisque $u_n(-x)> 0$, on a le droit de passer à l'inverse et alors $\dfrac{1}{u_{n+1}(-x)}\le \dfrac{1}{u_{n}(-x)}$.\\
+\\
+Or nous avons également $v_n(x)=\dfrac{1}{u_n(-x)}$ (cela se montre directement). \\
+\\
+Donc pour tout $n\ge\eta$, $v_{n+1}(x)\le v_{n}(x)$ : $(v_n)$ est finalement décroissante à partir d'un certain rang.
+
+\subsection{\texorpdfstring{Limite de la différence}{Limite de la différence}}
+
+Soit $n\ge\eta$. Nous rappelons que $u_n(x)=\left(1+\dfrac{x}{n}\right)^n$ et $v_n(x)=\left(1-\dfrac{x}{n}\right)^{-n}$.  \\
+\\
+On montre par calcul que
+\begin{equation}
+\forall n\ge\eta,v_n(x)-u_n(x)=v_n(x)\left(1-\left[1-\left(\dfrac{x}{n}\right)^2\right]^n\right)
+\label{uvdiff}
+\end{equation}
+En appliquant l'inégalité de Bernoulli (dont on justifiera pourquoi on a le droit de l'utiliser), on a $\left[1-\left(\dfrac{x}{n}\right)^2\right]^n\ge 1-\dfrac{x^2}{n}$. Puis, par inégalités successives jusqu'à retrouver~\eqref{uvdiff}, on trouve $v_n(x)-u_n(x)\le v_n(x)\dfrac{x^2}{n}$.\\
+\\
+$(v_n)$ étant décroissante à partir d'un certain rang, elle est majorée : il existe $M(x)\in\R$ (qui dépend de $x$ mais \textit{pas} de $n$, c'est tout l'intérêt) tel que pour tout $n\ge\eta$, $v_n(x)\le M(x)$.\\
+Ainsi, $v_n(x)-u_n(x)\le M(x)\dfrac{x^2}{n}$. On a $\lim\limits_{n\to\infty} v_n(x)-u_n(x)\le \lim\limits_{n\to\infty} M(x)\dfrac{x^2}{n}=0$. \\
+Donc $\lim\limits_{n\to\infty} v_n(x)-u_n(x)\le 0$. \\
+
+De plus, depuis \eqref{uvdiff}, sachant que $v_n\ge 0$ et que pour tout $x\in]0,1[$, $n\in\N^*$, $x^n\in]0,1[$, on montre facilement que $v_n-u_n\ge 0$. \\
+Par conséquent $\lim\limits_{n\to\infty} v_n(x)-u_n(x)\ge 0$ \\
+\\
+Finalement $0\le \lim\limits_{n\to\infty} v_n(x)-u_n(x)\le 0$ donc $\lim\limits_{n\to\infty} v_n(x)-u_n(x)= 0$.
+
+\subsection{\texorpdfstring{Construction de $\exp$}{Construction de exp}}
+Nous avons montré que $(u_n)$ et $(v_n)$ sont respectivement croissante et décroissante à partir d'un certain rang, et que $\lim\limits_{n\to\infty} v_n(x)-u_n(x)=0$. \\
+$(u_n)$ et $(v_n)$ sont donc adjacentes et ainsi ces deux suites convergent vers la même limite. \\
+A titre d'exemple, voici une représentation graphique des premières valeurs de $(u_n(2))$ et $(v_n(2))$ en prenant $\eta=3$. Nous avons fait aussi apparaître la droite d'équation $y=l$ où $l$ est la limite des deux suites.
+
+\includegraphics[scale=0.4]{figures/pdf/adjaexpo-eps-converted-to.pdf}
+
+Nous pouvons par conséquent légitimement définir la fonction $\exp:\R\to\R,x\mapsto \lim\limits_{n\to +\infty} u_n(x)$ (nous aurions également pu le faire avec $(v_n)$ mais l'utilisation de $(u_n)$ est plus standard).
+
+\section{Vérification des propriétés de la fonction construite}
+Il faut à présent vérifier que la fonction que nous venons de construire vérifie les propriétés attendues.
+
+\subsection{\texorpdfstring{$\exp(0)=1$}{exp(0)=1}}
+Pour tout $n\ge\eta$, $u_n(0)=1^n=1$ donc $\exp(0)=\lim\limits_{n\to\infty} u_n(0) = \lim\limits_{n\to\infty} 1=1$.
+
+\subsection{Sa dérivée égale elle-même}
+Soit $x\in\R$. Nous souhaitons montrer que $\Lim{h\to 0}\dfrac{\exp(x+h)-\exp(x)}{h}$ existe et égale $\exp(x)$.\\
+\\
+Soit $h\in\R$ tel que $|h|<1$. Montrons :
+\begin{equation}
+\exp(x+h)\ge \exp(x)(1+h)
+\label{expxph}
+\end{equation}
+Posons $n\ge\eta$ tel que $n>1-x$. Soit $f_n(x,h)=\lp 1+\dfrac{x+h}{n}\rp$ et $g_n(x,h)=\lp 1+\dfrac{\dfrac{h}{n}}{1+\dfrac{x}{n}} \rp$. Notons qu'on a $\exp(x+h)=\Lim{n\to+\infty} f_n(x,h)^n$.\\
+\\
+On montre par simple calcul que :
+\begin{equation}
+f_n(x,h)^n=u_n(x)g_n(x,h)^n
+\label{fug}
+\end{equation}
+Montrons :
+\begin{equation}
+f_n(x,h)^n\ge u_n(x)\lp 1+\dfrac{h}{1+\dfrac{x}{n}} \rp
+\label{ifug}
+\end{equation}
+On a $n+x>1$ donc par inégalités successives on montre que $0<\dfrac{1}{1+\dfrac{x}{n}}<n$ et donc que $\la\dfrac{1}{1+\dfrac{x}{n}}\ra<n$. De plus, $|h|<1$ donc $\la \dfrac{h}{n}\ra<\dfrac{1}{n}$. En multipliant ces deux inégalités on a $\la\dfrac{\dfrac{h}{n}}{1+\dfrac{x}{n}}\ra<1$ et finalement $\dfrac{\dfrac{h}{n}}{1+\dfrac{x}{n}}>-1$.\\
+\\
+Cette dernière inégalité nous autorise à appliquer l'inégalité de Bernoulli à $g_n(x,h)^n$ et nous obtenons par conséquent $g_n(x,h)^n\ge 1+\dfrac{h}{1+\dfrac{x}{n}}$. En injectant ce dernier résultat à~\ref{fug} nous obtenons bien~\ref{ifug}.\\
+\\
+Enfin, en faisant tendre $n$ vers l'infini dans~\ref{ifug} nous obtenons exactement~\ref{expxph}.\\
+\\
+Nous avons bâti notre raisonnement en considérant $|h|<1$. Par conséquent, il reste valide en remplaçant $h$ par $-h$ et ainsi nous obtenons également $\exp(x-h)\ge \exp(x)(1-h)$. \\
+\\
+Soit $x'=x+h$. Par l'inégalité précédente nous avons $\exp(x'-h)\ge \exp(x')(1-h)$ donc $\exp(x)\ge\exp(x+h)(1-h)$ donc $\exp(x+h)\le \dfrac{\exp(x)}{1-h}$ ($|h|<1$ donc $1-h>0$). En combinant cette inégalité avec~\ref{expxph}, en soustrayant par $\exp(x)$ et enfin en divisant par $h$ on obtient :
+\begin{equation}
+\exp(x)\le\dfrac{\exp(x+h)-\exp(x)}{h}\le \dfrac{\exp(x)}{1-h}
+\end{equation}
+Finalement, en faisant tendre $h$ vers $0$ dans cette inégalité, on obtient $\Lim{h\to 0}\dfrac{\exp(x+h)-\exp(x)}{h}=\exp(x)$, ce qu'il fallait démontrer.
+
+\section{Conclusion}
+Nous avons construit une fonction $\exp:\R\to\R$ dont nous avons prouvé que $\exp(0)=1$, dérivable sur $\R$ et telle que pour tout $x\in\R,\exp'(x)=\exp(x)$. \\ \\
+Ainsi nous avons bien prouvé l'existence d'une fonction $\exp$ qui vérifie toutes les propriétés voulues.
+\begin{flushright}
+$\square$
+\end{flushright}

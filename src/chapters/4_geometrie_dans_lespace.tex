@@ -1,0 +1,882 @@
+\chapter{Géométrie dans l'espace}
+
+Dans ce chapitre, on identifie l'espace de dimension 3 à l'ensemble $\R^3$, c'est-à-dire à l'ensemble des triplets de réels.
+
+\defi{Les éléments de $\R^3$ sont appelés \textit{points}.}
+
+\section{Vecteurs de l'espace et produit scalaire}
+
+Essentiellement, nous verrons que les vecteurs de l'espace ne sont rien d'autre qu'une extension des vecteurs du plan avec une dimension (donc coordonnée) supplémentaire. Beaucoup de preuves sont faisables rapidement par simple calcul, nous ne les signaleront pas.
+
+\defi{(vecteurs de $\R^3$) Les vecteurs de $\R^3$ sont des triplets de réels vérifiant les deux propriétés suivantes.
+
+\begin{itemize}
+\item Pour tout vecteurs $v=(x,y,z)$ et $v'=(x',y',z')$, $v+v'$ est un vecteur valant le triplet $(x+x',y+y',z+z')$.
+\item Pour tout vecteur $v=(x,y,z)$ et $\lambda\in\R$, $\lambda v$ est un vecteur valant le triplet $(\lambda x, \lambda y, \lambda z)$.
+\end{itemize}}
+
+\rem{Attention : bien que les vecteurs et les points sont des triplets de réels, ce ne sont pas les mêmes objets et ils n'ont pas les mêmes propriétés. Ainsi, quand on écrit $M\in\R^3$ on sous-entend que $M$ est un point et non un vecteur. Si on veut absolument écrire quelque chose d'équivalent pour les vecteurs, alors il faut noter par exemple $E$ les vecteurs de $\R^3$, et alors quand on écrit $v\in E$ on sous-entend que $v$ est un vecteur de $\R^3$.}
+
+Avec XCas, on crée le vecteur $u=(7,0,-5)$ avec la commande \verb&u:=[7,0,-5]&. Toutes les opérations sur les vecteurs sont possibles avec XCas.
+
+\nota{Soit $v=(x,y,z)$ un vecteur. On peut aussi noter $v=\parent{\begin{matrix}x \\
+y \\
+z
+\end{matrix}}$}
+
+\rem{Rien n'oblige à mettre des flèches sur le nom des vecteurs. Toutefois, c'est assez conventionnel au lycée.}
+
+\pro{(propriétés des vecteurs) Soit $v=(x,y,z)$, $w=(x',y',z')$, $t=(x'',y'',z'')$ trois vecteurs et $\lambda,\mu\in\R$.
+
+\begin{itemize}
+\item $(0,0,0)+v=v+(0,0,0)=v$. On appelle $(0,0,0)$ le \textit{vecteur nul} et on le note ${0}$.
+\item (associativité) $(v+w)+t=v+(w+t)$
+\item $v-v={0}$
+\item (commutativié) $v+w=w+v$
+\item (distributivité à droite) $(\lambda+\mu)v=\lambda v + \mu v$
+\item (distributivité à gauche) $\lambda (v+w) = \lambda v + \lambda w$
+\item (associativité mixte) $(\lambda\mu)v = \lambda (\mu v)$
+\end{itemize}}
+
+\defi{(colinéarité) Deux vecteurs $v$ et $w$ sont dits colinéaires si il existe $\lambda\in\R$ tel que $v=\lambda w$.}
+
+\pro{\label{procroix} Soit $u=(u_1,u_2,u_3)$ et $v=(v_1,v_2,v_3)$ deux vecteurs. $u$ et $v$ sont colinéaires \ssi $u_1v_2-u_2v_1=0$, $u_1v_3-u_3v_1=0$ et $u_2v_3-u_3v_2=0$.}
+
+\preuve{\doubleimp{Il existe $\lambda\in\R$ tel que $v=(\lambda u_1,\lambda u_2, \lambda u_3)$. On vérifie alors facilement que $u_1v_2-u_2v_1=0$, $u_1v_3-u_3v_1=0$ et $u_2v_3-u_3v_2=0$.}
+
+{Le résultat est évident pour $v={0}$ donc supposons $v\neq{0}$. $u_1v_2-u_2v_1=0$, $u_1v_3-u_3v_1=0$ et $u_2v_3-u_3v_2=0$ donc il existe $a,b,c\in\R$ tel que $u_1=av_1$, $u_2=av_2$, $u_1=bv_1$, $u_3=b v_3$,  $u_2=cv_2$, $u_3=c v_3$. On a donc :
+
+\sys{av_1 &=& bv_1 \\
+av_2 &=& c v_2 \\
+bv_3 &=& c v_3}
+
+Puisque $v\neq{0}$, alors $v_1,v_2$ ou $v_3$ est non nul. Supposons donc par exemple $v_1\neq 0$ (les autres cas étant similaires). Alors par la première ligne, on a $a=b$. Mais alors on a $u_1=av_1$, $u_2=av_2$ et $u_3=a v_3$, d'où $u=av$, donc $u$ et $v$ sont colinéaires.}}
+
+\rem{Aussi fou que cela puisse paraître, il faut bien les trois conditions $u_1v_2-u_2v_1=0$, $u_1v_3-u_3v_1=0$ et $u_2v_3-u_3v_2=0$ pour garantir la colinéarité. Si on ne suppose seulement que $u_1v_2-u_2v_1=0$ et $u_1v_3-u_3v_1=0$ par exemple, ça ne marche pas en général : les vecteurs $\vre{0}{0}{1}$ et $\vre{0}{1}{1}$ ne sont pas colinéaires mais respectent pourtant ces deux conditions.}
+
+\defi{(produit scalaire) Soit $u=(x,y,z)$ et $v=(x',y',z')$ deux vecteurs. On appelle \textit{produit scalaire de} $u$ \textit{et} $v$ le réel $xx'+yy'+zz'$. On le note $u\cdot v$}
+
+Avec XCas, on calcule le produit scalaire de $u$ et $v$ par la commande \verb&dot(u,v)&.
+
+\pro{(propriétés du produit scalaire) Soit $u,v,w$ trois vecteurs et $\lambda\in\R$.
+
+\begin{itemize}
+\item $u\cdot u \ge 0$
+\item $u\cdot u = 0\eqv u={0}$
+\item $u\cdot v = v \cdot u$
+\item $(u + \lambda v)\cdot w = u\cdot w + \lambda (v\cdot w)$
+\end{itemize}}
+
+\nota{On note $u\cdot u$ souvent $u^2$.}
+
+\defi{(norme) Soit $v=(x,y,z)$ un vecteur. On appelle \textit{norme (euclidienne) de} $v$ le réel positif $\sqrt{v^2}=\sqrt{x^2+y^2+z^2}$. On le note $||v||$. Ainsi, $v^2=||v||^2$.}
+
+\rem{En effet, on voit dans le supérieur que cette norme est définie à partir du produit scalaire.}
+Avec XCas, on calcule la norme de $u$ et $v$ par la commande \verb&norm(u,v)&.
+
+\lemme{\label{cauchyscwharz} (inégalité de Cauchy-Schwarz) Soit $u,v$ deux vecteurs. Alors $|u\cdot v| \le ||u||\times ||v||$. Autrement écrit, $(u\cdot v)^2 \le u^2 v^2$.}
+
+\rem{Dans les faits, cette proposition sert à démontrer l'inégalité triangulaire de la norme comme nous le verrons dans la proposition suivante. La démonstration de cette inégalité, très ingénieuse, vaut également le coup d'oeil.}
+
+\preuve{Soit $u,v$ deux vecteurs et soit \fons{P}{\R}{\R}{t}{(u+tv)^2}. Soit $t\in\R$. On sait que $P(t)\ge 0$ (premier point de la proposition précédente). De plus, on a  :
+
+\chaine{P(t) &=& (u+tv)^2 \\
+&=& (u+tv)\cdot (u+tv) \\
+&=& u\cdot (u+tv) + (tv)\cdot (u+tv) \\
+&=& u\cdot u + u\cdot (tv) + (tv)\cdot u + (tv)\cdot (tv) \\
+&=& u^2 + t(u\cdot v) + t(v\cdot u) + t^2 v^2 \\
+&=& v^2 t^2 + 2(u\cdot v) t + u^2 \\
+P(t) &=& ||v||^2 t^2 + 2(u\cdot v) t + ||u||^2}
+
+Ainsi, $P$ est une fonction polynomiale réelle de degré 2, positive. Son discriminant $\Delta$ est donc négatif (parce que sinon, $P$ admettrait 2 racines et ne serait donc pas toujours positif). Ainsi :
+
+\chaine{& & \Delta \le 0 \\
+&\eqv& 4(u\cdot v)^2-4||v||^2||u||^2 \le 0 \\
+&\eqv& (u\cdot v)^2-||u||^2||v||^2 \le 0 \\
+&\eqv& (u\cdot v)^2 \le ||u||^2||v||^2 \\
+&\eqv& |u\cdot v| \le ||u||\times ||v||}}
+
+\lemme{(identités remarquables) Soit $u,v$ deux vecteurs.
+
+\begin{enumerate}
+\item $(u+v)^2=u^2+2(u\cdot v) + v^2$
+\item $(u+v)\cdot (u-v) = u^2-v^2$
+\end{enumerate}}
+
+\pro{(propriétés de la norme)  Soit $u,v$ deux vecteurs de $\R^3$.
+
+\begin{enumerate}[i)]
+\item $v={0}\eqv ||v||=0$
+\item Pour tout $\lambda\in\R$, $||\lambda v||=|\lambda|\times ||v||$.
+\item (inégalité triangulaire) $||u+v||\le ||u||+||v||$
+\end{enumerate}}
+
+\preuve{Nous montrons l'inégalité triangulaire.
+
+\chaine{||u+v||^2 &=& (u+v)^2 \\
+&=& u^2+2(u\cdot v) + v^2}
+
+Par l'inégalité de Cauchy-Schwarz, on a donc :
+
+\chaine{& & ||u+v||^2 \le u^2+2||u||\times||v||+ v^2 \\
+&\eqv& ||u+v||^2 \le ||u||^2+2||u||\times ||v||+ ||v||^2 \\
+&\eqv& ||u+v||^2 \le (||u||+||v||)^2 \\
+&\eqv& ||u+v|| \le ||u||+||v||}}
+
+\defi{(orthogonalité) Soit $u,v$ deux vecteurs. On dit que $u$ \textit{et} $v$ \textit{sont} \textit{orthogonaux} si $u\cdot v = 0$.}
+\rem{${0}$ est orthogonal avec tous les vecteurs, et c'est le seul.}
+
+\pro{Soit $u,v$ deux vecteurs. Alors si $u',v'$ sont deux vecteurs respectivement colinéaires à $u$ et $v$, $u'$ et $v'$ sont orthogonaux.}
+
+\pro{(génération de vecteurs orthogonaux) Soit $u=(x,y,z)$ un vecteur. Alors le vecteur $n=(-y,x,0)$ est orthogonal à $u$. De plus, tout vecteur colinéaire à $n$ est orthogonal à $u$.}
+
+\section{Lien entre vecteurs et points}
+
+\defi{Soit $A=(x,y,z)$ et $B=(x',y',z')$ deux points de $\R^3$. On appelle \textit{vecteur} $\vr{AB}$ le vecteur $(x'-x,y'-y,z'-z)$.}
+
+\rem{On associe donc chaque couple de points à un unique vecteur. Attention, la réciproque n'est pas vrai : à tout vecteur est associé une infinité de couples de points.}
+
+\pro{(propriétés fondamentales) Soit $A,B,C\in\R^3$.
+
+\begin{itemize}
+\item (relation de Chasles) $\vr{AB}+\vr{BC}=\vr{AC}$
+\item (translation) Pour tout vecteur $u$, il existe un unique point $D$ tel que $u=\vr{AD}$
+\end{itemize}}
+
+
+\section{Bases, repères et points}
+
+\defi{(base) Soit $B=(v_n)_{n<3}$ une famille de trois vecteurs. On dit que $B$ \textit{est une base de} $\R^3$ si l'équation $x v_0+y v_1+z v_2={0}$ d'inconnues $x,y,z\in\R$ ne possède qu'une unique solution : $(x,y,z)=(0,0,0)$.}
+
+\ex{Soit $v_0=(1,2,3)$, $v_1=(1,1,1)$ et $v_2=(-2,-4,-6)$. Montrons que $B=(v_0,v_1,v_2)$ n'est pas une base de $\R^3$. Résolvons l'équation $x v_0 + y v_1 + z v_2 ={0}$, \cad le système suivant.
+
+\sys{x + y -2z = 0 \\
+2x + y -4z = 0 \\
+3x + y -6z = 0}
+
+Nous pouvons remarquer que les lignes 1 et 3 sont équivalentes, donc nous pouvons supprimer l'une des deux. Avec les deux lignes restantes, nous trouvons que l'ensemble des solutions est $\ens{(2\lambda,0,\lambda),\lambda\in\R)}$. Cela signifie que cette équation possède une infinité de triplets solutions et que donc $(0,0,0)$ n'est pas l'unique solution. Donc $B$ n'est pas une base de $\R^3$.}
+
+Sur XCas, voici comment vérifier que $B$ est une base ou non : \\
+
+\verb&solve([x*[1,2,3]+y*[1,1,1]+z*[-2,-4,-6]=[0,0,0]],[x,y,z])& \\
+
+Si XCas ne renvoie pas \verb+(0 0 0)+ c'est que $B$ n'est pas une base.
+
+\rem{De manière générale, si deux des trois vecteurs sont colinéaires, alors $B$ n'est pas une base car cela signifie que deux lignes du système sont équivalentes. Mais attention, la réciproque est fausse : si les vecteurs sont deux à deux non colinéaires, ils peuvent tout de même ne pas former une base (prendre par exemple $v_0=(1,0,0),v_1=(2,3,0),v_2=(2,2,0)$). Géométriquement, pour que trois vecteurs non colinéaires deux à deux forment une base, il faut en plus qu'ils soient non coplanaires (\ie ils ne doivent pas être dans un même plan).} 
+
+\pro{(base canonique) La famille de vecteurs $\parent{\vre{1}{0}{0},\vre{0}{1}{0},\vre{0}{0}{1}}$ est une base de $\R^3$. On l'appelle \textit{base canonique de} $\R^3$. On note ces vecteurs respectivement $e_1,e_2,e_3$ (notation surtout utilisée dans le supérieur que nous allons conserver ici, parce que pourquoi pas).}
+
+\preuve{Immédiat.}
+
+\defi{(repère) On appelle \textit{repère de} $\R^3$ tout couple $(O,B)$ où $O$ est un point de $\R^3$ appelé \textit{origine du repère} et où $B$ est une base de $\R^3$ appelée \textit{base du repère}.}
+
+\defi{(repères usuels) Soit $R=(O,B)$ un repère de $\R^3$ avec $B=(v_0,v_1,v_2)$.
+
+\begin{itemize}
+\item On dit que $R$ est \textit{normé} si $||v_0||=||v_1||=||v_2||=1$.
+\item On dit que $R$ est \textit{orthogonal} si les vecteurs de $B$ sont deux à deux orthogonaux.
+\item On dit que $R$ est \textit{orthonormé} (ou \textit{orthonormal}) si $R$ est normé et orthogonal.
+\end{itemize}}
+
+\rem{Lorsque la norme d'un vecteur vaut 1, on dit qu'il est \textit{unitaire}.}
+
+\pro{Pour tout point $O$ de $\R^3$, $R=(O,(e_1,e_2,e_3))$ est un repère orthonormé. On appelle en particulier $((0,0,0),(e_1,e_2,e_3))$ le \textit{repère canonique}.}
+
+Nous considérons dans la suite $\mathscr{R}=(O,(v_0,v_1,v_2))$ un repère de $\R^3$ quelconque.
+
+\pro{\label{decompvec} Pour tout vecteur $u$, il existe un unique triplet $(x,y,z)\in\R^3$ tel que $u=x v_0 + y v_1 + z v_2$.}
+
+\preuve{Prouvons l'unicité. Supposons par l'absurde qu'il existe un triplet $(x',y',z')\in\R^3$ différent de $(x,y,z)$ solution. Alors on à la fois  $u=x v_0 + y v_1 + z v_2$ et  $u=x' v_0 + y' v_1 + z' v_2$ d'où $(x-x')v_0 + (y-y')v_1 + (z-z')v_2={0}$. Posons $X=x-x'$, $Y=y-y'$ et $Z=z-z'$. Alors $Xv_0 + Yv_1 + Zv_2={0}$, or puisque $(v_0,v_1,v_2)$ est une base, on a nécessairement $X=Y=Z=0$. D'où $(x,y,z)=(x',y',z')$~: c'est absurde. L'existence se prouve en résolvant de manière générale le système (sur XCas par exemple) : le fait que $(v_0,v_1,v_2)$ est une base va garantir qu'aucune ligne ne sera équivalente à aucun moment de la résolution.}
+
+\defi{Soit $A\in\R^3$. D'après la proposition précédente, il existe un unique triplet $(x,y,z)\in\R^3$ tel que $\vr{OA}=x v_0 + y v_1 + z v_2$. On dit que $x,y,z$ sont \textit{les coordonnées de $A$ dans le repère} $\mathscr{R}$ et on note $M_\mathscr{R}(x,y,z)$.}
+
+\pro{On a $O_\mathscr{R}(0,0,0)$.}
+
+\pro{Soit $M=(x,y,z)$ un point. Si $\mathscr{R}$ est le repère canonique, alors $M_\mathscr{R} (x,y,z)$, ce qu'on note de manière raccourcie $M(x,y,z)$.}
+
+\rem{Donc, quand on écrit «~soit $M(2,6,-7)$~» cela signifie que les coordonnées de $M$ dans le repère canonique sont $2,6$ et $-7$.}
+
+\ex{\label{exrep} Soit $v_0=(1,2,3)$, $v_1=(-1,0,5)$ et $v_3=(1,-1,0)$ trois vecteurs. On suppose que $B=(v_0,v_1,v_2)$ est une base. Soit $O(7,1,2)$ un point et $\mathscr{R}=(O,B)$. Enfin, soit $A(4,3,-5)$ un point. Trouvons les coordonnées de $A$ dans $\mathscr{R}$. Notons-les $x,y,z$. Alors $\vr{OA}$ vérifie $\vr{OA}=x v_0 + y v_1 + z v_2$, \cad le système suivant.
+
+\sys{x -y + z &=& 4-7 \\
+2x -z &=& 3-1 \\
+3x + 5y &=& -5-2}
+
+On résout le système, on trouve $(x,y,z)=\parent{-\dfrac{2}{3},-1,-\dfrac{10}{3}}$. Conclusion, $A_\mathscr{R}\parent{-\dfrac{2}{3},-1,-\dfrac{10}{3}}$.}
+
+On peut aussi résoudre directement sur XCas (ce que je n'ai pas fait pour résoudre cet exo, bien entendu...) : \\
+
+\verb&solve([x*[1,2,3]+y*[-1,0,5]+z*[1,-1,0]=[4-7,3-1,-5-2]],[x,y,z])&
+
+\pro{(changement d'origine) Soit $A$ un point tel que $A_\mathscr{R}(x,y,z)$ Soit $O'_\mathscr{R}(\alpha,\beta,\gamma)$ et $\mathscr{R}'=(O',B)$. Alors $A_{\mathscr{R}'}(x-\alpha,y-\beta,z-\gamma)$.}
+
+\preuve{On a $\vr{O'A}=\vr{O'O}+\vr{OA}=\vr{OA}-\vr{OO'}$. On sait que $\vr{OA}=x v_0 + y v_1 + z v_2$ et que $\vr{OO'}=\alpha v_0 + \beta v_1 + \gamma v_2$ d'où $\vr{O'A}=(x-\alpha) v_0 + (y-\beta) v_1 + (z-\gamma) v_2$ et donc $A_{\mathscr{R}'}(x-\alpha,y-\beta,z-\gamma)$.}
+
+\nota{On note $\dis$ la distance euclidienne entre deux points. Autrement dit, soit $A(x,y,z)$ et $B(x',y',z')$. Alors $\dis(A,B)=\sqrt{(x'-x)^2+(y'-y)^2+(z'-z)^2}$.}
+
+\pro{Soit $A(x,y,z)$ et $B(x',y',z')$. Alors $\dis(A,B)=||\vr{AB}||$.}
+
+\pro{Soit $A_\mathscr{R}(x,y,z)$ et $B_\mathscr{R}(x',y',z')$. Si $\mathscr{R}$ est orthonormé, alors $\dis(A,B)=\sqrt{(x'-x)^2+(y'-y)^2+(z'-z)^2}$.}
+
+\rem{Cette proposition est utile car si on dispose des coordonnées de deux points dans un repère orthonormé quelconque, alors on peut calculer leur distance.}
+
+\preuve{Supposons que $A(\alpha,\beta,\gamma)$ et $B(\alpha',\beta',\gamma')$ (les coordonnées de $A$ et $B$ dans le repère canonique). $\mathscr{R}$ et le repère canonique sont tous deux orthonormés. Cela signifie  qu'ils sont égaux à une translation et une ou plusieurs rotations près. Or, de même que dans le plan, les translations et rotations de l'espace sont des isométries, \cad que les distances sont conservées. Cela signifie que $\alpha'-\alpha=x'-x$, $\beta'-\beta=y'-y$ et $\gamma'-\gamma=z'-z$. Or par définition, $\dis(A,B)=\sqrt{(\alpha'-\alpha)^2+(\beta'-\beta)^2+(\gamma'-\gamma)^2}$. Donc $\dis(A,B)=\sqrt{(x'-x)^2+(y'-y)^2+(z'-z)^2}$.}
+
+\section{Objets de l'espace}
+
+On se place dans toute la suite le repère canonique $\mathscr{C}$.
+
+\defi{(paramétrage). Soit $E$ un ensemble de points. Supposons qu'il existe trois fonctions \fone{x,y,z}{\R^n}{\R} avec $n\in\N^*$, tel que $E=\ens{\parent{(x(t_1,...,t_n),y(t_1,...,t_n),z(t_1,...,t_n)},\forall t_1,...,t_n\in\R}$.
+\begin{itemize}
+\item On dit qu'on a \textit{paramétré} $E$.
+\item On dit que $t_1,...,t_n$ sont les \textit{paramètres} de ce paramétrage.
+\item On dit que $x,y,z$ sont les \textit{composantes} de ce paramétrage.
+\end{itemize}
+
+ }
+
+\rem{En somme, paramétrer un ensemble de points, c'est juste donner leurs trois coordonnées sous forme de fonctions, éventuellement de plusieurs variables. Attention, ici il faut bien comprendre que $x,y,z$ contrairement à d'habitude sont ici des fonctions.}
+
+\nota{Soit $E$ un ensemble de points paramétré. Soit \fone{f,g,h}{\R^n}{\R} avec $n\in\N^*$, tel que pour tout $t_1,...,t_n\in\R$, on a :
+
+\sys{x(t_1,...,t_n) &=& f(t_1,...t_n) \\
+y(t_1,...,t_n) &=& g(t_1,...t_n) \\
+z(t_1,...,t_n) &=& h(t_1,...t_n)}
+
+On appelle ce système \textit{système d'équations paramétriques de $E$} ou simplement \textit{équation paramétrique de $E$}.}
+
+\rem{Nous allons dans la suite pouvoir paramétrer certains objets de l'espace, ces notions qui peuvent paraître un peu obscures s'éclairciront. L'intérêt est de pouvoir déterminer d'un coup les coordonnées de tous les points de $E$.}
+
+\subsection{Plans et droites}
+
+\subsubsection{Définitions des plans}
+
+\defi{(plan) Soit $u,v$ deux vecteurs non colinéaires et $M\in\R^3$. On appelle \textit{plan dirigé par $u$ et $v$ et passant par $M$} l'ensemble $\ens{A\in\R^3,\exists \lambda,\mu\in\R,\vr{MA}=\lambda u + \mu v}$. On dit que $u$ et $v$ sont \textit{des vecteurs directeurs de} $\mathscr{P}$.}
+
+\rem{Un plan $\plan$ admet une infinité de vecteurs directeurs. En particulier, si $u$ et $v$ dirigent $\plan$, alors soit $u'\neq{0}$ colinéaire à $u$ et $v'\neq{0}$ colinéaire à $v$, alors $u'$ et $v'$ dirigent $\plan$.}
+
+\pro{(paramétrage du plan) Soit $u=(u_1,u_2,u_3)$ et $v=(v_1,v_2,v_3)$ deux vecteurs non colinéaires. Soit $M(m_1,m_2,m_3)$. Soit enfin $\mathscr{P}$ le plan dirigé par $u$ et $v$ et passant par $M$. Alors voici un système d'équations paramétriques de $\mathscr{P}$, pour tout $t_1,t_2\in\R$~:
+
+\sys{x(t_1,t_2) &=& t_1 u_1 + t_2 v_1 + m_1 \\
+y(t_1,t_2) &=& t_1 u_2 + t_2 v_2 + m_2 \\
+z(t_1,t_2) &=& t_1 u_3 + t_2 v_3 + m_3 \\}}
+
+\rem{Ainsi, si on pose $t_1=2$ et $t_2=-1$, ce système paramétrique nous donne le point $(2u_1 - v_1 + m_1,2 u_2 - v_2 + m_2,2 u_3 - v_3 + m_3)$ qui appartient donc à $\mathscr{P}$. Et en faisant ainsi parcourir $t_1$ et $t_2$ sur $\R$, on obtient tous les points de $\mathscr{P}$.}
+
+\preuve{Pour montrer qu'un système d'équations paramètre un ensemble $E$, il faut d'une part prendre un point de $E$ et montrer que ses coordonnées vérifient nécessairement le système, puis réciproquement prendre un point dont les coordonnées vérifient le système et montrer qu'alors ce point est dans $E$ (il s'agit en fait d'un raisonnement par double inclusion).
+
+\begin{itemize}
+\item Soit $A(x,y,z)\in\mathscr{P}$. Montrons alors que les coordonnées de $A$ vérifient nécessairement le système. Il existe $\lambda,\mu\in\R$ tel que $\vr{MA}=\lambda u + \mu v$, \cad tel que  $\vre{x-m_1}{y-m_2}{z-m_3} = \vre{\lambda u_1 + \mu v_1}{\lambda u_2 + \mu v_2}{\lambda u_3 + \mu v_3}$, \cad tel que :
+
+\sys{x &=& \lambda u_1 + \mu v_1 + m_1 \\
+y &=& \lambda u_2 + \mu v_2 + m_2 \\
+z &=& \lambda u_3 + \mu v_3 + m_3 \\}
+
+Donc $x=x(\lambda,\mu)$, $y=y(\lambda,\mu)$ et $z=z(\lambda,\mu)$ : les coordonnées de $A$ vérifient le système.
+
+\item Soit $t_1,t_2\in\R$ et $A(x(t_1,t_2),y(t_1,t_2),z(t_1,t_2))$ (on a donc pris $A$ tel que ses coordonnées vérifient le système). On a alors $\vr{MA}=\vre{x(t_1,t_2)-m_1}{y(t_1,t_2)-m_2}{z(t_1,t_2)-m_3}=\vre{t_1 u_1 + t_2 v_1 + m_1-m_1}{t_1 u_2 + t_2 v_2 + m_2-m_2}{t_1 u_3 + t_2 v_3 + m_3-m_3}=\vre{t_1 u_1 + t_2 v_1}{t_1 u_2 + t_2 v_2}{t_1 u_3 + t_2 v_3}=t_1 u + t_2 v$ d'où $A\in\mathscr{P}$.
+\end{itemize}}
+
+\pro{(équation cartésienne d'un plan) Soit $a,b,c,d\in\R$ avec $a,b,c$ non tous nuls et soit $E=\ens{(x,y,z)\in\R^3|ax+by+cz+d=0}$. Alors $E$ est un plan. Notons-le $\mathscr{P}$. On dit que $ax+by+cz+d=0$ est \textit{une équation cartésienne de} $\mathscr{P}$ et on note $\mathscr{P}:ax+by+cz+d=0$.}
+
+\rem{Sémantiquement, attention de ne pas confondre les phrases «~$a,b,c$ sont \textit{non tous} nuls~» qui signifie que $(a,b,c)\neq (0,0,0)$ (\cad qu'au moins un des trois est non nul) et «~$a,b,c$ sont \textit{tous non} nuls~» qui signifie que $a\neq0, b\neq0$ et $c\neq 0$ (\cad que les trois sont non nuls).}
+ 
+\preuve{\begin{itemize} 
+\item Supposons $c\neq 0$. Montrons que $E$ est dans un plan. Soit $A(x,y,z)\in E$. Ainsi, $ax+by+cz+d=0$. Posons $\lambda=x$ et $\mu=y$. Alors $a\lambda+b\mu+cz+d=0$ d'où $z=-\dfrac{a\lambda+b\mu+d}{c}$. Nous avons ainsi :
+
+\sys{x &=& \lambda \\
+y &=& \mu \\
+z &=& -\dfrac{a\lambda+b\mu+d}{c}}
+
+Donc les coordonnées de $A$ vérifient le système paramétrique du plan $\mathscr{P}$ dirigé par les vecteurs non colinéaires $u=\parent{1,0,-\dfrac{a}{c}}$ et $v=\parent{0,1,-\dfrac{b}{c}}$ et passant par $M\parent{0,0,-\dfrac{d}{c}}$, avec $t_1=\lambda$ et $t_2=\mu$. Donc $A\subset\mathscr{P}$ et donc $E\subset\mathscr{P}$. Réciproquement, montrons que $\mathscr{P}\subset E$. Soit $B\in\mathscr{P}$. Alors il existe $t_1,t_2\in\R$ tel que $B(x(t_1,t_2),y(t_1,t_2),z(t_1,t_2))$. On vérifie alors par le calcul que $ax(t_1,t_2)+by(t_1,t_2)+cz(t_1,t_2)+d=0$.
+\item Supposons $c=0$ et $b\neq 0$. Alors on démontre exactement de la même façon en posant cette fois $\lambda=x$ et $\mu=z$.
+\item Supposons $c=0$ et $b=0$. Alors $a\neq 0$. Alors on démontre exactement de la même façon en posant cette fois $\lambda=y$ et $\mu=z$.
+\end{itemize}}
+
+\rems{\item La démonstration nous donne en plus une façon de trouver des vecteurs directeurs et un point appartenant à un plan dont on connait une équation cartésienne.
+\item Si $a=b=c=0$, Alors $E$ devient $\ens{(x,y,z)\in\R^3|d=0}$, \cad soit $\R^3$ en entier si $d=0$ soit $\emptyset$ si $d\neq 0$, mais ces deux ensembles ne sont pas des plans. C'est pourquoi il faut que $a,b,c$ soient non tous nuls.
+\item \textbf{Attention au gros piège} : quand on écrit $\mathscr{P}:2x-y+5=0$ par exemple, il faut bien comprendre que dans l'espace, cet objet \textit{n'est pas} une droite (alors que dans le plan, nous serions effectivement en présence d'une équation cartésienne de droite). Il s'agit bien d'un \textit{plan}. Pour s'en convaincre, il faut revenir à la définition : $\mathscr{P}:2x-y+5=0$ signifie que $\mathscr{P}=\ens{(x,y,z)\in\R^3|2x-y+5=0}$ : on voit donc bien que $z$ n'a pas disparu : c'est juste que $c=0$ ici. D'où l'importance cruciale de savoir si on travaille dans le plan ou dans l'espace. D'ailleurs, sur GeoGebra 3D, on peut constater que si on tape $2x-y+5=0$ le logiciel représente bien un plan.}
+
+\lemme{Soit $\plan,\plan'$ deux plans et $A,B,C$ trois points distincts et non alignés. Si $A,B,C\in\plan$ et $A,B,C\in\plan'$ alors $\plan=\plan'$.}
+
+\preuve{Puisque $A,B,C$ sont distincts et non alignés alors $\vr{AB}$ et $\vr{AC}$ sont non colinéaires. Donc $\plan$ et $\plan'$ sont deux plans dirigés par $\vr{AB}$ et $\vr{AC}$ et passant par $A$. Donc $\plan=\plan'$}
+
+\pro{Tout plan possède une équation cartésienne.}
+
+\preuve{Soit $\plan$ un plan dirigé par les vecteurs $u=(u_1,u_2,u_3)$ et $v=(v_1,v_2,v_3)$ et passant par $M(m_1,m_2,m_3)$. Alors par le système d'équations paramétriques de $\plan$, on a que les points $A(x(0,1),y(0,1),z(0,1))$ et $B((x(1,0),y(1,0),z(1,0))$ appartiennent à $\plan$. Raisonnons par analyse-synthèse.
+\begin{description}
+\item[Analyse] Supposons donc l'existence d'une équation cartésienne de $\plan$, \cad qu'il existe $a,b,c,d\in\R$ avec $a,b,c$ non tous nuls tel que $\mathscr{P}:ax+by+cz+d=0$. Comme $M,A,B$ sont dans $\plan$ alors leurs coordonnées vérifient :
+
+\sys{am_1+bm_2+cm_3+d &=& 0 \\
+ax(0,1)+by(0,1)+cz(0,1)+d &=& 0 \\
+ax(1,0)+by(1,0)+cz(1,0)+d &=& 0}
+
+Posons les vecteurs $w_1=\vre{m_1}{x(0,1)}{x(1,0)}$, $w_2=\vre{m_2}{y(0,1)}{y(1,0)}$, $w_3=\vre{m_3}{z(0,1)}{z(1,0)}$ et $w_4=\vre{-d}{-d}{-d}$. Alors le système d'équations précédent est équivalent à l'équation $w_4=aw_1+bw_2+cw_3$. Or on vérifie que $(w_1,w_2,w_3)$ est une base de $\R^3$, donc par la proposition \ref{decompvec}, $(a,b,c)$ est l'unique triplet de réels satisfaisant cette équation et donc le système précédent. Ainsi, nous venons de prouver que si $\plan$ admet une équation cartésienne $\mathscr{P}:ax+by+cz+d=0$, alors nécessairement $(a,b,c)$ est l'unique triplet solution de l'équation $w_4=aw_1+bw_2+cw_3$.
+
+\item[Synthèse] Soit $d\in\R$. Posons $(a,b,c)$ l'unique triplet de réels solution de $w_4=aw_1+bw_2+cw_3$. Soit $\plan':ax+by+cz+d=0$. Montrons alors que $\plan'=\plan$. Puisque $(a,b,c)$ est l'unique triplet de réels solution de $w_4=aw_1+bw_2+cw_3$ alors on a :
+
+\sys{am_1+bm_2+cm_3+d &=& 0 \\
+ax(0,1)+by(0,1)+cz(0,1)+d &=& 0 \\
+ax(1,0)+by(1,0)+cz(1,0)+d &=& 0}
+
+C'est-à-dire que $M,A,B\in\plan'$. Mais on a également $M,A,B\in\plan$. Comme $M,A,B$ sont distincts et non alignés, alors par le lemme, $\plan'=\plan$.
+
+\end{description}}
+
+Nous disposons ainsi de trois manières de définir les plans de l'espace. Selon ce que l'on veut faire, telle ou telle définition sera plus pratique, il faut donc savoir jongler entre les trois. Par exemple, l'équation cartésienne est très pratique pour savoir si un point appartient à un plan. L'équation paramétrique est plus efficace en revanche pour générer les points du plan en faisant varier les paramètres. Enfin, la première définition est pratique pour montrer des choses d'ordre géométrique.
+
+Sur GeoGebra, on peut représenter le plan des trois manières. Par exemple, soit $\plan$ un plan dirigé par $u$ et $v$ et passant par $M$. Soit $ax+by+cz+d=0$ une équation cartésienne de $\plan$ et soit $X(t),Y(t)$ et $Z(t)$ les composantes du paramétrage de $\plan$, pour tout $t\in\R$. Alors voici trois commandes successives pour représenter $\plan$ sur GeoGebra de ces trois manières : \\
+
+\verb&P=Plane(M,u,v)& \\
+\verb&P:ax+by+cz+d=0& \\
+\verb&P=curve(X(t),Y(t),Z(t),t,-100,100)& \\
+
+Enfin, si on connait trois point $A,B,C$ distincts et non alignés de $\plan$, on peut le représenter via la commande : \\
+
+\verb&P=Plane(A,B,C)& \\
+
+
+\pro{Tout plan possède une infinité d'équations cartésiennes.}
+
+\rem{C'est pourquoi on dit \textit{une} équation cartésienne et non \textit{l}'équation cartésienne.}
+
+\preuve{Soit $\plan:ax+by+cz+d=0$. Soit $\lambda\in\R^*$. Alors $ax+by+cz+d=0\eqv \lambda(ax+by+cz+d)=0$, donc $\lambda ax+\lambda by+\lambda cz+\lambda d=0$ est une équation cartésienne de $\plan$.}
+
+\nota{(plans particuliers) \\\begin{itemize}
+\item On note $(Oxy)$ le plan dirigé par $e_1$ et $e_2$ et passant par $O(0,0,0)$. Une équation cartésienne de $(Oxy)$ est $z=0$.
+\item On note $(Oxz)$ le plan dirigé par $e_1$ et $e_3$ et passant par $O(0,0,0)$. Une équation cartésienne de $(Oxz)$ est $y=0$.
+\item On note $(Oyz)$ le plan dirigé par $e_2$ et $e_3$ et passant par $O(0,0,0)$. Une équation cartésienne de $(Oyz)$ est $x=0$.
+\end{itemize}}
+
+\preuve{Nous traitons le premier cas, les deux autres étant similaires. Premièrement, $e_1$ et $e_2$ sont non colinéaires, donc $(Oxy)$ est bien un plan. On montre facilement que $A(1,0,0)$ et $B(0,1,0)$ sont dans $(Oxy)$. Soit $\plan:z=0$. On montre facilement que $A,B,O\in\plan$, or $A,B,O$ sont distincts et non alignés, donc $(Oxy)=\plan$, conclusion $z=0$ est bien une équation cartésienne de $(Oxy)$.}
+
+\subsubsection{Définitions des droites}
+
+Comme nous l'avons expliqué, il n'est pas possible de définir les droites de l'espace par une équation cartésienne directement (car une équation cartésienne, dans l'espace, est toujours un plan). En revanche, le paramétrage des droites de l'espace est tout à fait possible et similaire à celui des plans.
+
+\defi{(droite) Soit $u\neq{0}$ un vecteur et $M$ un point. On appelle \textit{droite dirigée par $u$ et passant par $M$} l'ensemble $\ens{A\in\R^3|\exists \lambda\in\R, \vr{MA}=\lambda u}$. Si on note $\dt$ cette droite, on dit que $u$ est un \textit{vecteur directeur de $\dt$.}}
+
+\pro{(propositions basiques) Soit $\dt$ la droite dirigée par $u$ et passant par $M$. Soit $A,B\in\dt$ distincts.
+
+\begin{enumerate}[i)]
+\item $\dt$ est dirigée par tout vecteur $v\neq{0}$ colinéaire à $u$.
+
+\item $\dt$ est dirigée par $\vr{AB}$.
+
+\item $\dt$ est la droite dirigée par $u$ et passant par $A$.
+
+\item Soit $\dt'$ une droite. Si $A,B\in\dt'$ alors $\dt=\dt'$.
+\end{enumerate}}
+
+\preuve{Nous ne montrons que le premier point, la démonstration des autres étant très similaires. Si le lecteur souhaite s'entraîner à démontrer les autres, il est conseillé de les faire dans l'ordre.\\
+Soit $k\in\R^*$ et $v=k u$. Soit $\dt'$ la droite dirigée par $v$ et passant par $M$. Soit $A\in\dt$. Alors il existe $\lambda\in\R, \vr{MA}=\lambda u$. Posons $\mu=\dfrac{\lambda}{k}$. Alors $\vr{MA}=\mu k u=\mu v$ d'où $A\in\dt'$. Donc $\dt\subset \dt'$. Soit maintenant $B\in\dt'$. Alors il existe $\lambda\in\R, \vr{MB}=\lambda v=\lambda k u$. Posons $\mu=\lambda k$. Alors $\vr{MB}=\mu u$ d'où $B\in\dt$. Donc $\dt'\subset \dt$. Conclusion, $\dt=\dt'$.}
+
+\pro{(paramétrage de la droite) Soit $\dt$ la droite dirigée par $u=(u_1,u_2,u_3)$ et passant par $M(m_1,m_2,m_3)$. Alors voici un système d'équations paramétriques de $\dt$, pour tout $t\in\R$ :
+
+\sys{x(t) &=& u_1 t + m_1 \\
+y(t) &=& u_2 t + m_2 \\
+z(t) &=& u_3 t + m_3}}
+
+\preuve{La preuve est absolument similaire à celle du paramétrage du plan.}
+
+\ex{Soit $u=\vre{1}{-2}{3}$ et $M(1,-4,-7)$ et $\dt$ la droite dirigée par $u$ et passant par $M$. Les points $A\parent{\dfrac{3}{2},-5,-\dfrac{11}{2}}$ et $B\parent{10,-22,21}$ sont-ils dans $\dt$ ? Voici un paramétrage de $\dt$ :
+
+\sys{x(t) &=& t+1 \\
+y(t) &=& -2t-4 \\
+z(t) &=& 3t-7}
+
+Supposons que $A\in\dt$. Alors il existe $t\in\R$ tel que $x(t)=\dfrac{3}{2}$ \cad tel que $t+1=\dfrac{3}{2}$. Donc nécessairement $t=\dfrac{1}{2}$. Puisque $A\in\dt$, on doit avoir $y\parent{\dfrac{1}{2}}=-5$ et c'est le cas. Enfin, on doit avoir $z\parent{\dfrac{1}{2}}=-\dfrac{11}{2}$ et c'est encore le cas, conclusion on a bien $A\in\dt$. Supposons que $B\in\dt$. Alors il existe $t\in\R$ tel que $x(t)=10$, donc nécessairement $t=9$. On doit donc avoir $y(9)=-22$ et c'est le cas. Enfin, on doit avoir $z(9)=21$ mais ce n'est pas le cas car $z(9)=20$. Conclusion $B\not\in\dt$.}
+
+Sur GeoGebra, pour représenter une telle droite, on peut utiliser la commande suivante : \\
+
+\verb&Curve(t+1,-2*t-4,3*t-7,t,-100,100)& \\
+
+\exo{Soit le plan $\plan$ dirigé par $e_2$ et $e_3$ et passant par $O'(4,5,-2)$. Soit $\dt$ la droite de $\plan$ dont une équation cartésienne dans $\plan$ munit du repère orthonormé $\rep'=(O',(e_2,e_3))$ est $4x-5y+1=0$. Déterminer un système d'équations paramétriques de $\dt$ dans l'espace (munit du repère canonique). Pour vérifier, voici un système d'équations paramétriques possible de $\dt$ (notons qu'il est possible que vous ne trouviez pas le même système mais qu'il soit tout de même juste, un système paramétrique n'est jamais unique) :
+
+\sys{x(t) &=& 4 \\
+y(t) &=& 5t+5 \\
+z(t) &=& 4t-\dfrac{9}{5}}}
+
+\subsubsection{Objets et caractéristiques liés aux droites et aux plans}
+
+\defi{(points coplanaires) Soit $(E_k)_{k<n}$ une famille de $n$ ensemble de points. On dit que qu'ils sont \textit{coplanaires} s'il existe un plan $\plan$ tel que pour tout $k\in\lint 0,n\lint $, $E_k\subset\plan$.}
+
+\rem{Trois points ou moins sont forcément coplanaires.}
+
+\defi{(sécant) Soit $E$ et $F$ deux ensembles de points. On dit que \textit{$E$ et $F$ sont sécants} si $E\cap F\neq \emptyset$.}
+
+Soit dans la suite $\dt$ et $\dt'$ deux droites dirigées par $u$ et $u'$.
+
+\defi{(parallélisme de droites) On dit que \textit{$\dt$ et $\dt'$ sont parallèles} si $u$ dirige $\dt'$. On note alors $\dt // \dt'$.}
+
+\defi{(orthogonalité de droites) On dit que \textit{$\dt$ et $\dt'$ sont orthogonales} si $u$ et $u'$ sont orthogonaux.}
+
+\defi{(perpendicularité de droites) On dit que \textit{$\dt$ et $\dt'$ sont perpendiculaires} si elles sont sécantes et orthogonales. On note alors $\dt\perp\dt'$.}
+
+\rem{Attention, même si dans la suite on verra que la notion d'orthogonalité est représentée souvent par le symbole $\perp$, dans le cas des droites il signifie réellement la perpendicularité. Il n'y a pas de raccourci pour dire que deux droites sont orthogonales. Toutefois, si dans un exercice on doit beaucoup utiliser cette notion, on a tout à fait le droit de créer une notation pour l'occasion, par exemple $\llcorner$ (ce n'est qu'une suggestion).}
+
+Soit dans toute la suite $\plan$ un plan dirigé par $u=(u_1,u_2,u_3)$ et $v=(v_1,v_2,v_3)$ et passant par $M(m_1,m_2,m_3)$.
+
+\defi{(vecteur parallèle) On dit que \textit{$w$ est un vecteur parallèle à $\plan$} s'il existe $\lambda,\mu\in\R$ tel que $w=\lambda u + \mu v$. On note alors $w // \plan$.}
+
+\defi{(vecteurs coplanaires) Soit $(v_k)_{k<n}$ une famille de $n$ vecteurs. On dit que ces vecteurs sont \textit{coplanaires} s'il existe un plan $\plan$ tel que pour tout $k\in\lint 0,n\lint $, $v_k // \plan$.}
+
+\rem{Deux vecteurs ou moins sont forcément coplanaires.}
+
+\pro{Soit $w_1,w_2$ deux vecteurs parallèles à $\plan$ non colinéaires. Alors $\plan$ est dirigé par $w_1$ et $w_2$.}
+
+\preuve{Soit $k_1,k_2,k_3,k_4\in\R$ tel que $w_1=k_1 u + k_2 v$ et $w_2=k_3 u + k_4 v$. Soit $A\in\plan$. Donc il existe $t_1,t_2\in\R,\vr{MA}=t_1 u + t_2 v$. Posons $\lambda,\mu$ les solutions du système :
+
+\sys{\lambda k_1 + \mu k_3 &=& t_1 \\
+\lambda k_2 + \mu k_4 &=& t_2}
+
+A noter que ce système possède bien une unique solution car $w_1$ et $w_2$ sont non colinéaires. Ainsi, nous avons $\vr{MA}=t_1 u + t_2 v = (\lambda k_1 + \mu k_3) u + (\lambda k_2 + \mu k_4) v = \lambda w_1 + \mu w_2$. Donc $\plan =\ens{A\in\R^3|\exists \lambda,\mu\in\R, \vr{MA}=\lambda w_1+\mu w_2}$, d'où $\plan$ est dirigé par $w_1$ et $w_2$.}
+
+\defi{(droite parallèle à un plan) Soit $\dt$ une droite dirigée par $n$. On dit que \textit{$\dt$ est parallèle à $\plan$} si $n//\plan$. On note $\dt // \plan$.}
+
+\defi{(vecteur normal) On dit que \textit{$n$ est un vecteur normal de $\plan$} si $n$ est orthogonal à $u$ et à $v$. On note $n\perp\plan$.}
+
+\pro{\label{normcol} Soit $n$ un vecteur normal de $\plan$. Alors $n'$ est un vecteur normal de $\plan$ \ssi $n$ et $n'$ sont colinéaires.}
+
+\preuve{\begin{itemize}
+\item ($\Leftarrow$) Il existe $\lambda\in\R$ tel que $n'=\lambda n$. On vérifie facilement que $u\cdot n' = 0 = v\cdot n'$ donc $n'$ est un vecteur normal de $\plan$.
+\item ($\Rightarrow$) Nous allons faire une démonstration géométrique. Soit $U,V$ les points de $\plan$ tel que $\vr{MU}=u$ et $\vr{MV}=v$. Soit $N,N'$ les points tel que $\vr{MN}=n$ et $\vr{MN'}=n'$. Donc $(MN)$ et $(MN')$ sont perpendiculaires à $(MU)$ et à $(MV)$. Or dans l'espace, si deux droites sont perpendiculaires à deux mêmes droites non parallèles, alors elles sont parallèles entre elles. Donc $(NM)$ et $(NM')$ sont parallèles, donc $n$ et $n'$ sont colinéaires.
+\end{itemize}}
+
+\defi{(droite orthogonale à un plan) Soit $\dt$ une droite dirigée par $n$. On dit que \textit{$\dt$ est orthogonale à $\plan$} si $n\perp\plan$. On note $\dt\perp\plan$.}
+
+\lemme{$\parent{\vre{a}{b}{c},\vre{a'}{b'}{c'},\vre{a''}{b''}{c''}}$ est une base de $\R^3$ \ssi $\parent{\vre{a}{a'}{a''},\vre{b}{b'}{b''},\vre{c}{c'}{c''}}$ est une base de $\R^3$.}
+
+\preuve{Ce résultat est admis car il nécessite l'utilisation des matrices. Il provient du fait qu'une matrice $M$ est inversible \ssi la transposée de $M$ est inversible (\cad la matrice où les lignes et les colonnes de $M$ sont échangées).}
+
+\pro{Soit $n\neq{0}$ un vecteur normal de $\plan$ et $w$ un vecteur. Alors $w//\plan$  \ssi $n\cdot w = 0$.}
+
+\preuve{\begin{itemize}
+\item ($\Rightarrow$) Il existe $\lambda,\mu\in\R$ tel que $w=\lambda u + \mu v$. On a $n\cdot w = n\cdot (\lambda u + \mu v) = \lambda (n\cdot u) + \mu (n\cdot v)=0$.
+\item ($\Leftarrow$) Posons $w=(w_1,w_2,w_3)$. Supposons que $n\cdot w=0$. On sait également que $n\cdot u=0$ et $n\cdot v = 0$ donc :
+
+\sys{n_1 w_1 + n_2 w_2 + n_3 w_3 &=& 0 \\
+n_1 u_1 + n_2 u_2 + n_3 u_3 &=& 0 \\
+n_1 v_1 + n_2 v_2 + n_3 v_3 &=& 0}
+
+C'est-à-dire $n_1\vre{w_1}{u_1}{v_1}+n_2\vre{w_2}{u_2}{v_2}+n_3\vre{w_3}{u_3}{v_3}={0}$. Or $(n_1,n_2,n_3)\neq{0}$ donc $\parent{\vre{w_1}{u_1}{v_1},\vre{w_2}{u_2}{v_2},\vre{w_3}{u_3}{v_3}}$ n'est pas une base de $\R^3$. Donc d'après le lemme, $(w,u,v)$ n'est pas non plus une base de $\R^3$. Donc il existe $(a,b,c)\neq(0,0,0)$ tel que $aw+bu+cv={0}$. Montrons maintenant que $a\neq 0$. Si $a=0$, alors on a $bu+cv={0}$, mais comme $(a,b,c)\neq(0,0,0)$ alors $b$ ou $c$ est non nul, et donc $u$ et $v$ sont colinéaires, ce qui est absurde puisqu'ils dirigent un plan. Donc $a\neq0$. Finalement, $w=-\dfrac{bu+cv}{a}$ donc $w // \plan$.
+\end{itemize}}
+
+\pro{Soit $\plan:ax+by+cz+d=0$.
+
+\begin{enumerate}[i)]
+\item $\vre{a}{b}{c}\perp \plan$
+\item $\vre{0}{-c}{b},\vre{-c}{0}{a},\vre{-b}{a}{0} // \plan$.
+\end{enumerate}}
+
+\preuve{\begin{enumerate}[i)]
+\item Supposons $c\neq 0$. Alors $A\parent{0,0,-\dfrac{d}{c}},B\parent{1,0,-\dfrac{d+a}{c}},C\parent{0,1,-\dfrac{d+b}{c}}\in\plan$. $\vr{AB}$ et $\vr{AC}$ ne sont pas colinéaires donc dirigent $\plan$ et on vérifie qu'ils sont orthogonaux à $\vre{a}{b}{c}$, d'où ce dernier est normal à~$\plan$. Si $c=0$ alors on suppose $b\neq0$ et la démonstration est similaire, enfin si $c=b=0$ on a $a\neq 0$ et on montre le résultat.
+
+\item Le produit scalaire de chacun d'eux avec $\vre{a}{b}{c}$ est nul, donc par la proposition précédente ils sont tous parallèles à $\plan$.
+\end{enumerate}}
+
+\defi{(plans parallèles) Soit $\plan'$ un plan. On dit que \textit{$\plan$ et $\plan'$ sont parallèles} si $u$ et $v$ dirigent $\plan'$. On note $\plan //\plan'$.}
+
+\pro{Soit $\plan'$ un plan. $\plan // \plan'$ \ssi il existe un vecteur normal de $\plan$ qui est un vecteur normal de $\plan'$.}
+
+\preuve{\begin{itemize}
+\item ($\Rightarrow$) Soit $\plan'$ un plan parallèle à $\plan$. Soit $n$ un vecteur normal de $\plan$. Alors $n\cdot u = n\cdot v = 0$ or $u$ et $v$ dirigent $\plan'$ donc $n$ est normal à $\plan'$.
+\item ($\Leftarrow$) Soit $n$ un vecteur normal de $\plan$ et de $\plan'$. On a alors $u // \plan'$ et $v // \plan'$, or $u$ et $v$ sont non colinéaires donc ils dirigent $\plan'$. Donc par définition, $\plan' // \plan$.
+\end{itemize}}
+
+\pro{Soit $\plan:ax+by+cz+d=0$ et $\plan':a'x+b'y+c'z+d'=0$. $\plan // \plan'$ \ssi $\vre{a}{b}{c}$ et $\vre{a'}{b'}{c'}$ sont colinéaires.}
+
+\preuve{\begin{itemize}
+\item ($\Rightarrow$)  $\vre{a'}{b'}{c'}$ un vecteur normal de $\plan'$. $\plan // \plan'$ donc $\vre{a}{b}{c}$ est aussi un vecteur normal de $\plan'$. Donc d'après la proposition \ref{normcol}, $\vre{a}{b}{c}$ et $\vre{a'}{b'}{c'}$ sont colinéaires.
+\item ($\Leftarrow$) $\vre{a}{b}{c}$ et $\vre{a'}{b'}{c'}$ sont colinéaires donc d'après la proposition \ref{normcol}, $\vre{a'}{b'}{c'}$ est normal à $\plan$. Donc d'après la proposition précédente, $\plan // \plan'$.
+\end{itemize}}
+
+\defi{(plans perpendiculaires) Soit $\plan'$ un plan. On dit que \textit{$\plan$ et $\plan'$ sont perpendiculaires} si il existe une droite $\dt\subset\plan'$ tel que $\dt\perp\plan$. On note alors $\plan\perp\plan'$.}
+
+\rem{Dans cette partie on utilise beaucoup les notions d'orthogonalité et de perpendicularité. Pour ne pas confondre les deux, retenir ceci : la perpendicularité de deux objets \textit{implique toujours qu'ils sont sécants}, alors que l'orthogonalité non.}
+
+\pro{Soit $\plan'$ un plan, $n$ normal à $\plan$ et $n'$ normal à $\plan'$. $\plan\perp\plan'$ \ssi $n\perp n'$.}
+\preuve{Immédiat par la définition.}
+
+\subsubsection{Intersections}
+
+\pro{(intersections de plans) Soit $\plan'$ un plan.
+
+\begin{enumerate}[i)]
+\item Si $\plan // \plan'$ et s'ils sont sécants alors $\plan\cap\plan'=\plan=\plan'$.
+\item Si $\plan // \plan'$ et si $M\not\in\plan'$ alors ils ne sont pas sécants.
+\item Si $\plan$ et $\plan'$ ne sont pas parallèles alors $\plan\cap\plan'$ est une droite.
+\end{enumerate}}
+
+\preuve{
+
+\begin{enumerate}[i)]
+\item Supposons que $\plan // \plan'$ et que $\plan\cap\plan'\neq\emptyset$. Il existe donc $A\in\R^3$ tel que $\plan$ et $\plan'$ passent par $A$. D'autre part $u$ et $v$ dirigent $\plan$ et $\plan'$ puisqu'ils sont parallèles, et ainsi $\plan$ et $\plan'$ possèdent un paramétrage identique, donc $\plan=\plan'$.
+
+\item Supposons que $\plan // \plan'$ et que $M\not\in\plan'$. Soit $\plan:ax+by+cz+d=0$ et $\plan':ax+by+cz+e=0$ deux équations cartésiennes de ces plans (c'est possible car $\plan // \plan'$). Si $e=d$ alors $\plan=\plan'$ et donc $M\in\plan'$ ce qui est absurde, donc $e\neq d$. Soit $A(a_1,a_2,a_3)\in\plan$. Donc $aa_1+ba_2+ca_3+d=0$. Mais si $A\in\plan'$, alors on a $aa_1+ba_2+ca_3+e=0$ et alors on aurait $e=d$, ce qui est absurde. Donc $A\not\in\plan$, conclusion $\plan\cap\plan'=\emptyset$.
+
+\item Supposons que $\plan$ et $\plan'$ ne sont pas parallèles. Soit $\plan:ax+by+cz+d=0$ et $\plan':a'x+b'y+c'z+d'=0$. $\plan\cap\plan'$ est l'ensemble des $x,y,z\in\R$ tel que :
+
+\sys{ax+by+cz+d &=& 0 \\
+a'x+b'y+c'z+d' &=& 0}
+
+Notons $S$ ce système. Comme $\vre{a}{b}{c}$ et $\vre{a'}{b'}{c'}$ ne sont pas colinéaires, alors $ab'-a'b\neq0$ ou $ac'-a'c\neq 0$ ou $bc'-b'c\neq 0$, supposons donc $ab'-a'b\neq0$ (les autres cas étant similaires). Si ($a=0$ et ($a'=0$ ou $b=0$)) ou ($b'=0$ et ($a'=0$ ou $b=0$)) alors $ab'-a'b=0$. Donc par contraposée, on a nécessairement ($a\neq0$ ou ($a'\neq0$ et $b\neq0$)) et ($b'\neq0$ ou ($a'\neq0$ et $b\neq0$)). Donc on a nécessairement :
+
+\begin{enumerate}[i)]
+\item $a\neq0$ et $b'\neq 0$, ou :
+\item $a\neq0$ et $a'\neq0$ et $b\neq0$, ou :
+\item $a'\neq0$ et $b\neq0$ et $b'\neq 0$, ou :
+\item $a'\neq0$ et $b\neq0$.
+\end{enumerate}
+
+Nous allons ici supposer le cas numéro 2, les autres cas étant similaires. En résumé, voici nos suppositions pour cette démonstration :
+
+\sys{ab'-a'b &\neq& 0 \\
+a &\neq& 0 \\
+a'&\neq& 0 \\
+b &\neq& 0}
+
+Appelons $L1$ et $L2$ les deux lignes de $S$. Multiplions $L1$ par $a'$ et $L2$ par $-a$, $S$ équivaut donc à :
+
+\sys{aa'x+ba'y+ca'z+da' &=& 0 \\
+-a'ax-b'ay-c'az-d'a &=& 0}
+
+Substituons $L2$ par $L2+L1$, et divisons $L1$ par $a'$. $S$ équivaut donc à : 
+
+\sys{ax+by+cz+d &=& 0 \\
+(ba'-b'a)y+(ca'-c'a)z+da'-d'a &=& 0}
+
+Comme $ab'-a'b\neq0$, alors on peut isoler $y$ dans L2 nous donnant ainsi $y=\dfrac{ad'-a'd+z(ac'-a'c)}{ab'-a'b}$.
+
+En substituant $y$ dans $L1$, $S$ équivaut à :
+
+\sys{ax &=& -b\dfrac{ad'-a'd+z(ac'-a'c)}{ab'-a'b}-cz-d \\
+y &=& \dfrac{ad'-a'd+z(ac'-a'c)}{ab'-a'b}}
+
+Puisque $a\neq0$ on peut isoler $x$ et $S$ équivaut à :
+
+\sys{x &=& \dfrac{1}{a}\parent{-b\dfrac{ad'-a'd+z(ac'-a'c)}{ab'-a'b}-cz-d} \\
+y &=& \dfrac{ad'-a'd+z(ac'-a'c)}{ab'-a'b}}
+
+Par conséquent, en posant $z=\lambda$, $\plan\cap\plan'$ est l'ensemble des points $(x,y,z)$ tel que :
+
+\sys{x &=& \dfrac{1}{a}\parent{-b\dfrac{ad'-a'd+\lambda(ac'-a'c)}{ab'-a'b}-c\lambda-d} \\
+y &=& \dfrac{ad'-a'd+\lambda(ac'-a'c)}{ab'-a'b} \\
+z &=& \lambda}
+
+Or il s'agit d'un système paramétrique de droite. Conclusion, $\plan\cap\plan'$ est une droite.
+
+\end{enumerate}}
+
+\pro{(intersections de droites) Soit $\dt$, $\dt'$ deux droites dont la première passe par $A$.
+
+\begin{itemize}
+\item Si $\dt // \dt'$ et si elles sont sécantes alors $\dt\cap\dt' = \dt = \dt'$.
+\item Si $\dt // \dt'$ et si $A\not\in \dt'$ alors elles ne sont pas sécantes.
+\item Si $\dt$ et $\dt'$ ne sont pas parallèles et si elles sont sécantes alors $\dt\cap\dt'$ est réduit à un unique point.
+\end{itemize}}
+\preuve{En s'inspirant du théorème précédent.}
+
+\pro{(intersections d'une droite et d'un plan) Soit $\dt$ une droite passant par $A$.
+
+\begin{itemize}
+\item Si $\dt//\plan$ et s'ils sont sécants alors $\dt\cap\plan=\dt$.
+\item Si $\dt//\plan$ et si $A\not\in\plan$ alors ils ne sont pas sécants.
+\item Si $\dt$ n'est pas parallèle à $\plan$ alors $\dt\cap\plan$ est réduit à un unique point.
+\end{itemize}}
+\preuve{Idem.}
+
+Quand on demande les \textit{positions relatives} de deux plans, deux droites ou d'une droite et d'un plan (question très classique de terminale), on demande en fait s'ils sont orthogonaux, perpendiculaires, parallèles, sécants, et la nature de leur intersection.
+
+\ex{\label{explans} Soit $u=(1,-8,6)$, $v=(1,2,3)$, $u'=(-2,-5,1)$ et $v'=(62,-49,-61)$ quatre vecteurs et $A(1,1,1)$ et $B(0,-4,-2)$ deux points. Soit $\plan,\plan'$ les plans dirigés respectivement par $u$ et $v$ et par $u'$ et $v'$ et passant respectivement par $A$ et $B$.  Étudier la position relative de $\plan$ et $\plan'$ et déterminer un paramétrage de l'intersection des deux si elle existe.}
+
+La première question que l'on se pose, c'est si ces plans sont parallèles. Pour cela, nous allons trouver un vecteur normal à $\plan$ et voir s'il est aussi normal à $\plan'$. Nous verrons par la suite qu'il existe une technique pour avoir immédiatement un vecteur normal à un plan connaissant ses vecteurs ditecteurs. En attendant, posons $n=(x,y,z)$ un vecteur normal de $\plan$. Résolvons simplement le système :
+
+\sys{n\cdot u &=& 0 \\
+n\cdot v &=& 0}
+
+Avec XCas : \verb&solve([dot([x,y,z],u)=0,dot([x,y,z],v)=0],[x,y,z])& \\
+
+On obtient un ensemble paramétré comme solution, et on choisit une valeur particulière d'un paramètre, par exemple $-36$ (pour supprimer les fractions), et on trouve que le vecteur $n=(-36,3,10)$ est normal à $\plan$. Mais $n\cdot u'=67\neq0$, donc $n\not\perp\plan'$ donc $\plan$ et $\plan'$ ne sont pas parallèles. Donc $\plan\cap\plan'$ est une droite, appelons-la $\dt$. Pour trouver un paramétrage de $\dt$, le plus simple est certainement de déterminer d'abord une équation cartésienne de $\plan$ et de $\plan'$. Il nous faut donc d'abord un vecteur normal de $\plan'$, en utilisant la même technique on trouve par exemple le vecteur $n'=(59,-10,68)$. Ainsi, il existe $d,d'\in\R$ tel que $\plan:-36x+3y+10z+d=0$ et $\plan':59x-10y+68z+d'=0$. En exploitant le fait que $A\in\plan$ et $B\in\plan'$, on trouve la valeur de $d$ et $d'$, et ainsi on obtient $\plan:-36x+3y+10z+23=0$ et $\plan':59x-10y+68z+96=0$. Donc $(x,y,z)\in\dt$ \ssi :
+
+\sys{-36x+3y+10z+23 &=& 0 \\
+59x-10y+68z+96 &=& 0}
+
+On résout donc avec XCas : \verb&S:=solve([-36*x+3*y+10z+23=0,59*x-10*y+68*z+96=0],[x,y,z])&. On obtient un paramétrage sous forme de matrice. D'ailleurs, une commande pratique pour extraire un élément d'une matrice est la commande \verb&at&, par exemple \verb&at(S,[0,1])& pour avoir le second élément. Ainsi, un paramétrage de $\dt$, pour tout $t\in\R$, est :
+
+\sys{x(t) &=& t \\
+
+y(t) &=& \dfrac{1519}{152}t - \dfrac{302}{152}  \\\\
+
+z(t) &=& \dfrac{183}{304}t - \dfrac{259}{152}}
+
+Si on simplifie en faisant un changement de variable pour avoir un système plus sympathique (c'est le bon moment pour dire que le PPCM se trouve avec la commande \verb&lcm&), on obtient :
+
+\sys{ x(t) &=& 304t \\
+
+y(t) &=& 3038t - \dfrac{302}{152} \\\\
+
+z(t) &=& 183t - \dfrac{259}{152}}
+
+
+Dernière question que l'on peut se poser, c'est si $\plan\perp\plan'$. On calcule $n\cdot n'=-1474\neq0$, donc non.
+
+Conclusion de l'exercice : \textcolor{brown}{$\plan$ et $\plan'$ ne sont ni parallèles ni perpendiculaires. Leur intersection est une droite qui a pour paramétrage le précédent.}
+
+
+
+
+\theo{(du toit, première version) Soit $\plan'$ un plan. Supposons que $\plan$  et $\plan'$ ne sont pas parallèles et notons la droite $\Delta=\plan\cap\plan'$. Soit $\dt\subset\plan$ et $\dt'\subset\plan'$ deux droites. Si $\dt // \dt'$ alors $\dt // \Delta$ et $\dt' // \Delta$.}
+
+\preuve{...}
+
+\theo{(du toit, seconde version) Soit $\plan'$ un plan. Supposons que $\plan$  et $\plan'$ ne sont pas parallèles et notons la droite $\Delta=\plan\cap\plan'$. Soit $\dt$ une droite. Si $\dt//\plan$ et $\dt//\plan'$ alors $\dt // \Delta$.}
+
+\preuve{...}
+
+\subsection{Notions avancées : angles, produit vectoriel}
+
+\subsubsection{Angles}
+
+Les angles vectoriels ne possèdent pas d'orientation dans l'espace comme c'est le cas pour les angles vectoriels du plan. Il n'existe par conséquent qu'une notion d'angle géométrique dans l'espace.
+
+Pour rappel, dans l'espace, une définition possible du produit scalaire de deux vecteurs $u$ et $v$ est $u\cdot v=||u||\times ||v|| \cos(u,v)$. Nous allons définir de manière similaire les angles vectoriels dans l'espace. \textit{A noter qu'il y a plusieurs conventions possibles pour définir les angles dans l'espace}, je choisis ici celle qui me semble la plus simple à manipuler.
+
+\defi{(angles vectoriels) Soit $u$ et $v$ deux vecteurs non nuls (de l'espace). On appelle \textit{angle entre $u$ et $v$}, noté $\widehat{u,v}$, la quantité $\arccos\parent{\dfrac{|u\cdot v|}{||u||\times||v||}}$.}
+
+\rem{Cette notation est personnelle, je l'utilise pour insister sur le fait qu'il n'y pas d'orientation.}
+
+\preuve{Quoi prouver ? En effet, \fone{\arccos}{[-1,1]}{\cro{0,\pi}}, il nous faut donc prouver que $\dfrac{|u\cdot v|}{||u||\times||v||}\in [-1,1]$. Puisque $\dfrac{|u\cdot v|}{||u||\times||v||}\ge 0$ cela revient à montrer que $\dfrac{|u\cdot v|}{||u||\times||v||}\le 1$, c'est-à-dire que $|u\cdot v|\le ||u||\times||v||$. Mais c'est exactement l'inégalité de Cauchy-Schwarz (lemme \ref{cauchyscwharz}) qui est valide pour tout $u,v$.}
+
+\pro{(propriétés de base) Soit $u,v,w$ trois vecteurs. \begin{itemize}
+\item $\widehat{u,v}\in\cro{0,\dfrac{\pi}{2}}$
+\item $\widehat{u,v}=\dfrac{\pi}{2}$ \ssi $u$ et $v$ sont orthogonaux.
+\item $\widehat{u,v}=0$ \ssi $u$ et $v$ sont colinéaires.
+\item $\widehat{u,v}=\widehat{v,u}$
+\item Si $w$ est colinéaire à $u$, alors $\widehat{u,v}=\widehat{w,v}$
+\item En général, $\widehat{u,v}+\widehat{v,w}\neq \widehat{u,w}$ (pas de relation de Chasles).
+\end{itemize}}
+
+\preuve{Elles sont toutes faciles à montrer en utilisant la définition d'angle et la définition de \fone{\arccos}{[-1,1]}{\cro{0,\pi}}. Il n'y en a qu'une qui n'est pas évidente : c'est le sens $\Rightarrow$ du point 3 que nous allons donc montrer. Supposons donc $\widehat{u,v}=0$. Donc $\dfrac{|u\cdot v|}{||u||\times||v||}=1$. Donc $|u\cdot v|=||u||\times||v||$. Pour rappel, l'inégalité de Cauchy-Schwarz (lemme \ref{cauchyscwharz}) nous dit que $|u\cdot v|\le ||u||\times||v||$ : il nous faut donc montrer que le cas d'égalité de l'inégalité de Cauchy-Schwarz implique que $u$ et $v$ sont colinéaires (c'est en fait une équivalence). Pour rappel, nous avions posé la fonction \fons{P}{\R}{\R}{t}{(u+tv)^2} dont nous avions prouvé qu'elle est une fonction polynomiale du second degré. Puis nous avions montré que $\Delta\le0 \eqv |u\cdot v|\le ||u||\times||v||$ où $\Delta$ est le discriminant de ce polynôme. Ainsi, puisque $|u\cdot v|= ||u||\times||v||$ alors $\Delta=0$, donc $P$ admet une unique racine double $t_0\in\R$. Donc $P(t_0)=0$ donc $(u+t_0v)^2=0$ donc $u+t_0v = {0}$ et finalement $u=-t_0v$ : $u$ et $v$ sont colinéaires.}
+
+\rem{Il peut sembler très curieux que l'angle entre deux vecteurs ne puisse pas dépasser les $90\degree$. Mais voyez les vecteurs comme deux droites sécantes : il y a deux angles possibles que forment ces droites, et l'un d'eux est forcément inférieur ou égal à $90\degree$. C'est celui-ci qu'on prend comme mesure d'angle.}
+
+\defi{(angle entre deux droites) Soit $\dt$ et $\dt'$ dirigées par $u$ et $u'$. On appelle \textit{angle entre $\dt$ et $\dt'$} l'angle $\widehat{u,u'}$. On le note $\widehat{\dt,\dt'}$.}
+
+\rems{\item C'est pour cela que dans la définition d'angle, le produit scalaire est en valeur absolue. En effet, s'il n'y en avait pas, alors il y aurait plusieurs mesures possibles d'un angle entre deux droites.
+\item A noter qu'on peut parler d'angle entre deux droites même si elles ne sont pas sécantes.}
+
+\defi{(angle entre un plan et une droite) Soit $\dt$ une droite dirigée par $u$ et $\plan$ un plan dont $n$ est un vecteur normal. On appelle \textit{angle entre $\dt$ et $\plan$} la quantité $\dfrac{\pi}{2}-\widehat{u,n}$. On le note $\widehat{\dt,\plan}$.}
+
+\rem{Faire un dessin permettra facilement de comprendre pourquoi on prend le complémentaire de l'angle avec la normale.}
+
+\defi{(angle entre deux plans) Soit $\plan$ et $\plan'$ deux plans ayant pour vecteurs normaux respectivement $n$ et $n'$. On appelle \textit{angle entre $\plan$ et $\plan'$} l'angle $\widehat{n,n'}$. On le note $\widehat{\plan,\plan'}$.}
+
+En revanche, il n'existe pas de notion d'angle entre trois points comme dans le plan, car ce que mesure l'angle (pas plus grand que 90 degrés) ne correspondrait pas à aucune intuition géométrique (du moins avec la définition d'angle que nous avons décidé d'adopter dans ce cours).
+
+Avec XCas, on peut créer une fonction \fone{\text{ang}}{\R^3\times\R^3}{\R_+} qui à tout couple de vecteurs associe leur angle comme suit : \verb&ang:=(u,v)->approx(acos(abs(dot(u,v))/(norm(u)*norm(v)))&. Si on veut en degrés : \verb&angd:=(u,v)->approx(acos(abs(dot(u,v))/(norm(u)*norm(v)))*(180/pi))&. Ainsi, on a par exemple $\widehat{\vre{42}{-7}{-9},\vre{8}{0}{-11}}\approx 42.7\degree$.
+
+Sur GeoGebra, il existe une commande \verb&angle& mais attention, ils n'utilisent pas la même convention que celle que je donne dans ce cours : selon les situations parfois nos définitions vont donner le même résultat, et parfois GeoGebra trouvera le complémentaire de ce que donne notre définition.
+
+\subsubsection{Produit vectoriel}
+
+Le produit vectoriel est une opération entre deux vecteurs qu'on pourrait qualifier de cousine au produit scalaire : contrairement à lui, le résultat est un vecteur. Alors que le produit scalaire détecte les vecteurs orthogonaux, lui détecte les vecteurs colinéaires. Le produit vectoriel permet de fournir très facilement un vecteur orthogonal à deux autres, et donc il permet de générer facilement des bases de $\R^3$. Enfin, les propriétés sur sa norme sont utiles.
+
+\defi{(produit vectoriel) Soit $u=\vre{a}{b}{c}$ et $v=\vre{a'}{b'}{c'}$ deux vecteurs quelconques. On appelle \textit{produit vectoriel de $u$ et de $v$}, noté $u\wedge v$, le vecteur $\vre{bc'-b'c}{ca'-c'a}{ab'-a'b}$.} 
+
+\rem{Pour s'en souvenir, il suffit de faire les produits en croix de $u$ et de $v$ en commençant avec la seconde ligne et en descendant d'une ligne à chaque fois.}
+
+Avec XCas, on obtient le produit vectoriel avec la commande \verb&cross(u,v)&.
+
+\pro{(propriétés de base) Soit $u,v,w$ trois vecteurs et $\lambda\in\R$.
+
+\begin{itemize}
+\item (distributivité) $u\wedge (v+w)=u\wedge v + u\wedge w$
+\item (multiplication par un scalaire) $\lambda(u\wedge v) = (\lambda u)\wedge v = u \wedge (\lambda v)$
+\item (antisymétrie) $u\wedge v = -v\wedge u$
+\item En général, $u\wedge (v\wedge w)\neq (u\wedge v)\wedge w$ (pas associatif)
+\item En général, $u\wedge v \neq v\wedge u$ (pas commutatif)
+\end{itemize}}
+
+\rem{Conséquence des deux derniers points : on ne peut pas faire les opérations dans l'ordre qu'on veut avec le produit vectoriel : il faut être vigilant.}
+
+\preuve{Tout se montre par le calcul.}
+
+\lemme{Pour tout $x\in [0,1], \sin(\arccos(x))=\sqrt{1-x^2}$}
+
+\preuve{Soit $y\in \cro{0,\dfrac{\pi}{2}}$. On a $\sin(y)^2+\cos(y)^2=1$ donc $|\sin(y)|=\sqrt{1-\cos(y)^2}$. Or $\sin(y)\ge0$ donc $\sin(y)=\sqrt{1-\cos(y)^2}$. Soit $x\in [0,1]$. On a donc $\arccos(x)\in\cro{0,\dfrac{\pi}{2}}$ et par conséquent, $\sin(\arccos(x))=\sqrt{1-\cos(\arccos(x))^2}$. Or pour tout $x\in[-1,1]$, $\cos(\arccos(x))=x$ donc finalement, $\sin(\arccos(x))=\sqrt{1-x^2}$.}
+
+\pro{(propriétés fondamentales) Soit $u,v$ deux vecteurs et $w=u\wedge v$.
+
+\begin{enumerate}[i)]
+\item $w$ est orthogonal à $u$ et à $v$.
+\item $w={0}$ \ssi $u$ et $v$ sont colinéaires.
+\item $||w||=||u||\times||v||\times \sin(\widehat{u,v})$.
+\item Si $u$ et $v$ sont non colinéaires, alors $(u,v,w)$ est une base de $\R^3$.
+\end{enumerate}}
+
+\rem{En toute généralité on doit mettre une valeur absolue au sinus dans le troisième point, mais avec notre définition de l'angle, puisque $\widehat{u,v}\in\cro{0,\dfrac{\pi}{2}}$ alors $\sin(\widehat{u,v})\ge 0$.}
+
+\preuve{\begin{enumerate}[i)]
+\item Immédiat par calcul.
+\item C'est la proposition \ref{procroix}.
+\item $\sin(\widehat{u,v})=\sin\cro{\arccos\parent{\dfrac{|u\cdot v|}{||u||\times||v||}}}$. Puisque $\dfrac{|u\cdot v|}{||u||\times||v||}\in[0,1]$, alors par le lemme, $\sin(\widehat{u,v})=\sqrt{1-\dfrac{(u\cdot v)^2}{||u||^2\times||v||^2}}$. Montrer le point équivaut à montrer $||w||^2=||u||^2\times||v||^2\times \sin(\widehat{u,v})^2$, \cad $||w||^2=||u||^2\times ||v||^2-(u\cdot v)^2$. Il ne reste plus qu'à calculer pour montrer que cela est effectivement vérifié.
+\item $u$ et $v$ ne sont pas colinéaires donc sont coplanaires. Soit donc $\plan$ un plan dirigé par $u$ et $v$. $w$ est normal à $\plan$ et est non nul, donc il n'existe pas de combinaison linéaire de $u$ et de $v$ donnant $w$, cela signifie que $(u,v,w)$ est une base de $\R^3$.
+\end{enumerate}}
+
+Avec ces propriétés, on peut trouver géométriquement le résultat d'un produit vectoriel. Soit $u$ et $v$ deux vecteurs et $w=u\wedge v$. Soit $O(0,0,0)$, $U$ tel que $\vr{OU}=u$ et $V$ tel que $\vr{OV}=v$.
+
+\begin{itemize}
+\item (direction) soit $\dt$ une droite perpendiculaire à $(OU)$ et $(OV)$ (si $u$ et $v$ ne sont pas colinéaires, il n'y en a qu'une possible). Cette droite nous donne la direction de $w$.
+\item (norme) soit $S$ la sphère de centre $O$ et de rayon $||w||=||u||\times||v||\times \sin(\widehat{u,v})$. $\dt$ possède deux intersections avec $\dt$ : l'une des deux sera "la pointe" de $w$.
+\item (sens) On utilise la \href{https://fr.wikipedia.org/wiki/R\%C3\%A8gle_de_la_main_droite}{règle de la main droite} pour déterminer laquelle de ces deux intersections est la bonne. Appelons-la $W$.
+\end{itemize}
+Finalement, $\vr{OW}=w$.
+
+\ex{Dans l'exercice \ref{explans}, nous devions trouver des vecteurs normaux aux plans $\plan$ dirigé par $u=(1,-8,6)$ et $v=(1,2,3)$ et $\plan'$ dirigé par  $u'=(-2,-5,1)$ et $v'=(62,-49,-61)$. En résvolant une équation nous avions trouver pour $\plan$ le vecteur normal $n=(-36,3,10)$ et pour $\plan'$ le vecteur normal $n'=(59,-10,68)$. Avec le produit vectoriel, on obtient directement $u\wedge v = n$ et $u'\wedge v'=6n'$.}
+
+\pro{(produits vectoriels des vecteurs canoniques)
+
+\begin{itemize}
+\item $e_1\wedge e_2 = e_3$
+\item $e_2\wedge e_3 = e_1$
+\item $e_3\wedge e_1 = e_2$
+\item $e_1\wedge e_3 = -e_2$
+\item $e_2\wedge e_1 = -e_3$
+\item $e_3\wedge e_2 = -e_1$
+\end{itemize}}
+
+\rem{Pour s'en souvenir : ça donne celui qui reste, quand on va de gauche à droite c'est positif, sinon c'est négatif.}
+
+\pro{Soit $\rep = (O,(u,v,w))$ un repère orthogonal. Alors $w$ et $u\wedge v$ sont colinéaires.}
+\preuve{$w$ et $u\wedge v$ sont tous deux orthogonaux à $u$ et $v$, donc sont colinéaires.}
+
+\defi{(repère orthogonal direct) Soit $\rep = (O,(u,v,w))$ un repère orthogonal. On dit que $\rep$ \textit{est un repère direct} si $w$ et $u\wedge v$ sont de même sens, \cad si il existe $\lambda\in\R_+$ tel que $w=\lambda (u\wedge v)$. Autrement $\rep$ est dit \textit{indirect}.}
+
+\cor{\begin{itemize} Soit $O\in\R^3$.
+\item $(O,(e_1,e_2,e_3)),(O,(e_2,e_3,e_1))$ et $(O,(e_3,e_1,e_2))$ sont des repères directs.
+\item $(O,(e_1,e_3,e_2)),(O,(e_2,e_1,e_3))$ et $(O,(e_3,e_2,e_1))$ sont des repères indirects.
+\end{itemize}}
+
+\subsubsection{Projeté orthogonal}
+
+\defi{(projeté orthogonal sur une droite) Soit $A\in\R^3$ et $\dt$ une droite. On appelle \textit{projeté orthogonal de $A$ sur $\dt$} l'unique point $H$ vérifiant :
+
+\begin{enumerate}[i)]
+\item $H\in\dt$
+\item $(HA)\perp \dt$
+\end{enumerate}
+
+On le note $p_\dt(A)$.}
+
+\defi{(projeté orthogonal sur un plan) Soit $A\in\R^3$ et $\plan$ un plan. On appelle \textit{projeté orthogonal de $A$ sur $\plan$} l'unique point $H$ vérifiant :
+
+\begin{enumerate}[i)]
+\item $H\in\plan$
+\item $(HA)\perp\plan$
+\end{enumerate}
+
+On le note $p_\plan(A)$.}
+
+
+
+
+\subsection{Sphère et coordonnées sphérique}
+Dans cette partie, nous ne ferons pas de démonstration. C'est simplement à titre culturel.
+
+\subsubsection{Sphère}
+
+\defi{(sphère) On appelle \textit{sphère de centre $\Omega$ et de rayon $R$} l'ensemble $\ens{A\in\R^3,\parallel\vr{\Omega A}\parallel=R}$. On la note $\sph(\Omega,R)$}
+
+\defi{(boule) On appelle \textit{boule de centre $\Omega$ et de rayon $R$} l'ensemble $\ens{A\in\R^3,\parallel\vr{\Omega A}\parallel\le R}$. On la note $\mathscr{B}(\Omega,R)$}
+
+\pro{(équation cartésienne d'une sphère) Soit $\Omega(a,b,c)$ et $R\in\R_+$. Alors $\sph(\Omega,R)=\ens{(x,y,z)\in\R^3,(x-a)^2+(y-b)^2+(z-c)^2=R^2}$. On dit que $(x-a)^2+(y-b)^2+(z-c)^2=R^2$ est une \textit{équation cartésienne} de $\sph(\Omega,R)$.}
+
+\rem{C'est finalement une extension dans l'espace de ce qu'on connaissait des cercles dans le plan. De même que les plans, cette équation cartésienne est très pratique pour savoir si un point donné est dans une sphère, en revanche elle ne l'est pas pour générer facilement les points de la sphère. Nous verrons comment paramétrer la sphère ultérieurement.}
+
+\subsubsection{Coordonnées sphériques}
+Il y a une façon beaucoup plus pratique de se repérer sur une sphère : en utilisant les coordonnées sphériques. \href{https://fr.wikipedia.org/wiki/Coordonn\%C3\%A9es_sph\%C3\%A9riques#Conventions}{Il y a plusieurs conventions possibles pour se faire}, nous allons utiliser ici la plus courante en mathématiques : la convention \textit{rayon-longitude-colatitude}. Les angles dans l'espace que nous avons définis sont compris dans $\cro{0,\dfrac{\pi}{2}}$, cela ne suffira pas pour ce que nous allons faire, il faudra donc passer par des angles orientés dans des plans. Nous nous plaçons dans toute la suite dans le repère canonique. 
+
+\theo{Soit $M\in\R^3\neq (0,0,0)$, $H=p_{(Oxy)}(M)$ et $h=\dfrac{\vr{OH}}{\parallel\vr{OH}\parallel}$. \\ Il existe un unique triplet $(\rho,\theta,\phi)\in \R_+^*\times [0,2\pi[\times [0,\pi]$ vérifiant :
+
+\begin{enumerate}[i)]
+\item $\parallel\vr{OM}\parallel=\rho$
+\item Dans le plan $(Oxy)$ repéré par $(O,(e_1,e_2))$, $(e_1,h)=\theta$
+\item Dans le plan dirigé par $e_3$ et $h$ repéré par $(O,(e_3,h))$ , $(e_3,\vr{OM})=\phi$
+\end{enumerate}
+
+On dit alors que :
+
+\begin{itemize}
+\item $(\rho,\theta,\phi)$ sont les \textit{coordonnées sphériques de }$M$,
+\item $\rho$ est appelé le \textit{rayon},
+\item $\theta$ la \textit{longitude},
+\item $\phi$ la \textit{colatitude}.
+\end{itemize}
+Par convention, les coordonnées sphériques du point $(0,0,0)$ sont $(0,0,0)$.}
+\rems{\item Si $M(a,b,c)$ alors $H(a,b,0)$.}
+
+\includegraphics[scale=0.5]{figures/pdf/spherique-eps-converted-to.pdf}
+
+\pro{Réciproquement, pour tout triplet $(\rho,\theta,\phi)\in \R_+^*\times [0,2\pi[\times [0,\pi]\cup (0,0,0)$, il existe un unique point $M\in\R^3$ tel que $(\rho,\theta,\phi)$ sont les coordonnées sphériques de $M$.}
+\rem{Cela signifie qu'on a une bijection entre les coordonnées sphériques et cartésiennes : nous pouvons passer de l'un à l'autre.}
+
+\pro{(paramétrage de la sphère en coordonnées sphériques) Soit $R\in\R_+^*$. Alors un paramétrage de $\sph(O,R)$ en coordonnées spéhériques est, pour tout $t_1\in[0,2\pi[$, $t_2\in[0,\pi]$ :
+
+\sys{\rho (t_1,t_2) &=& R \\
+\theta (t_1,t_2) &=& t_1 \\
+\phi (t_1,t_2) &=& t_2}}
+
+\pro{(relations de passage aux coordonnées cartésiennes) Soit $M\in\R^3\neq (0,0,0)$ ayant pour coordonnées sphériques $(\rho,\theta,\phi)$. Soit $(x,y,z)$ les coordonnées cartésiennes de $M$. Alors :
+
+\sys{x &=& \rho\sin\phi\cos\theta \\
+y &=& \rho\sin\phi\sin\theta \\
+z &=& \rho\cos\phi}}
+
+\preuve{Nous allons exposer comment retrouver ces relations. Remarquons tout d'abord que $H$ et $M$ ont la même abscisse et la même ordonnée, par conséquent nous allons constamment travailler dans le triangle rectangle $OHM$.
+
+\begin{itemize}
+\item Plaçons-nous donc dans le plan dirigé par $e_3$ et $h$ repéré par $(O,(e_3,h))$. La trigonométrie nous donne $\sin\parent{\dfrac{\pi}{2}-\phi}=\dfrac{z}{\rho}$ d'où $\color{brown}{z=\rho\cos\phi}$. D'autre part, nous avons $\cos\parent{\dfrac{\pi}{2}-\phi}=\dfrac{OH}{\rho}$ d'où $OH=\rho\sin\phi$.
+
+\item Plaçons-nous à présent dans le plan $(Oxy)$ repéré par $(O,(e_1,e_2))$. Alors on a immédiatement $h=(\cos\theta,\sin\theta)$. Or $\vr{OH}=OH h$ d'où $\color{brown}{x=\rho\sin\phi\cos\theta}$ et $\color{brown}{y=\rho\sin\phi\sin\theta}$.
+\end{itemize}}
+
+\pro{(paramétrage de la sphère en coordonnées cartésiennes) Soit $\Omega(a,b,c)$ et $R\in\R_+^*$. Un paramétrage de $\sph(\Omega,R)$ en coordonnées cartésiennes, pour tout $t_1\in[0,2\pi[$, $t_2\in[0,\pi]$, est :
+
+\sys{x(t_1,t_2) &=& R\sin t_2\cos t_1 + a \\
+y(t_1,t_2) &=& R\sin t_2\sin t_1 + b \\
+z(t_1,t_2) &=& R\cos t_2 + c}}
+
+\rem{Si le seul but est de générer des points, dans la pratique on est pas obligé de limiter $t_1$ et $t_2$, qui sont des angles, aux ensembles $[0,2\pi[$ et $[0,\pi]$ : on peut leur faire parcourir $\R$ entier. Simplement, on risque de générer plusieurs fois le même point avec des paramètres différents : selon ce que l'on veut faire, ça peut être embêtant ou pas.}
+
+\subsubsection{Applications en astronomie}
+
+\begin{description}
+\item[Repérage terrestre] Soit $T$ le centre de la Terre, $R$ son rayon, $N$ le pôle nord (géographique), $G$ l'observatoire de Greenwich, $\plan$ le plan dirigé par $\vr{TN}$ et $\vr{TG}$. Soit $G'$ le point de l'équateur tel que $\vr{TG'}//\plan$ et tel qu'il soit dans le même hémisphère que $G$. Soit $\vec{k}=\vr{TN}$, $\vec{i}=\vr{TG'}$ et $\vec{j}=\vec{k}\wedge \vec{i}$. Nous munissons ainsi la Terre du repère orthonormé direct $(T,(\vec{i},\vec{j},\vec{k}))$. Soit $P$ sur la Terre et $(\rho,\theta,\phi)$ les coordonnées sphériques de $P$ avec en convention \href{https://fr.wikipedia.org/wiki/Coordonn\%C3\%A9es_sph\%C3\%A9riques#Conventions}{\textit{rayon-longitude-latitude}}.  On appelle \textit{coordonnées géographiques de $P$} le couple $(\theta,\phi)$ (le rayon n'a aucune importance puisque tout point terrestre possède un rayon de 1 dans ce repérage). Dans la pratique, ces coordonnées sont exprimées dans le système DMS (degrés/minutes/secondes). Dans celui-ci, une minute d'angle vaut 1/60 degré et une seconde d'angle vaut 1/60 minute d'angle (soit 1/3600 degré), ce qui nous offre une précision à environ $3\times 10^{-4}$ degré près. Par exemple, l'église de Villefranche-sur-Saône a pour latitude $45\degree 59' 25"$, soit $\approx 45\degree 59.4167'$ soit $\approx 45.9903\degree$ (cela ne sert à rien de renseigner plus de 4 décimales). De plus, pour éviter d'avoir des latitudes négatives on ajoute le suffixe $N$ (nord) ou $S$ (sud). Et pour éviter d'avoir des longitudes supérieures à $180\degree$ on ajoute le suffixe $E$ (est) ou $O$ (ouest). Pour l'église de Villefranche, nous obtenons ainsi les coordonnées géographiques $(45\degree 59' 25" N, 4\degree 43' 13"E)$. Ainsi, $N$ a pour coordonnées terrestres $(0\degree 00'00" E,90\degree 00'00" N)$.
+
+\item[Repérage céleste équatorial] De même que sur la Terre, il va nous falloir un repère pour repérer les objects du ciel. Le repère terrestre est bien entendu inadpaté : nous allons en définir un autre. La Terre possède un axe de rotation passant par son centre $T$ et passant par $N$. La droite $[TN)$ est appelée \textit{pôle nord céleste} et $[TS)$ \textit{pôle sud céleste}. A noter que l'étoile \href{https://fr.wikipedia.org/wiki/Alpha_Ursae_Minoris}{Alpha Ursae Minoris} se situe presque sur le pôle nord céleste, c'est donc d'abord en repérant cette étoile que les astronomes amateurs (de l'hémisphère nord) en déduisent plus précisément la direction du pôle nord céleste. C'est pour cette raison que tout le monde connait plutôt Alpha Ursae Minoris sous le nom d'\textit{étoile polaire}. Je recommande à présent de visualiser \href{https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Coordonnees_equatoriales.svg/603px-Coordonnees_equatoriales.svg.png}{cette image} en lisant les explications qui suivent. Nous savons que la Terre tourne autour du Soleil, mais du point de vue d'un observateur situé au centre de la Terre, c'est le Soleil qui tourne autour de lui suivant une trajectoire quasi-circulaire. Ce cercle est appelé \textit{écliptique}. Soit à présent la sphère $\sph$ de centre $T$ et passant par le centre du Soleil. L'écliptique appartient à cette sphère. On appelle \textit{équateur céleste} la projection de l'équateur terrestre sur $\sph$. L'écliptique et l'équateur céleste s'intersectent sur $\sph$ en deux points. Au cours de sa trajectoire, le Soleil passe donc par ces points. L'un des deux, en passant de l'hémisphère nord à l'hémisphère sud, et l'autre de l'hémisphère sud à l'hémisphère nord : ce dernier est appelé \textit{point vernal} et on le note $\gamma$. Nous avons à présent tout ce qu'il nous faut pour créer un repère céleste. Notons $N'$ l'intersection entre le pôle nord céleste et $\sph$. Posons $\vec{k}=\vr{TN'}$, $\vec{i}=\vr{T\gamma}$ et $\vec{j}=\vec{k}\wedge \vec{i}$. Nous munissons ainsi l'espace du repère orthonormé direct $(T,(\vec{i},\vec{j},\vec{k}))$. Soit $P$ un point de l'espace et $(\rho,\alpha,\delta)$ les coordonnées sphériques de $P$ en convention \textit{rayon-longitude-latitude}. On dit que $(\alpha,\delta)$ sont les \textit{coordonnées équatoriales} de $P$. Dans ce contexte, $\alpha$ est appelé \textit{ascension droite} plutôt que longitude et $\delta$ \textit{déclinaison} plutôt que latitude (mais dans les faits c'est la même chose). A noter que $\rho$ n'est pas précisé, car un observateur cherche rarement à connaître la distance qui le sépare des objets du ciel : pour observer un objet les deux autres coordonnées suffisent. D'ailleurs, à noter que $||\vec{i}||=||\vec{j}||=||\vec{k}||=1\text{UA}$ (unité astronoique). Pour exprimer l'ascension droite $\alpha$ on utilise le système \textit{heures/minutes/secondes}: l'horaire, vérifiant $24h=360\degree$, la minute horaire et la seconde horaire ce qui nous offre une précision à $4\times 10^{-3}$ degré près. Par exemple, $247.481\degree$ vaut environ 16h29m55s. A noter que si on fait la conversion dans l'autre sens, on tombe sur environ $247.479\degree$. Pas d'arnaque, c'est simplement qu'une seconde vaut environ $4\times {(10^{-3})}\degree$ comme nous l'avons expliqué : c'est normal qu'il y ait des décalages. Quant à $\delta$, il est simplement exprimé en système DMS. C'est ainsi que sur Stellarium (excellent logiciel fournissant des cartes du ciel en temps réel, qu'on peut coordonner avec un repérage équatorial notamment), nous voyons que l'étoile Alkaid a pour coordonnées équatoriales (13h47m32.21s, +49$\degree$18'47.0"). Si on convertie tout en simples degrés,  on obtient pour coordonnées équatoriales (206.88421$\degree$, 49.31306$\degree$). Pour voir tout ce repérage, \href{https://upload.wikimedia.org/wikipedia/commons/6/66/Ra_and_dec_demo_animation_small.gif}{voici un GIF}.
+
+\item[Coordonnées horizontales (ou alt-azimutales)] Contrairement au repérage équatorial, les coordonnées alt-azimutales d'un objet céleste varie en fonction de l'heure et du lieu de l'observateur. Si ce repérage est très pratique à mettre en place pour un observateur (le repérage étant local), il n'est pas stable contrairement au repérage équatorial. Soit $O$ un point terrestre. C'est l'observateur. La droite $[TO)$ est nommée \textit{zénith}. Soit $\plan$ le plan tangeant à la Terre passant par $O$. Ce plan est appelé \textit{horizon}. Soit $A=p_\plan(N)$. Soit $Z$ le point tel que $\vr{TO}$ et $\vr{OZ}$ soient colinéaires et de même sens et tel que $OZ=ON$. Soit enfin $\vec{j}=\vr{OZ}\wedge\vr{ON}$. On munit ainsi l'espace du repère orthonormé direct $(O,(\vr{ON},\vec{j},\vr{OZ}))$. Soit $P$ un point de l'espace et soit $(\rho,\zeta,h)$ les coordonnées sphériques de $P$ en convention \textit{rayon-longitude-latitude}. On dit que $(\zeta,h)$ sont les \textit{coordonnées horizontales} ou \textit{alt-azimutales} de $P$. Dans ce contexte, $\zeta$ est appelé \textit{azimut} au lieu de longitude et $h$ \textit{hauteur} au lieu de latitude. Comme ce repérage est local et ne convient qu'à l'observateur, et que celui-ci ne peut observer des objets de latitude négative, la hauteur est compris dans $[0\degree,90\degree]$. Les deux coordonnées sont exprimées dans le système DMS.
+
+\end{description}
+
+\subsubsection{Cercle dans l'espace}
+
+\defi{Soit $M\in\R^3$, $u$ et $v$ deux vecteurs non colinéaires et $r\in\R_+$. On appelle \textit{cercle de centre $M$, de rayon $r$ et dirigé par $u$ et $v$} l'intersection entre le plan $\plan$ dirigé par $u$ et $v$ et passant par $M$ et $\sph(M,r)$. On le note $\mathscr{C}(\plan,r)$.}
+On pourrait avoir l'idée, pour trouver un paramétrage d'un tel cercle, d'écrire les paramétrages du plan et de la sphère puis de résoudre le système d'équations. Ça ne marchera jamais car les paramètres de la sphère sont dans des fonctions trigonométriques. Le plus simple, c'est donc de se placer dans un repère bien choisi de $\plan$, d'écrire l'équation paramétrique du cercle dans le plan, puis en effectuant un changement de repère, trouver les coordonnées du cercle dans le repère canonique. 
+
+\ex{Soit $u=\vre{2}{-1.5}{3}$ et $v=\vre{-1}{-1}{0}$ et $M(3,-3,2)$ et $r=2$. Trouvons un paramétrage de $\mathscr{C}(\plan,r)$. D'abord, il faut nous munir d'un repère pratique pour travailler dans $\plan$ : nous allons construire un repère orthonormé direct. Tout d'abord, posons $\vec{i}=\dfrac{u}{\parallel u \parallel}$ (on rend $u$ unitaire). Ce sera le premier vecteur de notre futur repère. Posons maintenant $\vec{k}=\dfrac{u\wedge v}{\parallel u\wedge v\parallel}$. $\vec{k}$ est donc un vecteur normal à $\plan$ et unitaire : ce sera un autre vecteur de notre futur repère. Enfin, posons $\vec{j}=\vec{k}\wedge\vec{i}$. Soit $\mathscr{R}=(M,(\vec{i},\vec{j},\vec{k}))$ : ce dernier est donc par construction un repère orthonormé direct. Dans $\mathscr{R}$, nous avons un paramétrage de $\mathscr{C}(\plan,r)$ facile, pour tout $t\in[0,2\pi[$ :
+
+\sys{x_\mathscr{R}(t) &=& 2\cos t \\
+y_\mathscr{R}(t) &=& 2\sin t \\
+z_\mathscr{R}(t) &=& 0}
+
+C'est-à-dire que le point paramétré $P_\mathscr{R}(x_\mathscr{R}(t),y_\mathscr{R}(t),z_\mathscr{R}(t))$ parcourt $\mathscr{C}(\plan,r)$.
+
+Il nous faut maintenant trouver les coordonnées de $P$ dans le repère canonique. Ainsi, $\vr{MP_\mathscr{R}}=x_\mathscr{R}(t)\vec{i}+y_\mathscr{R}(t)\vec{j}+z_\mathscr{R}(t)\vec{k}=x_\mathscr{R}(t)\vec{i}+y_\mathscr{R}(t)\vec{j}$. Soit le vecteur $m=(3,-3,2)=\vr{OM}$. On a $\vr{OP_\mathscr{R}}=\vr{OM}+\vr{MP_\mathscr{R}}=m+x_\mathscr{R}(t)\vec{i}+y_\mathscr{R}(t)\vec{j}$. Par définition, en calculant les composantes de ce vecteur, nous aurons les coordonnées de $P$ dans le repère canonique et donc un paramétrage du cercle.
+
+Un tour de moulinette dans XCas (de toute manière j'ose espérer que le lecteur aura depuis longtemps compris que c'est inutile de faire ces calculs ideux à la main) et il nous trouve un paramétrage approximatif de $\mathscr{C}(\plan,r)$ dans le repère canonique, pour tout $t\in[0,2\pi[$ :
+
+\sys{x(t) &=&3+ 1.02\cos t-1.33\sin t \\
+y(t) &=& -3-0.77\cos t-1.49\sin t\\
+z(t) &=& 2+1.54\cos t+0.14\sin t}}

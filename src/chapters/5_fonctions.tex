@@ -1,0 +1,1340 @@
+\chapter{Fonctions}
+
+\section{Définitions}
+
+Cette section donne des notions sur les fonctions non utilisées au lycée mais beaucoup dans le supérieur, elle se destine donc avant tout aux élèves désireux de poursuivre des études de mathématiques. Il s'agit essentiellement de donner au futur étudiant du vocabulaire précis pour parler correctement de ces objets.
+
+\subsection{Définitions générales}
+
+\defi{(application/fonction) Soit $E$ et $F$ deux ensembles. On appelle $f$ une \textit{application} ou une \textit{fonction de $E$ dans $F$} un objet qui à tout élément de $E$ associe un unique élément de $F$. On la note \fone{f}{E}{F}. On dit que $E$ est \textit{l'ensemble de départ} de $f$ et $F$ \textit{l'ensemble d'arrivée} de $f$.}
+\rem{Pour représenter schématiquement, on utilise souvent des patatoïdes. A noter que si il y a une flèche pour tous les éléments de $E$, ce n'est pas nécessairement le cas pour $F$. De plus, il est parfaitement possible qu'à deux éléments de $E$ soient associés le même élément de $F$ (flèches du milieu dans le schéma suivant).}
+
+\includegraphics[scale=0.5]{figures/pdf/application-eps-converted-to.pdf}
+
+Dans la suite et sauf mention contraire, on considère  \fone{f}{E}{F} une application quelconque.
+
+\defi{(image d'un élément) Soit $x\in E$. Par définition, il existe un unique $y\in F$ tel que $x$ est associé à $y$ par $f$. On dit que $y$ est \textit{l'image de $x$ par $f$} et on le note $f(x)$.}
+
+\defi{(antécédent) Soit $y\in F$ et $A$ l'ensemble des éléments de $E$ tel que pour tout $x\in A$, $f(x)=y$. Alors les éléments de $A$ sont appelés \textit{antécédents de $y$ par $F$.}}
+
+\nota{On note \fons{f}{E}{F}{x}{f(x)} pour signifier que tout élément $x\in E$ est associé à $f(x)\in F$.}
+
+\defi{(composée) Soit $G$ un ensemble et \fone{g}{F}{G}. On appelle \textit{composée de $g$ avec $f$}, notée $g\circ f$, la fonction \fons{g\circ f}{E}{G}{x}{f(g(x))}.}
+
+\rem{Attention à ne pas se tromper de sens : c'est bien $g\circ f$ et non $f\circ g$. En effet, ici parler de $f\circ g$ n'aurait aucun sens (dessiner des patatoïdes pour s'en convaincre).}
+
+\defi{(ensemble de définition) On dit que $E$ est \textit{l'ensemble de définition de $f$}. On le note souvent $D_f$.}
+
+\rem{Il arrive souvent que l'ensemble de définition d'une fonction usuelle ne soit pas précisé. Dans ce cas, on prendra toujours le plus grand ensemble de définition possible. Par exemple, si on travaille avec une fonction homographique, on prendra pour ensemble de définition $\R$ privé des points où le dénominateur s'annule.}
+
+\defi{(image d'une application) On appelle \emph{image de $f$}, notée $\im f$, l'ensemble des images de tous les éléments de $E$.\label{imappli}}
+\rem{$\im f\subseteq F$ mais a priori, $\im f\neq F$ en général.}
+
+\ex{Soit $f:\R\to\R,x\mapsto x^2$. Alors $\im f=\R^+$.}
+
+\defi{(image directe) Soit $A\subset E$. On appelle \emph{image directe de $A$ par $f$}, notée $f(A)$, l'ensemble des images des éléments de $A$. C'est un sous-ensemble de $\im f$.}
+
+\rem{En particulier, $f(E)=f(D_f)=\im f$.}
+
+\includegraphics[scale=0.5]{figures/pdf/imagedirecte-eps-converted-to.pdf}
+
+\ex{Soit $f:\R\to\R,x\mapsto x^2$ et $A=]3;10[$. Alors $f(A)=]9;100[$.}
+
+\defi{(image réciproque) Soit $B\subset F$. On appelle \emph{image réciproque de $B$ par $f$}, notée $f^{-1}(B)$, l'ensemble des antécédents de tous les éléments de $B$. C'est un sous-ensemble de $E$.}
+
+\ex{Soit $f:\R\to\R,x\mapsto x^2$, $B=\{3;4\}$, $C=\{-5\}$, $D=[-3;3[$. Alors $f^{-1}(B)=\{-2;-\sqrt{3};\sqrt{3};2\}$, $f^{-1}(C)=\emptyset$, $f^{-1}(D)=]-\sqrt{3};\sqrt{3}[$.}
+
+\defi{(égalité) Soit $g:E'\to F'$. On dit que \emph{$f$ égale $g$} et on note $f=g$, si $E=E'$, $F=F'$ et si pour tout $x\in E$, $f(x)=g(x)$.\label{egalitefonction}}
+
+\rem{Dans la même veine, on peut définir des fonctions implicitement. Par exemple, soit \fone{f,g,h}{\R}{\R}. On peut écrire $h=f+g$ pour dire de façon raccourcie que pour tout $x\in\R$, $h(x)=f(x)+g(x)$. Ça marche avec $h=fg$, la valeur absolue $h=|f|$, l'inverse $h=\dfrac{1}{f}$... Mais attention de ne pas abuser de ces raccourcis : d'une part il y a des pièges, pour écrire $\dfrac{1}{f}$ il faut s'assurer que $f$ ne s'annule pas. Ensuite, il faut que le raccourci soit extrêmement clair, il ne doit y avoir aucune difficulté pour traduire la notation raccourcie, c'est pourquoi je conseille vivement de ne pas dépasser le cadre de la somme, du produit et de l'inverse, en gros. Enfin, ce n'est jamais qu'un raccourci, qui va très bien pour les brouillons, \textit{mais pas dans les contrôles ou examens}.}
+
+\defi{(restriction) Soit $G\subset E$. Alors on appelle \emph{restriction de $f$ à $G$}, notée $f_{|G}$, la fonction $f_{|G}:G\to F,x\mapsto f(x)$.}
+\rem{Il s'agit donc simplement de réduire l'ensemble de départ.}
+
+\defi{(prolongement) Soit $E',F'$ deux ensembles et $g:E'\to F'$. On dit que $g$ est un \emph{prolongement de $f$} si $E\subseteq E'$, $F\subseteq F'$ et si pour tout $x\in E,f(x)=g(x)$.}
+
+\ex{Soit $f:\R\to\R,x\mapsto |x|$, $g:\R\to\R,x\mapsto -x$ et $I=]-\infty;0]$. Alors $g$ est un prolongement de $f_{|I}$.}
+
+\defi{(courbe représentative) Supposons que $E,F\subset\R$ et soit $\plan$ un plan. On appelle \textit{courbe représentative de $f$} l'ensemble de points $\ens{(x,y)\in\plan,y=f(x)}$.}
+
+\subsection{Injection, surjection, bijection}
+Ces trois notions sont omniprésentes en analyse et permettent entre autres de voir proprement la notion de fonction réciproque.
+
+\defi{(injection) On dit que $f$ est \emph{injective} si pour tout $x,y\in E$ tels que $f(x)=f(y)$, alors $x=y$.}
+
+\rems{\item En termes de patatoïdes, ça veut dire qu'il n'y a qu'une flèche au maximum qui arrive sur chaque élément de $F$.
+\item Dans le cas où $E,F\subseteq\R$, cela se traduit graphiquement par le fait que toute droite d'équation $y=k$ avec $k\in F$ admet \emph{au plus} un point d'intersection avec la courbe représentative de $f$.}
+
+\includegraphics[scale=0.5]{figures/pdf/injective-eps-converted-to.pdf}
+
+\defi{(surjection) On dit que $f$ est \emph{surjective} si pour tout $y\in F$, il existe $x\in R$ tel que $y=f(x)$.}
+
+\rems{\item En termes de patatoïdes, cela se traduit par le fait que tous les éléments de $F$ ont au moins une flèche.
+\item Dans le cas où $E,F\subseteq\R$, cela se traduit graphiquement par le fait que toute droite d'équation $y=k$ avec $k\in F$ admet \emph{au moins} un point d'intersection avec la courbe représentative de $f$.
+\item Si $f$ est surjective alors $F=\im f$}
+
+\includegraphics[scale=0.5]{figures/pdf/surjective-eps-converted-to.pdf}
+
+\defi{(bijection) Soit $E$ et $F$ deux ensembles, $f:E\to F$ une application. On dit que $f$ est \emph{bijective} si elle est injective \emph{et} surjective.}
+
+\rem{\begin{itemize}
+\item En termes de patatoïdes, cela se traduit par le fait que tous les éléments de $F$ possèdent exactement une flèche.
+\item Dans le cas où $E,F\subseteq\R$, cela se traduit graphiquement par le fait que toute droite d'équation $y=k$ avec $k\in F$ admet \emph{un unique} point d'intersection avec la courbe représentative de $f$.
+\item On peut obtenir une définition alternative de la bijection en combinant celles d'injection et de surjection. Nous laissons le soin au lecteur de la déterminer.
+\end{itemize}}
+
+\includegraphics[scale=0.5]{figures/pdf/bijection-eps-converted-to.pdf}
+
+\exo{Pour chaque fonction ci-dessous, déterminer graphiquement (et formellement pour les plus courageux) si elle est injective, surjective, bijective (la réponse est donnée en blanc entre les crochets) :
+\begin{enumerate}[(i)]
+\item \fons{f}{\N}{\R}{x}{x} [\textcolor{white}{inj., non surj., non bij.}]
+\item \fons{g}{\R}{\R}{x}{x^2} [\textcolor{white}{non inj., non surj., non bij.}]
+\item \fons{h}{\R}{[-1;1]}{x}{\cos(x)} [\textcolor{white}{non inj., surj., non bij.    }]
+\item \fons{r}{]-\infty;0[}{]0;+\infty[}{x}{-\dfrac{1}{x}} [\textcolor{white}{inj., surj., bij.}]
+\end{enumerate}}
+
+\exo{Soit \fons{f}{E}{F}{x}{\lfloor x\rfloor} où $E,F\subset\R$. Trouver $E$ et $F$ (il n'y a pas forcément qu'une seule bonne réponse) tel que :
+
+\begin{enumerate}
+\item $f$ soit non injective et non surjective,
+\item $f$ soit injective et non surjective,
+\item $f$ soit non injective et surjective,
+\item $f$ soit bijective.
+\end{enumerate}}
+
+\theo{\label{frec} (fonction réciproque) Supposons $f$ bijective. Alors il existe une unique fonction $f^{-1}:F\to E$, appelée \emph{fonction réciproque de $f$}, telle que pour tout $x\in E,(f^{-1}\circ f)(x)=x$ et pour tout $y\in F,(f\circ f^{-1})(y)=y$.\label{reciproque}}
+
+\preuve{\textsc{Existence}
+
+$f$ étant bijective, pour tout $y\in F$ il existe un unique $x\in E$ tel que $f(x)=y$. Pour tout $y\in F$, on note $\overline{y}$ l'un d'eux et alors $f(\overline{y})=y$. On peut donc définir la fonction \fonl{g}{F}{E}{y}{\overline{y}}, montrons que celle-ci est une réciproque de $f$. Soit $y\in F$, alors on a $f(g(y))=f(\overline{y})=y$. Soit $x\in E$, alors on a $g(f(x))=\overline{f(x)}$. Or par définition $f(\overline{f(x)})=f(x)$ et par injectivité de $f$, $\overline{f(x)}=x$. Donc $g(f(x))=x$. Conclusion, $g$ est bien une réciproque de $f$.
+
+\textsc{Unicité}
+
+Soit deux fonctions réciproques de $f$ : \fone{g}{F}{E} et \fone{h}{F}{E}. Soit $y\in F$. On a $f(g(y))=y$ et $f(h(y))=y$ donc $f(g(y))=f(h(y))$ et par injectivité de $f$, $g(y)=h(y)$. Donc $g=h$ et par conséquent $f$ n'admet qu'une unique fonction réciproque.}
+
+\rem{\begin{itemize}
+\item Cette implication est en fait une équivalence.
+\item Attention : $f^{-1}$ peut soit faire référence à l'image réciproque, soit à l'application réciproque de $f$. Mais contrairement à la première notion, il est obligatoire d'établir la bijectivité avant de pouvoir parler de la seconde.
+\item Dans le cas où $E,F\subseteq\R$, les courbes représentatives des deux fonctions $f$ et $f^{-1}$ sont symétriques par rapport à la droite $y=x$ dans un repère orthonormé. \end{itemize}}
+
+\pro{Supposons $f$ bijective et \fone{f^{-1}}{F}{E} la fonction réciproque de $f$. Alors $f^{-1}$ est bijective et $f$ est la réciproque de $f^{-1}$.}
+
+\preuve{Elle est laissée au lecteur curieux. Il faut bien reprendre les définitions et vérifier chaque hypothèse.}
+
+\exo{Pour chacune des fonctions bijectives suivantes (le vérifier graphiquement), déterminer leur fonction réciproque puis tracer leurs courbes.
+\begin{enumerate}[(i)]
+\item \fons{f_1}{\R}{\R}{x}{x}
+\item \fons{f_2}{]-\infty;0[}{]-\infty;0[}{x}{\dfrac{1}{x}}
+\item \fons{f_3}{[0;+\infty[}{[0;+\infty[}{x}{x^2}
+\item \fons{f_4}{[0;\pi]}{[-1;1]}{x}{\cos(x)}
+\end{enumerate}}
+
+\pro{(bijection monotone) Soit $E,F\subseteq\R$ et $f:E\to F$ une application. Si $f$ est strictement monotone sur $E$ et $F=\im(f)$ alors $f$ est bijective.\label{bijmono}}
+
+\begin{proof}
+La monotonie \emph{stricte} de $f$ assure son injectivité et la condition $F=\im(f)$ sa surjectivité donc par définition, $f$ est bijective.
+\end{proof}
+
+\rem{\begin{itemize}
+\item Attention : cela peut paraître contre-intuitif mais la condition $F=\im(f)$ n'est pas systématiquement assurée ! Ne pas oublier qu'en général on a juste $F\supseteq\im(f)$ (revoir la définition~\ref{imappli}).
+\item Cette proposition, combinée avec le théorème de l'image d'un intervalle par une fonction continue que nous verrons ultérieurement, permet de démontrer la bijectivité de beaucoup de fonctions de base.
+\end{itemize}}
+
+\ex{Montrons que la fonction $f_3$ de l'exercice précédent est bijective. Soit $I=[0;+\infty[$. Nous savons que $f_3$ est continue et strictement croissante (donc monotone) sur $I$. D'après le théorème mentionné dans la remarque précédente, $\im(f_3)$ est un intervalle. Nous avons $\Lim{x\to +\infty}x^2=+\infty$ et de plus pour tout $x\in I,x^2\ge 0$ et $f_3(0)=0$. Par conséquent, $\im(f_3)=[0;+\infty[$ et finalement par la proposition~\ref{bijmono}, $f_3$ est bijective. $\square$}
+
+\subsection{Périodicité, parité}
+
+\defi{\programme (périodique) Soit \fone{f}{D_f}{\R} avec $D_f\subset\R$. On dit que \textit{$f$ est périodique} s'il existe $T\in\R_+$ tel que pour tout $x\in\R$ tel que $x+T\in D_f$, $f(x+T)=f(x)$. On dit que $T$ est \textit{une période} de $f$.}
+
+\rem{Si $T$ est une période de $f$, alors pour tout $k\in\N^*$, $Tk$ est une période de $f$. Si $t$ est la plus petite période de $f$, alors $\ens{tk,k\in\N^*}$ est l'ensemble de \textit{toutes} les périodes de $f$.}
+
+\ex{Les fonctions trigonométriques usuelles : $\cos,\sin,\tan$ sont périodiques de plus petite période $2\pi$. La fonction partie fractionnaire est périodique de plus petite période $1$.}
+
+\defi{\programme (pair, impair) Soit \fone{f}{D_f}{\R} avec $D_f\subset\R$.
+
+\begin{itemize}
+\item On dit que \textit{$f$ est paire} si pour tout $x\in\R$, $f(x)=f(-x)$.
+\item On dit que \textit{$f$ est impaire} si pour tout $x\in\R$, $f(-x)=-f(x)$.
+\end{itemize}}
+
+\pro{Soit \fone{f}{D_f}{\R} avec $D_f\subset\R$.
+
+\begin{itemize}
+\item $f$ est paire \ssi sa courbe représentative admet $x=0$ pour axe de symétrie.
+\item $f$ est impaire \ssi sa courbe représentative admet une symétrie centrée sur l'origine.
+\end{itemize}}
+
+\ex{$\cos$ et $x\mapsto x^2$ sont paires. $\sin$, l'identité et $x\mapsto x^3$ sont impaires.}
+
+\pro{Soit \fone{f}{D_f}{\R} avec $D_f\subset\R$ et $k\in\R$.
+
+\begin{itemize}
+\item La courbe représentative de $f$ admet $x=k$ pour axe de symétrie \ssi la fonction $x\mapsto f(x-k)$ est paire.
+\item La courbe représentative admet une symétrie centrée au point $(k,0)$ \ssi la fonction $x\mapsto f(x-k)$ est impaire.
+\end{itemize}}
+
+\ex{$x\mapsto (x+3)^2$ admet $x=-3$ pour axe de symétrie. $x\mapsto (x-4)^3$ admet une symétrie centrée au point $(4,0)$.}
+
+\theo{(décomposition en parties paire et impaire) Soit \fone{f}{D_f}{\R} avec $D_f\subset\R$ tel que si $x\in D_f$ alors $-x\in D_f$. Alors il existe deux uniques fonctions \fone{f_p,f_i}{D_f}{\R} tel qu'on a simultanément :
+
+\begin{enumerate}[i)]
+\item $f_p$ est paire,
+\item $f_i$ est impaire,
+\item $f=f_p + f_i$
+\end{enumerate}
+
+$f_p$ est alors appelée \textit{partie paire de $f$} et $f_i$ \textit{partie impaire de $f$}.}
+
+\pro{Soit \fone{f}{D_f}{\R} avec $D_f\subset\R$ tel que si $x\in D_f$ alors $-x\in D_f$ et soit $f_p,f_i$ les parties respectivement paire et impaire de $f$. Alors :
+
+\begin{itemize}
+\item pour tout $x\in\R$, $f_p(x)=\dfrac{f(x)+f(-x)}{2}$
+\item pour tout $x\in\R$, $f_i(x)=\dfrac{f(x)-f(-x)}{2}$
+\end{itemize}}
+
+\exo{Déterminer les parties paires et impaires des fonctions usuelles quand c'est possible (pas la fonction racine par exemple). Donner une fonction dont ni la partie paire ni la partie impaire ne soit constante à $0$.}
+
+\subsection{Trois fonctions utiles}
+
+Nous allons pour terminer ces généralités définir trois applications très courantes en analyse.
+
+\defi{(fonction identité) Soit $E$ un ensemble. On appelle \textit{fonction identité de $E$} la fonction \fons{\id_E}{E}{E}{x}{x}}.
+
+\rem{\begin{itemize}
+\item En clair c'est la fonction qui "ne fait rien".
+\item Lorsqu'il n'y a pas d'ambiguité sur l'espace de travail, parfois on note cette fonction seulement $\id$.
+\item Cette application est bijective (quel que soit $E$).
+\end{itemize}}
+
+\pro{Soit $E,F$ deux ensembles et \fone{f}{E}{F}. Alors $f\circ\id_E=f$ et $\id_F\circ f=f$.}
+
+\preuve{C'est immédiat en utilisant la définition.}
+
+\exo{En utilisant la fonction identité et la définition~\ref{egalitefonction}, réécrire le théorème~\ref{reciproque}.}
+
+\defi{(fonction caractéristique) Soit $E$ un ensemble et $A\estdans E$. On appelle \emph{fonction caractéristique de $A$} la fonction \fone{\chi_A}{E}{\{0;1\}} qui à $x$ associe $1$ si $x\in A$ et $0$ sinon.}
+
+\rem{\begin{itemize}
+\item Ne pas oublier que même si cela n'est pas précisé dans la notation, cette fonction dépend de l'espace ambiant $E$.
+\item On la rencontre aussi sous le nom \textit{fonction indicatrice}, la notation correspondante est alors $\mathbf{1}_A$. 
+\end{itemize}}
+
+\ex{Soit $E=\R$. Alors $\chi_{\Z}(x)=1$ si et seulement si $x$ est un entier, et $\chi_\Z(x)=0$ si et seulement si $x$ est un réel non entier.}
+
+\exo{Soit $E$ un ensemble et $A,B\estdans E$. Déterminer $\chi_{A\cup B}$ et $\chi_{A\cap B}$ en fonction de $\chi_{A}$ et $\chi_{B}$.}
+
+\defi{(symbole de Kronecker) Soit $A,B$ deux ensembles. On appelle \emph{symbole de Kronecker} la fonction \fone{\delta}{A\times B}{\{0;1\}} qui à $(i,j)$ associe 1 si $i=j$ et 0 sinon.}
+
+\rems{\item On note conventionnelement $\delta_{ij}$ ou bien $\delta_i^j$ au lieu de $\delta(i,j)$.
+\item La plupart du temps $i$ et $j$ sont des indices et donc $A,B\estdans\N$ et en général $A=B$.}
+
+\exo{Pour $n\in\N^*$, définir la matrice identité $\I_n$ en utilisant le symbole de Kronecker.}
+
+\section{Limite d'une fonction}
+
+Nous conseillons au lecteur de relire et de bien se représenter la définition de limite de suites, car la définition formelle de limite de fonction est très similaire (la limite de suite en est un cas particulier en réalité). Grossièrement, la limite d'une fonction en un point est ce vers quoi tend la fonction en ce point, et ce point peut éventuellemnt être situé aux extrémités de là où la fonction est définie (notamment $\pm\infty$). Si cette approximation est en générale celle que retiennent les élèves en terminale et si elle permet de s'en sortir dans beaucoup de cas, mathématiquement on a évidemment besoin d'aller au-delà de cette intuition car beaucoup de choses découlent de cette notion fondamentale~: continuité, dérivée, primitive...
+
+\subsection{Préliminaires}
+
+\nota{(l'infini en tant qu'élément) On note $a=+\infty$ pour dire qu'il n'existe pas de réel plus grand que $a$. On note $a=-\infty$ pour dire qu'il n'existe pas de réel plus petit que $a$.}
+\rem{\textbf{Attention} : cette notation n'a bien sûr pas grand sens mathématiques : à strictement parler, l'infini ne peut pas être un élément. Voyez donc cette notation comme un raccourci qui nous permettra de rendre plus commode la notion de limite.}
+
+\defi{(droite réelle achevée) On appelle \textit{droite réelle achevée} l'ensemble $\R\cup\ens{-\infty,+\infty}$. On le note $\overline{\R}$.}
+
+\rem{Il s'agit donc simplement de $\R$ auquel on ajoute ses extrémités, ce qui est rendu possible par la notation précédente.}
+
+\defi{(intervalle de $\overline{\R}$) Soit $a,b\in\overline{\R}$ avec $a\le b$. On appelle \textit{intervalle de $\overline{\R}$} l'un des 4 ensembles suivant.
+
+\begin{itemize}
+\item $[a,b]$
+\item $[a,b[$
+\item $]a,b]$
+\item $]a,b[$
+\end{itemize}}
+
+\rem{En particulier, si $a=b$, alors $[a,b]$ est un intervalle réduit à un seul élément, on dit que c'est un \textit{singleton} et on le note $\ens{a}$. Toujours si $a=b$, $]a,b[$ est aussi un intervalle qui ne contient aucun élément, c'est donc l'\textit{ensemble vide} noté $\emptyset$.}
+
+\defi{(intervalle de $\R$) On dit que $I$ est \textit{un intervalle de $\R$} si $I$ est un intervalle de $\overline{\R}$ et si $\pm\infty\not\in I$.}
+
+\rem{C'est la définition d'intervalle à laquelle nous étions habitués jusqu'à présent. Dans la suite, on utilisera des intervalles de $\overline{\R}$ et de $\R$, soyez donc attentifs duquel on parle car la nuance est essentielle.}
+
+\defi{(adhérence d'un intervalle) Soit $I$ un intervalle de $\overline{\R}$. On appelle \textit{adhérence de $I$}, noté $\overline{I}$, l'intervalle $I$ union ses extrémités.}
+
+\rems{\item En particulier, la droite réelle achevée n'est rien d'autre que l'adhérence de $\R$ et c'est pourquoi c'est cohérent de l'écrire $\overline{\R}$.
+\item L'adhérence d'un intervalle est lui-même un intervalle.}
+
+\ex{$\overline{]-\infty,-6]}=[-\infty,-6]$ et $\overline{]3,\pi[}=[3,\pi]$.}
+
+\defi{(adhérence d'une union d'intervalles) Soit $A,B$ deux intervalles de $\overline{\R}$ et $U=A\cup B$. On appelle \textit{adhérence de $U$}, notée $\overline{U}$, l'ensemble $\overline{A}\cup\overline{B}$.}
+
+\rem{Par récurrence, on peut donc définir l'adhérence d'une union de $n$ intervalles~: c'est l'union des adhérences de chacun d'eux.}
+
+\ex{$\overline{]-\infty,-6]\cup]3,\pi[}=\overline{]-\infty,-6]}\cup\overline{]3,\pi[}=[-\infty,-6]\cup [3,\pi]$.}
+
+\subsection{Définitions}
+
+Dans toute la suite, nous considérons $U$ une union d'intervalles de $\R$ (et non de $\overline{ \R}$) et \fone{f}{U}{\R}.
+
+\defi{\programme (limite en un point) Soit $a\in\overline{U}$.
+
+\begin{itemize}
+\item Soit $l\in\overline{\R}$. On dit que $f$ admet pour limite $l$ en $a$ si pour tout $\epsilon>0$, il existe $\delta>0$ tel que pour tout $x\in U$, si $|x-a|<\delta$ alors $|f(x)-l|<\epsilon$. \textit{\textbf{Attention} : si $a$ ou $l$ valent $\pm\infty$, il y a aussi une définition de limite de $f$ en $a$ qu'il convient d'adapter par rapport à celle qu'on vient de donner, voir ci-dessous.}
+
+\item On dit que $f$ admet une limite en $a$ s'il existe $l\in\overline{\R}$ tel que $f$ admet pour limite $l$ en $a$.
+\end{itemize}}
+
+Intuitivement, $f$ admet pour limite $l$ en $a$ si pour tout rayon $\epsilon$, il existe un tuyau vertical de rayon $\delta$ et entourant $a$ tel que les images des éléments de ce tuyau sont tous dans le tuyau horizontal de rayon $\epsilon$ et entourant $l$. \\
+
+\textbf{Attention} : si $a=\pm\infty$, la quantité $|x-a|$ n'a aucun sens, si bien qu'on doit adapter la définition : on dit que $f$ admet pour limite $l$ en $+\infty$ si pour tout $\epsilon>0$, il existe $\delta>0$ tel que pour tout $x\in U$, si $x>\delta$ alors $|f(x)-l|<\epsilon$. De même, si $l=\pm\infty$, il faut alors adapter la quantité $|f(x)-l|$. \textcolor{blue}{Ainsi, selon que $a$ et $l$ soient réels ou valent $\pm\infty$, cela nous donne au total \textbf{9 définitions} différentes de la limite. Nous conseillons au lecteur de s'exercer à les écrire et de vérifier ci-dessous (nous écrivons les définitions en notation logique pour être plus synthétique).}
+
+\begin{enumerate}[i)]
+\item $a\in\R$, $l\in\R$ : $\forall\epsilon>0,\exists\delta>0,\forall x\in U, |x-a|<\delta\Rightarrow |f(x)-l|<\epsilon$
+\item $a\in\R$, $l=-\infty$ : \spoiler{$\forall\epsilon\in\R,\exists\delta>0,\forall x\in U, |x-a|<\delta\Rightarrow f(x)<\epsilon$}
+\item $a\in\R$, $l=+\infty$ : \spoiler{$\forall\epsilon\in\R,\exists\delta>0,\forall x\in U, |x-a|<\delta\Rightarrow f(x)>\epsilon$}
+
+\item $a=-\infty$, $l\in\R$ : \spoiler{$\forall\epsilon>0,\exists\delta\in\R,\forall x\in U, x<\delta\Rightarrow |f(x)-l|<\epsilon$}
+\item $a=-\infty$, $l=-\infty$ : \spoiler{$\forall\epsilon\in\R,\exists\delta\in\R,\forall x\in U, x<\delta\Rightarrow f(x)<\epsilon$}
+\item $a=-\infty$, $l=+\infty$ : \spoiler{$\forall\epsilon\in\R,\exists\delta\in\R,\forall x\in U, x<\delta\Rightarrow f(x)>\epsilon$}
+
+\item $a=+\infty$, $l\in\R$ : \spoiler{$\forall\epsilon>0,\exists\delta\in\R,\forall x\in U, x>\delta\Rightarrow |f(x)-l|<\epsilon$}
+\item $a=+\infty$, $l=-\infty$ : \spoiler{$\forall\epsilon\in\R,\exists\delta\in\R,\forall x\in U, x>\delta\Rightarrow f(x)<\epsilon$}
+\item $a=+\infty$, $l=+\infty$ : \spoiler{$\forall\epsilon\in\R,\exists\delta\in\R,\forall x\in U, x>\delta\Rightarrow f(x)>\epsilon$}
+\end{enumerate}
+
+\rems{\textbf{Conseil important} : il s'agit probablement de la définition la plus abstraite et la plus difficile à digérer de toute la scolarité pré-BAC. Il est de mon point de vue \textit{essentiel} de comprendre intuitivement, par le dessin, ce que cela signifie. Autrement nous sommes condamnés à apprendre par coeur cette définition formelle sans réellement la comprendre. Ne surtout pas hésiter à regarder des vidéos pour voir des illustrations, de s'entraîner sur beaucoup d'exemples (avec corrections) pour réellement s'imprégner de cette définition.
+
+\item On appelle cette définition de la limite \textit{définition epsilon-delta}. Il y a en effet d'autres façons (notamment topologiques) de définir la limite.}
+
+\includegraphics[scale=0.5]{figures/pdf/limite-eps-converted-to.pdf}
+
+\exo{\textbf{(important)} Écrire la négation de «~$f$ admet pour limite $l$ en $a$~» et de «~$f$ admet une limite en $a$~» \spoiler{pour le premier~: «~$f$ n'admet pas pour limite $l$ en $a$ si il existe $\epsilon>0$ tel que pour tout $\delta>0$, il existe $x\in U$ tel que $|x-a|<\delta$ et $|f(x)-l|\ge\epsilon$~». Pour le second~: «~$f$ n'admet pas de limite en $a$ si pour tout $l\in\R\cup\ens{\pm\infty}$, il existe $\epsilon>0$ tel que pour tout $\delta>0$, il existe $x\in U$ tel que $|x-a|<\delta$ et $|f(x)-l|\ge\epsilon$~».}}
+
+\exo{Toute suite peut être identifiée à une fonction de $\N$ dans $\R$. Prenons donc le cas particulier où $U=\N$ ($\N$ est bien une union d'intervalles, ici de singletons) et $l\in\R$. Soit \suite{u} définie pour tout $n\in\N$ par $u_n=f(n)$. écrire la définition de «~$\limc{x}{+\infty} f(x)=l$~» et constater qu'elle est équivalente à la définition de «~$(u_n)$ converge vers $l$~». Ainsi, la convergence de suite n'est qu'un cas particulier d'une limite de fonction.}
+
+\nota{\programme Si $f$ admet pour limite $l$ en $a$, on note $\limc{x}{a} f(x) = l$ ou encore $f(x)\underset{x\rightarrow a}{\longrightarrow} l$. }
+
+\rems{\item Par contre en classe on privilégiera la première, la seconde n'est utilisée qu'à partir du supérieur.
+\item \textit{Sur un brouillon}, on utilise souvent la notation encore plus concise $f\underset{a}{\longrightarrow} l$.}
+
+Concrètement, pour \textit{chercher} si une fonction a pour limite $l$ (qu'on soupçonne d'être la bonne) en $a$, il est conseillé de suivre les 4 étapes suivantes :
+
+\begin{enumerate}
+\item Questionner le sens de la question. Cela consiste à vérifier que $a\in\overline{U}$ (autrement la question ne se pose pas).
+
+\item Écrire le but. Cela consiste à écrire \textit{formellement} la définition de $\limc{x}{a}f(x)=l$ dans notre cas précis.
+
+\item Chercher graphiquement un $\delta$ qui semble convenir (peu importe si ce n'est pas le bon dans l'immédiat). Attention : $\delta$ ne doit dépendre \textit{que} de $\epsilon$ (et s'il ne dépend pas de $\epsilon$, par exemple s'il est constant, c'est louche).
+
+\item Écrire la démonstration en suivant le but et en posant le $\delta$ précédent. Soit ce $\delta$ convient et c'est fini, soit ce n'est pas le bon, et dans ce cas il est généralement facile de rectifier. Reprendre alors la démonstration avec le nouveau $\delta$ jusqu'à en trouver un qui marche. Si les problèmes persistent malgré tout, c'est \textit{peut-être} un indicateur que ce qu'on essaye de prouver est en fait faux !
+\end{enumerate}
+
+Et ensuite, pour \textit{rédiger} la démonstration, il est conseillé de suivre les 4 étapes suivantes :
+
+\begin{enumerate}
+\item (sens) Questionner le sens de la question. Cela consiste à vérifier que $a\in\overline{U}$ (autrement la question ne se pose pas).
+
+\item (but) Écrire le but. Cela consiste à écrire \textit{formellement} la définition de $\limc{x}{a}f(x)=l$ dans notre cas précis.
+
+\item (démonstration) Écrire la démonstration.
+
+\item (conclusion) Écrire la conclusion. Cela consiste à vérifier que la démonstration a permis d'affirmer que le but (voir point 2) est bien respecté.
+\end{enumerate}
+
+
+\ex{Montrons que $\limc{x}{0}\sqrt{x}=0$.
+
+\begin{enumerate}
+\item (sens) Ici $D_f=\R_+$ et $\overline{D_f}=[0,+\infty]$ donc $0\in\overline{D_f}$ et donc cela a du sens de demander la limite en $0$.
+
+\item (but) Soit $\epsilon>0$. On veut prouver qu'il existe $\delta>0$ tel que pour tout $x\ge0$, si $|x|<\delta$ alors $|\sqrt{x}|<\epsilon$. 
+
+\item (démonstration) Posons $\delta=\epsilon^2$. Soit $x\ge0$ et supposons $|x|<\delta$, \cad $x<\delta$ \cad $x<\epsilon^2$. Alors $\sqrt{x}<|\epsilon|$ \cad $|\sqrt{x}|<\epsilon$.
+
+\item (conclusion) Nous avons bien prouvé que pour tout $\epsilon>0$, il existe $\delta>0$ tel que pour tout $x\ge0$, si $|x|<\delta$ alors $|\sqrt{x}|<\epsilon$. Conclusion, $\limc{x}{0}\sqrt{x}=0$.
+\end{enumerate}}
+
+\ex{Conjecturer la valeur de $\limc{x}{-\infty}x^2$ puis le démontrer. Il semble que $\limc{x}{-\infty}x^2=+\infty$.
+
+\begin{enumerate}
+\item (sens) Ici $D_f=\R$ et $\overline{D_f}=\overline{\R}$ donc $-\infty\in\overline{D_f}$ et donc cela a du sens de demander la limite en $-\infty$.
+
+\item (but) Soit $\epsilon\in\R$. On cherche $\delta\in\R$ tel que pour tout $x\in\R$, si $x<\delta$ alors $x^2>\epsilon$.
+
+\item (démonstration) Constatons pour commencer que si $\epsilon<0$ alors on a $x^2>\epsilon$ pour tout $x\in\R$, donc tous les $\delta$ marchent. Montrons maintenant le résultat pour $\epsilon\ge 0$. Posons $\delta=-\sqrt{\epsilon}$. Soit $x\in\R$ et supposons $x<\delta$ \cad $x<-\sqrt{\epsilon}$. Alors comme tout est négatif, on a $x^2>(-\sqrt{\epsilon})^2$ \cad $x^2>\epsilon$.
+
+\item (conclusion) Nous avons bien montré que pour tout $\epsilon\in\R$, il existe $\delta\in\R$ tel que pour tout $x\in\R$, si $x<\delta$ alors $x^2>\epsilon$. Conclusion, $\limc{x}{-\infty}x^2=+\infty$.
+\end{enumerate}}
+
+\ex{Montrons que $\limc{x}{0}\dfrac{1}{x}\neq+\infty$. 
+
+\begin{enumerate}
+\item (sens) Ici $D_f=\R^*$ et $\overline{D_f}=\overline{\R}$ donc $0\in\overline{D_f}$ et donc cela a du sens de demander la limite en $0$.
+
+\item (but)  Nous voulons montrer (voir exercice sur la négation de limite) qu'il existe $\epsilon\in\R$ tel que pour tout $\delta>0$, il existe $x\in\R^*$ tel que $|x|<\delta$ et $\dfrac{1}{x}\le\epsilon$. Pour ne pas se tromper, il conseillé d'écrire la définition de «~$f$ a pour limite $+\infty$ en $0$~» puis de la nier.
+
+\item (démonstration) Posons $\epsilon=0$ et soit $\delta>0$. Posons $x=-\dfrac{\delta}{2}$. On a bien $x\in\R^*$. De plus, $|x|=\dfrac{\delta}{2}<\delta$ et $\dfrac{1}{x}=-\delta\le\epsilon$.
+
+\item (conclusion) Nous avons ainsi bien montré qu'il existe $\epsilon\in\R$ tel que pour tout $\delta>0$, il existe $x\in\R^*$ tel que $|x|<\delta$ et $\dfrac{1}{x}\le\epsilon$. Conclusion, $\limc{x}{0}\dfrac{1}{x}\neq+\infty$.
+
+\end{enumerate}
+On comprend d'ailleurs qu'on peut parfaitement adapter cette démonstration pour montrer que $\limc{x}{0}\dfrac{1}{x}\neq-\infty$}
+
+
+\ex{\label{exrat} Déterminer \textit{graphiquement} si $\limc{x}{+\infty}\dfrac{x^2}{2x^2-1}$ existe et si oui, donner sa valeur. La méthode préconisée est la suivante : commencer par écrire le domaine de définition de la fonction considérée. Ici, $D_f=\R\backslash\ens{\pm\dfrac{\sqrt{2}}{2}}$. Ensuite, calculer l'adhérence de ce domaine. Ici, $\overline{D_f}=\overline{\R}$. Ensuite, est-ce que le point où on cherche la limite est dans cette adhérence ? Si non, cela n'a aucun sens de chercher cette limite : elle n'existe pas. Ici nous cherchons la limite en $+\infty$ et $+\infty\in\overline{\R}$ : donc cela a un sens de chercher l'existence de cette limite. A présent, on observe la courbe représentative : s'il ne semble pas y avoir de limite claire, on part du principe que la limite n'existe pas. S'il semble y avoir une limite, on la conjecture. Ici, il semble bien que $1/2$ soit la limite. Ensuite on écrit la définition de $\limc{x}{+\infty}\dfrac{x^2}{2x^2-4+1}=1/2$ : pour tout $\epsilon>0$, il existe $\delta\in\R$ tel que pour tout $x\in D_f$, si $x>\delta$ alors $\abs{\dfrac{x^2}{2x^2-4+1}-\dfrac{1}{2}}<\epsilon$. On vérifie avec quelques valeurs de $\epsilon$ que cette définition est effectivement vérifiée et à partir de là on conclue. Ici, cela fonctionne, donc la limite existe (graphiquement) et $\limc{x}{+\infty}\dfrac{x^2}{2x^2-1}=\dfrac{1}{2}$.}
+
+\exo{\label{exlim} Déterminer \textit{graphiquement} si les limites suivantes existent (et si oui, donner leur valeur).
+
+\begin{enumerate}[i)]
+\item $\limc{x}{-\infty} x^2$ \spoiler{oui : $+\infty$}
+\item $\limc{x}{0} \sqrt{x}$ \spoiler{oui : $0$}
+\item $\limc{x}{-1} \sqrt{x}$ \spoiler{non------}
+\item $\limc{x}{0} f(x)$ où $f(0)=1$ et $f(x)=\dfrac{\sin x}{x}$ si $x\neq0$ \spoiler{oui : $1$}
+\item $\limc{x}{0} \dfrac{\sin x}{x}$ \spoiler{oui : $1$}
+\item $\limc{x}{0} f(x)$ où $f(0)=2$ et $f(x)=\dfrac{\sin x}{x}$ si $x\neq0$ \spoiler{non------}
+\item $\limc{x}{0} \dfrac{1}{x}$ \spoiler{non------}
+\item $\limc{x}{0} \dfrac{|x|}{x}$ \spoiler{non------}
+\item $\limc{x}{+\infty} \cos(x)$ \spoiler{non------}
+\item $\limc{x}{1} \arccos(x)$ \spoiler{oui : $0$}
+\item $\limc{x}{\pi/2} \tan(x)$ \spoiler{non------}
+\item $\limc{x}{\pi/2} |\tan(x)|$ \spoiler{oui : $+\infty$}
+\item $\limc{x}{0} f(x)$ où \fons{f}{\ens{0}}{\R}{x}{1} \spoiler{oui : $1$}
+\end{enumerate} }
+
+Avec XCas, on calcule la limite comme suit (\href{http://www-fourier.ujf-grenoble.fr/~parisse/giac/doc/fr/cascmd_fr/cascmd_fr317.html#sec418}{documentation ici}) : \\
+
+\verb&limit(x^2,x,-inf)& \\
+
+Si on ajoute un 1 à la fin, cela signifie qu'on veut calculer la limite à droite et -1 à gauche, par exemple : \\
+
+\verb&limit(tan(x),x,pi/2,1)& \\
+
+\textit{Mais attention cependant} : il faut toujours avoir du recul avec ce que donne XCas. Ainsi, il trouve $\limc{x}{-1}\sqrt{x}=i$ alors que cette limite n'existe pas (dans les réels), il trouve $\limc{x}{0}\dfrac{1}{x}=\infty$ (on ne sait même pas si c'est $\pm\infty$) alors que cette limite n'existe pas. Donc l'utiliser comme outil de vérification ou de conjecture, mais garder à l'esprit que la limite donnée par XCas n'est jamais une preuve.
+
+\defi{\programme (asymptote)
+\begin{itemize}
+\item Soit $a\in\R$. Si $f$ admet pour limite $\pm\infty$ en $a$, alors on dit que la droite d'équation $x=a$ est une \textit{asymptote verticale à la courbe représentative de $f$}.
+
+\item Soit $a=\pm\infty$. Si $f$ admet une limite finie $l$ en $a$, alors on dit que la droite d'équation $y=l$ est une \textit{asymptote horizontale à la courbe représentative de $f$}.
+\end{itemize}}
+
+\rem{Graphiquement, si une courbe représentative admet une asymptote, alors cette courbe semble «~épouser~» cette asymptote, \cad qu'à l'infini, la courbe semble se confondre avec l'asymptote.}
+
+\defi{(limite à gauche/droite) Soit $a\in\overline{U}$.
+
+\begin{itemize}
+\item Soit $G=]-\infty,a[\cap U$ et $g=f_{|G}$. On appelle \textit{limite de $f$ à gauche de $a$} la quantité, si elle existe, $\limc{x}{a} g(x)$.
+
+\item Soit $D=]a,+\infty[\cap U$ et $d=f_{|D}$. On appelle \textit{limite de $f$ à droite de $a$} la quantité, si elle existe, $\limc{x}{a} d(x)$.
+\end{itemize}}
+
+\rem{\item La limite à gauche de $a$, c'est donc simplement la limite de la fonction à laquelle on retire tout ce qu'il y a à partir de $a$.}
+
+\nota{Soit $a\in\overline{U}$. Si $f$ admet pour limite $l$ à gauche de $a$, alors on note $\limc{x}{a-} f(x)=l$ ou bien $f(x)\underset{x\rightarrow a-}{\longrightarrow} l$. Pareil pour la limite à droite mais avec un «~+~».}
+
+\exo{Déterminer si les limites à gauche et à droite des fonctions de l'exercice \ref{exlim} existent graphiquement et si oui, déterminer leur valeur.
+
+\begin{enumerate}[i)]
+\item  \spoiler{A droite : $+\infty$. A gauche : non.}
+\item  \spoiler{A droite : $0$. A gauche : non.}
+\item  \spoiler{A droite : non. A gauche : non.}
+\item  \spoiler{A droite : $1$. A gauche : $1$.}
+\item  \spoiler{A droite : $1$. A gauche : $1$.}
+\item  \spoiler{A droite : $1$. A gauche : $1$.}
+\item  \spoiler{A droite : $+\infty$. A gauche : $-\infty$.}
+\item  \spoiler{A droite : $1$. A gauche : $-1$.}
+\item  \spoiler{A droite : non. A gauche : non.}
+\item  \spoiler{A droite : non. A gauche : $0$.}
+\item  \spoiler{A droite : $-\infty$. A gauche : $+\infty$.}
+\item  \spoiler{A droite : $+\infty$. A gauche : $+\infty$.}
+\item  \spoiler{A droite : non. A gauche : non.}
+\end{enumerate}}
+
+\rem{A travers cet exercice, on remarque donc qu'une fonction peut admettre une limite à gauche et à droite de $a$ mais ne pas admettre de limite en $a$. Et à l'inverse, la dernière montre qu'une fonction peut admettre une limite en $a$ mais pas de limite ni à gauche ni à droite de $a$. C'est essentiel de le retenir : \textbf{a priori, on ne peut rien déduire d'une limite à partir d'une limite à gauche et/ou à droite et vice-versa} (sauf dans le cas très précis d'un théorème que nous verrons ultérieurement).}
+
+\subsection{Propositions et théorèmes pratiques}
+
+Dans la pratique, il est bien entendu hors de question de revenir constamment à la définition chaque fois qu'on doit prouver la valeur d'une limite. On a comme pour les suites une série de propositions et théorèmes qui permettent d'aller bien plus vite. Nous ne montrerons pas systématiquement les démonstrations qui sont pour beaucoup des redites de celles sur les suites. Le lecteur qui maîtrise bien le chapitre sur les suites et la définition de limite ne devrait pas avoir trop de problème à les compléter.
+
+\theo{(caractérisation séquentielle des limites) Soit $a\in\overline{U}$ et $l\in\overline{\R}$. Alors $\limc{x}{a}f(x)=l$ \ssi pour toute suite \suite{u} à valeurs dans $U$ qui converge vers $a$, la suite \suite{f(u_n)} converge vers $l$. }
+\rem{Dans le cas où $a=\pm\infty$, on remplace «~qui converge vers $a$~» par «~qui diverge vers $a$~» pour que le théorème reste valide.}
+
+Grâce à ce théorème, la plupart des résultats valables pour les suites restent valables pour les limites et on peut de fait utiliser les démonstrations des suites pour démontrer celles sur les limites. C'est pourquoi nous le présentons en premier.
+
+\pro{Soit $a\in\overline{U}$. Si $f$ admet une limite en $a$, alors elle est unique.}
+
+\preuve{Similaire à la preuve que si une suite admet une limite alors elle est unique : il faut supposer qu'il existe deux limites réelles différentes $l_1$ et $l_2$ : la définition de la limite doit alors marcher pour tout rayon $\epsilon>0$. On montre alors que le rayon particulier $\epsilon=\dfrac{|l_2-l_1|}{2}$ conduit à une absurdité.}
+
+\pro{\programme (opérations sur les limites 1) Soit $a\in\overline{U}$ et $l\in\R$.
+
+\begin{enumerate}[i)]
+\item $\limc{x}{a} f(x)=l\eqv \limc{x}{a} (f(x)-l)=0$
+\item $\limc{x}{a} f(x)=l\eqv \limc{x}{a} |f(x)-l|=0$
+\end{enumerate}}
+
+\rem{Si $l=\pm\infty$, la quantité $f(x)-l$ ne voudrait rien dire, c'est pourquoi $l\in\R$ et non $l\in\overline{\R}$.}
+
+\preuve{Montrons juste le sens $\Rightarrow$ du premier point, les autres sont dans la même veine (il est conseillé au lecteur de s'y entraîner néanmoins pour bien manipuler la définition epsilon-delta). Supposons donc $\limc{x}{a} f(x)=l$. Soit $\epsilon>0$ et soit $\delta>0$ tel que pour tout $x\in U$, si $|x-a|<\delta$ alors $|f(x)-l|<\epsilon$. Soit $x\in U$ et supposons $|x-a|<\delta$. Alors $|f(x)-l|<\epsilon$ \cad $l-\epsilon <f(x)<l+\epsilon$ \cad $0-\epsilon<f(x)-l<0+\epsilon$ \cad $|(f(x)-l)-0|<\epsilon$. Nous venons d'écrire la définition de $\limc{x}{a} (f(x)-l)=0$.}
+
+\pro{\programme \label{oplim2}(opérations sur les limites 2) Soit \fone{f,g}{U}{\R} deux fonctions, $\lambda\in\R$ et $a\in\overline{U}$. Alors on peut (ou pas) déterminer $\limc{x}{a}(\lambda f(x))$, $\limc{x}{a}(f(x)+g(x))$ et $\limc{x}{a}\dfrac{f(x)}{g(x)}$ suivant les mêmes règles que pour les suites : voir \ref{oplim}.}
+
+\pro{\label{limimg} Si $a\in U$ et si $\limc{x}{a} f(x) = l$ alors $l=f(a)$.}
+\rem{Attention : $a\in U$ et non $a\in\overline{U}$ ! Contre-exemple : $\limc{x}{0} \dfrac{\sin x}{x} = 1$ et pourtant $1\neq f(0)$ ($f(0)$ n'est pas défini).}
+
+\preuve{Sous ces hypothèses, supposons par l'absurde que $l\neq f(a)$. La définition de limite doit marcher pour tout rayon $\epsilon>0$. Mais le rayon particulier $\epsilon=|f(a)-l|$ conduit à une absurdité.}
+
+\pro{Soit $a\in\overline{U}$. S'il existe $l,l'\in\overline{\R}$ avec $l\neq l'$ tel que $\limc{x}{a-}=l$ et $\limc{x}{a+}=l'$, alors $f$ n'admet pas de limite en $a$.}
+
+\ex{$\limc{x}{0}\dfrac{1}{x}$ n'existe pas puisque $\limc{x}{0-}\dfrac{1}{x}=-\infty$ et $\limc{x}{0+}\dfrac{1}{x}=+\infty$.}
+
+\theo{\label{limgd} Soit $a\in U$ et supposons qu'il existe $\alpha,\beta\in\R$ tel que $a\in]\alpha,\beta[\subset U$ et soit $l\in\R$. Alors $\limc{x}{a} f(x)=l$ \ssi on a simultanément :
+
+\begin{enumerate}[i)]
+\item $\limc{x}{a-}=l$
+\item $\limc{x}{a+}=l$
+\item $f(a)=l$
+\end{enumerate}}
+
+\rems{\item Intuitivement, ce théorème nous dit que si la fonction est définie sur un intervalle ouvert contenant $a$, alors il y a équivalence entre limite en $a$ et limites à droite/gauche de $a$. Constatez que cela marche pour les limites des exercices précédents.
+
+\item \textit{Toutes} les hypothèses sont importantes.}
+
+\exo{Pour chaque hypothèse de ce théorème, la retirer et trouver un contre-exemple.}
+
+\preuve{\doubleimp{Supposons que $\limc{x}{a} f(x)=l$. La dernière proposition nous donne $f(a)=l$. Si $\limc{x}{a-}=l'\neq l$ alors le rayon $\epsilon=|l-l'|$ conduirait à une absurdité. Idem si $\limc{x}{a+}=l'\neq l$.}
+
+{Supposons maintenant $\limc{x}{a-}=\limc{x}{a+}=f(a)=l$. On a donc $a,l\in\R$. Ainsi, on peut écrire les définitions des limites à gauche et à droite : soit $\epsilon>0$. Il existe $\alpha,\beta>0$ tel que :
+
+\sys{\forall x\in U, a-\alpha < x < a &\Rightarrow& |f(x)-l|<\epsilon \\
+\forall x\in U, a < x < a+\beta &\Rightarrow& |f(x)-l|<\epsilon}
+
+Soit maintenant $\delta=\min(\alpha,\beta)$. On a alors immédiatement par le système précédent que pour tout $x\in U\sauf{a}$, si $|x-a|<\delta$ alors $|f(x)-l|<\epsilon$. Si maintenant $x=a$ alors $|f(x)-l|=|f(a)-l|=0$ qui est toujours strictement inférieur à $\epsilon$. Donc il existe $\delta>0$ tel que pour tout $x\in U$, si $|x-a|<\delta$ alors $|f(x)-l|<\epsilon$ ce qui est la définition de $\limc{x}{a} f(x)=l$. }}
+
+\ex{Soit \fone{f}{\R}{\R} qui à tout $x$ associe $\cos(x)$ si $x<0$ et $x^2+1$ sinon. Montrer que $\limc{x}{0} f(x)=1$.}
+
+\theo{\programme (composition de limites) Soit $U'$ une union d'intervalles de $\R$ et \fone{g}{U'}{U}. Soit $a\in\overline{U'}$ et supposons qu'il existe $l\in\overline{U}$ tel que $\limc{x}{a} g(x)=l$ et $l'\in\overline{\R}$ tel que $\limc{x}{l}f(x)=l'$. Alors $\limc{x}{a}(f\circ g)(x)=l'$.}
+
+\rem{Ce résultat est absolument fondamental car il permet de trouver les limites de toutes les composées de fonctions usuelles, il est par conséquent utilisé en permanence en terminale. S'il n'y avait que deux choses à retenir sur les limites, ça serait la définition et ce théorème.}
+
+\preuve{Montrons ce résultat dans le cas où $a,l,l'\in\R$ (si l'un ou plusieurs des trois vaut $\pm\infty$, la démonstration s'adapte). Soit $\epsilon>0$. Puisque $\limc{x}{a} g(x)=l$ et $\limc{x}{l}f(x)=l'$ alors :
+
+\sys{\exists \delta>0,\forall x'\in U, |x'-l| < \delta &\Rightarrow& |f(x')-l'| < \epsilon \\
+\exists \delta'>0,\forall x\in U', |x-a| < \delta' &\Rightarrow& |g(x)-l| < \delta \\}
+
+Soit $x\in U'$ et supposons $|x-a|<\delta'$. Alors $|g(x)-l|<\delta$. Or $g(x)\in U$ donc en posant $x'=g(x)$, on a $x'\in U$ et $|x'-l|<\delta$ d'où $|f(x')-l'|=|f(g(x))-l'|=|(f\circ g)(x)-l'|<\epsilon$. Nous venons d'écrire la définition de $\limc{x}{a}(f\circ g)(x)=l'$.}
+
+\ex{Conjecturer la valeur de $\limc{x}{+\infty} \dfrac{1}{1-x}$ puis le démontrer. Il semble qu'elle vale $0$. Ici il est clair qu'on veut utiliser le théorème de composition.
+
+\begin{itemize}
+\item (calcul des limites séparées) On prouve facilement (par exemple en revenant à la définition) que $\limc{x}{+\infty} 1-x = -\infty$ et que $\limc{x}{-\infty} \dfrac{1}{x} = 0$.
+
+\item (hypothèses du théorème) On veut appliquer le théorème de composition, vérifions que \textit{toutes} les hypothèses sont vérifiées. Ici, \fons{g}{\R\sauf{1}}{\R^*}{x}{1-x} et \fons{f}{\R^*}{\R}{x}{\dfrac{1}{x}}. Ici $a=+\infty$ et $U'=\R\sauf{1}$ donc $a\in\overline{U'}$. Ici $l=-\infty$ et $U=\R^*$ donc $l\in\overline{U}$. Enfin $l'=0\in\overline{\R}$. Toutes les hypothèses du théorème sont donc vérifiées.
+
+\item (application) On a donc $\limc{x}{+\infty} \dfrac{1}{1-x}=\limc{x}{+\infty} (f\circ g)(x)=l'=0$.
+\end{itemize}}
+
+Il est bien entendu que dans la pratique on ne vérifie pas systématiquement toutes les hypothèses (à part pour des cas ambigus). En terminale et même après, calculer les limites séparément, citer le nom du théorème et appliquer suffit très bien. Cependant, en tout cas au début, c'est bien de le faire quelques fois pour vérifier qu'on sait de quoi on parle. Autrement dit, pour un bon étudiant en maths, lui demander de justifier rigoureusement pourquoi on peut appliquer le théorème ne devrait en théorie pas poser de problème. \\
+
+Autre chose qui me tient à coeur : quand on demande de conjecturer une limite puis de la montrer, il faut de mon point de vue ne pas hésiter à \textit{user et abuser} des logiciels graphiques pour voir et conjecturer mieux. Il y a une certaine tradition du corps enseignant (pas encore totalement remise de la révolution numérique manifestement) qui voudrait que «~voir~» la limite juste en regardant la formule serait plus noble et que regarder graphiquement c'est synonyme d'abrutir les élèves. Ce sont les mêmes en général qui pestent contre les calculatrices et qui se plaignent que les élèves ne savent plus simplifier une fraction de trois kilomètres de long. Je caricature mais il y a incontestablement quelque chose de cet ordre dans le corps enseignant. Mon point de vue : on a de formidable outils à disposition, exploitons-les à fond, et utilisons le temps gagné pour réfléchir, modéliser, démontrer. Bref, pour faire des maths.
+
+\ex{Conjecturer la valeur de $\limc{x}{+\infty} \tan\parent{\dfrac{1}{1-x}}$ puis le démontrer.
+
+\begin{itemize}
+\item D'une part $\limc{x}{+\infty} 1-x = -\infty$ et d'autre part $\limc{x}{-\infty} \dfrac{1}{x} = 0$ donc par le théorème de composition des limites, $\limc{x}{+\infty} \dfrac{1}{1-x}=0$.
+
+\item Montrons que $\limc{x}{0}\tan(x)=0$. $\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[\subset D_{\tan}$ et $0\in\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[$. De plus $\tan(0)=0$ et $\limc{x}{0-}\tan(x)=\limc{x}{0+}\tan(x)=0$ donc d'après le théorème \ref{limgd}, $\limc{x}{0}\tan(x)=0$.
+
+\item Finalement, par le théorème de composition des limites, $\limc{x}{+\infty} \tan\parent{\dfrac{1}{1-x}}=0$.
+\end{itemize}}
+
+\ex{Nous avons conjecturé dans l'exercice \ref{exrat} que $\limc{x}{+\infty} \dfrac{x^2}{2x^2-1}=\dfrac{1}{2}$. Le prouver. La technique pour les fonctions rationnelles (quotient de deux polynômes) est toujours la même : factoriser par le terme de plus haut degré. Commençons par poser $f$ la restriction de $x\mapsto\dfrac{x^2}{2x^2-1}$ à $]0,+\infty[$. Il est clair que  $\limc{x}{+\infty} \dfrac{x^2}{2x^2-1}=\limc{x}{+\infty} f(x)$. Pour tout $x\in]0,+\infty[$, $f(x)=\dfrac{x^2}{x^2\parent{2-\dfrac{1}{x^2}}}=\dfrac{1}{2-\dfrac{1}{x^2}}$ donc $\limc{x}{+\infty} \dfrac{x^2}{2x^2-1}=\limc{x}{+\infty}\dfrac{1}{2-\dfrac{1}{x^2}}$. On a $\limc{x}{+\infty}\dfrac{1}{x^2}=0$, $\limc{x}{0}\parent{2-\dfrac{1}{x^2}}=2$ et $\limc{x}{2}\dfrac{1}{x}=\dfrac{1}{2}$ donc par composition, $\limc{x}{+\infty} \dfrac{x^2}{2x^2-1}=\dfrac{1}{2}$.}
+
+
+
+\theo{\programme (théorèmes de comparaisons) Soit $a\in\overline{U}$ et $l\in\overline{\R}$ et supposons $\limc{x}{a}f(x)=l$.
+
+\begin{enumerate}[i)]
+\item Si $l$ est \textit{fini}, alors il existe $m,M\in\R$ tel que $m<a<M$ et tel que $f(]m,M[)$ est bornée.
+
+\item Si il existe $m,M\in\R$ tel que $m<a<M$ et tel que $f(]m,M[)$ est bornée, c'est-à-dire qu'il existe $\alpha,\beta\in\R$ tel que $f(]m,M[)\in]\alpha,\beta[$, alors $\alpha<l<\beta$.
+
+\item Soit \fone{g}{U}{\R} et supposons que $\limc{x}{a}g(x)=l'\in\overline{U}$. Si il existe $m,M\in\R$ tel que $m<a<M$ et tel que dans $]m,M[$, les images de $g$ sont inférieures ou égales à celles de $f$, alors $l'\le l$. Même chose pour «~supérieures ou égales~». \textbf{Attention} : pour «~strictement~», ça ne marche pas. 
+\end{enumerate}}
+
+\rem{Intuitivement, le premier nous dit que si la limite est finie, on peut mettre un rectangle autour de $a$ tel que les images de la fonction n'y sortent pas. Pour le second, si on peut mettre un rectangle autour de $a$ tel que les images de la fonction n'y sortent pas, alors la limite ne sort pas de ce rectangle. Le troisième, si autour de $a$, $g$ est en-dessous de $f$ alors leur limite aussi.}
+
+\theo{\programme (gendarmes, minoration, majoration) Soit \fone{f,g,h}{U}{\R} trois applications, $a\in\overline{U}$ et $l\in\overline{\R}$. Supposons qu'il existe $m,M\in\R$ tel que $m<a<M$ et tel que dans $]m,M[$, les images de $f$ sont inférieures ou égales à celles de $g$ et les images de $g$ sont inférieures ou égales à celles de $h$.
+
+\begin{enumerate}[i)]
+\item (gendarmes/sandwichs) Si $\limc{x}{a}f(x)=\limc{x}{a}h(x)=l$ alors $\limc{x}{a}g(x)=l$.
+
+\item (minoration) Si $\limc{x}{a}f(x)=+\infty$ alors $\limc{x}{a}g(x)=+\infty$.
+
+\item (majoration) Si $\limc{x}{a}h(x)=-\infty$ alors $\limc{x}{a}g(x)=-\infty$.
+\end{enumerate}}
+
+\rem{C'est l'équivalent de ce qu'on connaissait pour les suites.}
+
+\section{Continuité}
+
+Soit $U$ une union d'intervalles de $\R$ et \fone{f}{U}{\R} et $a\in U$ (pas $\overline{U}$ !). Enfin on pose $I$ un intervalle de $\R$. 
+
+\subsection{Définition}
+
+\defi{\programme (continuité en un point) On dit que \textit{$f$ est continue en $a$} si $\limc{x}{a}f(x)$ existe. Dans le cas contraire, on dit que \textit{$f$ est discontinue en $a$}.}
+
+\pro{Supposons que $f$ est continue en $a$. Alors $\limc{x}{a}f(x)=f(a)$}
+
+\rems{\item C'est ce qui correspond à l'intuition selon laquelle une fonction est continue si on peut ne pas lever le crayon.
+\item Nous pouvons donc réécrire la définition de continuité en $a$ comme suit : pour tout $\epsilon>0$, il existe $\delta>0$ tel que pour tout $x\in U$, si $|x-a|<\delta$ alors $|f(x)-f(a)|<\epsilon$.}
+
+\preuve{C'est la proposition \ref{limimg}.}
+
+\rem{Par contre les limites à gauche et à droite de $a$ n'existent pas forcément ! Contre-exemple : la fonction racine admet une limite en $0$ donc est continue en $0$, mais elle n'admet pas de limite à gauche. Pour que la limites à gauche et à droite existent, il faut en plus qu'il existe un intervalle ouvert contenant $a$ et qui est dans $U$ (voir le théorème \ref{limgd}).}
+
+\defi{\programme (continuité en un intervalle) On dit que \textit{$f$ est continue sur $I$} si pour tout $x\in I$, $f$ est continue en $x$.}
+
+\rem{Par contre, la notion de \textit{continuité sur une union d'intervalles ne veut rien dire}. En effet, prenons par exemple la fonction inverse : elle est continue sur $]-\infty,0[$, elle est continue sur $]0,+\infty[$, pourtant dire qu'elle est continue sur $\R^*$ ne veut rien dire.}
+
+\nota{On note $\mathscr{C}^0(I,\R)$ l'ensemble des fonctions à valeurs dans $\R$ continues sur $I$.}
+
+\defi{(prolongement par continuité) Supposons qu'il existe $a\not\in U$. On dit que $f$ est \textit{prolongeable par continuité en $a$} s'il existe un prolongement $g$ de $f$ continue en $a$.}
+
+\ex{Soit \fons{f}{\R^*}{\R}{x}{\dfrac{\sin(x)}{x}} et \fone{g}{\R}{\R} la fonction telle que $g(0)=1$ et pour tout $x\in\R^*$, $g(x)=f(x)$. Alors $g$ est un prolongement de $f$ et $g$ est continue en $0$, donc $f$ est prolongeable par continuité en $0$.}
+
+\subsection{Opérations sur la continuité}
+
+\pro{(composition et continuité) Soit $U'$ une union d'intervalles de $\R$ et \fone{g}{U'}{U}. Si $g$ est continue en $a$ et que $f$ est continue en $g(a)$, alors $f\circ g$ est continue en $a$.}
+
+\pro{(opérations sur la continuité) Soit \fone{g}{U}{\R}, $\lambda\in\R$ et supposons que $f$ et $g$ sont continues en $a$. Alors les fonctions suivantes sont également continues en $a$  :
+
+
+\begin{enumerate}[i)]
+\item $\lambda f$
+\item $|f|$
+\item $f+g$
+\item $fg$
+\item $\dfrac{f}{g}$ si $g(a)\neq 0$
+\end{enumerate}}
+\rem{Et donc puisque les propositions précédentes sont vraies en un point, elles sont aussi vraies sur un intervalle $I$ (attention, dans ce cas pour le dernier point il faut que $g(x)\neq 0$ pour tout $x\in I$).}
+
+\subsection{Continuité des fonctions usuelles}
+
+\theo{\programme Posons :
+
+\begin{itemize}
+\item \fons{f_1}{\R}{\R}{x}{x}
+\item \fons{f_2}{\R}{\R}{x}{|x|}
+\item \fons{f_3}{\R}{\R}{x}{P(x)} où $P$ est un polynôme réel.
+\item \fons{f_4}{I}{\R}{x}{\dfrac{P(x)}{P'(x)}} où $P,P'$ sont des polynômes réels et $I$ un intervalle ouvert ne contenant aucune racine de $P'$.
+\item \fons{f_5}{\R_+}{\R}{x}{\sqrt{x}}
+\item \fons{f_6}{I}{\R}{x}{\dfrac{1}{x}} où $I=]-\infty,0[$ ou $]0,+\infty[$.
+\item \fons{f_7}{\R}{\R}{x}{\cos(x)}
+\item \fons{f_8}{\R}{\R}{x}{\sin(x)}
+\item \fons{f_9}{I}{\R}{x}{\tan(x)} où $I=\left]-\dfrac{\pi}{2}+k\pi,\dfrac{\pi}{2}+k\pi\right[$ avec $k\in\Z$.
+\end{itemize}
+
+Alors toutes ces fonctions sont continues sur leur ensemble de définition.}
+
+\rems{\item Pour résumer, toutes les fonctions usuelles sont continues sur un intervalle.
+
+\item $f_4$ est appellée \textit{fonction rationnelle} : le quotient de deux polynômes.}
+
+\preuve{Pour chaque fonction, nous donnerons simplement soit un $\delta$ qui convient, soit nous expliquerons quelles propriétés nous utilisons.
+
+\begin{itemize}
+\item ($f_1$) $\delta=\epsilon$
+\item ($f_2$) $|f_1|$ est continue (opérations sur la continuité).
+\item ($f_3$) Pour tout $n\in\N$, $(f_1)^n$ est continue par multiplication donc pour tout $\lambda\in\R$, $\lambda(f_1)^n$ est continue et finalement par somme, $P$ est continue.
+\item ($f_4$) $P$ et $P'$ sont continues sur $\R$ et $P'(x)\neq0$ pour tout $x\in I$ donc par division, on a le résultat.
+\item ($f_5$) $\delta=a-(\sqrt{a}-\epsilon)^2=\epsilon(2\sqrt{a}-\epsilon)$ (faire un dessin permet de comprendre que ce delta est une intersection particulière).
+\item ($f_6$) $\dfrac{1}{f_1}$ est continue par division.
+\item ($f_7$) Nous admettons. Le plus simple en fait de prouver que $\cos$ est une fonction \href{https://fr.wikipedia.org/wiki/Application_lipschitzienne}{lipschitzienne} (vue dans le supérieur), or toute fonction lipschitzienne est continue.
+\item ($f_8$) Pour tout $x\in\R$, $\sin(x)=\cos\parent{x-\dfrac{\pi}{2}}$ donc par composition $\sin$ est continue.
+\item ($f_9$) $\dfrac{f_8}{f_7}$ est continue par division ($D_{\tan}=\R\sauf{\dfrac{\pi}{2}+2k\pi,k\in\Z}$).
+\end{itemize}}
+
+\subsection{Images d'intervalles par une fonction continue}
+
+\theo{\programme (Théorème des Valeurs Intermédiaires) Soit $I$ un intervalle de $\R$. Si $f$ est continue sur $I$ alors $f(I)$ est un intervalle de $\R$.}
+
+\rems{\item Autrement dit, l'image d'un intervalle par une fonction continue est un intervalle.
+\item On l'appelle très souvent TVI. Ce théorème est incroyablement utilisé en analyse réelle, s'il n'y en qu'un seul à retenir, ça serait certainement lui.
+\item Dans ce cas, $f(I)\subset\im f$}
+
+\exo{Montrer que tout polynôme de degré impair admet au moins une racine. \spoiler{Notons $P$ un polynôme de degré impair. On suppose le coefficient de plus haut degré positif (l'autre cas est similaire). On commence par montrer que $\limc{x}{-\infty}P(x)=-\infty$ et que cela implique nécessairement qu'il existe $a\in\R$ tel que $P(a)<0$. De même on montre que $\limc{x}{+\infty}P(x)=+\infty$ et que cela implique nécessairement qu'il existe $b>a\in\R$ tel que $P(b)>0$. Et puisque $P$ est continue sur $\R$, alors par le TVI, $f([a,b])$, que l'on note $J$, est un intervalle, et $J\subset\im f$. Or $P(a),P(b)\in J$ et $P(a)<P(b)$ donc nécessairement, $[P(a),P(b)]\subset J$. De plus $0\in[P(a),P(b)]$ donc $0\in J$, donc $0\in\im f$ donc il existe $c\in\R$ tel que $P(c)=0$, d'où $P$ admet au moins une racine.}}
+
+
+
+\preuve{Déjà démontré en utilisant la dérivée.}
+
+\theo{(de Weierstrass) Soit $I$ un intervalle \textit{fermé} de $\R$. Si $f$ est continue sur $I$ alors $f(I)$ est bornée et atteint ses bornes.}
+
+\preuve{Par le TVI, $f(I)$ est un intervalle. Pour prouver qu'il est fermé, on raisonne par l'absurde.}
+
+\cor{Soit $I$ un intervalle \textit{fermé} de $\R$. Si $f$ est continue sur $I$ alors $f(I)$ est un intervalle fermé.}
+\preuve{C'est la combinaison des deux théorèmes précédents}
+
+\subsection{Note culturelle}
+
+La définition de limite que nous l'avons présentée est en réalité typiquement française et porte le nom très rigoureux de \textit{limite pointée}. Il existe une autre façon de définir la limite dans la plupart des autres pays et qui ne conduit pas forcément aux mêmes résultats~: c'est la \textit{limite épointée}. La question de la pertinence d'utiliser l'une plutôt que l'autre suscite des débats dans le corps enseignant. Les lecteurs \textit{déjà complètement au point} sur les notions de limite et de continuité que nous avons présentés dans le cours (au risque de tout confondre !) peuvent jeter un coup d'oeil à \href{http://www.les-mathematiques.net/phorum/read.php?18,1424120,1426100}{ce fil de discussion} et surtout \href{https://www.math.u-psud.fr/~perrin/CAPES/analyse/fonctions/definitiondelimite.pdf}{à ce PDF} très intéressants.
+
+
+\section{Dérivées}
+
+Soit dans cette section \fone{f}{U}{\R} où $U$ est une union d'intervalles de $\R$.
+
+\subsection{Notions de base}
+
+\defi{(taux d'accroissement) Soit $a\in U$. On appelle \textit{taux d'accroissement de $f$ en $a$} la fonction \fons{\tau_{f,a}}{U\sauf{a}}{\R}{x}{\dfrac{f(x)-f(a)}{x-a}}.}
+
+\rems{\item Intuitivement, le taux d'accroissement n'est rien d'autre que les coefficients directeurs des droites passant par $(a,f(a))$ et par $(x,f(x))$ avec $x\in U\sauf{a}$.
+
+\item On trouve, selon les enseignants, une définition alternative du taux d'accroissement : \fons{\tau_{f,a}}{U\sauf{0}}{\R}{h}{\dfrac{f(a+h)-f(a)}{h}}. Cette définition a pour avantage de centrer en 0, mais sinon, cela revient complètement au même (en fait pour passer de l'une à l'autre, on fait simplement le changement de variable $x=a+h$).}
+
+\defi{(dérivée) Soit $a\in U$. On dit que \textit{$f$ est dérivable en $a$} si $\limc{x}{a}\tau_{f,a}(x)$ existe est est finie. On appelle alors cette limite \textit{dérivée de $f$ en $a$} et on la note $f'(a)$. }
+
+\rem{Avec la définition alternative du taux d'accroissement, cela donne : «~$f$ est dérivable en $a$ si $\limc{h}{0}\tau_{f,a}(h)$ existe~».}
+
+\defi{(dérivabilité sur un ensemble) Soit $D\subset U$. On dit que \textit{$f$ est dérivable sur $D$} si $f$ est dérivable en tout point de $D$.}
+
+\theo{Soit $I$ un intervalle de $\R$. Si $f$ est dérivable sur $I$ alors $f$ est continue sur $I$.}
+\rem{\textbf{La réciproque est fausse ! }Contre-exemple : la fonction valeur absolue est continue sur $\R$ mais pas dérivable en $0$.}
+
+\preuve{Soit $a\in I$. $f$ est dérivable en $a$ donc $\limc{x}{a}\tau_{f,a}(x)=f'(a)$ existe et est finie. Soit \fons{g}{U\sauf{a}}{\R}{x}{x-a}. $g$ admet pour limite $0$ en $a$. Donc par produit (proposition \ref{oplim2}), $\limc{x}{a}\parent{\tau_{f,a}(x)\times g(x)}=\limc{x}{a}\tau_{f,a}(x)\limc{x}{a}g(x)=f'(a)\times 0 = 0$. Donc $\limc{x}{a} (f(x)-f(a))=0$ et donc $\limc{x}{a}f(x)=f(a)$, conclusion $f$ est continue en $a$.}
+
+\defi{(fonction dérivée) Soit $D$ le plus grand sous-ensemble de $U$ tel que $f$ est dérivable sur $D$. On appelle \textit{fonction dérivée de $f$} la fonction \fons{f'}{D}{\R}{x}{f'(x)}.}
+
+\rem{\emph{Attention} : il n'y aucune raison que $D=U$. Contre-exemple : la fonction racine est définie mais pas dérivable en 0.}
+
+\theo{\programme (dérivées usuelles)
+
+\begin{tabular}{|c|c|c|} \hline
+Fonction & Domaine de dérivabilité & Dérivée \\ \hline
+$x^q$, $q\in\Q$ & au moins $]0,+\infty[$ mais peut être plus grand selon la valeur de $q$ & $qx^{q-1}$ \\ \hline
+$\cos(x)$ & $\R$ & $-\sin(x)$ \\ \hline
+$\sin(x)$ & $\R$ & $\cos(x)$ \\ \hline
+\end{tabular}}
+
+\rems{\item Nous renvoyons le lecteur à la partie \ref{puirat} concernant la signification de $x^q$ avec $q\in\Q$.
+
+\item Ces trois dérivées regroupent toutes les dérivées des fonctions usuelles. En particulier, la première permet de retrouver $1/x$, les polynômes, racine carrée...}
+
+\theo{\programme (opération sur les dérivées) Soit \fone{g}{U}{\R} et $\lambda\in\R$. Alors là où cela à un sens :
+
+\begin{enumerate}[i)]
+\item $(\lambda f)'=\lambda f'$
+\item $(f+g)'=f'+g'$
+\item $(fg)'=f'g+fg'$
+\item $\parent{\dfrac{1}{f}}'=-\dfrac{f'}{f^2}$
+\item $\parent{\dfrac{f}{g}}'=\dfrac{f'g-fg'}{g^2}$
+\item $(u^n)'=nu'u^{n-1}$, $n\in\N^*$
+\item $(f\circ g)'=f'\circ g \times g'$
+\end{enumerate}}
+
+\rem{En gros, ce qu'il faut absolument retenir, ces sont les dérivées des fonctions usuelles, la somme, le produit, le quotient et la composée. Tout le reste se retrouve.}
+
+Avec XCas, on calcule une fonction dérivée comme suit : \\
+
+\verb&diff(sqrt(x))& \\
+
+\subsection{Grands théorèmes}
+
+Dans cette section, $I$ est un intervalle de $\R$ et \fone{f}{I}{\R} une fonction dérivable sur $I$.
+
+\theo{(de Rolle) Supposons qu'il existe $a,b\in I$ avec $a<b$ tel que $f(a)=f(b)$. Alors il existe $c\in ]a,b[$ tel que $f'(c)=0$.}
+
+\includegraphics[scale=0.15]{figures/pdf/rolle-eps-converted-to.pdf}
+
+\rem{Il y a existence mais pas forcément unicité. Par exemple prendre $f=\sin$, $a=0$ et $b=8\pi$.}
+
+\preuve{Déjà vue.}
+
+\theo{(des accroissements finis, ou TAF) Pour tout $a,b\in I$ avec $a<b$, il existe $c\in ]a,b[$ tel que $f'(c)=\dfrac{f(b)-f(a)}{b-a}$.}
+
+\includegraphics[scale=0.15]{figures/pdf/taf-eps-converted-to.pdf}
+
+\rems{\item De même, il n'y a pas forcément unicité.
+\item Il est clair que le théorème de Rolle est un cas particulier de celui-ci.}
+
+\preuve{Déjà vue.}
+
+\theo{(lien entre monotonie et dérivée)
+
+\begin{itemize}
+\item Pour tout $x\in I$, $f'(x)= 0$ \ssi $f$ est constante sur $I$.
+\item Pour tout $x\in I$, $f'(x)\ge 0$ \ssi $f$ est croissante sur $I$.
+\item Pour tout $x\in I$, $f'(x)\le 0$ \ssi $f$ est décroissante sur $I$.
+\item Supposons que pour tout $x\in I$, $f'(x)> 0$. Alors $f$ est strictement croissante sur $I$.
+\item Supposons que pour tout $x\in I$, $f'(x)< 0$. Alors $f$ est strictement décroissante sur $I$.
+\end{itemize}}
+
+\rems{\item Ce théorème est fondamental pour étudier la monotonie des fonctions.}
+
+\exo{Les 3 premiers points sont donc des équivalences, mais pas les deux derniers~: comment les modifier pour qu'elles le soient ?}
+
+\preuve{Déjà vue.}
+
+\subsection{Classes de régularité}
+
+Soit $I$ un intervalle de $\R$. Nous avons déjà vue la notation $\mathscr{C}^0(I,\R)$ qui est l'ensemble des fonctions continues de $I$ dans $\R$. Nous allons généraliser cette notation. 
+
+\nota{(classes de fonctions dérivables)\begin{itemize}
+\item On note $\mathscr{D}(I,\R)$ l'ensemble des fonctions dérivables de $I$ dans $\R$.
+\item On note $\mathscr{D}^2(I,\R)$ l'ensemble des fonctions deux fois dérivables de $I$ dans $\R$ (\cad les fonctions dérivables de $I$ dans $\R$ dont la dérivée est elle-même dérivable de $I$ dans $\R$).
+\item Par récurrence, pour tout $k\in\N^*$, on note $\mathscr{D}^k(I,\R)$ l'ensemble des fonctions $k$ fois dérivables de $I$ dans $\R$.
+\item Enfin, on note $\mathscr{D}^\infty(I,\R)$ l'ensemble des fonctions infiniment dérivables de $I$ dans $\R$.
+\end{itemize}} 
+\rem{Attention, contrairement à $\mathscr{C}^0$, il n'y a pas de $\mathscr{D}^0$.}
+
+\nota{(dérivée $k$-ième) Soit $k\ge 2$ et soit $f\in\mathscr{D}^k(I,\R)$.
+
+\begin{itemize}
+\item On note $f'$ la dérivée de $f$.
+\item On note $f''$ la dérivée de la dérivée de $f$ et on l'appelle\textit{ dérivée seconde} de $f$.
+\item On note $f^{(k)}$ la dérivée $k$-ième de $f$, \cad la dérivée de la dérivée de la dérivée... de la dérivée de $f$, avec $k$ répétitions du mot «~dérivée~».
+\end{itemize}}
+\rem{Les parenthèses servent à ne pas confondre avec $f^k$ qui peut selon le contexte désigner $f$ puissance $k$ ou $f$ composée $k$ fois.}
+
+\nota{(classes de fonctions continues et dérivables)
+
+\begin{itemize}
+\item On note $\mathscr{C}^0(I,\R)$ l'ensemble des fonctions continues de $I$ dans $\R$.
+
+\item On note $\mathscr{C}^1(I,\R)$ l'ensemble des fonctions dérivables de $I$ dans $\R$ et de dérivée continue de $I$ dans $\R$.
+
+\item Par récurrence, pour tout $k\in\N^*$, on note $\mathscr{C}^k(I,\R)$ l'ensemble des fonctions $k$ fois dérivables de $I$ dans $\R$ et dont la dérivée $k$-ième est continue de $I$ dans $\R$.
+
+\item On note $\mathscr{C}^\infty(I,\R)$ l'ensemble des fonctions infiniment dérivables et dont toutes les dérivées sont continues de $I$ dans $\R$. 
+\end{itemize}}
+
+\rems{\item Comme toute fonction dérivable de $I$ dans $\R$ est continue, alors $\mathscr{D}(I,\R)\subset\mathscr{C}^0(I,\R)$ et $\mathscr{C}^\infty(I,\R)=\mathscr{D}^\infty(I,\R)$.
+
+\item Pour tout $k\in\N^*$, $\mathscr{C}^k(I,\R)\subset\mathscr{D}^k(I,\R)$.
+
+\item De manière générale, $\mathscr{C}^\infty(I,\R)\subset...\subset\mathscr{C}^k(I,\R)\subset\mathscr{D}^k(I,\R)\subset...\subset\mathscr{C}^1(I,\R)\subset\mathscr{D}^1(I,\R)\subset\mathscr{C}^0(I,\R)$.
+
+\item L'existence de la classe $\mathscr{C}$ est justifiée car ce n'est pas parce qu'une fonction est dérivable que sa dérivée est forcément continue ! Nous verrons un exemple ultérieurement.}
+
+Quand on demande la classe d'une fonction \fone{f}{I}{\R}, on demande généralement le plus grand $k$ tel que $f\in\mathscr{C}^k(I,\R)$.
+
+\exo{Déterminer la classe des fonctions usuelles sur le plus grand intervalle possible.}
+
+
+\section{Primitives et intégration}
+
+\subsection{Primitives}
+
+Dans toute la suite, $I$ est un intervalle de $\R$ et \fone{f}{I}{\R}.
+
+\defi{\programme On appelle \textit{primitive de $f$} toute fonction \fone{F}{I}{\R}, dérivable sur $I$ et telle que pour tout $x\in I$, $F'(x)=f(x)$.}
+
+\exo{Toute fonction n'admet pas forcément de primitive. Contre-exemple : prouver que la fonction partie entière inférieure n'admet pas de primitive sur $\R$.}
+
+\rem{En particulier, si $f$ est dérivable sur $I$, alors $f$ est une primitive de $f'$ sur $I$.}
+
+\pro{\programme Si $f$ est continue sur $I$ alors $f$ admet une primitive sur $I$.}
+
+\preuve{La preuve, dépassant très largement le cadre du programme de lycée, est admise.}
+
+\rem{Et comme on sait que tout fonction dérivable sur un intervalle est continue, toute primitive d'une telle fonction $f$ est continue sur $I$.}
+
+\exo{Montrer que la fonction valeur absolue admet une primitive sur $\R$, en trouver une.}
+
+\exo{\textit{Attention, la réciproque de cette proposition est fausse}. Contre-exemple : soit \fone{f}{\R}{\R} telle que $f(0)=0$ et pour tout $x\in\R^*$, $f(x)=2x\sin\parent{\dfrac{1}{x}}-\cos\parent{\dfrac{1}{x}}$. Montrer que $f$ n'est pas continue sur $\R$ mais admet pourtant pour primitive la fonction \fone{F}{\R}{\R} telle que $F(0)=0$ et telle que pour tout $x\in\R^*$, $F(x)=x^2 \sin\parent{\dfrac{1}{x}}$ (on vérifiera bien que $F$ est effectivement dérivable sur $\R$ avant de dériver).}
+
+\lemme{Si $f$ est dérivable sur $I$ et que $f'$ est nulle sur $I$, alors $f$ est constante.}
+
+\preuve{$f$ est dérivable donc continue sur $I$. Supposons que $f$ n'est pas constante sur $I$. Alors il existe $a,b\in I$ tel que $f(a)\neq f(b)$. Donc d'après le théorème des accroissements finis,  il existe $c\in I$ tel que $f'(c)=\dfrac{f(b)-f(a)}{b-a}\neq0$, donc $f'$ ne s'annule pas en $c$ : c'est absurde.}
+
+\theo{Supposons que $f$ admet une primitive \fone{F}{I}{\R} sur $I$. Alors $\ens{F+k,k\in\R}$ est l'ensemble de \textit{toutes} les primitives de $f$.}
+
+
+\preuve{Nous faisons une preuve par double inclusion.\begin{itemize}
+\item Soit $k\in\R$ et $G=F+k$. $F$ et $k$ sont dérivables sur $I$ et par sommation, $G'=F'+k'=F'=f$ donc $F+k$ est une primitive de $f$.
+
+\item Réciproquement, soit $G$ une primitive de $f$ et soit $D=G-F$. $G$ et $F$ sont des primitives de $f$ sur $I$ donc pour tout $x\in I$, $G'(x)=f(x)=F'(x)$ donc $D'(x)=0$. Par le lemme, $D$ est constante donc il existe $k\in\R$ tel que pour tout $x\in I$, $D(x)=k$, \cad tel que $G-F=k$, \cad tel que $G=F+k$.
+\end{itemize}}
+
+\cor{En particulier, soit $y\in\R$. Si $x\in I$, $f$ admet une \textit{unique} primitive \fone{F}{I}{\R} tel que $F(x)=y$.}
+
+\theo{\programme (primitives usuelles)
+
+\begin{tabular}{|c|c|c|} \hline
+Fonction & $I$ & Primitive \\ \hline
+$x^q$ avec $q\in \Q\sauf{-1}$ & Au moins $]0,+\infty[$ & $\dfrac{x^{q+1}}{q+1}$ \\ \hline
+$\cos(x)$ & $\R$ & $\sin(x)$ \\ \hline
+$\sin(x)$ & $\R$ & $-\cos(x)$ \\ \hline
+\end{tabular}}
+\rem{Nous verrons ultérieurement une primitive des fonctions inverse et tangente.}
+
+\ex{Déterminer une primitive de \fons{f}{]0,+\infty[}{\R}{x}{\dfrac{1}{\sqrt[3]{x}}} sur $]0,+\infty[$. Pour tout $x\in]0,+\infty[$, $f(x)=x^{-1/3}$ donc une primitive de $x$ sur $]0,+\infty[$ est \fons{F}{]0,+\infty[}{\R}{x}{\dfrac{x^{2/3}}{2/3}} soit, en réécrivant, $\dfrac{3}{2}(\sqrt[3]{x})^2$.}
+
+\ex{Déterminer \textit{la} primitive de \fons{f}{\R}{\R}{x}{4\sin(3x-2)} sur $\R$ qui s'annule en 0. Comme nous savons que $-\cos$ est une primitive de $\sin$, on peut essayer $x\mapsto -\cos(3x-2)$. La dérivée de cette fonction est $x\mapsto 3\sin(3x-2)$ par composition, il suffit donc de corriger le coefficient. Ainsi, une primitive de $f$ sur $\R$ est \fons{F_0}{\R}{\R}{x}{-\dfrac{4}{3}\cos(3x-2)}. Puisque toutes les primitives de $f$ diffèrent d'une constante, il existe $k\in\R$ tel que la primitive de $f$ qui s'annule en 0 est \fons{F}{\R}{\R}{x}{-\dfrac{4}{3}\cos(3x-2)+k}. Donc $F(0)=0$ d'où $-\dfrac{4}{3}\cos(-2)+k=0$ d'où $k=\dfrac{4}{3}\cos(2)$ (on rappelle que $\cos$ est paire). Conclusion, \textcolor{brown}{\fons{F}{\R}{\R}{x}{\dfrac{4}{3}\cro{\cos(2)-\cos(3x-2)}}} est la primitive de $f$ qui s'annule en 0.}
+
+\subsection{Intégration}
+
+Dans toute la suite, nous considérons $I$ un intervalle de $\R$, $a,b\in I$  tel que $a\le b$, \fone{f}{I}{\R} une fonction \textit{continue} et à valeurs \textit{positives} sur $[a,b]$ et enfin $C$ la courbe représentative de $f$.
+
+\subsubsection{Généralités}
+
+Le but est de déterminer l'aire $A$ de la surface délimitée par $C$ et les droites d'équations $x=a$, $x=b$ et $y=0$.
+
+\includegraphics[scale=0.4]{figures/pdf/int_obj-eps-converted-to.pdf}
+
+Pour cela, une méthode est de placer des rectangles dans cette surface pour remplir $A$. Plus il y a de rectangles, plus l'approximation est bonne. Et avec une infinité de rectangles, on obtient exactement $A$. Ci-dessous on voit comment approximer $A$ avec 3 rectangles :
+
+\includegraphics[scale=0.4]{figures/pdf/int_rec-eps-converted-to.pdf}
+
+\defi{(subdivision) Soit $n\in\N^*$. On appelle \textit{subdivision d'ordre $n$ de $[a,b]$} la famille $(x_k)_{k\in\lint 0,n\rint}$ telle que pour tout $k\in\lint 0,n\rint$, $x_k=a+kh$ où $h=\dfrac{b-a}{n}$.}
+\rems{\item Nous avons donc : $x_0=a$, $x_n=b$ et la distance entre deux éléments successifs de la subdivision est constante et égale $h$.
+\item Sur le schéma ci-dessus, nous avons illustré le cas particulier $a=2$, $b=8$ et $n=3$.}
+
+Dans toute la suite, posons $n\in\N^*$ et $(x_k)_{k\in\lint 0,n\rint}$ la subdivision d'ordre $n$ de $[a,b]$.
+
+\defi{(somme de Riemann) On appelle \textit{somme de Riemann de $f$ sur $[a,b]$} la suite $(S_n)_{n\in\N^*}$ définie pour tout $n\in\N^*$ par $\somme{k=0}{n-1} \cro{hf(x_k)}$.}
+
+\rems{\item Intuitivement il s'agit simplement de la somme des aires des rectangles générés par $C$ et la subdivision d'ordre $n$ de $[a,b]$.
+\item Sur le schéma ci-dessus est illustré $S_3$ qui est la somme des aires des trois rectangles verts.
+\item Puisque $h$ ne dépend pas de $k$ dans la somme, alors pour tout $n\in\N^*$, $S_n=h\somme{k=0}{n-1} f(x_k)$.}
+
+\theo{La somme de Riemann de $f$ sur $[a,b]$ converge et sa limite vaut $A$.}
+
+\preuve{Ce théorème est admis mais il reste très intuitif.}
+
+\ex{Calculons $A$ dans le cas où $a=1$, $b=2$ et \fons{f}{\R}{\R}{x}{x}. Notons que cela a du sens puisque $f$ est continue et positive sur $[1,2]$. D'abord, remarquons que géométriquement la surface est un trapèze dont on sait calculer l'aire : on trouve $A=\dfrac{3}{2}$. Essayons de retrouver ce résultat avec les sommes de Riemann. La somme de Riemann de $f$ sur $[1,2]$ vérifie, pour tout $n\in\N^*$, $S_n=h\somme{k=0}{n-1} f(x_k)=h\somme{k=0}{n-1} x_k=\dfrac{1}{n}\somme{k=0}{n-1} \parent{1+\dfrac{k}{n}}=1+\dfrac{1}{n^2}\somme{k=0}{n-1} k$. Il s'agit de la somme d'une suite arithmétique de raison 1 et de premier terme 0, ainsi pour tout $n\in\N^*$, $S_n=1+\dfrac{1}{n^2}\dfrac{n(n-1)}{2}=1+\dfrac{n-1}{2n}$. Ainsi $A=\limc{n}{+\infty}\parent{1+\dfrac{n-1}{2n}}=1+\limc{n}{+\infty}\dfrac{n-1}{2n}=1+\dfrac{1}{2}=\dfrac{3}{2}$. On retrouve le résultat.}
+
+Bien entendu, il est plus intéressant de voir l'intérêt de cette somme de Riemann pour des surfaces dont on ne sait pas géométriquement calculer l'aire.
+
+\exo{Soit \fons{f}{\R}{\R}{x}{x^2}.
+
+\begin{enumerate}
+\item Montrer par récurrence que pour tout $n\in\N^*$, $\somme{k=0}{n}k^2=\dfrac{n(n+1)(2n+1)}{6}$.
+\item Justifier que $f$ est continue et positive sur $[0,1]$.
+\item Déterminer une forme explicite de la somme de Riemann de $f$ sur $[0,1]$.
+\item En déduire que $A=\dfrac{1}{3}$ pour $a=0$ et $b=1$.
+\end{enumerate}}
+
+\defi{\programme (intégrale) On appelle \textit{intégrale (de Riemann) de $f$ sur $[a,b]$} la limite de la somme de Riemann de $f$ sur $[a,b]$ et on la note \textcolor{blue}{$\intg{a}{b}{f(x)}$}. }
+
+Sur XCas, on peut calculer $\intg{0}{1}{x^2}$ ainsi : \\
+
+\verb&int(x^2,x,0,1)& \\
+
+\rems{\item \programme Ainsi, $\intg{a}{b}{f(x)}=\limc{n}{+\infty} S_n=A$
+\item La variable peut changer de nom sans que cela ne change la valeur de l'intégrale (on parle de variable muette). Ainsi $\intg{a}{b}{f(x)}=\intgv{a}{b}{f(t)}{t}$.
+\item Le «~$\mathrm{d}$~» désigne en réalité ce qu'on appelle une \textit{différentielle}. Au niveau lycée, considérez simplement qu'elle désigne une \textit{différence infinitésimale des abscisses} (l'écart $h$ entre les rectangles tend vers 0).
+\item Dans cette notation, il s'agit réellement d'une lettre S stylisée pour rappeler que l'intégrale est issue d'une somme de Riemann.
+\item Dans le supérieur, vous découvrirez qu'il existe plusieurs autres intégrales, donc en toute rigueur on doit parler ici d'intégrale de Riemann. Cependant, quand le contexte est clair (et il le sera jusqu'en L3), on peut juste parler d'«~intégrale~».}
+
+\ex{Les deux exercices précédents nous indiquent donc que $\intg{1}{2}{x}=\dfrac{3}{2}$ et que $\intg{0}{1}{x^2}=\dfrac{1}{3}$.}
+
+Quelques notes sur notre cadre d'étude :
+
+\begin{itemize}
+\item Nous avons ici défini arbitrairement l'intégrale de Riemann par des rectangles qui partent à gauche des points de subdivison (on parle de \textit{méthode des rectangles à gauche}). En réalité on aussi les faire partir à droite, et même au milieu, sans que cela ne change le résultat. On peut aussi faire des trapèzes (\textit{méthode des trapèzes}) reliant des points de la courbe : la somme de Riemann définie à partir de ce dernier procédé converge plus rapidement qu'avec les rectangles. Enfin, on peut aussi, aux points de subdivision, approximer la courbe par des polynômes de degré 2 reliés entre eux (et on sait calculer l'intégrale des polynômes de degré 2 comme l'illustre un des exercices précédents). Cette méthode est appellée \textit{méthode de Simpson} et elle est bien plus rapide que les trapèzes (donc que les rectangles).
+
+\item Nous nous sommes placés ici dans le cadre des fonctions positives sur $[a,b]$. En réalité il n'y a aucun problème à calculer l'intégrale de fonctions négatives, simplement les parties d'aires situées sous l'axe des abscisses doivent être comptées négativement. En quelque sorte il faut considérer l'aire \textit{algébrique} sous la courbe. Mais attention, si on prend en compte les négatifs, l'égalité de l'intégrale avec $A$ n'est plus respectée : autrement dit prendre en compte les négatifs est possible mais au prix de l'interprétation géométrique de l'intégrale.
+
+\item Nous nous sommes placés ici dans le cadre de fonctions continues sur $[a,b]$. Il est en fait tout à fait possible de calculer l'intégrale de fonctions \textit{continues par morceaux} sur $[a,b]$, c'est-à-dire qu'il existe $n$ intervalles $I_1,...,I_n$ tous disjoints tel que $I_1\cup...\cup I_n=[a,b]$ et tel que la fonction est continue sur chaque $I_k$. L'intégrale sur $[a,b]$ d'une telle fonction est alors simplement la somme des intégrales de la fonction sur chaque $I_k$. Typiquement, il est ainsi possible de calculer l'intégrale de la fonction partie entière sur $[0,10]$ car elle est continue par morceaux sur cet intervalle.
+\end{itemize}
+
+\subsubsection{Propriétés}
+
+\pro{$\intg{a}{a}{f(x)}=0$}
+
+\preuve{Pour $a=b$, on a $S_n=\dfrac{b-a}{n}\somme{k=0}{n-1}f(x_k)=0$ d'où $\intg{a}{a}{f(x)}=\limc{n}{+\infty}0=0$.}
+
+\pro{Si $f$ est constante à $\lambda\in\R_+$ sur $[a,b]$ alors $\intg{a}{b}{f(x)}=\lambda(b-a)$}
+
+\preuve{Laissée au lecteur.}
+
+\pro{\programme (relation de Chasles) Soit $c\in [a,b]$. Alors $\intg{a}{b}{f(x)}=\intg{a}{c}{f(x)}+\intg{c}{b}{f(x)}$}
+
+\preuve{La preuve est purement géométrique : la droite $x=c$ partage la surface totale en deux parties, ces deux intégrales donnent donc deux portions d'aires dont la somme vaut $A$.}
+
+\pro{\programme (linéarité de l'intégrale) Soit \fone{g}{I}{\R} positive et continue sur $[a,b]$ et $\lambda\in\R_+$. Alors $\intg{a}{b}{\parent{\lambda f(x)+g(x)}}=\lambda\intg{a}{b}{f(x)}+\intg{a}{b}{g(x)}$}
+
+\preuve{La somme de Riemann sur $[a,b]$ de la fonction $x\mapsto \lambda f(x)+g(x)$ est $S_n=h\somme{k=0}{n-1}\parent{\lambda f(x_k)+g(x_k)}=h\cro{\lambda\somme{k=0}{n-1} f(x_k)+\somme{k=0}{n-1} g(x_k)}$. En passant à la limite, on a le résultat.}
+
+\pro{Soit \fone{g}{I}{\R} positive et continue sur $[a,b]$. Si pour tout $x\in [a,b]$, $g(x)\le f(x)$, alors $\intg{a}{b}{g(x)}\le\intg{a}{b}{f(x)}$}
+
+\preuve{La fonction $x\mapsto f(x)-g(x)$ est positive et continue sur $[a,b]$ donc on peut calculer son intégrale. Comme toute intégrale, $\intg{a}{b}{\parent{f(x)-g(x)}}\ge0$ d'où $\intg{a}{b}{f(x)}-\intg{a}{b}{g(x)}\ge0$ d'où le résultat.}
+
+\subsubsection{Théorème fondamental de l'analyse}
+
+\theo{\programme (Théorème Fondamental de l'Analyse) Soit $I=[a,b]$ un intervalle de $\R$ et \fone{f}{I}{\R} continue et positive sur $I$.
+
+\begin{enumerate}[i)]
+\item \fons{F}{I}{\R}{x}{\intg{a}{x}{f(x)}} est la primitive de $f$ sur $I$ qui s'annule en $a$.
+\item $\intg{a}{b}{f(x)}=F(b)-F(a)$ où $F$ est une primitive de $f$ sur $I$.
+\end{enumerate}}
+
+\rem{\textit{J'ai les mots pour décrire à quel point ce résultat est beau et profondément utile à tous points de vue en analyse réelle, mais la marge est trop étroite.}}
+
+\preuve{La preuve du premier point est exposée dans l'annexe \ref{tfa}. Montrons ici le point 2 en supposant le point 1. On sait que \fons{F_0}{I}{\R}{x}{\intg{a}{x}{f(x)}} est une primitive de $f$ sur $[a,b]$. Soit maintenant $F$ une primitive quelconque de $f$. Il existe donc $k\in\R$ tel que $F=F_0+k$. On a $F(b)-F(a)=\intg{a}{b}{f(x)}+k-\intg{a}{a}{f(x)}-k=\intg{a}{b}{f(x)}$ d'où le résultat.}
+
+Ce théorème permet concrètement de calculer l'intégrale d'une fonction connaissant une de ses primitives. Certaines fonctions n'ont pas de primitive déterminable avec les fonctions usuelles. C'est le cas, par exemple, de la fonction \fons{f}{\R}{\R}{x}{e^{x^2}} (à connaître pour la culture). Puisqu'elle est continue sur $\R$ elle admet une primitive sur $\R$, mais avec les fonctions de bases celle-ci n'est pas déterminable. C'est ainsi qu'on a crée la \href{https://fr.wikipedia.org/wiki/Fonction_d\%27erreur}{\textit{fonction d'erreur}}, notée $\text{erf}$, qui est une primitive d'une fonction cousine de $f$. Les fonctions non calculables deviennent en fait simplement de nouvelles fonctions.
+
+\nota{\programme On note $F(b)-F(a)$ d'une manière plus commode pour les calculs : $\cro{F(t)}_{t=a}^b$ ou encore, quand il n'y a pas d'ambiguité sur la variable, $\cro{F(t)}_{a}^b$.}
+
+\ex{Calculer $\intg{1}{42}{\sin(x)}$. Soit $I=[1,42]$. La première étape est de déterminer une primitive de la fonction sur $I$. On sait que $-\cos$ en est une. Donc par le théorème fondamental de l'analyse (TFA), $\intg{1}{42}{\sin(x)}=\cro{-\cos(t)}_{1}^{42}=\cos(1)-\cos(42)$.}
+
+Voici une proposition de modèle d'une rédaction qu'on pourrait attendre à retrouver dans une excellente copie de Terminale S :
+
+\ex{Soit $I=\intg{2}{7}{\sqrt{x}}$. Justifier l'existence de $I$, trouver sa valeur exacte puis l'approximer à $10^{-2}$ près. Soit $J=[2,7]$ et \fons{f}{J}{\R}{x}{\sqrt{x}}. On sait que la fonction racine est continue et positive sur $\R_+$ donc sur $J$, par conséquent $\intg{2}{7}{f(x)}=I$ existe. Pour tout $x\in J$, $f(x)=x^{q}$ avec $q=\dfrac{1}{2}$ donc une primitive de $f$ sur $J$ est \fons{F}{J}{\R}{x}{\dfrac{x^{q+1}}{q+1}}, \cad que pour tout $x\in J$, $F(x)=\dfrac{x^{3/2}}{3/2}=\dfrac{2}{3}\sqrt{x}^3$. Ainsi par le théorème fondamental de l'analyse, $I=\cro{F(t)}_2^7=\dfrac{2}{3}\sqrt{7}^3-\dfrac{2}{3}\sqrt{2}^3=\dfrac{2}{3}\parent{\sqrt{7}^3-\sqrt{2}^3}$. Conclusion, \boxed{I=\dfrac{2}{3}\parent{\sqrt{7}^3-\sqrt{2}^3}\approx 10.46}.}
+
+
+Le TFA et les propriétés précédentes (Chasles, linéarité...) peuvent à loisir être étendus aux cas suivants si besoin :
+
+\begin{itemize}
+\item Si la fonction est parfois négative sur $[a,b]$. Les propriétés et le théorème restent identiques, la seule chose qui change, comme nous l'avons déjà dit, c'est qu'au sens des sommes de Riemann, les parties d'aires situées sous l'axe des abscisses doivent être comptées négativement.
+
+\item Si la fonction est continue par morceaux sur $[a,b]$ (voir précédemment dans le cours ce que cela signifie). De même, tout est conservé.
+
+\item Si $b> a$. On se retrouve avec un intervalle «~inversé~», et dans ce cas tout est conservé en considérant que $\intg{a}{b}{f(x)}=-\intg{b}{a}{f(x)}$.
+\end{itemize}
+
+
+\section{Exponentielle et logarithme}
+
+\subsection{Exponentielle}
+
+\theo{\programme Il existe une unique fonction, notée $\exp$, définie et dérivable de $\mathbf{R}$ dans $\mathbf{R}$, telle que pour tout $x\in\mathbf{R},\exp'(x)=\exp(x)$ et $\exp(0)=1$.}
+
+\begin{proof}
+\textsc{\programme Unicité} \\
+Commençons par montrer que $\exp$ ne s'annule pas. Soit $f:\R\rightarrow \R,x\mapsto \exp(x)\exp(-x)$. Soit $x\in\R$. $f$ est dérivable sur $\R$ et $f'(x)=0$. Donc $f$ est constante et $f(x)=f(0)=1$. Supposons par l'absurde qu'il existe $a\in\R$ tel que $\exp(a)=0$. Alors $f(a)=0$ ce qui est absurde. Donc $\exp$ ne s'annule pas. \\
+Prouvons maintenant l'unicité. Soit $f:\mathbf{R}\rightarrow \mathbf{R}$ une fonction qui possède les mêmes propriétés que la fonction $\exp$. $f$ ne s'annulant pas, on peut définir $g:\R\rightarrow\R,x\mapsto \exp(x)/f(x)$. Soit $x\in\R$. $g$ est dérivable sur $\R$ et $g'(x)=0$. Donc $g$ est constante et $g(x)=g(0)=1$. Donc pour tout $x\in\R,f(x)=\exp(x)$ ce qui donne le résultat. \\
+\\
+\textsc{Existence} \\
+La preuve de l'existence de $\exp$ n'est pas aisée. Nous en proposons dans l'annexe \ref{annexp} une très longue et astucieuse mais qui a le mérite de n'utiliser (presque) que des outils de lycée. 
+\end{proof}
+
+\pro{$\exp$ est une primitive de $\exp$ sur $\R$.}
+
+\preuve{Immédiat.}
+
+\pro{(inégalité de Bernoulli) Pour tout $n\in\N$, tout réel $\alpha> -1$, on a $(1+\alpha)^n\ge1+n\alpha$.\label{inbernoulli1}}
+\preuve{Par simple récurrence.}
+\rem{Cette inégalité, présente dans la preuve de l'existence de l'exponentielle, nous sera utile pour montrer certaines propriétés.}
+
+\pro{Soit $x\in\R$. $\exp(x)=\Lim{n\to\infty}\left( 1+\dfrac{x}{n}\right)^n$\label{defexplim}}
+
+\begin{proof}
+La preuve est incluse dans la démonstration de l'existence de $\exp$, voir l'annexe \ref{annexp}.
+\end{proof}
+
+\rem{\begin{itemize}
+\item Ce résultat, combiné avec l'inégalité de Bernoulli, permet comme nous le verrons de démontrer de manière commode les propriétés générales de l'exponentielle.
+\item Cette définition par limite de suite est également une façon très commode de calculer une valeur d'exponentielle informatiquement si on ne dispose pas directement de cette fonction. Nous laissons au lecteur curieux le soin de reprogrammer la fonction exponentielle ainsi
+\end{itemize}}
+
+\pro{\programme (propriétés analytiques de $\exp$) :
+\begin{enumerate}[(i)]
+\item $\exp$ est continue sur $\R$.
+\item $\exp$ est strictement positive sur $\R$.
+\item $\exp$ est strictement croissante sur $\R$.
+\item $\lim\limits_{x\to +\infty} \exp(x)=+\infty$.
+\item $\lim\limits_{x\to -\infty} \exp(x)=0$.
+\item $\exp$ est bijective de $\R$ dans $\R^*_+$ (attention : pas de $\R$ dans $\R$).
+\end{enumerate}}
+
+\preuve{\begin{enumerate}[(i)]
+\item $\exp$ est dérivable sur $\R$ donc continue sur $\R$.
+\item Nous avons déjà prouvé que $\exp$ ne s'annule pas sur $\R$ en démontrant l'unicité de $\exp$ et de plus $\exp$ est continue sur $\R$ donc par le théorème des valeurs intermédiaires, $\exp$ est soit strictement positive soit strictement négative sur $\R$. Or $\exp(0)=1$, conclusion $\exp$ est strictement positive sur $\R$.
+\item Pour tout $x\in\R$, $\exp'(x)=\exp(x)>0$, donc $\exp$ est strictement croissante sur $\R$.
+\item \programme Montrons que pour tout $x\in\R$, $\exp(x)\ge x+1$. Soit $x\in\R$. On a $\exp(x)=\Lim{n\to\infty}\left( 1+\dfrac{x}{n}\right)^n$. Posons $n_0\in\N^*$ tel que $n_0>x$ et soit $n\ge n_0$. Alors $\dfrac{x}{n}>-1$ donc en appliquant l'inégalité de Bernoulli, $\left( 1+\dfrac{x}{n}\right)^n\ge x+1$. En passant à la limite, $\Lim{n\to\infty}\left( 1+\dfrac{x}{n}\right)^n\ge x+1$ donc $\exp(x)\ge x+1$. Nous avons donc $\limc{x}{\infty}\exp(x)\ge\limc{x}{+\infty} x+1=+\infty$ et par conséquent $\limc{x}{+\infty}\exp(x)=+\infty$.
+\item \programme Avec la proposition~\ref{defexplim} nous montrons facilement que pour tout $x\in\R$, $\exp(x)=\dfrac{1}{\exp(-x)}$. Donc $\limc{x}{-\infty}\exp(x)=\limc{x}{+\infty}\dfrac{1}{\exp(x)}=0$.
+\item $\exp$ est continue sur $\R$ et d'après le théorème des valeurs intermédiaires, $\im\exp$ est un intervalle. Puisque $\exp$ est de plus strictement croissante, que $\limc{x}{-\infty}\exp(x)=0$ et que $\limc{x}{-\infty}\exp(x)=+\infty$, alors $\im(\exp)=]0;+\infty[$. Enfin, par le théorème de bijection monotone, $\exp$ est bijective de $\R$ dans $\R_+^*$.
+\end{enumerate}}
+
+\theo{\programme (règles de calcul) Soit $x,y\in\R$ et $k\in\Z$.
+
+\begin{enumerate}
+\item $\exp(x+y)=\exp(x)\exp(y)$
+\item $\exp(-x)=\dfrac{1}{\exp(x)}$
+\item $\exp(x-y)=\dfrac{\exp(x)}{\exp(y)}$
+\item $\exp(x)^k=\exp(kx)$
+\end{enumerate}}
+
+\preuve{\begin{enumerate}[i)]
+\item Pour tout $y\in\R$, posons la fonction \fons{f}{\R}{\R}{x}{\dfrac{\exp(x+y)}{\exp(x)}}. $f$ est dérivable sur $\R$ et pour tout $x\in\R$, $f'(x)=0$, donc $f$ est constante sur $\R$. Or $f(0)=\exp(y)$ donc pour tout $x,y\in\R$, $\dfrac{\exp(x+y)}{\exp(x)}=\exp(y)$.
+
+\item D'une part $\exp(x-x)=\exp(x)\exp(-x)$ et d'autre part $\exp(x-x)=1$ d'où $\exp(x)\exp(-x)=1$.
+
+\item Immédiat par les deux points précédents.
+
+\item On montre le résultat pour $k\in\N$ par récurrence en utilisant le premier point, puis on étend à $k\in\Z$ en utilisant le second.
+\end{enumerate}}
+
+\nota{On note $e$ le réel $\exp(1)$. Il vaut $2.72$ au centième près.}
+
+\rem{Cette constante fait partie des constantes fondamentales en mathématiques. Son utilité va transparaître dans le théorème suivant. Il est utile de connaître son approximation au centième. Enfin, à noter que $e$, comme $\pi$, est un nombre \textit{transcendant}, \cad qu'il n'existe aucun polynôme à coefficients entiers dont l'une racine est $e$. Tout transcendant est irrationnel, mais la réciproque n'est pas vrai. Par exemple le nombre d'or $\dfrac{1+\sqrt{5}}{2}$ est irrationnel mais pas transcendant puisqu'il est l'une des racines du polynôme $x^2-x-1$ comme chacun sait, lol.}
+
+
+\theo{\programme Pour tout $x\in\R$, $\exp(x)=e^x$.}
+
+\rems{\item C'est-à-dire que \textit{exponentielle de $x$ }égale \textit{le réel $e$ exposant $x$}.
+
+\item Ce théorème est fondamental car il montre que l'exponentielle marche exactement comme les puissances. Cela n'a en fait rien d'un hasard : comme nous l'expliquerons, les puissances sont rigoureusement définis justement par l'exponentielle (et le logarithme que nous verrons ultérieurement). Donc en réalité, c'est plutôt les puissances qui marchent comme l'exponentielle. Ce n'est pas pour rien si les mots \textit{exposant} et \textit{exponentielle} ont la même origine.
+
+\item Avec cette écriture, les règles de calcul deviennent totalement naturelles : $e^{x+y}=e^x e^y$, $(e^x)^n=e^{nx}$ etc.
+
+\item On préfère très largement l'écriture $e^x$ au lieu de $\exp(x)$ pour des raisons évidentes de commodité. Mais attention de ne pas confondre : la fonction exponentielle continue à se noter $\exp$. $e$ est un réel et pas une fonction !  Hors de question par exemple d'écrire que «~$e$ est strictement croissante sur $\R$~» : tout le monde comprend mais ce n'est pas rigoureux, ça serait comme dire que 42 est croissante sur $\R$. A force d'utiliser cette écriture, on finit trop rapidement par l'oublier. De même, toujours garder en tête que les écritures $(e^x)'$ ou encore $e'^x$ sont des abus de notation, l'écriture correcte étant $\exp'(x)$.
+
+\item Cette écriture nous rappelle largement tout ce qu'on a vu sur les complexes avec la notation $e^{i\theta}$. Là encore ce n'est pas un hasard : on peut montrer qu'on peut étendre la définition de l'exponentielle sur l'ensemble des complexes, et que toutes les propriétés sont alors conservées.}
+
+\preuve{\begin{itemize}
+\item Montrons le résultat pour $x\in\Z$. On a alors $\exp(x)=\exp(1\times x)=(\exp(1))^x=e^x$ d'après les règles de calcul.
+\item Montrons le résultat pour $x\in\Q$. Il existe $p\in\Z$ et $n\in\N^*$ tel que $x=\dfrac{p}{n}$. Nous avons donc $\exp(x)=\exp\parent{\dfrac{p}{n}}=\cro{\exp\parent{\dfrac{1}{n}}}^p$ (règles de calcul). Or d'une part $\exp\parent{n\times\dfrac{1}{n}}=\cro{\exp\parent{\dfrac{1}{n}}}^{n}$ et d'autre part $\exp\parent{n\times\dfrac{1}{n}}=e$ d'où $\cro{\exp\parent{\dfrac{1}{n}}}^{n}=e$ d'où $\exp\parent{\dfrac{1}{n}}=e^{1/n}$. Finalement, $\exp(x)=\cro{\exp\parent{\dfrac{1}{n}}}^p=e^{p/n}=e^x$.
+\item Pour $x\in\R\sauf{\Q}$, \cad pour $x$ irrationnel, c'est une \textit{définition}. C'est-à-dire qu'on \textit{pose} $e^x=\exp(x)$. Cela peut sembler complètement artificiel, mais les puissances irrationnelles \textit{sont définies} par l'exponentielle (et le logarithme). 
+\end{itemize}
+Pour résumer : si $x$ est un entier, le résultat se montre par ce qu'on connait des puissances entières qui sont des multiplications par récurrence; si $x$ est rationnel, le résultat se montre par ce qu'on connait des racines $n$-ièmes; enfin pour $x$ irrationnel, c'est une définition.}
+
+
+\lemme{\programme (croissance comparée) Soit $n\in\N$.
+
+\begin{enumerate}[i)]
+\item $\limc{x}{+\infty}\dfrac{e^x}{x^n}=+\infty$
+\item $\limc{x}{-\infty}x^ne^x=0$
+
+\end{enumerate}}
+\preuve{Sous forme d'exercice : soit \fons{f}{\R}{\R}{x}{e^x-\dfrac{x^2}{2}.}
+
+\begin{enumerate}
+\item En étudiant les dérivées première et seconde de $f$, montrer que $f(x)>0$ pour tout $x>0$.
+\item En déduire la première limite pour $n=1$.
+\item En posant $y=-x$, montrer que la seconde limite pour $n=1$, si elle existe, égale $\limc{y}{+\infty}-\dfrac{1}{e^y/y}$ puis conclure pour $n=1$.
+\item En remarquant que $\dfrac{e^x}{x^n}=\parent{\dfrac{1}{n}\dfrac{e^{x/n}}{x/n}}^n$ pour tout $x\in\R$, en déduire la première limite pour $n\in\N$.
+\item Enfin, toujours en posant $y=-x$, montrer que si elle existe, $\limc{x}{-\infty}x^ne^x=\limc{y}{+\infty}(-y)^ne^{-y}$. Puis en distinguant $n$ pair et impair, conclure.
+\end{enumerate}}
+
+\theo{($\exp$ bat tout le monde) Soit $R$ une fonction rationnelle (\cad un quotient de polynômes de degrés quelconques), $a,b$ les coefficients de plus haut degré respectivement du numérateur et du dénominateur et $s$ le signe de $\dfrac{a}{b}$.
+
+\begin{enumerate}[i)]
+\item $\limc{x}{+\infty}R(x)e^x=s\infty$
+\item $\limc{x}{-\infty}R(x)e^x=0$
+\end{enumerate}}
+\rem{Au lycée, c'est la proposition précédente (croissance comparée) qui est enseignée, mais à mon sens ce qui est vraiment utile et le plus facile à mémoriser, c'est ce théorème.}
+
+\preuve{Soit $n,m$ les degrés respectifs du numérateur et du dénominateur.
+\begin{enumerate}[i)]
+\item $R$ étant une fonction rationnelle, on sait que $\limc{x}{+\infty}R(x)=\dfrac{a}{b}\limc{x}{+\infty}x^{n-m}$. Si $n> m$ le résultat est immédiat, sinon on applique la première limite du lemme précédent.
+\item De même, $\limc{x}{-\infty}R(x)=\dfrac{a}{b}\limc{x}{-\infty}x^{n-m}$. Si $n< m$ le résultat est immédiat, sinon on applique la seconde limite du lemme précédent. 
+\end{enumerate}}
+
+
+\pro{$\limc{x}{0} \dfrac{e^x-1}{x}=1$}
+\preuve{C'est la dérivée de $\exp$ en 0.}
+
+\subsection{Logarithme népérien}
+
+\defi{\programme (logarithme népérien) La fonction \fone{\exp}{\R}{]0,+\infty[} étant bijective, elle admet une unique fonction réciproque \fone{\exp^{-1}}{]0,+\infty[}{\R}. On l'appelle \textit{logarithme népérien} et on la note $\ln$.}
+
+Nous conseillons au lecteur de relire le théorème \ref{frec} ainsi que les propositions qui suivent pour se remémorer la définition et les propriétés des fonctions réciproques.
+
+\pro{\programme \begin{itemize}
+\item Pour tout $x\in\R$, $\ln(e^x)=x$
+\item Pour tout $x\in\R^*_+$, $e^{\ln(x)}=x$
+\end{itemize}}
+
+\preuve{Par définition de ce qu'est une fonction réciproque.}
+
+\theo{\programme (propriétés analytiques de $\ln$) 
+
+\begin{enumerate}[i)]
+\item $\ln$ est continue sur $\R^*_+$
+\item $\ln$ est dérivable sur $\R^*_+$ et pour tout $x\in\R^*_+$, $\ln'(x)=\dfrac{1}{x}$.
+\item $\ln$ est strictement croissante sur $\R^*_+$
+\item $\limc{x}{0}\ln(x)=-\infty$
+\item $\limc{x}{+\infty}\ln(x)=+\infty$
+\item \begin{enumerate}
+\item $\ln(1)=0$
+\item Si $x\in]0,1[$ alors $\ln(x)<0$
+\item Si $x\in ]1,+\infty[$ alors $\ln(x)>0$
+\end{enumerate}
+
+
+
+\end{enumerate}}
+\rem{En effet, ce n'est pas parce que la dérivée de l'exponentielle égale elle-même qu'il en est de même pour sa réciproque.}
+
+\preuve{\begin{enumerate}[i)]
+\item Soit $a\in\R^*_+$. Il existe un unique $b\in\R$ tel que $a=e^b$ (par bijectivité de $\exp$). D'où $\limc{x}{a}{\ln(x)}=\limc{x}{b}\ln(e^x)=\limc{x}{b}x=b$, donc $\ln$ admet une limite finie en tout point $a\in\R^*_+$ donc $\ln$ est continue sur $\R^*_+$.
+\item Soit $a\in\R^*_+$. Soit $x\in\R^*_+\sauf{a}$. Alors $\tau_{\ln,a}(x)=\dfrac{\ln x-\ln a}{x-a}$. Posons $y=\ln x$ et $b=\ln a$. Alors $\tau_{\ln,a}(x)=\dfrac{y-b}{e^y-e^b}$. Donc $\limc{x}{a}\tau_{\ln,a}(x)=\limc{y}{b}\dfrac{y-b}{e^y-e^b}=\limc{y}{b}\dfrac{1}{\tau_{\exp,b}(y)}=\dfrac{1}{\exp'(b)}=\dfrac{1}{a}$. Conclusion $\ln$ est dérivable sur $\R^*_+$ et pour tout $x\in\R^*_+$, $\ln'(x)=\dfrac{1}{x}$.
+\item Pour tout $x\in\Rep$, $\ln'(x)=\dfrac{1}{x}>0$, d'où $\ln$ est strictement croissante sur $\Rep$.
+\item $\limc{x}{0}\ln(x)=\limc{x}{-\infty}\ln e^x=\limc{x}{-\infty}x=-\infty$.
+\item $\limc{x}{+\infty}\ln(x)=\limc{x}{+\infty}\ln e^x=\limc{x}{+\infty}x=+\infty$.
+\item \begin{enumerate}
+\item $\ln(1)=\ln e^0=0$
+\item $\ln$ étant continue, strictement croissante sur $\Rep$, et sachant que $\ln(1)=0$, alors par le théorème des valeurs intermédiaires, $\ln x <0$ pour tout $x\in]0,1[$.
+\item Idem.
+\end{enumerate}
+\end{enumerate}}
+
+\pro{La fonction \fons{F}{\Rep}{\R}{x}{x\ln x - x} est une primitive de $\ln$ sur $\Rep$.}
+
+\preuve{Il suffit de dériver et de constater qu'on retrouve la fonction logarithme.}
+
+\rem{Pour retrouver cette primitive par le calcul, il faut utiliser la technique de l'intégration par parties, qui n'est pas au programme de lycée.}
+
+\theo{\programme (règles de calcul) Soit $x,y\in\Rep$ et $n\in\N$.
+
+\begin{enumerate}[i)]
+\item $\ln (xy)=\ln x +\ln y$
+\item $\ln \parent{\dfrac{x}{y}}=\ln x -\ln y $
+\item $\ln(x^n)=n\ln x$
+\end{enumerate}}
+
+\preuve{ Il existe $a,b\in\R$ tel que $e^a=x$ et $e^b=y$.
+
+\begin{enumerate}[i)]
+\item $\ln(xy)=\ln(e^a e^b)=\ln(e^{a+b})=a+b=\ln x + \ln y$
+\item $\ln \parent{\dfrac{x}{y}}=\ln \parent{\dfrac{e^a}{e^b}}=\ln(e^{a-b})=a-b=\ln x - \ln y$
+\item C'est le premier point par récurrence.
+\end{enumerate}}
+
+\rem{Le logarithme étant la réciproque d'exponentielle, il est logique que les règles de calcul soient inversés.}
+
+\exo{Montrer que le point 3 s'étend pour $n\in\Q$, \cad que pour tout $n\in\Q$, $x\in\Rep$, $\ln(x^n)=n\ln x$.}
+
+\theo{\programme (le logarithme est battu par tout le monde) Soit $R$ une fonction rationnelle.
+
+\begin{itemize}
+\item Si $\limc{x}{+\infty}R(x)=0$ alors $\limc{x}{+\infty}R(x)\ln x=0$
+\item Si $\limc{x}{0}R(x)=0$ alors $\limc{x}{0}R(x)\ln x = 0$
+\end{itemize}}
+
+C'est une simple conséquence du fait que l'exponentielle bat tout le monde. En résumé l'exponentielle va plus vite que tout le monde, et le logarithme va plus lentement que tout le monde. En effet, pour mesurer à quel point il croît lentement, $\ln(10^{80})\approx 184$ ($10^{80}$ est une estimation du nombre d'atomes dans l'univers).
+
+\subsection{Exponentielle et logarithme en base quelconque}
+
+Nous avons vu que l'exponentielle permettait de calculer les puissances de la forme $e^x$ avec $x\in\R$. L'idée est de généraliser afin de pouvoir calculer des puissances de la forme $a^x$ avec $a$ positif.
+
+Dans toute la suite, on pose $a\in\Rep$.
+
+\defi{(exponentielle en base quelconque) On appelle \textit{exponenitelle de base $a$} la fonction \fons{\exp_a}{\R}{\Rep}{x}{e^{x\ln a}}.}
+
+\nota{Pour tout $x\in\Rep$, on note $a^x$ pour $e^{x\ln a}$.}
+
+\rems{\item Nous avons ainsi étendu la notation puissance. Il y a donc à présent un sens à écrire par exemple $\pi^{\sqrt{3}}$ : il s'agit simplement du réel $\exp_\pi(\sqrt{3})$.
+\item Ainsi, la fonction $\exp$ est juste la fonction $\exp_e$.
+\item A noter que $\exp_1$ est constante à 1 sur $\R$.}
+
+\pro{\begin{enumerate}[i)]
+\item $\exp_a$ est strictement positive et dérivable sur $\R$ et pour tout $x\in\R$, $\exp_a'(x)=\ln (a) a^x$.
+\item $\exp_a$ est bijective.
+\item $a^0=1$
+\item Les règles de calculs de l'exponentielle en base $a$ sont les mêmes que l'exponentielle.
+\end{enumerate}}
+
+\rem{\textbf{Attention}, les propriétés analytiques ne sont pas nécessairement conservées : remarquer par exemple que $\exp_{1/2}$ est décroissante et que ses limites ne correspondent pas à celles de $\exp$.}
+
+\exo{Étudier les proporiétés analytiques de $\exp_a$ (croissance, limites) en fonction des valeurs de $a$.}
+
+\defi{(logarithme de base $a$) On appelle \textit{logarithme de base $a$} la réciproque de \fone{\exp_a}{\R}{\Rep} et on la note \fone{\log_a}{\Rep}{\R}.}
+
+\rems{\item Ainsi, $\ln$ n'est rien d'autre que $\log_e$.
+\item \textbf{Attention} : si on écrit $\log$ sans indication de base, cela peut, selon les contextes, désigner soit $\ln$, soit $\log_{10}$, soit même $\log_2$ chez les informaticiens. C'est pourquoi, de votre côté, il est fortement conseillé de toujours préciser la base du logarithme que vous utilisez. Mais si jamais au cours d'un problème vous utilisez intensivement le logarithme décimal par exemple, rien ne vous empêche d'écrire au début de la composition «~nous noterons $\log$ la fonction $\log_{10}$~» par commodité. Mais a priori, vous ne rencontrerez jamais la notation $\log$ pour une base autre que $e$, 10 ou 2.}
+
+\pro{Pour tout $x\in\Rep$, $\log_a(x)=\dfrac{\ln x}{\ln a}$.}
+
+\preuve{En exercice. \spoiler{Poser \fons{f}{\Rep}{\R}{x}{\ln x/\ln a}, calculer $f\circ\exp_a$ et $\exp_a\circ f$, constater que cela fait l'identité pour les deux. On en déduit donc que $f$ est la réciproque de $\exp_a$ or la réciproque étant unique, on a l'égalité cherchée.}}
+
+\pro{\begin{enumerate}[i)]
+\item $\log_a$ est dérivable sur $\Rep$ et pour tout $x\in\Rep$, $\log_a'(x)=\dfrac{1}{x\ln a}$.
+\item $\log_a(1)=0$
+\item Pour tout $x\in\R$, $\log_a(a^x)=x$
+\item Les règles de calcul de $\log_a$ sont les mêmes que celles de $\ln$.
+\end{enumerate}}
+
+\rem{De même que pour $\exp_a$, les propriétés analytiques de $\log_a$ ne sont pas forcément conservées.}
+
+\subsection{Applications}
+
+\subsubsection{Les logarithmes usuels}
+
+Les trois logarithmes de loin les plus utilisés en sciences sont $\ln=\log_e$ car c'est la réciproque de l'exponentielle, $\log_{10}$ (qu'on appelle aussi \textit{logarithme décimal}) car très pratique pour les calculs (nous utilisons la base 10 pour écrire les nombres), enfin $\log_2$ principalement en informatique où la base 2 est omniprésente. 
+
+Avant l'invention des calculatrices et des ordinateurs, on utilisait des tables de logarithmes qui fournissaient des approximations des logarithmes décimaux (base 10), ce qui permettait aux scientifiques de faire des approximations de calculs compliqués.
+
+\ex{Cherchons une approximation de $10.879\times 5238.46$. L'idée est de calculer le logarithme décimal de ce produit en exploitant les propriétés de cette fonction.
+
+\chaine{\log_{10}(10.879\times 5238.46) &=& \log_{10}(1.0879\times 10 \times 5.23846\times 10^3) \\
+&=& \log_{10}(1.0879\times5.23846\times 10^4) \\
+&=& \log_{10}(1.0879)+\log_{10}(5.23846)+\log_{10}(10^4) \\
+&=&  \log_{10}(1.0879)+\log_{10}(5.23846)+4}
+
+Les tables de logarithmes fournissaient une approximation de ces deux logarithmes : $\log_{10}(1.0879)\approx 0.03658$ et $\log_{10}(5.23846)\approx 0.7192$. Et ainsi :
+
+\chaine{\log_{10}(10.879\times 5238.46) &\approx& 0.03658+0.7192+4 \\
+&=& 4.75578}
+
+Enfin, les tables permettaient de trouver le réel dont le logarithme décimal vaut $4.75578$, \cad qu'elles fournissaient $10^{4.75578}\approx 56988$. Conclusion : \fbox{$10.879\times 5238.46\approx 56988$} à comparer avec la réponse exacte : $56989.20634$.}
+On voit à travers cet exemple un peu simpliste que les anciens scientifiques n'avaient à la main qu'à faire des additions, ce concept a révolutionné le calcul (on pouvait faire des calculs beaucoup plus compliqués et avec moins d'erreurs). Par ailleurs les tables fournissaient également des tables de fonctions trigonométriques.
+
+\exo{En théorie musicale, l'échelle tempérée est caractérisée par deux axiomes :
+
+\begin{enumerate}
+\item La suite des fréquences des notes est géométrique, autrement dit, si $f$ est la fréquence d'une note et $f'$ celle de la note immédiatement précédente alors $\dfrac{f}{f'}$ est constante.
+\item La fréquence d'une note donnée est multipliée par deux par rapport à celle de la même note de l'octave précédente et il y a 12 notes dans une octave.
+
+\end{enumerate}
+
+ On se place dans une des conventions où la note la3 a pour fréquence 440Hz. Les calculs seront arrondis au dixième de Hertz près. Les lecteurs intéressés peuvent aller sur \href{https://www.szynalski.com/tone-generator/}{ce site} pour entendre les sons associés aux fréquences calculées.
+ 
+\begin{enumerate}
+\item Calculer la fréquence du la-1 (4 octaves en-dessous du la3) : c'est l'une des plus basses notes que les instruments conventionnels puissent produire. \spoiler{27.5Hz}
+\item On note \suite{f} la suite des fréquences des notes tel que $f_0$ est la fréquence du la-1. Comme nous l'avons expliqué, $(f_n)$ est géométrique : calculer sa raison $q$ et son terme général. \spoiler{Raison : $q=2^{1/12}$. Terme général : pour tout $n\in\N$, $f_n=f_0 q^n=27.5\times 2^{n/12}$}
+\item Sans calcul, que vaut $f_{12\times4}$ ? \spoiler{440Hz}
+\item \begin{enumerate}
+\item Pour les non musiciens : calculer $f_{93}$ \spoiler{$f_{93}\approx5919.9$Hz}
+\item Pour les musiciens : calculer la fréquence du do\#5. \spoiler{$f_{12\times5+4}=f_{64}\approx1108.7$Hz}
+\end{enumerate}
+\item Trouver le plus proche $n\in\N$ tel que $f_n\approx329.6$. Pour les musiciens : à quelle note la plus proche cette fréquence correspond-t-elle ? \spoiler{$n=12\log_2\parent{329.6/27.5}\approx 43$. C'est un mi3.}
+\item Définir une fonction \fone{g}{[f_0,+\infty[}{\N} qui a toute fréquence $F\ge f_0$ associe le plus proche $n\in\N$ tel que $f_n\approx F$ (on supposera l'existence d'une fonction \fone{\text{arr}}{\R}{\Z} qui arrondi tout réel à l'entier le plus proche). Vérifier que $g(329.6)$ donne bien la réponse à la question précédente. \spoiler{Pour tout $F\ge f_0$, $g(F)=\text{arr}\cro{12\log_2\parent{F/27.5}}$}
+
+\end{enumerate}}
+
+\subsubsection{Échelles logarithmiques}
+
+Parce que certaines fonctions croissent très rapidement ou très lentement, typiquement les fonctions exponentielles et logarithmes, les représentations graphiques usuelles ne sont pas les plus adaptées. C'est pourquoi il existe ce qu'on appelle les \textit{échelles logarithmiques}. L'idée est la suivante : dans les représentations classiques la graduation est linéaire, \cad que si les graduations 2 et 3 sont séparées de 1cm alors les graduations 3 et 4 sont aussi séparées de 1cm. Une \textit{échelle logarithmique de base $a\in\R^*_+$} ne rend plus les graduations linéaires, mais \textit{géométrique de raison $a$}. C'est-à-dire que si les graduations $a^2$ et $a^3$ sont séparées de 1cm alors les graduations $a^3$ et $a^4$ sont aussi séparées de 1cm. Formellement :
+
+\defi{Une \textit{échelle logarithmique} est telle que les graduations suivent une progression géométrique de raison $a$.}
+
+\ex{Construisons une échelle logarithmique de base 10 (la plus courante) dont on prend pour convention : la distance entre 1 et 10 est de 3cm. Dans la suite, on note $\log=\log_{10}$
+
+\begin{itemize}
+\item On peut commencer par placer les puissances de 10 : $10$ est à 3cm de 1, $100$ est à 3cm de $10$ et ainsi de suite.
+
+\includegraphics[scale=0.5]{figures/pdf/echlog1-eps-converted-to.pdf}
+
+\item Ce sont nos graduations principales. Disons qu'on veut diviser les espaces entre deux graduations principales par 10 valeurs. Ainsi on veut placer par exemple les graduations 1,2,...,9 afin de diviser par 10 l'espace entre 1 et 10. Il nous faut donc une fonction \fone{g}{\R^*_+}{\R} qui convertit tout réel en sa distance à la graduation 10. Ainsi on doit avoir $g(1)=0$cm, $g(10)=3$cm et ainsi de suite. Comme on sait qu'il y a progression géométrique, $g$ consiste en fait à annuler la puissance de 10. Ainsi $g(x)$ sera de la forme $\log(x)$. Bien sûr ce n'est pas encore fini : $\log(1)=0$ et $\log(10)=1$, il faut corriger. \textit{Les graduations sont linéaires par rapport au logarithme des valeurs} donc il existe $a\in\R$ tel que $g(x)=a\log(x)$. Donc \fbox{$g(x)=3\log(x)$} pour tout $x\in\R^*_+$. Ainsi $g(2)\approx0.9$cm, on peut le placer, ainsi que toutes les autres valeurs intermédiaires.
+
+\includegraphics[scale=0.5]{figures/pdf/echlog2-eps-converted-to.pdf}
+
+Nous avons terminé de construire notre échelle logarithmique.
+
+\end{itemize}
+
+}
+
+Bien sûr dans toute représentation graphique plane il y a deux axes. Quand on utilise une échelle classique pour les deux axes, en général ils se coupent au point $(0,0)$. Mais si l'un des deux utilise une échelle logarithmique, par exemple l'axe des abscisses, il n'est pas possible que le second axe ait pour équation $x=0$ : en effet, sur une échelle logarithmique il est impossible de graduer le 0. Il faut donc le faire couper en un autre point, typiquement une graduation déjà tracée sur l'échelle logarithmique. Pour reprendre notre exemple précédent, l'axe des ordonnées pourrait être $x=1$ (classique).
+
+\defi{(repère semi-logarithmique) Un repère \textit{semi-logarithmique} est tel que l'un des axes utilise une échelle logarithmique et l'autre une échelle linéaire.}
+
+\defi{(repère $\log-\log$) Un repère \textit{$\log-\log$} est tel que les deux axes utilisent une échelle logartihmique.}
+
+En résumé :
+
+\begin{itemize}
+\item L'échelle logarithmique est utile pour représenter efficacement des fonctions à croissance très rapide ou très lente.
+\item Pour les fonctions à croissance rapide type exponentielle : le repère semi-logarithmique pour les ordonnées est approprié (compression des images). Dans un tel repère, toute fonction exponentielle (peu importe la base) devient une droite.
+\item Pour les fonctions à croissance lente type logarithme : le repère semi-logarithmique pour les abscisses est approprié (compression des antécédents). Dans un tel repère, toute fonction logarithme (peu importe la base) devient une droite.
+\end{itemize}
+
+\exo{Dans un logiciel quelconque (spoiler : GeoGebra n'a pas cette option), représenter les 20 premiers termes de la suite \suite{f} de l'exercice de théorie musical dans un repère semi-logarithmique pour l'axe des ordonnées. Le résultat est-il étonnant ? Représenter de la façon la plus commode possible la fonction $g$ du même exercice.}
+
+\exo{\href{https://www.ilemaths.net/img/forum_img/0416/forum_416807_1.JPG}{Voici la courbe représentative d'une certaine fonction}. Proposer une définition de cette dernière.}
+
+\exo{Donner une fonction qu'il serait pertinent de représenter dans un repère log-log.}

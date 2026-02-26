@@ -1,0 +1,1272 @@
+\chapter{Nombres complexes}
+
+\defi{\programme L'ensemble des \textit{complexes}, noté $\C$, est l'ensemble des couples de réels $(x,y)$ que l'on muni des opérations suivantes :
+
+\begin{itemize}
+\item \textit{Addition} : si $(x',y')\in\C,(x,y)+(x',y')=(x+x',y+y')$
+\item \textit{Multiplication} : si $(x',y')\in\C, (x,y)\times (x',y')=(xx'-yy',xy'+x'y)$
+\end{itemize}}
+\rems{\item La multiplication des complexes est donc finalement la seule opération différente de ce qu'on connaît pour les réels. Attention : même si elle est différente, on utilise quand même le même signe $\times$, prendre garde à ne pas confondre !
+\item L'égalité de deux nombres complexes est vérifiée \ssi leurs composantes sont égales.
+\item Donc quand on écrit «~soit $z\in\C$~», on écrit en réalité «~soit $x,y\in\R$ et notons $z$ le complexe $(x,y)$~». Attention, si on écrit simplement «~soit $x,y\in\R$ et notons $z=(x,y)$~», \textit{a priori} $z$ est juste un couple de réels, nous n'avons ici aucun moyen de savoir qu'il est complexe (donc muni des opérations ci-dessus).}
+
+\rem{En classe de Terminale, les complexes seront probablement directement introduits avec la forme algébrique.}
+
+\section{\texorpdfstring{$\C$ est un corps}{C est un corps}}
+
+\pro{(sur l'addition) Soit $z,z',z''\in\C$. Alors :
+
+\begin{enumerate}[i)]
+\item $z+ (z' + z'')=(z+ z')+ z''$. On dit qu'il y a \textit{associativité} de l'addition.
+\item $(0,0)+ z = z+ (0,0) = z$. On dit que $(0,0)$ est l'\textit{élément neutre} de $\C$ pour l'addition.
+\item Pour tout $z\in\C$, il existe un unique $z_i\in\C$ tel que $z+ z_i = z_i+z = (0,0)$. On dit qu'il y a \textit{inversibilité} des éléments de $\C$ pour l'addition et que $z_i$ est \textit{l'inverse} de $z$ pour l'addition. De plus on a $z_i=(-x,-y)$.
+\item $z+ z' = z'+ z$. On dit qu'il y a \textit{commutativité} de l'addition.
+\end{enumerate}}
+
+\rems{\item Les deux premiers points nous disent que $\C$ muni de l'addition est un \textit{monoïde}. Les trois premiers points nous disent que $\C$ muni de l'addition est un \textit{groupe}. Le quatrième nous dit que ce groupe est en plus \textit{commutatif}. Le Rubik's Cube peut être modélisé aussi par un groupe, mais qui lui n'est pas commutatif.
+\item Si $z\in\C$, l'inverse de $z$ pour l'addition est généralement appelé «~opposé de $z$~» par analogie avec les réels.}
+
+\preuve{Tous les points sauf le troisième se démontrent immédiatement en revenant à la définition de la multiplication de complexes. Montrons donc le point 3. Soit $z=(x,y)\in\C,z_i=(x',y')\in\C$. Résolvons $z+ z_i=(0,0)$ d'inconnu $z_i$, \cad le système
+
+\sys{x+x' &=& 0 \\
+y+y' &=& 0}
+
+d'inconnues $x'$ et $y'$. Nous trouvons alors que $z_i$ doit nécessairement valoir $(-x,-y)$. Réciproquement, avec $z_i$ valant ce complexe, nous montrons que $z+ z_i = z_i+ z = (0,0)$.}
+
+\pro{(sur la multiplication) Soit $z,z',z''\in\C$. Alors :
+
+\begin{enumerate}[i)]
+\item $z\times (z' \times z'')=(z\times z')\times z''$. On dit qu'il y a \textit{associativité} de la multiplication.
+\item $(1,0)\times z = z\times (1,0) = z$. On dit que $(1,0)$ est l'\textit{élément neutre} de $\C$ pour la multiplication.
+\item $z\times z' = z'\times z$. On dit qu'il y a \textit{commutativité} de la multiplication.
+\end{enumerate}}
+
+\rems{$\C$ muni de la multiplication est donc un monoïde. Mais attention : ce n'est \textit{pas} un groupe ! En effet, comme nous le verrons, le complexe $(0,0)$ n'a pas d'inverse. On ne peut donc \textit{pas} dire qu'il y a inversibilité des éléments de $\C$ pour la multiplication.}
+
+\preuve{Se démontre immédiatement en revenant à la définition de la multiplication de complexes. }
+
+
+\pro{(distributivité) Soit $z,z',z''\in\C$. Alors on a $z\times (z'+z'')=z\times z' + z\times z''$ et $(z'+z'')\times z=z'\times z + z''\times z$. On dit que la multiplication est \textit{ditributive} par rapport à l'addition.}
+\preuve{En revenant la définition et en utilisant la commutativité de la multiplication (à noter qu'il n'est pas obligatoire d'utiliser la commutativité de la multiplication, mais cela permet d'aller plus vite).}
+\rem{On a donc les éléments suivants :
+
+\begin{itemize}
+\item $\C$ muni de l'addition est un groupe commutatif.
+\item $\C$ muni de la multiplication est un monoïde.
+\item La multiplication est distributive par rapport à l'addition.
+\end{itemize}
+Ces éléments nous disent que $\C$ est un \textit{anneau}. Comme de plus la multiplication est commutative, on dit que $\C$ est un \textit{anneau commutatif}.}
+
+\pro{\programme (inverse d'un complexe) \item Pour tout $z\in\C^*=\C\backslash\{(0,0)\}$, il existe un unique $z_i\in\C$ tel que $z\times z_i = z_i\times z = (1,0)$. On dit que $z_i$ est \textit{l'inverse} de $z$. De plus on a $z_i=\left(\dfrac{x}{x^2+y^2},-\dfrac{y}{x^2+y^2}\right)$. $(0,0)$ est le seul complexe à ne pas avoir d'inverse.}
+\preuve{Soit $z=(x,y)\in\C^*,z_i=(x',y')\in\C$. Résolvons $z\times z_i=(1,0)$ d'inconnu $z_i$, \cad le système
+
+\sys{xx'-yy' &=& 1 \\
+xy'+x'y&=& 0}
+
+d'inconnues $x'$ et $y'$. Nous trouvons alors que $z_i$ doit nécessairement valoir $\left(\dfrac{x}{x^2+y^2},-\dfrac{y}{x^2+y^2}\right)$. Réciproquement, avec $z_i$ valant ce complexe, nous montrons que $z\times z_i = z_i\times z = (1,0)$. Enfin, $(0,0)$ n'a pas d'inverse car pour tout $z_i\in\C$, $(0,0)\times z_i = (0,0)$, il n'existe donc pas de $z_i\in\C$ tel que $(0,0)\times z_i = (1,0)$.}
+
+\rem{Cette dernière proposition, avec le fait que $\C$ est un anneau commutatif, nous dit que $\C$ est un \textit{corps}. Intuitivement, cela signifie que toutes les opérations entre les réels sont valables entre les complexes (en effet, $\R$ est également un corps). C'est pour cela qu'il y a un fort lien entre ces deux ensembles.}
+
+\subsection{Simplication des notations}
+Soit $z,z'\in\C$. De même que les réels, nous procédons à des raccourcis de notation en ce qui concerne la multiplication. Ainsi :
+
+\begin{itemize}
+\item On peut noter $zz'$ pour $z\times z'$.
+\item Pour tout $n\in\N$, on peut noter $z^n$ pour $n$ multiplications de $z$ avec $z^0=(1,0)$.
+\item Si $z\neq (0,0)$, on note $\dfrac{1}{z}$ ou encore $z^{-1}$ pour l'inverse de $z$.
+\item Si $z\neq (0,0)$ et si $n\in\N$ on peut noter $z^{-n}$ pour $\left(\dfrac{1}{z}\right)^n$.
+\end{itemize}
+Remarquons que ces notations sont cohérentes avec celle que l'on utilise pour les réels. Ainsi, pour tout $z\in\C^*$, tout $a,b\in\Z$, $z^a z^b = z^{a+b}$. Cela se montre simplement par associativité de la multiplication.
+
+\section{\texorpdfstring{Identification avec les réels et $i$}{Identification avec les reels et i}}
+
+\pro{Soit $z=(x,0)\in\C$. Alors $z$ peut être identifié au réel $x$, on note alors $z=x$.}
+
+\preuve{Nous ne donnons ici que deux arguments pour avoir une idée intuitive. Premier argument : soit $z=(a,0)\in\C$ et $z'=(b,0)\in\C$. Alors on peut vérifier que $z\times z'=(ab,0)$ et que $z+z'=(a+b,0)$, \cad que les complexes dont la partie imaginaire est nulle se comportent exactement comme les réels par rapport à l'addition et la multiplication. L'autre argument, c'est que les couples de la forme $(x,0)$ avec $x\in\R$ sont de dimension 1 (se représenter une droite) tout comme l'ensemble des réels, et conceptuellement il y a toujours moyen de passer d'une droite à une autre en identifiant leurs éléments.}
+
+\pro{$\R\subset\C$}
+
+\preuve{Soit $x\in\R$ et soit $z=(x,0)\in\C$. Par la proposition précédente, $z=x$ donc $x\in\C$.}
+
+\rem{Cela signifie que tout réel \textit{est} un complexe (rigoureusement : peut être \textit{identifié} à un complexe). La réciproque n'est bien entendu pas vraie : $(1,1)\in\C$ est un couple de réels et n'est donc pas un réel.}
+
+\pro{(multiplication par un scalaire) Soit $\lambda\in\R$ et $z=(x,y)\in\C$. Alors $\lambda z = (\lambda x, \lambda y)$.}
+
+\preuve{$\lambda z=(\lambda,0)\times (x,y)=(\lambda x,\lambda y)$.}
+
+
+\nota{On note $i$ le complexe $(0,1)$. On le nomme \textit{nombre imaginaire}.}
+
+\theo{\programme $i^2=-1$}
+
+\preuve{$i^2=i\times i=(0,1)\times (0,1)=(-1,0)=-1$}
+
+\rems{\item On pourrait se dire que quelque chose cloche : un carré strictement négatif, ce n'est pas possible. Oui, mais il ne faut pas oublier que $i$ est un complexe et ne peut pas être identifié à un réel, or un complexe positif ou négatif... Cela n'a aucun sens~: on a défini aucune relation d'ordre sur les complexes. Donc en toute généralité, pour $z\in\C$, on ne peut surtout pas écrire $z^2\ge 0$ !
+
+\item Deuxième remarque, aurait-on alors  $i=\sqrt{-1}$ ? Certains enseignants introduisent ainsi le nombre imaginaire mais j'estime que c'est une grosse erreur, à la fois pédagogique et mathématique. Pour commencer, il ne faut pas oublier que la racine carrée est une fonction $\R_+ \longrightarrow \R_+$. Donc le passage à la racine carrée n'est \textit{pas autorisée} si l'un des deux membres est négatif ! $\sqrt{-1}$ n'a aucun sens. D'autre part, même en admettant que cela soit possible, on aurait $\sqrt{i^2}=|i|$. Mais que signifie la valeur absolue d'un complexe (il s'agit bien ici d'une \textit{valeur absolue} et non d'un \textit{module} pour ceux qui connaîtraient le terme) ? Comparer un complexe avec un réel (0 pour la valeur absolue) ne veut rien dire non plus. En quel nom $i$ serait-il «~positif~» pour pouvoir écrire $i=\sqrt{-1}$ ? En conclusion, on voit bien que cette écriture pose énormément de problèmes mathématiques, c'est pourquoi je recommande chaudement à tout élève un temps soit peut attaché à sa crédibilité de ne jamais, au grand jamais, écrire quelque chose d'aussi abominablement affreux.}
+
+\pro{\programme (forme algébrique) Soit $z=(x,y)\in\C$. Alors $z=x+iy$. On dit que $x+iy$ est la \textit{forme algébrique} de $z$.}
+
+\preuve{$(x,y)=(x,0)+(0,y)=x+(0,1)\times y=x+iy$.}
+
+Cette écriture permet d'effectuer facilement des calculs sur les complexes en utilisant uniquement les règles de calcul que l'on connaît des réels auxquelles on ajoute la règle $i^2=-1$.
+
+\ex{Retrouvons la multiplication des complexes : soit $z=(x,y)\in\C$ et $z'=(x',y')\in\C$. $z=x+iy$ et $z'=x'+iy'$. Donc $zz'=(x+iy)(x'+iy')=xx'+xiy'+iyx'+i^2yy'=xx'-yy'+i(xy'+x'y)$. C'est bien le résultat attendu.}
+
+\ex{Retrouvons l'inverse d'un complexe. Soit $z=x+iy\in\C^*$. Alors $\dfrac{1}{z}=\dfrac{1}{x+iy}=\dfrac{x-iy}{(x+iy)(x-iy)}=\dfrac{x-iy}{x^2+y^2}=\dfrac{x}{x^2+y^2}+i\left(-\dfrac{y}{x^2+y^2}\right)$ ce qui est le résultat attendu.}
+
+\section{Représentation graphique et objets complexes}
+
+Dans toute cete partie, soit $P$ un plan et $R=(O,{i},{j})$ un repère \textit{orthonormé} de $P$. Dans $P$, nous savons placer des points dont les coordonnées sont sous la forme d'un couple de réels. Soit un complexe $z=(x,y)$. $z$ étant lui-même un couple de réels (muni d'opérations particulières, mais un couple de réels quand même), on peut lui associer le point de $P$ de coordonnées $(x,y)$. Idem pour les vecteurs.
+
+\nota{Dans cette partie, on note :
+\begin{itemize}
+\item Pour tout point $M\in P$, on note $M_x$ l'abscisse de $M$ et $M_y$ son ordonnée.
+\item La distance euclidienne \fons{\dis}{\R^2\times \R^2}{\R_+}{(A,B)}{\sqrt{(B_y-A_y)^2+(B_x-A_x)^2}}.
+\end{itemize}}
+
+\defi{\programme (points associés aux complexes) \begin{itemize}
+\item A tout complexe $z=x+iy\in\C$ on peut associer le point $M\in P$ de coordonnées $M(x,y)$.
+\item Réciproquement, à tout point $M(x,y)$ du plan on peut associer le complexe $z=x+iy$.
+\end{itemize}
+On dit alors que $z$ est l'\textit{affixe} de $M$.}
+\rems{\item Attention : il n'est pas question de sommer ou encore multiplier des points du plan sous prétexte qu'ils sont associés à des complexes ! En effet, un point est un élément de $\R^2$ et n'est donc pas muni des opérations valables pour les complexes. Si on doit faire des opérations, c'est donc entre leurs affixes et \textit{seulement} leurs affixes.
+\item L'affixe de $O$ est donc $0$. Il faut s'habituer à ce que l'affixe de certains points soient associés à des réels.}
+
+\defi{\programme (vecteurs associés aux complexes) \begin{itemize}
+\item A tout complexe $z=x+iy\in\C$ on peut associer le vecteur $v$ du plan affine de coordonnées $(x,y)$.
+\item Réciproquement, à tout vecteur $v=(x,y)$ du plan affine on peut associer le complexe $z=x+iy$.
+On dit alors que $z$ est l'\textit{affixe} de $v$.
+\end{itemize}}
+
+\defi{\programme (parties réelle et imaginaire) Soit $z=(x,y)\in\C$. On dit que $x$ est la \textit{partie réelle} de $z$ que l'on note $\re(z)$. On dit que $y$ est la \textit{partie imaginaire} de $z$ que l'on note $\im(z)$.}
+
+\pro{\programme Soit $z\in\C$ et $M$ le point d'affixe $z$.
+
+\begin{itemize}
+\item Si $\im(z)=0$ alors $M$ est sur l'axe des abscisses.
+\item Si $\re(z)=0$ alors on dit que $z$ est un \textit{imaginaire pur}. $M$ est alors sur l'axe des ordonnées.
+\end{itemize}}
+\preuve{Immédiat.}
+
+\defi{\programme (conjugué) Soit $z=a+ib\in\C$. On appelle \textit{conjugué} de $z$ le complexe $a-ib$ et on le note $\cjg{z}$.}
+
+\pro{Soit $z\in\C$, $M$ et $M'$ les points d'affixes respectives $z$ et $\cjg{z}$. Alors $M$ et $M'$ sont symétriques par rapport à l'axe des abscisses.}
+
+\preuve{Considérons que $z=a+ib$. Alors $M(a,b)$ et $M'(a,-b)$. Ces points ont donc la même abscisse et se situent donc sur la droite d'équation $x=a$. Soit $H(a,0)$. On a $\dis(H,M)=\dis(H,M')=|b|$, d'où le résultat.}
+
+\defi{\programme (module, argument) Soit $z=x+iy\in\C$ et $M$ le point d'affixe $z$.
+\begin{itemize}
+\item On appelle \textit{module} de $z$ la quantité $\dis(O,M)$. On le note $|z|$.
+\item On appelle \textit{argument} de $z$ l'angle orienté $({i},\vr{OM})$. On le note $\arg(z)$. Si $M$ et $O$ sont confondus, \ie $z=0$, on décide par convention que $\arg(z)=0$.
+\end{itemize}}
+
+\rems{\item On a donc ici $\dis(O,M)=\sqrt{x^2+y^2}$.
+\item On note le module comme pour la valeur absolue d'un réel car si $z\in\C$ est un réel, alors le module de $z$ et la valeur absolue de $z$ valent la même chose. Le module est donc une généralisation de la valeur absolue pour les nombres complexes. Par conséquent, dans tout ce chapitre, quand on voit le symbole $|\cdot|$ il est vivement conseillé de considérer \textit{a priori} qu'il s'agit d'un module et non d'une valeur absolue, cela évitera d'écrire des bêtises.
+\item L'argument étant un angle orienté, si $\theta$ est une mesure de $\arg(z)$ alors $A=\ens{\theta+2k\pi,k\in\Z}$ est l'ensemble de toutes les mesures de $\arg(z)$. Il existe un unique $\alpha\in A$ tel que $\alpha\in]-\pi,\pi]$, on l'appelle \textit{mesure principale} de $\arg(z)$.}
+
+\pro{\label{argu} (comment trouver un argument) Soit $z\in\C$, $M$ le point d'affixe $z$ et supposons $|z|\neq 0$. Posons $\Theta=\arccos\left(\dfrac{\re(z)}{|z|}\right)$. Selon le demi-plan où se situe $M$, on en déduit une mesure de $\arg(z)$ :
+
+\begin{itemize}
+\item Si $M$ est au-dessus de l'axe des abscisses ($\im(z)\ge 0$), $\arg(z)=\Theta$.
+\item Si $M$ est en-dessous de l'axe des abscisses ($\im(z)< 0$), $\arg(z)=-\Theta$.
+\end{itemize}
+De plus, cette mesure de $\arg(z)$ est sa mesure principale.}
+
+\preuve{Considérons que $z=x+iy$. Supposons $|z|\neq 0$. Notons $\theta=\arg(z)$. Soit $M'$ l'intersection entre la demie-droite $[OM)$ et le cercle de centre $O$ et de rayon 1. En résvolvant un système d'équations on trouve que pour tout $x\neq 0$, $|M'_x|=\dfrac{|x|}{|z|}$. De plus on a $\theta=({i},\vr{OM})=({i},\vr{OM'})$ et donc $M'_x=\cos\theta$. Par conséquent pour tout $x\neq 0$ on a $|\cos\theta|=\dfrac{|x|}{|z|}$. Si $x>0$ alors $\cos\theta>0$ donc $\cos\theta=\dfrac{x}{|z|}$ et si $x<0$ alors $\cos\theta<0$ donc on a également $\cos\theta=\dfrac{x}{|z|}$. Enfin si $x=0$ alors $\cos\theta=0$ donc on a aussi $\cos\theta=\dfrac{x}{|z|}$. Donc pour tout $x\in\R$ on a $\cos\theta=\dfrac{x}{|z|}$. Nous avons donc $\arccos(\cos\theta))=\arccos\left(\dfrac{x}{|z|}\right)$. C'est le moment de rappeler l'énorme piège : il est faux de dire que pour tout $\theta\in\R$, $\arccos(\cos(\theta))=\theta$. En effet, \fone{\arccos}{[-1,1]}{[0,\pi]} donc cette égalité est vraie seulement si $\theta\in[0,\pi]$. De plus, si $\theta\in[-\pi,0]$ alors $\arccos(\cos(\theta))=-\theta$ (car $x\mapsto \arccos(\cos(x))$ est paire car $x\mapsto \cos(x)$ l'est elle-même). En conséquence, si $y\ge 0$ alors $\theta\in  [0;\pi]$ et donc on a effectivement $\theta=\arccos\left(\dfrac{x}{|z|}\right)$. Si $y<0$ alors $\theta\in]-\pi,0[$ donc on a $-\theta=\arccos\left(\dfrac{x}{|z|}\right)$, d'où le résultat. Enfin, pour tout $y\in\R$ on a $\theta\in]-\pi,\pi]$, $\theta$ est donc la mesure principale de $\arg(z)$.}
+
+\ex{Soit $z=-3-7i$. Alors $|z|=\sqrt{(-3)^2+(-7)^2}=\sqrt{58}\approx 7.6$. Donc $\Theta=\arccos\left(\dfrac{-3}{\sqrt{58}}\right)$ et puisque $\im(z)<0$, alors on en déduit que $\arg(z)=-\arccos\left(-\dfrac{3}{\sqrt{58}}\right)\approx -1.98$ qui est la mesure principale de $\arg(z)$.}
+
+\lemme{Soit $z\in\C^*$ et $\lambda\in\R$.
+\begin{itemize}
+\item Si $\lambda>0$ alors $\arg(\lambda z) = \arg(z)$
+\item Si $\lambda=0$ alors $\arg(\lambda z)=0$
+\item Si $\lambda <0$ alors $\arg(\lambda z) = \arg(z)+\pi$.
+\end{itemize}}
+
+\rem{Si $z=0$ alors $\arg(\lambda z)=\arg 0 = 0$ et $\arg(z)+\pi=\pi$ ce qui invalide le troisième point. D'où il est important que $z\neq 0$.}
+
+\preuve{Le cas $\lambda=0$ est immédiat. Supposons $\lambda\neq 0$. Soit $M$ le point d'affixe $z$. Soit $M'$ le point d'affixe $\lambda z$. $\vr{OM}$ et $\vr{OM'}$ sont colinéaires. Si $\lambda>0$ alors ils ont en plus le même sens et donc $\arg(\lambda z)=({i},\vr{OM'})=({i},\vr{OM})=\arg(z)$. Si $\lambda<0$ ils sont de sens contraire et donc $\arg(\lambda z)=({i},\vr{OM'})=({i},\vr{OM})+\pi=\arg(z)+\pi$.}
+
+\pro{A tout couple $(\rho,\theta)\in\R_+\times\R$ on peut associer un unique complexe $z$ tel que $|z|=\rho$ et $\arg(z)=\theta$ et on a alors $z=\rho(\cos\theta+i\sin\theta)$.}
+
+\preuve{Analyse : soit $(\rho,\theta)\in\R_+\times\R$ et supposons l'existence d'un $z\in\C$ tel que $|z|=\rho$ et $\arg(z)=\theta$. Soit $M$ le point d'affixe $z$. $|z|=\rho$ donc $M$ est sur le cercle $C_\rho$ de centre $O$ et de rayon $\rho$. On sait de plus que $\arg(z)=\theta$. Soit $M'(\cos\theta,\sin\theta)$. Alors $\arg(z)=({i},\vr{OM'})$ donc nécessairement $M\in[OM')$. Donc $M\in C_\rho\cap [OM')$. Ce dernier ensemble est réduit à un seul élément, donc si il existe un tel complexe, il est unique. Synthèse : soit  $z=\rho(\cos\theta+i\sin\theta)$. Alors on vérifie facilement que $z$ vérifie $|z|=\rho$ et $\arg(z)=\theta$ en utilisant le lemme précédent. La synthèse nous donne l'existence, l'analyse l'unicité.}
+
+\pro{\programme (forme trigonométrique) Pour tout $z\in\C$ il existe $\theta\in\R$ et un unique $\rho\in\R_+$ tel que $|z|=\rho$ et $\arg(z)=\theta$. On a alors $z=\rho(\cos\theta+i\sin(\theta))$. On appelle cette écriture \textit{forme trigonométrique} de $z$.}
+
+\preuve{Soit $z=x+iy\in\C$. On a $|z|=\sqrt{x^2+y^2}$ donc le module de $z$ est unique. Posons $\rho=|z|$. D'après la proposition \ref{argu} il existe $\theta\in\R$ tel que $\arg(z)=\theta$. Enfin, d'après la proposition précédente on a bien $z=\rho(\cos\theta+i\sin(\theta))$.}
+
+\rem{Attention, il est faux de dire que pour tout $z\in\C$ il existe un unique couple $(\rho,\theta)\in\R_+\times\R$ tel que $|z|=\rho$ et $\arg(z)=\theta$, car il y a une infinité de mesures du même angle. En revanche si on réduit à la mesure principale, l'unicité est vraie cette fois : pour tout $z\in\C$ il existe un unique couple $(\rho,\theta)\in\R_+\times ]-\pi,\pi]$ tel que $|z|=\rho$ et $\arg(z)=\theta$.}
+
+\defi{\programme (forme exponentielle) Soit $(\rho,\theta)\in\R_+\times\R$ et soit $z$ l'unique complexe tel que $|z|=\rho$ et $\arg(z)=\theta$. Alors on note $z=\rho e^{i\theta}$ que l'on nomme \textit{forme exponentielle} de $z$.}
+
+\rem{Nous justifierons plus tard en quoi cette écriture est cohérente.}
+
+\nota{(notations diverses)
+
+\begin{itemize}
+\item On note $\mathbf{U}=\{z\in\C,|z|=1\}=\{e^{i\theta},\theta\in\R\}$
+\item On note $j=e^{i\dfrac{2\pi}{3}}$. On a $j\in\mathbf{U}$.
+\end{itemize}}
+
+\rem{Soit $C$ l'ensemble des points d'affixes dans $\U$. Alors $C$ est le cercle de centre $O$ et de rayon 1.}
+
+\subsection{Commandes GeoGebra et XCas}
+Mise en garde : il semblerait qu'une grande partie des commandes XCas concernant les complexes fonctionnent mal voire pas du tout avec la version de bureau pour Ubuntu. Si c'est le cas pour le lecteur, deux solutions~: soit utiliser la \href{https://www.xcasenligne.fr/giac_online/demoGiacPhp.php}{version en ligne} qui marche très bien, soit ne faire les calculs complexes qu'avec GeoGebra.
+
+\begin{tabular}{|c|c|c|} \hline
+Notation du cours & GeoGebra & XCas \\ \hline
+Le point $M(2,-3)$ & \verb+M=(2,-3)+ & \verb+M:=point(2,-3)+ \\ \hline
+$M_x$ où $M\in P$ & \verb+x(M)+ & \verb+abscissa(M)+ \\ \hline
+$M_y$ où $M\in P$ & \verb+y(M)+ & \verb+ordinate(M)+ \\ \hline
+Le vecteur $v=(6,-1)$ & \verb+v=vector((6,-1))+ & \verb+v:=[6,-1]+ \\ \hline
+$z=4-3i$ & \verb+c=4-3i+ (la notation $z$ est réservée) & \verb+z:=4-3i+ \\ \hline
+Affixe du point $M$ & ? & \verb+affix(M)+ \\ \hline
+Affixe du vecteur $v$ & ? & \verb+affix(v)+ \\ \hline
+$\re(z)$ & \verb+real(c)+ ou \verb+x(c)+ & \verb+re(z)+ \\ \hline
+$\im(z)$ & \verb+imaginary(c)+ ou \verb+y(c)+ & \verb+im(z)+ \\ \hline
+$\cjg{z}$ & \verb+conjugate(c)+ & \verb+conj(z)+ \\ \hline
+$|z|$ & \verb+|c|+ ou \verb+abs(c)+ & \verb+abs(z)+ \\ \hline
+$\arg(z)$ & \verb+arg(c)+ & \verb+arg(z)+ \\ \hline
+$7e^{i\dfrac{\pi}{3}}$ & \verb+7*e^(i*pi/3)+ & \verb+7*e^(i*pi/3)+ \\ \hline
+\end{tabular}
+
+Il semblerait que GeoGebra ait parfois du mal avec la notation exponentielle : donc toujours vérifier que le complexe qu'il crée est cohérent. En cas de problème, entrer la forme trigonométrique qui est équivalente. 
+
+\subsection{Exercice récapitulatif}
+
+Programmer deux procédures :
+
+\begin{itemize}
+\item \verb+cxalg(t tableau de deux réels)+ qui affiche dans l'ordre, où $a=t[0]$, $b=t[1]$ et $z=a+ib$ :
+\begin{enumerate}
+\item $|z|$,
+\item $\arg(z)$ en mesure principale,
+\item $\cjg{z}$ dans un format exportable sur XCas,
+\item la forme exponentielle de $z$ dans un format exportable sur XCas. 
+\end{enumerate}
+\item \verb+cxtri(t tableau de deux réels, le premier étant positif)+ qui affiche dans l'ordre, où $\rho=t[0]$, $\theta=t[1]$ et $z=\rho e^{i\theta}$ :
+\begin{enumerate}
+\item $\re(z)$
+\item $\im(z)$
+\item la forme algébrique de $z$ dans un format exportable sur XCas,
+\item $\cjg{z}$ dans un format exportable sur XCas,
+\item la forme exponentielle de $z$ dans un format exportable sur XCas. 
+\end{enumerate}
+\end{itemize}
+
+Programmer les quatre fonctions :
+
+\begin{enumerate}
+\item \verb+cxsca(t1, t2 tableaux de deux reels chacun, s reel)+ qui modifie les éléments de $t_2$ comme suit : $t_2[0]=s\re(z)$ et $t_2[1]=s\im(z)$ où $z=t_1[0]+it_1[1]$.
+\item \verb+cxsum(t1, t2, t3 tableaux de deux reels chacun)+ qui modifie les éléments de $t_3$ comme suit : $t_3[0]=\re(z_1+z_2)$ et $t_3[1]=\im(z_1+z_2)$ où $z_1=t_1[0]+it_1[1]$ et $z_2=t_2[0]+it_2[1]$.
+\item \verb+cxpro(t1, t2, t3 tableaux de deux reels chacun)+ qui modifie les éléments de $t_3$ comme suit : $t_3[0]=\re(z_1z_2)$ et $t_3[1]=\im(z_1z_2)$ où $z_1=t_1[0]+it_1[1]$ et $z_2=t_2[0]+it_2[1]$.
+\item \verb+cxquo(t1, t2, t3 tableaux de deux reels chacun)+ qui modifie les éléments de $t_3$ comme suit : $t_3[0]=\re(z_1/z_2)$ et $t_3[1]=\im(z_1/z_2)$ où $z_1=t_1[0]+it_1[1]$ et $z_2=t_2[0]+it_2[1]$. On supposera que $z_2\neq 0$.
+\end{enumerate}
+
+\section{Règles de calcul et propriétés}
+La plupart des propositions ci-dessous étant simples à démontrer par calcul direct, nous ne signalerons la preuve que de celles moins évidentes. Dans toute cette partie, sauf mention contraire, $z,z'\in\C$ et $\lambda\in\R$.
+
+\pro{(sur $i$) pour tout $k\in\N$,
+
+\begin{tabular}{|c|c|c|} \hline
+$n$ & $i^n$ & $i^{-n}$ \tend
+$4k$ & $1$ & $1$ \tend
+$4k+1$ & $i$ & $-i$ \tend
+$4k+2$ & $-1$ & $-1$ \tend
+$4k+3$ & $-i$ & $i$ \tend
+\end{tabular}}
+
+\pro{(sur les vecteurs) Soit $u,v$ deux vecteurs d'affixes respectives $z_u$ et $z_v$. Soit $A$, $B$ deux points de $P$ d'affixes $z_A$ et $z_B$.
+
+\begin{itemize}
+\item Le vecteur $u+\lambda v$ a pour affixe $z_u+\lambda z_v$.
+\item Le vecteur $\vr{AB}$ a pour affixe $z_B-z_A$.
+\end{itemize}}
+
+\pro{(sur $\re$ et $\im$)
+
+\begin{itemize}\label{reim}
+\item $z=z'\eqv \re(z)=\re(z')$ et $\im(z)=\im(z')$
+\item $\re(z)=\dfrac{z+\cjg{z}}{2}$
+\item $\im(z)=\dfrac{z-\cjg{z}}{2i}$
+\item $|\re(z)|\le |z|$
+\item $|\im(z)|\le |z|$
+
+\end{itemize}}
+
+\pro{(sur le conjugué)
+
+\begin{itemize}
+\item $\cjg{\cjg{z}}=z$
+\item $\cjg{\lambda z} = \lambda\cjg{z}$
+\item $\cjg{z+z'}=\cjg{z}+\cjg{z'}$
+\item $\cjg{zz'}=\cjg{z}\cjg{z'}$
+\item Si $z'\neq 0$, $\cjg{\left(\dfrac{z}{z'}\right)}=\dfrac{\cjg{z}}{\cjg{z'}}$
+\item \programme $z\cjg{z}=|z|^2$
+\end{itemize}}
+
+\pro{(sur le module)
+
+\begin{enumerate}
+\item $|z|=0\eqv z=0$
+\item $|\cjg{z}|=|z|$
+\item (inégalité triangulaire) $|z+z'|\le |z|+|z'|$
+\item $|\lambda z| = |\lambda| |z|$
+\item $|zz'|=|z||z'|$
+\item Si $z\neq 0$ alors pour tout $k\in\Z$, $|z^k|=|z|^k$
+\item Si $z'\neq 0$, $\left|\dfrac{z}{z'}\right|=\dfrac{|z|}{|z'|}$
+\end{enumerate}}
+
+\rem{Si $z,z'\neq 0$ alors le cas d'égalité de l'IT, \ie $|z+z'|=|z|+|z'|$, se produit \ssi $\arg z =\arg z'$.}
+
+\preuve{\begin{itemize}
+\item Montrons l'inégalité triangulaire (IT). Posons $d=(|z|+|z'|)^2-|z+z'|^2$. Remarquons que montrer l'IT équivaut à montrer que $d\ge 0$. $d = |z|^2+|z'|^2+2|zz'|-(z+z')(\cjg{z}+\cjg{z'})=2|zz'|-z\cjg{z'}-z'\cjg{z}=2(|zz'|-\re(z\cjg{z'}))$. Posons $Z=z\cjg{z'}$. Alors $d=2(|Z|-\re(Z))$ or $\re(Z)\le |\re(Z)|\le |Z|$ donc $d\ge 0$.
+\item Montrons la proposition 6. Soit $k\in\N$. Alors la proposition est immédiate par récurrence en utilisant la proposition 5. Ensuite, $|z^{-k}|=\left|\dfrac{1}{z^k}\right|$. D'après la proposition 7, $\left|\dfrac{1}{z^k}\right|=\dfrac{1}{|z^k|}=\dfrac{1}{|z|^k}=|z|^{-k}$. Nous avons donc montré la proposition pour $k$ entier négatif.
+\end{itemize}}
+
+
+
+\pro{(sur l'argument)
+
+\begin{enumerate}
+\item Soit $z\neq0$. \begin{itemize}
+\item Si $\lambda>0$ alors $\arg(\lambda z) = \arg(z)$
+\item Si $\lambda=0$ alors $\arg(\lambda z)=0$
+\item Si $\lambda <0$ alors $\arg(\lambda z) = \arg(z)+\pi$
+\end{itemize}
+
+\item Si $z,z'\neq 0$, $\arg{zz'}=\arg{z}+\arg{z'}$
+\item Si $z\neq 0$, $\arg z^{-1}=-\arg z$
+\item Si $z\neq 0$ alors pour tout $k\in\Z$, $\arg z^k=k\arg z$
+\item Si $z,z'\neq 0$, $\arg\dfrac{z}{z'}=\arg z - \arg z'$
+\item $\arg \cjg{z}=-\arg z$.
+\end{enumerate}}
+
+\rem{Montrons l'importance que tous ces complexes doivent être non nuls. Soit $z=0$ et $z'=i$. Alors :
+
+\begin{itemize}
+\item $\arg{zz'}=\arg{0}=0$ et $\arg z + \arg z' = 0+\dfrac{\pi}{2}=\dfrac{\pi}{2}$ : invalide la proposition 2.
+\item L'inverse de $0$ n'existe pas donc invalide la proposition 3.
+\item Pour la même raison, invalide la proposition 4 si $k$ est négatif.
+\end{itemize}}
+
+\preuve{\begin{enumerate}
+\item Nous l'avons montré dans la section précédente.
+\item Il existe $\rho,\rho'\in\R_+^*$ et $\theta,\theta'\in\R$ tel que $z=\rho(\cos\theta+i\sin\theta)$ et $z'=\rho'(\cos\theta'+i\sin\theta')$. En développant $zz'$ et en appliquant une formule de trigonométrie, on trouve $zz'=\rho\rho'[\cos(\theta+\theta')+i\sin(\theta+\theta')]$. Or $\rho\rho'>0$ donc d'après la proposition 1, $\arg zz'=\arg[\cos(\theta+\theta')+i\sin(\theta+\theta')]=\theta+\theta'=\arg z+\arg z'$.
+\item D'une part $\arg(zz^{-1})=\arg 1=0$ et d'autre part par la proposition 2 $\arg(zz^{-1})=\arg z + \arg z^{-1}$ donc $\arg z^{-1} = -\arg z$.
+\item Soit $k\in\N$. La proposition est immédiate par récurrence en utilisant la proposition 2. Ensuite $\arg(z^{-k})=\arg((z^k)^{-1})$. D'après la proposition 3 $\arg((z^k)^{-1})=-\arg z^k=-k\arg z$, on a donc montré la proposition pour $k$ entier négatif.
+\item $\arg \dfrac{z}{z'}=\arg(zz'^{-1})=\arg z + \arg z'^{-1}=\arg z - \arg z'$.
+\item Soit $M$ et $M'$ les points d'affixes respectives $z$ et $\cjg{z}$. $M$ et $M'$ sont symétriques par rapport à l'axe des abscisses, d'où le résultat.
+\end{enumerate}
+
+}
+
+\pro{(sur la forme exponentielle)
+Soit $\rho,\rho'\in\R_+$ et $\theta,\theta'\in\R$ tel que $z=\rho e^{i\theta}$ et $z'=\rho' e^{i\theta'}$.
+
+\begin{enumerate}
+\item $zz'=\rho\rho' e^{i(\theta+\theta')}$
+\item Si $z'\neq 0$, $\dfrac{z}{z'}=\dfrac{\rho}{\rho'}e^{i(\theta-\theta')}$
+\item Si $z\neq0$ alors pour tout $k\in\Z$, $z^k=\rho^k e^{ik\theta}$
+\item $\cjg z = \rho e^{-i\theta}$
+\item $z=z' \eqv \rho = \rho'$ et il existe $k\in\Z$ tel que $\theta = \theta'+2k\pi$
+\end{enumerate}}
+
+\preuve{\begin{enumerate}
+\item Si $z$ ou $z'$ est nul, alors $zz'=0$ et donc la proposition est vérifiée. Considérons $z,z'\neq 0$. On a $|zz'|=|z||z'|=\rho\rho'$ et $\arg(zz')=\theta+\theta'$.
+\item Si $z=0$ alors $\dfrac{z}{z'}=0$ et donc la proposition est vérifiée. Considérons $z\neq0$. On a $\left|\dfrac{z}{z'}\right|=\dfrac{|z|}{|z'|}=\dfrac{\rho}{\rho'}$ et $\arg\dfrac{z}{z'}=\theta-\theta'$.
+\item $|z^k|=|z|^k=\rho^k$ et $\arg z^k = k\arg z = k\theta$.
+\item $|\cjg{z}|=|z|=\rho$ et $\arg \cjg{z} = -\arg z = -\theta$.
+\item 
+
+\begin{itemize}
+\item ($\Leftarrow$) On a $\re(z)=\rho\cos\theta=\rho'\cos\theta'=\re(z')$ et $\im(z)=\rho\sin\theta=\rho'\sin\theta'=\im(z')$. Donc $z=z'$ (voir propriétés sur $\re$ et $\im$).
+\item ($\Rightarrow$) Si $z=z'=0$ le résultat est immédiat. Supposons $z,z'\neq 0$. $z=z'$ donc $\dfrac{z}{z'}=1$. D'après le second point, on a en outre $\dfrac{z}{z'}=\dfrac{\rho}{\rho'}e^{i(\theta-\theta')}$. Le module d'un complexe étant unique, alors $\abs{\dfrac{z}{z'}}=\abs{\dfrac{\rho}{\rho'}}=1$ d'où $\rho=\rho'$. $\arg\dfrac{z}{z'}=\arg 1 = 0$ et en outre $\arg\dfrac{z}{z'}=\theta-\theta'$. L'argument d'un complexe étant unique à $2\pi$ près, il existe $k\in\Z$ tel que $0=\theta-\theta'+2k\pi$.
+\end{itemize}
+\end{enumerate}}
+
+\rem{Cette dernière série de propositions montre en fait la cohérence de la forme exponentielle. En effet, nous verrons sur le chapitre de l'exponentielle qui est, par définition, la fonction \fone{\exp}{\R}{\R_+^*} tel que sa dérivée égale elle-même et $e^0=1$ que pour tout $a,b\in\R$, $e^a e^b = e^{a+b}$ et que $\dfrac{e^a}{e^b}=e^{a-b}$. Donc, en quelque sorte, on peut étendre le comportement de l'exponentielle sur les complexes. Mais \textit{attention}, sans jamais oublier qu'il ne s'agit que d'une \textit{analogie}, la véritable fonction exponentielle n'étant définie que sur les réels ! En résumé, on peut effectuer des calculs sur la forme exponentielle comme si on avait affaire à la véritable fonction exponentielle, sans oublier que ce n'est jamais qu'une analogie.}
+
+\cor{(formule de Moivre) Pour tout $n\in\N$ on a $(e^{i\theta})^n=e^{in\theta}=\cos(n\theta)+i\sin(n\theta)$.}
+
+\preuve{C'est le cas particulier du troisième point de la proposition précédente avec $\rho=1$ et $k$ positif.}
+
+\pro{(identité d'Euler) $e^{i\pi}+1=0$}
+
+\rem{Cette jolie formule, en réalité pas très utile dans ce chapitre et ni difficile à montrer, est pourtant importante dans la culture mathématique. En effet, de nombreux matheux sont forts admiratifs (pour ne pas dire qu'ils vouent un culte) de cette formule à plusieurs titres :
+
+\begin{itemize}
+\item Elle fait intervenir les quantités $e$, $i$, $\pi$, $0$ et $1$ qui sont les représentants de base de leurs domaines respectifs : l'analyse réelle, l'analyse complexe, la trigonométrie et l'algèbre.
+\item Elle établi un pont entre tous les domaines cités ci-dessus.
+\item Elle fait intervenir les trois opérations de base : l'addition, la multiplication et l'exponentiation.
+\item Elle est sobre et courte, donc esthétique.
+\end{itemize}}
+
+\preuve{Immédiat en passant à la forme trigonométrique.}
+
+\pro{(formules d'Euler) Pour tout $\theta\in\R$,
+
+\begin{itemize}
+\item $\cos \theta=\dfrac{e^{i\theta}+e^{-i\theta}}{2}$
+\item $\sin \theta =\dfrac{e^{i\theta}-e^{-i\theta}}{2i}$
+\end{itemize}}
+
+\preuve{C'est un cas particulier des deux premiers points de la proposition \ref{reim} en prenant $z=e^{i\theta}$.}
+
+\exo{Soit $\theta\in\R$. En utilisant ces formules et le binôme de Newton, linéariser $\sin^4\theta$, \cad écrire cette quantité sans multiplications de fonctions trigonométriques, puis calculer une primitive de $x\mapsto \sin^4 x$ (on admettra la dérivée d'une composée de fonctions). On peut vérifier en tapant {\fontfamily{cmtt}\selectfont lineariser\_trigo(sin(theta)**4)} sur XCas.}
+
+\pro{(sur $\U$) Soit $z,z'\in\U$.
+
+\begin{enumerate}
+\item $zz'\in\U$.
+\item $1\in\U$.
+\item $z^{-1}\in\U$ et $z^{-1}=\cjg z$
+\end{enumerate}}
+
+\rem{Ces propositions nous disent que $\U$ muni de la multiplication est un groupe dont le neutre est 1 (l'associativité des complexes étant toujours vérifiée, elle l'est en particulier aussi dans $\U$).}
+
+\section{\texorpdfstring{Racine $n$-ième réelle}{Racine n-ieme reelle}}
+
+On pose dans toute cette partie $n\in\N^*$.
+
+\subsection{Pour les positifs}
+\label{puirat}
+
+\defi{Pour tout $r\in\R_+$, on appelle \textit{racine} $n$\textit{-ième} de $r$ l'unique réel positif $x$ tel que $x^n=r$. On le note $\sqrt[n]{r}$.}
+
+\preuve{Si $r=0$, alors $x=0$ est une solution. Si $x\neq0$ alors $x^n\neq 0$ donc $x$ n'est pas solution, donc il y a existence et unicité de $x$ pour $r=0$. Supposons $r\neq0$. Prouvons l'existence et l'unicité de $x$. Supposons l'existence d'un tel $x$. Alors nécessairement $x\neq 0$. On a $x^n=r$ \ie $\ln(x^n)=\ln r$ \ie $x=\exp\parent{\dfrac{\ln r}{n}}$. Donc s'il y a existence de $x$, $x$ est unique. Posons alors $x=\exp\parent{\dfrac{\ln r}{n}}$. On vérifie facilement que $x^n=r$. Conclusion il y a bien existence et unicité de $x$.}
+
+\defi{On peut donc définir la fonction \textit{racine} $n$\textit{-ième} ainsi : \fons{\sqrt[n]{\cdot}}{\R_+}{\R_+}{x}{\sqrt[n]{x}}}
+
+\pro{(propriétés) \begin{enumerate}[i)]
+\item Elle est bijective et sa réciproque est la fonction polynomiale \fonsn{\R_+}{\R_+}{x}{x^n}
+\item (caractérisation exponentielle) si $x\in\R_+\sauf{0}$, $\sqrt[n]{x}=\exp\parent{\dfrac{\ln x}{n}}$
+\item Elle est continue sur $\R_+$, dérivable sur $\R_+^*$ et pour tout $x\in\R_+^*$, $(\sqrt[n]{x})'=\dfrac{\sqrt[n]{x}}{nx}$.
+\item Elle est strictement croissante sur $\R_+$.
+\item $\limc{x}{+\infty}\sqrt[n]{x}=+\infty$
+\end{enumerate}}
+
+\preuve{\begin{enumerate}[i)]
+\item Soit $x\in\R_+$. Par définition, $(\sqrt[n]{x})^n=x$. Si $x=0$ on a $\sqrt[n]{x^n}=0=x$. Supposons $x\neq0$. On a, toujours par définition, $(\sqrt[n]{x^n})^n=x^n$ \cad $\parent{\dfrac{\sqrt[n]{x^n}}{x}}^n=1$ \cad $\dfrac{\sqrt[n]{x^n}}{x}=1$ \cad $\sqrt[n]{x^n}=x$.
+\item Voir preuve précédente.
+\item La réciproque d'une fonction continue est continue. La dérivée se trouve en utilisant la caractérisation exponentielle (dérivée d'une composée).
+\item Utiliser la caractéristaion exponentielle.
+\item Idem.
+\end{enumerate}}
+
+\pro{(calculs) Soit $x\in\R_+$.
+
+\begin{enumerate}[i)]
+\item $\sqrt[1]{x}=x$
+\item $\sqrt[n]{0}=0$
+\item $\sqrt[n]{1}=1$
+\item $\sqrt[2]{x}=\sqrt{x}$ (racine carrée usuelle)
+\item $(\sqrt[n]{x})^n=x$
+\item $\sqrt[n]{x^n}=x$
+\end{enumerate}}
+
+\preuve{Elles sont immédiates.}
+
+\nota{\begin{itemize}
+\item Pour tout $x\in\R_+\sauf{0}$ on note $x^{1/n}=\sqrt[n]{x}$.
+\item Pour tout $x\in\R_+\sauf{0}$, $p\in\Z$, $q\in\N^*$, on note $x^{p/q}=(\sqrt[q]{x})^p$.
+\end{itemize}}
+
+\rem{Ces notations sont justifiées par le théorème suivant.} 
+
+\theo{(puissances rationnelles) Soit $x\in\R_+\sauf{0}$. Soit $p,q\in\Q$.
+
+\begin{itemize}
+\item $x^p x^q=x^{p+q}$
+\item $(x^p)^q=(x^q)^p=x^{pq}$
+\item $\dfrac{x^p}{x^q}=x^{p-q}$
+\end{itemize}}
+
+\rems{\item On peut donc étendre les propriétés des puissances (que jusqu'à aujourd'hui on connaissait pour des puissances entières) pour des puissances rationnelles, sans jamais oublier qu'elles ne sont valables en général que lorsque $x$ est positif !
+\item On exclut $0$ pour éviter le cas $0^0$.}
+
+\preuve{En utilisant la caractérisation exponentielle.}
+
+\exo{Réaliser un programme réalisant le calcul de $x^q$ pour $q\in\Q$ et $x>0$. On pourra utiliser la caractérisation exponentielle.}
+
+\subsection{Extension aux négatifs}
+
+\pro{Soit $r \in ]-\infty,0[$ et $(\epsilon )$ l'équation $x^n=r$ d'inconnue $x\in\R$.
+\begin{itemize} 
+\item Si $n$ est pair, $( \epsilon )$ n'admet aucune solution réelle.
+\item Si $n$ est impair, $( \epsilon )$ admet une unique solution qui vaut $-\sqrt[n]{|r|}$.
+\end{itemize}}
+
+\preuve{
+\begin{itemize}
+\item Soit $x$ solution de $(\epsilon)$. Si $x$ est pair alors $x^n\ge 0$, absurde puisque $r<0$.
+\item Supposons $n$ impair. Alors $(-1)^n=-1$. Posons $x=-\sqrt[n]{|r|}$. Alors $x^n=-(\sqrt[n]{|r|})^n=-|r|=r$ donc $x$ est solution. Soit $x'\in\R$ solution de $(\epsilon)$. Alors $\dfrac{x^n}{x'^n}=1$ \cad $\dfrac{x}{x'}=1$ \cad $x=x'$. Il y a donc existence et unicité de la solution.
+\end{itemize}}
+
+\nota{Soit $r\in ]-\infty,0[$ et $n$ impair. On note alors $\sqrt[n]{r}$ l'unique solution réelle de $(\epsilon )$.}
+
+\defi{Pour $n$ impair, on peut donc étendre l'ensemble de définition de la fonction racine $n$-ième à la fonction \fonsn{\R}{\R}{x}{\sqrt[n]{x}}.}
+
+\pro{Pour $n$ impair :
+
+\begin{enumerate}[i)]
+\item Cette fonction est bijective et sa réciproque est \fonsn{\R}{\R}{x}{x^n}.
+\item (caractérisation exponentielle) 
+\begin{itemize}
+\item Si $x<0$, $\sqrt[n]{x}=-\exp\parent{\dfrac{\ln |x|}{n}}$
+\item Si $x=0$, $\sqrt[n]{x}=0$
+\item Si $x>0$, $\sqrt[n]{x}=\exp\parent{\dfrac{\ln x}{n}}$
+\end{itemize}
+\item Cette fonction est continue, dérivable sur $\R^*$ et sa dérivée vaut $\dfrac{\sqrt[n]{|x|}}{n|x|}$ si $x<0$ et $\dfrac{\sqrt[n]{x}}{nx}$ si $x>0$.
+\item Elle est strictement croissante sur $\R$.
+\item Elle est impaire, \cad que pour tout $x\in\R$, $\sqrt[n]{-x}=-\sqrt[n]{x}$ et que sa représentation graphique possède une symétrie centrée sur l'origine.
+\item $\limc{x}{-\infty}=-\infty$ et $\limc{x}{+\infty}=+\infty$.
+\end{enumerate}}
+
+\preuve{Ses propositions sont facilement déductibles des autres.}
+
+\pro{On ne peut pas étendre la notation en puissance ni le théorème des puissances rationnelles pour $x<0$ même si $n$ est impair.}
+
+\preuve{On sait que $\sqrt[3]{-1}=-1$. Si nous pouvions étendre le théorème, alors nous aurions par exemple $\sqrt[3]{-1}=(-1)^{1/3}=(-1)^{2/6}=\cro{(-1)^2}^{1/6}=1$, c'est absurde.}
+
+\section{\texorpdfstring{Racine $n$-ième complexe}{Racine n-ieme complexe}}
+
+Dans toute cette partie, on pose $n\in\N^*$.
+
+\defi{On définit l'ensemble $\U_n=\ens{e^{i\dfrac{2k\pi}{n}},k\in\lint 0,n\lint}$}
+
+\ex{\begin{itemize}
+\item $\U_1=\ens{1}$
+\item $\U_2=\ens{1,-1}$
+\item $\U_3=\ens{1,j,\cjg{j}}$
+\item $\U_4=\ens{1,i,-1,-i}$
+\item $\U_5=\ens{1,e^{i\dfrac{2\pi}{5}},e^{i\dfrac{4\pi}{5}},e^{i\dfrac{6\pi}{5}},e^{i\dfrac{8\pi}{5}}}$
+\item $\U_6=\ens{1,e^{i\dfrac{\pi}{3}},j,-1,\cjg{j},e^{i\dfrac{5\pi}{3}}}$
+\end{itemize}}
+
+
+
+\pro{Pour tout $z,z'\in \U_n$,
+
+\begin{enumerate}[i)]
+\item $z\in \U$
+\item $zz'\in \U_n$
+\item $1\in \U_n$
+\item $z^{-1}\in \U_n$ et $z^{-1}=\cjg{z}$
+\end{enumerate}}
+
+\rem{Ces propositions nous disent que $(\U_n,\times)$ est un \textit{groupe} et qu'il est en plus un \textit{sous-groupe} de $\U$ (dont on a déjà montré qu'il est un groupe).}
+
+\preuve{
+
+\begin{enumerate}[i)]
+\item Tout élément $z\in\U_n$ est de la forme $e^{i\theta},\theta\in\R$ donc $z\in\U$.
+\item Soit $z,z'\in\U_n$. Alors il existe $k,k'\in\lint 0,n\lint$ tel que $z=e^{i\dfrac{2k\pi}{n}}$ et $z'=e^{i\dfrac{2k'\pi}{n}}$. On a donc $zz'=e^{i\dfrac{2(k+k')\pi}{n}}$. On a $k+k'\ge 0$ donc si $k+k'<n$ alors on a bien $zz'\in\U_n$. Supposons que $k+k'\ge n$. Il existe donc $k''\in\lint 0,n\lint$ tel que $k+k'=n+k''$. On a alors $zz'=e^{i\parent{2\pi + \dfrac{2k''\pi}{n}}}=e^{i\dfrac{2k''\pi}{n}} e^{i2\pi}=e^{i\dfrac{2k''\pi}{n}}$ donc finalement $zz'\in\U_n$.
+
+\item Pour $k=0$, $e^{i\dfrac{2k\pi}{n}}=e^{i0}=1$.
+
+\item Soit $k\in\lint 0,n\lint$ et $z=e^{i\dfrac{2k\pi}{n}}\in\U_n$. Posons alors $k'=n-k\in\lint 0,n\lint$ et $z'=e^{i\dfrac{2k'\pi}{n}}\in\U_n$. Alors on vérifie facilement que $z'=z^{-1}$ et que $z'=\cjg{z}$.
+\end{enumerate}}
+
+\pro{(caractérisation géométrique de $\U_n$) On note $P_n$ l'ensemble des points d'affixes dans $\U_n$.
+
+\begin{itemize} 
+\item $P_n$ forme les sommets d'un polygône régulier à $n$ côtés inscrit dans le cercle de centre l'origine et de rayon 1.
+\item $(1,0)\in P_n$
+\item $(-1,0)\in P_n \eqv n$ est impair.
+\end{itemize}}
+
+\preuve{Posons $I_n=\lint 0,n\lint$. Les points de $P_n$ sont inscrits dans le cercle de centre l'origine et de rayon 1. Donc pour montrer qu'ils forment un polygône régulier à $n$ côtés, il faut :
+\begin{enumerate}
+\item Montrer qu'il contient bien $n$ points distincts.
+\item Montrer que l'angle entre deux points successifs par rapport au centre est constant.
+\item Montrer que la distance entre deux points successifs est constante.
+\end{enumerate}
+
+\begin{enumerate}
+\item On pose la suite complexe $(O_k)_{k\in I_n}$ la suite à $n$ termes définie pour tout $k\in I_n$ par $O_k=e^{i\dfrac{2k\pi}{n}}$ et soit $(M_k)_{k\in I_n}$ la suite de points définie pour tout $k\in I_n$ comme suit : $M_k$ est le point d'affixe $O_k$. Remarquons tout d'abord que tous les éléments de $\U_n$ sont des termes de $(O_k)$, l'intérêt de $(O_n)$ c'est d'ordonner ces éléments, \cad que les points de $(M_k)$ sont successifs (nous allons le montrer). Posons $(A_k)_{k\in I_n}$ la suite telle que pour tout $k\in I_n$, $A_k$ vaut la mesure de $\arg{O_k}$ dans $[0,2\pi[$, \cad $\dfrac{2k\pi}{n}$. $(A_k)$ est strictement croissante, donc d'une part les points de $P_n$ sont distincts et d'autre part les points de $(M_k)$ sont successifs.
+\item Soit maintenant $(d_k)_{k\in I_n}$ la suite définie pour tout $k\in\lint 0 ,n-2\rint$ par $d_k=A_{k+1}-A_k$ et par $d_{n-1}=A_0+2\pi-A_{n-1}$. $(d_k)$ représente l'angle entre deux points successifs par rapport au centre. On montre facilement que pour tout $k\in I_n, d_k=\dfrac{2\pi}{n}$, $(d_k)$ est donc constante.
+\item Soit $T_n=\ens{OM_kM_{k+1},k\in\lint 0,n-2\rint}\cup OM_{n-1}M_0$, \cad que $T_n$ est l'ensemble des triangles que l'on peut former avec les points de $P_n$. Soit $t\in T_n$. Alors $t$ possède deux côtés de longueur 1 et l'angle entre les deux vaut $\dfrac{2\pi}{n}$. Or si deux triangles possèdent 2 côtés égaux et un même angle entre les deux sont égaux, alors leur troisième côté est aussi égal. Tous les côtés des triangles de $T_n$ sont donc égaux.  
+\end{enumerate}
+
+Les deux autres points de la proposition sont faciles à démontrer.}
+
+\theo{Soit $z\in\C$. $z^n=1\eqv z\in\U_n$. On dit qu'un tel $z$ est \textit{une racine} $n$\textit{-ième de l'unité} et on appelle $\U_n$ \textit{l'ensemble des racines} $n$\textit{-ième de l'unité.}}
+
+\rem{Nous venons donc de résoudre notre première équation complexe : l'équation $z^n=1$ d'inconnue $z\in\C$. Et nous pouvons constater quelque chose de remarquable : cette équation, si on cherche seulement les solutions dans $\R$, n'en a qu'une seule : $1$ alors que dans les complexes, il y en a $n$ distinctes ! Ainsi, les équations, lorsqu'on les résout dans les complexes, peuvent avoir des solutions englobant bien sûr les solutions réelles mais qui a des solutions propres.}
+
+Sur XCas, pour résoudre cette équation par exemple pour $n=6$, taper la commande \verb+csolve(z^6=1,z)+ (de manière générale, la commande \verb+csolve+ permet de résoudre des équations dans $\C$).
+
+\preuve{\begin{itemize}
+\item ($\Leftarrow$) Soit $z\in\U_n$. Soit $k\in\lint 0,n\lint$ tel que $z=e^{i\dfrac{2k\pi}{n}}$. Alors $z^n=e^{i2k\pi}=1$.
+\item ($\Rightarrow$) Il existe $\rho\in\R_+$ et $\theta\in [0,2\pi[$ tel que $z=\rho e^{i\theta}$. Donc $z^n=\rho^n e^{in\theta}$ (voir les propriétés sur la forme exponentielle). Supposons $z^n=1=e^{i0}$. D'après les propriétés de la forme exponentielle, on a d'une part $\rho^n = 1$ \ie $\rho = \sqrt[n]{1}=1$ et d'autre part il existe $k\in\Z$ tel que $n\theta=2k\pi$. Or $n\theta\in[0,2\pi n[$ donc nécessairement $k\in\lint 0,n \lint$ et $\theta=\dfrac{2k\pi}{n}$. Il existe donc $k\in\lint 0,n \lint$ tel que $z=e^{i\dfrac{2k\pi}{n}}$ et donc $z\in\U_n$.
+\end{itemize}}
+
+\nota{Pour tout $c\in\C$ on note $c\U_n=\ens{cz,z\in\U_n}$.}
+
+\lemme{Soit $z\in\C$ et $c\in\C^*$. Alors $c z\in \U_n \eqv z\in c^{-1}\U_n$}
+
+\preuve{$c z\in\U_n \eqv \exists  z'\in\U_n, c z = z' \eqv \exists  z'\in\U_n, z = c^{-1}z' \eqv z\in c^{-1}\U_n$}
+
+\pro{Soit $z\in\C$. Pour tout $r\in\R_+$, $z^n=r\eqv z\in \sqrt[n]{r}\U_n$.}
+
+\preuve{Si $r=0$ c'est immédiat. Supposons $r\neq 0$. $z^n=r \eqv r^{-1} z^n=1 \eqv \parent{\sqrt[n]{r^{-1}} z}^n=1 \eqv \sqrt[n]{r^{-1}} z\in \U_n \eqv z\in\sqrt[n]{r}\U_n$. }
+
+\rem{L'équation $z^n=r$, pour $r\in\R_+$, possède pour seule solution réelle $\sqrt[n]{r}$ comme nous le savons déjà. Ainsi, dans les complexes, on retrouve encore des solutions qui n'existent pas dans $\R$. Remarquez que puisque $1\in\U_n$, $\sqrt[n]{r}$ fait toujours partie des solutions complexes (qui est ici un réel). C'est rassurant puisque une équation complexe doit toujours englober les solutions réelles.}
+
+\ex{Pour $z\in\C$, résolvons $z^4=81$. $\sqrt[4]{81}=3$ et $\U_4=\ens{1,i,-1,-i}$ donc l'ensemble des solutions est $3\U_4=\ens{3,3i,-3,-3i}$.}
+Nous pouvons vérifier avec la commande XCas \verb+csolve(z^4=81,z)+ qui renvoie effectivement cet ensemble de solutions.
+
+\subsection{Des solutions purement imaginaires}
+Soit $(\epsilon)$ l'équation $z^n=c$ où $c\in\C$ d'inconnue $z\in\C$ et soit $S$ l'ensemble des solutions de $(\epsilon)$. On dit que $S$ est l'\textit{ensemble des racines} $n$\textit{-ième de} $c$ et que tout élément de $S$ est une \textit{racine} $n$\textit{-ième de} $c$.
+
+\theo{\label{tracines} Posons $\rho=|c|$, $\theta=\arg c$ et $z_0=\sqrt[n]{\rho}e^{i\dfrac{\theta}{n}}$. Alors :
+\begin{enumerate}[i)]
+\item $z_0\in S$
+\item $S=z_0\U_n$
+\end{enumerate}}
+
+\preuve{Si $c=0$ c'est immédiat. Supposons $c\neq 0$. \begin{enumerate}[i)]
+\item Immédiat en calculant $z_0^n$.
+\item On veut montrer que $z\in S \eqv z\in z_0\U_n$.
+
+\begin{itemize} 
+\item ($\Leftarrow$) Soit $z\in z_0\U_n$. Alors il existe $z'\in \U_n$ tel que $z=z_0 z'$. Donc $z^n=z_0^n z'^n=c\times 1 = c$ donc $z\in S$.
+\item ($\Rightarrow$) Soit $z\in S$. Donc $z^n=c$ \cad $c^{-1}z^n=1$. Or on sait que $z_0^n=c$ donc $\parent{z_0^n}^{-1}=c^{-1}$ donc $\parent{z_0^{-1}}^n=c^{-1}$. Par conséquent, $c^{-1}z^n=1 \eqv \parent{z_0^{-1}}^n z^n = 1 \eqv \parent{z_0^{-1}z}^n = 1 \eqv z_0^{-1}z\in\U_n \eqv z\in z_0\U_n$.
+\end{itemize}
+\end{enumerate}}
+
+\rem{Pour rappel, l'équation $x^n=r$, pour $r<0$ et $n$ pair n'a aucune solution réelle. Ce théorème nous permet d'en trouver dans $\C$.}
+
+\ex{Résolvons $z^6=-15625$ pour $z\in\C$. $|-15625|=15625$ et $\arg (-15625)=\pi$ donc $z_0=\sqrt[6]{15625}e^{i\dfrac{\pi}{6}}=5e^{i\dfrac{\pi}{6}}$ est une solution particulière. On a $\U_6=\ens{1,e^{i\dfrac{\pi}{3}},j,-1,\cjg{j},e^{i\dfrac{5\pi}{3}}}$. Donc l'ensemble des solutions, après simplification, est $\ens{5e^{i\dfrac{\pi}{6}},5i,5e^{i\dfrac{5\pi}{6}},5e^{i\dfrac{-5\pi}{6}},-5i,5e^{i\dfrac{-\pi}{6}}}$. A noter, et c'est ce qu'on attendait, qu'aucune de ces solutions n'est réelle. On remarque également que beaucoup de solutions se ressemblent, ce qu'on va constater ci-dessous.}
+
+\subsection{Techniques pour aller plus vite}
+
+\pro{Si $c\in\R$ et $z\in S$ alors $\cjg{z}\in S$.}
+
+\rems{\item Donc si $c\in\R$ on divise le travail par 2 : dès qu'on a trouvé une moitié des solutions, on trouve l'autre en passant simplement au conjugué.
+\item Attention : c'est faux en général si $c\not\in\R$. Par exemple si on résout $z^2=i$ alors on va trouver $S=\ens{e^{i\dfrac{\pi}{4}},e^{i\dfrac{-3\pi}{4}}}$ or ces deux solutions ne sont pas conjuguées.}
+
+\preuve{Soit $z\in S$. Alors il existe $z'\in\U_n$ tel que $z=z_0 z'$. Donc $\cjg{z}=\cjg{z_0}\cjg{z'}$. On sait que $\cjg{z'}\in\U_n$. Montrons que $\cjg{z_0}\in S$. On a $z_0=\sqrt[n]{|c|}e^{i\theta /n}$ où $\theta=0$ si $c\ge0$ et $\theta=\pi$ si $c<0$. Supposons $c\ge0$. Alors $z_0=\sqrt[n]{c} e^{i 0/n}=\sqrt[n]{c}$. $z_0\in\R$ donc $\cjg{z_0}=z_0$ et donc $\cjg{z_0}^n=z_0^n=c$ d'où $\cjg{z_0}\in S$. Si $c<0$ alors $z_0=\sqrt[n]{-c} e^{i \pi/n}$. Donc $\cjg{z_0}=\sqrt[n]{-c}e^{-i\pi/n}$ et donc $\cjg{z_0}^n=(-c) e^{-i\pi}=c$ d'où $\cjg{z_0}\in S$.}
+
+\pro{\label{sneg} Si $n$ est pair et si $z\in S$ alors $-z\in S$}
+
+\preuve{Il existe $k\in\N^*$ tel que $n=2k$. $(-z)^n=(-z)^{2k}=z^{2k}=z^n=c$ donc $-z\in S$.}
+
+
+
+
+\section{Équations du second degré}
+
+\subsection{Racines carrées d'un complexe}
+
+\defi{\programme Soit $c\in\C$. On appelle \textit{racines carrées} de $c$ les racines 2-ième de $c$.}
+
+Selon si $c$ est sous forme exponentielle/trigonométrique ou algébrique on utilisera l'une ou l'autre des deux propositions suivantes pour le calcul des racines carrées de $c$.
+
+\pro{Soit $\rho\in\R_+$, $\theta\in\R$ et $c=\rho e^{i\theta}$.
+
+\begin{enumerate}[i)]
+\item Les \textit{racines carrées} de $c$ sont $z_0=\sqrt{\rho}e^{i\parent{\dfrac{\theta}{2}}}$ et $z_1=\sqrt{\rho}e^{i\parent{\dfrac{\theta}{2}+\pi}}$
+\item  $z_1=-z_0$
+\end{enumerate}}
+
+\preuve{\begin{enumerate}[i)]
+\item Cas particulier du théorème \ref{tracines} pour $n=2$.
+\item C'est la proposition \ref{sneg}.
+\end{enumerate}}
+
+\pro{\programme \label{rcarree} Soit $c=x+iy\in\C$.
+
+\begin{enumerate}[i)]
+\item Une des racines carrées de $c$, notée $z_0=a+ib$ avec $a\ge0$, est solution du sytème d'équations suivant :
+
+\sys{a^2+b^2 &=& |c| \\
+a^2-b^2 &=& x \\
+2ab &=& y}
+
+\item La seconde solution, notée $z_1$, vérifie $z_1=-z_0$.
+\end{enumerate}}
+
+\preuve{\begin{enumerate}[i)]
+\item Notons tout d'abord que d'après le point 2, l'une des racines carrées a nécessairement sa partie réelle positive. $|z_0^2|=|c|$ donc $|z_0|^2=|c|$ donc $a^2+b^2=|c|$ (première ligne). De plus $z_0^2=c$ donc $(a+ib)^2=x+iy$ donc en développant et en identifiant en trouve les deux dernières lignes. Nous avons montré que $z_0$ \textit{vérifie} ce système, montrons maintenant que $z_0$ est \textit{solution} du système, \cad qu'elle suffit effectivement à trouver $a$ et $b$. En additionant les deux premières lignes on trouve $|a|=a=\sqrt{\dfrac{x+|c|}{2}}$ et par la première ligne, $|b|=\sqrt{\dfrac{|c|-x}{2}}$. La troisième équation nous donne alors le signe de $b$ : si $y\ge0$ alors $b\ge0$ et si $y\le0$ alors $b\le0$. On vérifie que dans les deux cas, on a alors bien $z_0^2=c$.
+\item C'est la proposition \ref{sneg}.
+\end{enumerate}}
+
+\ex{Trouvons les racines carrées de $z=-4+3i$. Notons $z_0=a+ib$ celle telle que $a \ge 0$. $|z|=5$ donc $z_0$ est solution du système suivant :
+
+\sys{a^2+b^2 &=& 5 \\
+a^2-b^2 &=& -4 \\
+2ab &=& 3}
+
+L'addition des deux premières lignes nous donne $|a|=a=\dfrac{\sqrt{2}}{2}$. La première ligne nous donne $|b|=\sqrt{\dfrac{9}{2}}=\dfrac{3\sqrt{2}}{2}$ or d'après la troisième ligne $b\ge0$ donc $b=\dfrac{3\sqrt{2}}{2}$. Les racines carrées de $z$ sont donc $z_0=\dfrac{\sqrt{2}}{2}+i\dfrac{3\sqrt{2}}{2}$ et $z_1=-z_0=-\dfrac{\sqrt{2}}{2}-i\dfrac{3\sqrt{2}}{2}$. Nous pouvons par exemple vérifier avec XCas que cela est correct.}
+
+\rem{Le seul complexe ayant une seule racine carrée au lieu de deux, c'est $0$.}
+
+\subsection{Généralités sur les fonctions polynomiales}
+
+\defi{(fonction polynomiale) Soit \fone{P}{\C}{\C} et $n\in\N$. On dit que $P$ est une \textit{fonction polynomiale} \textit{(complexe) de degré} $n$ s'il existe $(c_k)_{k\in\lint 0,n \rint}$ une famille de complexes telle que $c_n\neq 0$ et telle que pour tout $z\in\C,P(z)=\sum\limits_{k=0}^n c_k z^k$.
+
+\begin{itemize}
+\item Pour tout $k\in\lint 0,n \rint$ on dit que $c_k$ est le \textit{coefficient de degré} $k$ \textit{de} $P$ et que $c_k z^k$ est le \textit{monôme de degré} $k$ \textit{de} $P$. 
+\item On dit que $z$ est une \textit{racine} de $P$ si $P(z)=0$.
+\item On note $\deg P$ le degré de $P$.
+\item On note $\poly$ l'ensemble des fonctions polynomiales et $\polyd{n}$ l'ensemble des fonctions polynomiales de  degré \textit{au plus} $n$.
+\end{itemize}}
+\rems{\item $\polyd{0}$ est l'ensemble des fonctions complexes constantes.
+\item On dit souvent \textit{polynôme} à la place de \textit{fonction polynomiale}, terme plus rigoureux.}
+
+A partir de maintenant et sauf mention contraire, nous posons $P\in\poly$ avec $\deg P = n\in\N$.
+
+\pro{Soit $Q\in\poly$ avec $\deg Q = m\in\N$ et $\lambda\in\R^*$. Soit \fone{R}{\C}{\C} et $z\in\C$.
+
+\begin{enumerate}[i)]
+\item Si $R(z)=\lambda P(z)$ alors $R\in\poly$ et $\deg R = n$.
+\item Si $R(z)=P(z)+Q(z)$ alors $R\in\polyd{\max(n,m)}$.
+\item Si $R(z)=P(z)Q(z)$ et que $P(z),Q(z)\neq 0$ alors $R\in\poly$ et $\deg R=n+m$.
+\end{enumerate}}
+\preuve{Immédiat en revenant à la définition.}
+
+\pro{(égalité de polynômes) Soit $Q\in\poly$ tel que $\deg Q = n$. Alors pour tout $z\in\C$, $P(z)=Q(z)$ \ssi pour tout $k\in\lint 0,n\rint$, le coefficient de degré $k$ de $P$ et de $Q$ sont égaux. On dit alors que $P$ et $Q$ sont \textit{égaux} et on note $P=Q$.}
+
+\preuve{
+\begin{itemize}
+\item ($\Leftarrow$) Immédiat.
+\item ($\Rightarrow$) Soit $z\in C$ et supposons que $P(z)=Q(z)$. Soit $(c_k)_{k\le n}$ la famille des coefficients de $P$ et $(q_k)_{k\le n}$ celle de $Q$, avec $c_n,q_n\neq 0$. $P(z)=Q(z)\eqv \somme{k=0}{n} c_k z^k = \somme{k=0}{n} q_k z^k \eqv \somme{k=0}{n} (c_k-q_k) z^k = 0$. En particulier, pour $z=0$, $P(0)=Q(0)\eqv c_0-q_0=0\eqv c_0 = q_0$. Donc $P(z)=Q(z)\eqv\somme{k=1}{n} (c_k-q_k) z^k = 0 $. En particulier, pour $z=0$, $P(0)=Q(0)\eqv c_1-q_1=0\eqv c_1 = q_1$. Donc $P(z)=Q(z)\eqv\somme{k=2}{n} (c_k-q_k) z^k = 0 $. En réitérant ce procédé, on obtient finalement que pour tout $k\in\lint 0,n\rint, c_k=q_k$.
+\end{itemize}}
+
+
+\theo{(fondamental de l'algèbre, ou de D'Alembert-Gauss) Si $n\neq0$ alors $P$ possède au moins une racine.}
+
+\rems{\item Ce théorème, extrêmement important dans l'histoire des mathématiques tant pour la conception de sa preuve, les mathématiciens mis en jeu (D'Alembert, Euler, Lagrange, Gauss, Galois) que pour ces conséquences nombreuses, est admis.
+\item Contre-exemple pour les polynômes réels : le polynôme $x\mapsto x^2+1$ ne possède aucune racine réelle.}
+
+\theo{(de factorisation polynomiale) Supposons $n\neq0$. Alors $r$ est une racine de $P$ \ssi il existe $Q\in\polyd{n-1}$ tel que pour tout $z\in\C$, $P(z)=(z-r)Q(z)$.}
+
+\preuve{\begin{itemize}
+\item ($\Leftarrow$) Immédiat.
+\item ($\Rightarrow$) Soit $(c_k)_{k\in\lint 0,n \rint}$ avec $c_n\neq 0$ une famille de complexes tel que $P(z)=\somme{k=0}{n} c_k z^k$.
+
+\begin{itemize}
+\item Supposons $r=0$. Alors d'une part $P(0)=0$ et d'autre part $P(0)=c_0$ donc $c_0=0$. On vérifie alors facilement que le polynôme $Q\in\polyd{n-1}$ défini pour tout $z\in\C$ par $Q(z)=\somme{k=0}{n-1} c_{k+1} z^k$ vérifie $(z-r)Q(z)=P(z)$ pour tout $z\in\C$.
+
+\item Supposons $r\neq 0$. Soit $(q_k)_{k\in\lint 0,n \lint}$ une famille de complexes définie par récurrence comme suit :
+
+\begin{enumerate}[i)]
+\item $q_0=-\dfrac{c_0}{r}$
+\item pour tout $k\in\lint 1, n\lint$, $q_k=\dfrac{q_{k-1}-c_k}{r}$
+\end{enumerate}
+Vérifions alors que le polynôme $Q\in\polyd{n-1}$ définie pour tout $z\in\C$ par $Q(z)=\somme{k=0}{n-1} q_k z^k$ vérifie $(z-r)Q(z)=P(z)$ pour tout $z\in\C$. Soit $z\in\C$. On calcule :
+
+\chaine{& & (z-r)Q(z) \\
+&=& (z-r)\somme{k=0}{n-1}q_k z^k \\
+&=& (z-r)\parent{q_0+\somme{k=1}{n-1}q_k z^k} \\
+&=& zq_0-rq_0+\somme{k=1}{n-1} q_k z^{k+1}-r\somme{k=1}{n-1} q_k z^k \\
+&=& zq_0-rq_0-q_0z+q_{n-1}z^n+\somme{k=1}{n-1} q_{k-1}z^k-r\somme{k=1}{n-1} q_k z^k \\
+&=& c_0+q_{n-1}z^n+\somme{k=1}{n-1} c_k z^k}
+
+Les coefficients de $z\mapsto (z-r)Q(z)$ et de $P$ de degré compris dans $\lint 0, n\lint$ sont donc identiques. Le coefficient de degré $n$ de $z\mapsto (z-r)Q(z)$ égale $q_{n-1}$. Montrons que $q_{n-1}=c_n$.
+
+\begin{itemize}
+\item D'une part, $P(r)=0\eqv c_n r^n+\somme{k=0}{n-1} c_k r^k = 0\eqv c_n= -\dfrac{1}{r^n}\somme{k=0}{n-1} c_k r^k$.
+\item D'autre part, par définition, $q_{n-1}=\dfrac{q_{n-2}-c_{n-1}}{r}$. Or $q_{n-2}=\dfrac{q_{n-3}-c_{n-2}}{r}$ donc par substitution, $q_{n-1}=\dfrac{q_{n-3}-c_{n-2}-r c_{n-1}}{r^2}$. En calculant ainsi successivement $q_{n-k}$, $k\in\lint 2,n\rint$ et en substituant dans la valeur de $q_{n-1}$, on trouve $q_{n-1}=\dfrac{q_0-c_1-r c_2 - ... -r^{n-2} c_{n-1}}{r^{n-1}}$, \cad en multipliant à droite par $\dfrac{r}{r}$ : $q_{n-1}=\dfrac{-c_0-r c_1 - r^2 c_2-...-r^{n-1} c_{n-1}}{r^n}$ \cad $q_{n-1}=-\dfrac{1}{r^n}\somme{k=0}{n-1} c_k r^k$. Finalement on a bien $q_{n-1}=c_n$.
+\end{itemize}
+Conclusion : pour tout $k\in\lint 0, n\rint$, le coefficient de degré $k$ de $z\mapsto (z-r)Q(z)$ et de $P(z)$ sont identiques, donc $P(z)=(z-r)Q(z)$.
+\end{itemize}
+\end{itemize}}
+
+\rems{\item De plus, la preuve nous donne un algorithme pour déterminer $Q$ avec une simplification : au lieu de calculer $q_{n-1}$ avec la définition de récurrence, on a directement $q_{n-1}=c_n$.
+\item En pratique, si on ne se souvient pas de l'algorithme, on peut supposer l'existence d'un tel $Q$ avec $(q_k)_{k\le n-1}$ ses coefficients, développer $(z-r)Q(z)$ et par identification avec $P$ déterminer chaque $q_k$. Si cette méthode fonctionne très bien, elle nécessite de résoudre des sytèmes d'équations donc potentiellement plusieurs calculs pour trouver chaque $q_k$, la rendant donc beaucoup plus chronophage qu'en utilisant l'algorithme pour lequel chaque $q_k$ ne nécessite qu'un seul calcul (plus le degré de $P$ est grand et plus la différence de temps entre ces méthodes sera sensible).
+\item Contre-exemple pour les polynôme réels : le polynôme $x\mapsto x^2+1$ n'est pas factorisable.}
+
+\ex{Considérons $P\in\poly$ défini pour tout $z\in\C$ par $P(z)=-3z^3+iz^2+(-9+2i)z-2-5i$. On a $P(-i)=0$ donc $r=-i$ est une racine de $P$. Soit $(c_k)_{k\le 3}$ les coefficients de $P$ et soit $(q_k)_{k\le 2}$ une famille de complexes défini par $q_0=-\dfrac{c_0}{r}=-\dfrac{-2-5i}{-i}=-5+2i$, $q_1=\dfrac{q_0-c_1}{r}=\dfrac{-5+2i-(-9+2i)}{-i}=4i$ et $q_2=c_n=-3$. Soit $z\in\C$. Alors on a $P(z)=(z-r)(q_2 z^2 + q_1 z + q_0)=(z+i)(-3z^2+4iz-5+2i)$. Nous avons donc factorisé $P$.}
+
+\exo{Considérons $P\in\poly$ défini pour tout $z\in\C$ par $P(z)=iz^4+z^3+(2+5i)z^2+(-4-10i)z-12+3i$. Montrer que $3i$ est une racine de $P$ puis en utilisant l'algorithme factoriser $P$ comme le produit d'un polynôme de degré 1 et d'un polynôme de degré 3. On écrira les coefficients sous forme algébrique.}
+
+\cor{Supposons $n\neq 0$.
+\begin{itemize}
+\item $P$ se factorise comme un produit de $n$ polynômes de degré 1. On dit que $P$ est \textit{scindé}.
+\item $P$ admet $n$ racines, non nécessairement distinctes.
+\end{itemize}}
+
+\preuve{\begin{itemize}
+\item Soit $z\in\C$. La preuve se fait par récurrence forte (voir remarque ci-dessous). Soit $(c_k)_{k\le n}$ les coefficients de $P$. Pour $n=1$ on a $P(z)=c_1 z + c_0$ : $P$ est donc déjà factorisé comme un produit d'un polynôme de degré 1. Soit $n\in\N^*$ et supposons que tout polynôme de degré $d\le n$ se factorise comme un produit de $d$ polynômes de degré 1. Soit $Q\in\poly$ et $\deg Q = n+1$. $n+1\neq0$ donc $Q$ admet une racine $r$ et donc il existe $R\in\polyd{n}$ tel que $Q(z)=(z-r)R(z)$. Soit $d=\deg R$. $d\le n$ donc $R$ se factorise comme un produit de $d$ polynômes de degré 1. C'est-à-dire qu'il existe deux familles de complexes $(a_k)_{k\in\lint 1,d\rint}$ et $(b_k)_{k\in\lint 1,d\rint}$, les $a_k$ étant tous non nul, tel que $Q(z)=(z-r)\produit{k=1}{d}(a_k z+b_k)$. Or $\deg Q=n+1$ donc nécessairement $d+1=n+1$ \ie $d=n$, donc $Q(z)=(z-r)\produit{k=1}{n}(a_k z+b_k)$ donc $Q$ se factorise comme un produit de $n+1$ polynômes de degré 1.
+\item Soit $z\in\C$. $P$ est scindé donc il existe $(a_k)_{k<n}$ et $(b_k)_{k<n}$ deux familles de complexes, avec les $a_k$ tous non nuls, tel que $P(z)=\produit{k=0}{n-1}(a_k z + b_k)=\produit{k=0}{n-1}\cro{a_k\parent{z+\dfrac{b_k}{a_k}}}=\alpha\produit{k=0}{n-1}\parent{z+\dfrac{b_k}{a_k}}$ où $\alpha=\produit{k=0}{n-1} a_k$. Pour tout $k<n$, $-\dfrac{b_k}{a_k}$ est une racine de $P$ et donc $P$ admet $n$ racines. A noter que les racines ne sont en effet pas forcément distinctes, considérer par exemple le polynôme $P$ tel que pour tout $z\in\C$, $P(z)=(z-i)^2$. Ce polynôme possède 2 racines identiques : $i$.
+\end{itemize}}
+
+\rem{La récurrence forte correspond au raisonnement suivant : soit $P(n)$ un prédicat sur les naturels. Si on a :
+
+\begin{itemize}
+\item $P(0)$ est vrai et :
+\item $\forall n\in\N, (\forall m\le n, P(m))\Longrightarrow P(n+1)$
+\end{itemize}
+alors pour tout $n\in\N$, $P(n)$ est vrai. La différence alors la récurrence simple, c'est que l'hypothèse de récurrence ne porte pas uniquement sur un rang $n$ mais sur \textit{tous les rangs inférieurs ou égaux à }$n$. La récurrence forte implique évidemment la récurrence simple.}
+
+\lemme{Soit $Q,R\in \poly$ avec $\deg Q=1$ et $\deg R=n\in\N^*$ et soit $q_1,r_n$ les coefficients de degré 1 et $n$ respectivement de $Q$ et de $R$. Soit $P\in\poly$ tel que pour tout $z\in\C$, $P(z)=Q(z)R(z)$ et soit $p_{n+1}$ le coefficient de degré $n+1$ de $P$. Alors $p_{n+1}=q_1 r_n$.}
+
+\preuve{Soit $(q_k)_{k\le 1}$ et $(r_k)_{k\le n}$ les coefficients de $Q$ et $R$. Soit $z\in\C$. $P(z)=Q(z)R(z)=(q_1 z+ q_0)\somme{k=0}{n} r_k z^k=\somme{k=0}{n}(q_1 r_k z^{k+1}+q_0 r_k z^k)$. On a donc bien $p_{n+1}=q_1 r_n$.}
+
+\cor{(forme scindée) Supposons $n\neq 0$. Alors il existe $n'\le n$ tel que $P$ possède $n'$ racines distinctes $(r_k)_{k< n'}$ et seulement elles. Il existe également une famille d'entiers naturels non nuls $(m_k)_{k<n'}$ tel que pour tout $z\in\C$, $P(z)=c_n\produit{k=0}{n'-1}(z-r_k)^{m_k}$ où $c_n$ est le coefficient de degré $n$. On dit que $P$ est écrit sous forme \textit{scindée}. Pour tout $k<n'$ on dit que $r_k$ est de \textit{multiplicité} $m_k$ et en particulier si $m_k=2$ alors on dit que $r_k$ est une \textit{racine double}.}
+
+\preuve{Soit $z\in\C$. $P$ est scindé donc il existe $(a_k)_{k<n}$ et $(b_k)_{k<n}$ deux familles de complexes, avec les $a_k$ tous non nuls, tel que $P(z)=\produit{k=0}{n-1}(a_k z + b_k)=\produit{k=0}{n-1}\cro{a_k\parent{z+\dfrac{b_k}{a_k}}}=\alpha\produit{k=0}{n-1}\parent{z+\dfrac{b_k}{a_k}}$ où $\alpha=\produit{k=0}{n-1} a_k$. Posons $(\rho_k)_{k<n}$ la famille de complexes définie pour $k<n$ par $\rho_k=-\dfrac{b_k}{a_k}$. Autrement dit, $(\rho_k)$ est la famille de toutes les racines de $P$ et $P(z)=\alpha\produit{k=0}{n-1}(z-\rho_k)$. En utilisant par récurrence le lemme précédent, on a $\alpha=c_n$. La famille $(\rho_k)$ contient éventuellement des doublons, donc il existe $n'\le n$ tel que $P$ possède $n'$ racines distinctes $(r_k)_{k< n'}$ et seulement elles et une famille d'entiers naturels non nuls $(m_k)_{k<n'}$ tel que $P(z)=c_n\produit{k=0}{n'-1}(z-r_k)^{m_k}$.}
+
+\rems{\item Attention : il est fréquent d'oublier le $c_n$ mais il est pourtant indispensable~: si on avait toujours $c_n=1$ alors le coefficient de degré $n$ vaudrait constamment $1$ ce qui n'est évidemment pas toujours le cas.
+\item Cette écriture des polynômes est la plus «~forte~» qui soit, dans le sens où elle est la forme la plus factorisée possible, et elle nous donne immédiatement toutes les racines du polynôme ainsi que leur multiplicité.}
+
+\exo{Pour tout $z\in\C$ considérons que $P(z)=2iz^6+(6+6i)z^5+(18-6i)z^4+(-2-26i)z^3-30z^2+24iz+8$. Montrer que les seules racines de $P$ sont $-2$, $i$ et $1$. Déterminer leur multiplicité puis écrire $P$ sous forme scindée.}
+
+On pourra vérifier sur XCas en utilisant la commande \\ \verb&cfactor(2*i*z^6+(6+6*i)*z^5+(18-6*i)*z^4+(-2-26*i)*z^3-30*z^2+24*i*z+8)&. \\
+
+
+\pro{Si :
+
+\begin{enumerate}[i)]
+\item $n$ est impair,
+\item les coefficients de $P$ sont réels,
+\end{enumerate}
+Alors $P$ possède au moins une racine réelle.}
+\preuve{Soit $(r_k)_{k\le n}$ les coefficients de $P$, tous réels, avec $r_n\neq 0$. Considérons la fonction polynomiale \textit{réelle} \fons{P_0}{\R}{\R}{x}{\somme{k=0}{n} r_k x^k}. Comme $P_0$ est la restriction de $P$ dans $\R$, toute racine de $P_0$ est une racine de $P$. Supposons $r_n>0$, le raisonnement pour $r_n<0$ étant similaire. Soit $x\in\R^*$. Alors $P_0(x)=x^n\parent{r_n+\somme{k=0}{n-1} \dfrac{r_k x^k}{x^n}}=x^n\parent{r_n+\somme{k=0}{n-1} \dfrac{r_k}{x^{n-k}}}$. Pour tout $k\in\lint 0,n\lint$, $n-k>0$, donc $\limc{x}{+\infty} x^{n-k}=+\infty$, donc $\limc{x}{+\infty} P_0(x)=\limc{x}{+\infty} r_n x^n=+\infty$. De même, $\limc{x}{-\infty} P_0(x)=\limc{x}{-\infty} r_n x^n$. Or $n$ est impair donc $\limc{x}{-\infty} P_0(x)=-\infty$. On a donc $\limc{x}{+\infty} P_0(x)=+\infty$ et $\limc{x}{-\infty} P_0(x)=-\infty$ et comme $P_0$ est continue sur $R$, par le théorème des valeurs intermédiaires, il existe $r\in\R$ tel que $P_0(r)=0$. Conclusion, $P$ admet $r$ pour racine.}
+
+\subsection{Équations du second degré}
+
+\defi{\programme (équation polynomiale de degré $n$) On appelle \textit{équation (polynomiale) de degré $n\in\N$} toute équation $(\epsilon):P(z)=0$ d'inconnue $z\in\C$ et où $P\in\poly$ avec $\deg P=n$. $P$ est appelé \textit{polynôme associé} à $(\epsilon)$. En particulier, si $n=2$ on dit que $(\epsilon)$ est une \textit{équation du second degré}.}
+\rem{Résoudre une telle équation équivaut donc à trouver les racines de $P$.}
+
+\pro{Soit $(\epsilon)$ une équation de degré $n$, $P$ son polynôme associé et $S$ l'ensemble des solutions de $(\epsilon)$. Si $n=0$ et si $P$ est constant à 0 alors $S=\C$. Si $n=0$ et si $P$ n'est pas constant à 0 alors $S=\emptyset$. Si enfin $n>0$ alors $1\le\card S\le n$.}
+\preuve{C'est une conséquence directe de tout ce qu'on a vu dans la partie précédente.}
+
+Dans toute la suite nous posons $(\epsilon):az^2+bz+c=0$ une équation du second degré, où $a,b,c\in\C$ avec $a\neq0$. On note $S$ ses solutions.
+
+\lemme{\programme (identités remarquables) Soit $a,b\in\C$. Alors :
+
+\begin{itemize}
+\item $(a+b)^2=a^2+2ab+b^2$
+\item $(a+b)(a-b)=a^2-b^2$
+\end{itemize}}
+
+\preuve{Par simple calcul.}
+
+\pro{\programme On pose $\Delta=b^2-4ac$, appelé \textit{discriminant}, et $\delta$ une des racines carrées de $\Delta$. Alors $S=\ens{\dfrac{-b\pm \delta}{2a}}$}
+\preuve{Elle est tout à fait similaire à la preuve pour les réels en passant par la forme canonique~:
+
+\chaine{& & az^2+bz+c = 0 \\
+&\eqv& z^2+\dfrac{b}{a}z+\dfrac{c}{a} = 0 \\ \\
+&\eqv& \parent{z+\dfrac{b}{2a}}^2-\dfrac{b^2}{4a^2}+\dfrac{c}{a}=0 \\
+&\eqv& \parent{z+\dfrac{b}{2a}}^2-\dfrac{\Delta}{4a^2}=0 \\ 
+&\eqv& \parent{z+\dfrac{b}{2a}}^2-\parent{\dfrac{\delta}{2a}}^2=0 \\
+
+&\eqv& \parent{z+\dfrac{b}{2a}+\dfrac{\delta}{2a}}\parent{z+\dfrac{b}{2a}-\dfrac{\delta}{2a}}=0 \\
+&\eqv& z=\dfrac{-b\pm\delta}{2a}  }}
+
+\rem{Puisque les deux racines carrées de $\Delta$ sont opposées, on comprend pourquoi on peut prendre n'importe laquelle des deux pour $\delta$.}
+
+\pro{(lien entre les solutions) La somme des deux solutions de $(\epsilon)$ égale $-\dfrac{b}{a}$.}
+\preuve{Par calcul direct.}
+
+\rem{En pratique, cette proposition sert à calculer la seconde solution connaissant la première, si ce quotient est simple à calculer (\cad si c'est un réel ou un imaginaire pur), autrement cela n'a pas beaucoup d'intérêt.}
+
+\ex{Résolvons l'équation du second degré $(1+i)z^2+(5-7i)z-24+2i=0$ pour $z\in\C$. Ici $-\dfrac{b}{a}$ n'est pas simple à calculer, on utilisera donc la formule classique pour les deux solutions. Posons $\Delta=(5-7i)^2-4(1+i)(-24+2i)=80+18i$. On trouve, par exemple via la méthode décrite dans la proposition \ref{rcarree} qu'une racine carrée de $\Delta$ est $\delta=9+i$. Donc $S=\ens{\dfrac{-(5-7i)+(9+i)}{2(1+i)},\dfrac{-(5-7i)-(9+i)}{2(1+i)}}=\ens{3+i,-2+5i}$. On en déduit donc l'écriture scindée du polynôme $P$ correspondant : pour tout $z\in\C$, $P(z)=(1+i)\cro{z-(3+i)}\cro{z-(-2+5i)}$.}
+
+Pour vérifier sur XCas on pourra utiliser la commande \verb&csolve((1+i)*z^2+(5-7*i)*z-24+2*i=0,z)&. \\
+
+\pro{(sur la nature des solutions) On note $z_0,z_1$ les solutions de $(\epsilon)$.
+\begin{itemize}
+\item $z_0=z_1\eqv \Delta=0$
+\item $z_0=\cjg{z_1}\Longrightarrow \dfrac{b}{a},\dfrac{c}{a}\in\R$
+\item $z_0,z_1\in\R\Longrightarrow \dfrac{b}{a},\dfrac{c}{a}\in\R$
+\item \programme Si $a,b,c\in\R$ et $\Delta<0$ alors $z_0,z_1\in\C$ et $z_0=\cjg{z_1}$.
+\end{itemize}}
+
+\preuve{\begin{itemize}
+\item $z_0=z_1\eqv \dfrac{-b+\delta}{2a}=\dfrac{-b-\delta}{2a} \eqv \delta=0 \eqv \Delta = 0$.
+\item Supposons $z_0=\cjg{z_1}$. Alors $az^2+bz+c=a(z-z_0)(z-\cjg{z_0})=a\cro{z^2-z(z_0+\cjg{z_0})+z_0\cjg{z_0}}=a\cro{z^2-2\re(z_0) z + |z_0|^2}$ donc $\dfrac{b}{a},\dfrac{c}{a}\in\R$.
+\item Supposons $z_0,z_1\in\R$. Alors $az^2+bz+c=a(z-z_0)(z-z_1)=a[z^2-(z_0+z_1)z+z_0 z_1]$ donc $\dfrac{b}{a},\dfrac{c}{a}\in\R$.
+\item Supposons $\Delta<0$. $\Delta\in\R$ donc une racine carrée de $\Delta$ est $\delta=i\sqrt{-\Delta}$. On a donc $S=\ens{\dfrac{-b+i\sqrt{-\Delta}}{2a},\dfrac{-b-i\sqrt{-\Delta}}{2a}}$, ces deux solutions sont complexes et conjuguées.
+\end{itemize}}
+\rem{La réciproque des deux points du milieu est fausse. Par exemple l'équation $z(z-1)=0$ vérifie bien $\dfrac{b}{a},\dfrac{c}{a}\in\R$ et pourtant $z_0\neq \cjg{z_1}$. L'équation $z^2+1=0$ vérifie bien $\dfrac{b}{a},\dfrac{c}{a}\in\R$ et pourtant $z_0,z_1\not\in\R$. }
+
+\subsection{Pour la culture}
+
+Pour ce qui est de la résolution des équations de degré supérieure à 2, il existe des méthodes mais qui ne sont pas du niveau lycée :
+
+\begin{itemize}
+\item Pour le degré 3, la \href{https://fr.wikipedia.org/wiki/M\%C3\%A9thode_de_Cardan}{méthode de Cardan} (1501-1576) permet de résoudre les équations de la forme $z^3+pz^2+q=0$ avec $p,q\in\R$ d'inconnue $z\in\C$.
+\item Pour le degré 4, la \href{https://fr.wikipedia.org/wiki/M\%C3\%A9thode_de_Ferrari}{méthode de Ferrari} (1522-1565) permet de résoudre les équations de la forme $z^4+pz^3+qz^2+r=0$ avec $p,q,r\in\R$ d'inconnue $z\in\C$.
+\item Le \href{https://fr.wikipedia.org/wiki/Th\%C3\%A9or\%C3\%A8me_d\%27Abel_(alg\%C3\%A8bre)}{théorème d'Abel} (1802-1829) nous dit qu'il n'existe aucune méthode permettant de résoudre systématiquement les équations de degré supérieur ou égal à 5 par radicaux (comprendre avec les opérations usuelles). Attention : cela ne veut pas dire que les solutions de ces équations sont toujours impossible à écrire par radicaux (par exemple l'équation $z^5-1=0$ comprend 1 comme solution évidente), cela signifie simplement qu'il n'y a pas de méthode générale.
+\item Presque en même temps, \href{https://fr.wikipedia.org/wiki/Th\%C3\%A9orie_de_Galois#Th\%C3\%A9orie_des_\%C3\%A9quations_alg\%C3\%A9briques}{Galois (1811-1832) améliore le résultat} précédent en exhibant une condition nécessaire et suffisante pour qu'une équation polynomiale soit résoluble par radicaux.
+\end{itemize}
+
+Pour avoir un large panorama de l'histoire de la théorie des équations polynomiales, consulter \href{https://fr.wikipedia.org/wiki/Th\%C3\%A9orie_des_\%C3\%A9quations_(histoire_des_sciences)}{cette page}.
+
+Avec les outils que l'on possède maintenant, on peut résoudre les équations de degré 3 si on connait une racine : on peut alors exprimer le polynôme comme le produit d'un polynôme de degré 1 et un autre de degré 2 dont on sait déterminer les racines.  Par conséquent, si en terminale vous tombez sur une équation polynomiale de degré 3 à résoudre sans indication (ce qui n'arrivera à peu près jamais), c'est forcément qu'il y a une solution évidente à chercher dans $\ens{0,\pm 1, \pm i}$.
+
+Enfin, à noter que pour les équations polynomiales réelles on pouvait s'aider de la représentation graphique du polynôme pour chercher les racines. Mais dans les complexes ce n'est plus possible : pour représenter une fonction $\C\rightarrow\C$ il nous faudrait un espace de dimension 4 (c'est balot) et si on veut absolument la représenter dans un espace de dimension 3 il nous faudrait forcément un indicateur supplémentaire pour combler la dimension manquante, par exemple en utilisant des couleurs, mais les graphiques ne sont alors pas franchement lisibles.
+
+\section{Transformations du plan}
+\subsection{Le plan complexe}
+Jusqu'à présent, pour représenter graphiquement un complexe, nous devions lui associer un point d'affixe ce complexe puis représenter ce point dans le plan usuel euclidien (on dit aussi plan affine). Il existe un plan spécialement conçu pour la représentation des complexes pour s'éviter cette gymnastique : le plan complexe.
+
+\defi{\programme (plan complexe) On dit que $\mathscr{P}$ est un \textit{plan complexe} si :
+
+\begin{enumerate}[i)]
+\item $\mathscr{P}$ est un plan, \ie un espace de dimension 2,
+\item il est muni d'un repère orthonormé direct $\mathscr{R}=(O,{u},{v})$ : $O$ étant appelé \textit{origine} de $\pc$, ${u}$ et ${v}$ les \textit{vecteurs de base} de $\pc$ vérifiant $||{u}||=||{v}||=1$ et $({u},{v})=\dfrac{\pi}{2}$.
+\item chacun de ses éléments, appelés \textit{points}, est la représentation unique d'un nombre complexe.
+\end{enumerate}}
+\rem{On évite absolument d'appeler les vecteurs de base ${i}$ et ${j}$ pour ne pas confondre avec les complexes $i$ et $j$.}
+
+A partir de maintenant considérons $\mathscr{P}$ un plan complexe muni du repère orthonormé $\mathscr{R}=(O,{u},{v})$.
+
+\pro{soit $M\in\pc$. Alors il existe un unique couple $(\lambda,\mu)\in\R^2$ tel que $\vr{OM}=\lambda{u}+\mu{v}$.}
+
+\preuve{Supposons qu'il existe un couple $(\lambda',\mu')\in\R^2$ différent de $(\lambda,\mu)$ tel que $\vr{OM}=\lambda'{u}+\mu'{v}$. Alors $(\lambda-\lambda'){u}=(\mu'-\mu){v}$ donc ${u}$ et ${v}$ sont colinéaires : c'est absurde puisque $\mathscr{R}$ est orthonormé.}
+
+\defi{\programme (terminologie) Soit $M\in\pc$ et soit l'unique couple $(\lambda,\mu)\in\R^2$ tel que $\vr{OM}=\lambda{u}+\mu{v}$. Soit $z=\lambda+i\mu\in\C$.
+
+\begin{itemize}
+\item On dit que $M$ est la \textit{représentation} ou l'\textit{image} de $z$ dans $\pc$.
+\item On dit que $z$ est l'\textit{affixe} de $M$.
+\item On dit que $\lambda$ et $\mu$ sont les \textit{coordonnées} de $M$ dans $\pc$ et on note $M(\lambda,\mu)$.
+\item On dit que $\lambda$ est l'\textit{abscisse} de $M$ dans $\pc$.
+\item On dit que $\mu$ est l'\textit{ordonnée} de $M$ dans $\pc$.
+\end{itemize}}
+
+\pro{Tout complexe $z$ possède une image dans $\pc$, d'abscisse $\re z$ et d'ordonnée $\im z$.}
+\preuve{Immédiate.}
+\rem{Dans les lycées on note souvent $M(z)$ l'image d'un complexe $z$, notation que je ne cautionne pas car on dirait ici que $M$ est à la fois un point et une fonction.}
+
+\defi{(image d'un ensemble) Soit $E\subseteq\C$. On appelle \textit{image de} $E$ \textit{dans} $\pc$ l'ensemble des images des éléments de $E$.}
+
+\defi{\programme (axes)
+\begin{itemize}
+\item On appelle \textit{axe réelle} l'image de l'ensemble $\ens{z\in\C|\im(z)=0}$ dans $\pc$. On le note $(O,{u})$.
+\item On appelle \textit{axe des imaginaires} l'image de l'ensemble $\ens{z\in\C|\re(z)=0}$ dans $\pc$. On le note $(O,{v})$.
+\end{itemize}}
+
+En pratique, la représentation graphique de $\pc$ obéit à certains codes pour ne pas confondre avec la représentation du plan affine classique. Ce qui ne change pas :
+
+\begin{itemize}
+\item On représente les axes réel et imaginaire sous forme de lignes droites perpendiculaires, avec une flèche au bout (à droite pour l'axe réel, en haut pour l'axe des imaginaires).
+\item On représente l'origine $O$ à l'intersection des axe et les vecteurs ${u}$ et ${v}$ en prenant bien garde à ce qu'ils aient la même norme graphiquement.
+\item La graduation de l'axe réel est identique à celle du plan euclidien pour l'axe des abscisses.
+\end{itemize}
+
+Ce qui change :
+
+\begin{itemize}
+\item En bout de flèche de l'axe réel on indique «~$\re$~» ou «~axe réel~» au lieu de $x$.
+\item En bout de flèche de l'axe des imaginaires on indique «~$\im$~» ou «~axe des imaginaires~» au lieu de $y$.
+\item La graduation de l'axe des imaginaires change : par exemple au lieu d'indiquer -2, -1, 0, 1, 2 on indique $-2i$, $-i$, $0$, $i$, $2i$.
+\item La représentation des points peut changer. Prenons par exemple le point $M$ d'affixe $z=3-2i$ que l'on souhaite représenter. Il y a deux manières de s'y prendre :
+\begin{itemize}
+\item Soit on fait comme dans le plan euclidien, \cad qu'on place le point (avec une croix n'est-ce pas) et on écrit «~$M$~» ou si on veut préciser ses coordonnées : «~$M(3,-2)$~».
+\item Soit on place le point (avec une croix n'est-ce pas) et on écrit «~$z$~» ou si on veut préciser sa valeur : «~$z=3-2i$~».
+\end{itemize}
+Pour des questions de lisibilité, il est fortement recommandé, dans une même représentation, de ne choisir qu'une seule de ces conventions et de s'y tenir.
+\end{itemize}
+
+Voici quelques exemples de représentations pas terribles (pourquoi le sont-elles ?) : \href{https://lh3.googleusercontent.com/-E_K0FzhfNqk/WdXl6fBzcqI/AAAAAAAABEc/igcFOQDExdM8WPya6kJPqdzsdfqbeODrQCLcBGAs/s0/plan-complexe.png}{ici}, \href{https://www.ilemaths.net/img/forum_img/0566/forum_566046_1.jpg}{ici}, \href{http://www.maeckes.nl/Tekeningen/Complexe\%20vlak\%20.png}{ici} et \href{https://stileex.xyz/wp-content/uploads/2019/03/representation-geometrique-conjugue-nombre-complexe-e1553947642885-640x445.png}{ici}.
+
+Voici un exemple de représentation qui me semble excellente et que l'on peut attendre sur papier (normal, c'est moi qui l'ait réalisée, je n'en ai pas trouvé dans les premiers résultats de Google Images) :
+
+\includegraphics[scale=0.5]{figures/pdf/plan_complexe-eps-converted-to.pdf}
+
+Évidemment, sur un ordinateur c'est beaucoup plus pénible à faire que sur papier, sur un forum d'entraide par exemple personne ne s'amuse à faire une représentation aussi élaborée que la précédente. Cependant c'est bien de savoir vers quoi on doit tendre dans l'idéal.
+
+\subsection{Les transformations du plan}
+
+On considère dans cette partie $\mathscr{P}$ un plan complexe muni du repère orthonormé $\mathscr{R}=(O,{u},{v})$.
+
+\defi{(transformation du plan) On appelle \textit{transformation du plan} $\pc$ toute application \fonen{\pc}{\pc} bijective (\ie qui admet une application réciproque).}
+
+\rem{Une transformation du plan est donc une application qui transforme tout point de $\pc$ en un autre et telle qu'on puisse «~revenir en arrière~».}
+
+\defi{\begin{itemize}
+\item A toute transformation \fone{\tau}{\pc}{\pc} on associe une application \fone{t}{\C}{\C} bijective qui à tout $z\in\C$ associe l'affixe de $\tau(M)$ où $M$ est l'image de $z$ dans $\pc$. On dit que $t$ est \textit{l'application associée à la transformation} $\tau$.
+\item Réciproquement, à toute application \fone{t}{\C}{\C} bijective on associe une transformation \fone{\tau}{\pc}{\pc} qui à tout $M\in\pc$ associe l'image de $t(z)$ où $z$ est l'affixe de $M$. On dit que $\tau$ est \textit{la transformation associée à l'application} $t$.
+\end{itemize}}
+
+\rem{Dans les faits, il est beaucoup plus commode de décrire une transformation en étudiant son application associée. C'est ce que nous allons faire ici pour étudier les transformations les plus classiques.}
+
+\defi{(translation) Soit $w$ un vecteur de $\pc$ d'affixe $z_w$. On appelle \textit{translation de vecteur} $w$ la transformation $\mathscr{T}_{w}$ associée à l'application \fons{t_{z_w}}{\C}{\C}{z}{z+z_w}.}
+
+\pro{(interprétation géométrique) Soit $w$ un vecteur de $\pc$, $M\in\pc$ et $M'=\mathscr{T}_w (M)$. Alors $\vr{MM'}=w$.}
+
+\preuve{Soit $z$ l'affixe de $M$ et $z_w$ celui de $w$. L'affixe de $\vr{MM'}$ égale $t_{z_w}(z)-z=z+z_w-z=z_w$ d'où $\vr{MM'}=w$.}
+
+\rem{Cette transformation consiste donc à déplacer les points dans la même direction, le même sens et à la même distance.}
+
+\defi{(homothétie) Soit $\Omega\in\pc$ d'affixe $\omega$ et $k\in\R^*$. On appelle \textit{homothétie de centre} $\Omega$ \textit{et de rapport} $k$ la transformation $\mathscr{H}_{\Omega,k}$ associée à l'application \fons{h_{\omega,k}}{\C}{\C}{z}{k(z-\omega)+\omega}.}
+
+\pro{(interprétation géométrique) Soit $\Omega,M\in\pc$, $k\in\R^*$ et $M'=\mathscr{H}_{\Omega,k} (M)$. Alors $\vr{\Omega M'}=k\vr{\Omega M}$.}
+\preuve{Soit $\omega,z$ les affixes respectives de $\Omega$ et de $M$. L'affixe de $\vr{\Omega M'}$ égale $h_{\omega,k}(z)-\omega=k(z-\omega)+\omega-\omega=k(z-\omega)$ d'où $\vr{\Omega M'}=k\vr{\Omega M}$.}
+
+\rems{\item Si $k=0$ tous les points du plan seraient envoyés sur $\Omega$ et l'application ne serait alors pas bijective, c'est pourquoi on l'exclut.
+
+\item L'homothétie consiste donc à agrandir ou rétrécir les figures selon un centre donné. Si $|k|<1$ il s'agit d'un rétrécissement, si $|k|>1$ d'un agrandissement. Si $k=\pm 1$ il n'y a aucun changement concernant les distances. \href{https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Homothetic_transformation.svg/800px-Homothetic_transformation.svg.png}{On peut observer ici} l'image $a_1 b_1 c_1$ d'un triangle $abc$ par une homothétie de centre $O$ et de rapport $k>1$ (pour calculer la valeur précise de $k$ il faudrait calculer $\dfrac{Oa_1}{Oa}$ par exemple).}
+
+\defi{(rotation) Soit $\Omega\in\pc$ d'affixe $\omega$ et $\theta\in\R$. On appelle \textit{rotation de centre $\Omega$ et d'angle $\theta$} la transformation $\mathscr{R}_{\Omega,\theta}$ associée à l'application \fons{r_{\omega,\theta}}{\C}{\C}{z}{(z-\omega)e^{i\theta}+\omega}.}
+
+\pro{(interprétation géométrique) Soit $\Omega\neq M\in\pc$, $\theta\in\R$ et $M'=\mathscr{R}_{\Omega,\theta} (M)$. Alors $(\vr{\Omega M},\vr{\Omega M'})=\theta$ et $||\vr{\Omega M}||=||\vr{\Omega M'}||$.}
+
+\preuve{Montrons la première partie. Soit $z,\omega$ les affixes respectives de $M$ et de $\Omega$. Soit $A\in\pc$ tel que $\vr{OA}=\vr{\Omega M}$ et $A'\in\pc$ tel que $\vr{OA'}=\vr{\Omega M'}$. Soit $a=z-\omega$ l'affixe de $A$ et $a'=(z-\omega)e^{i\theta}+\omega-\omega=(z-\omega)e^{i\theta}$ celui de $A'$. On a donc $(\vr{\Omega M},\vr{\Omega M'})=(\vr{OA},\vr{OA'})=(\vr{OA},{u})+({u},\vr{OA'})=-({u},\vr{OA})+({u},\vr{OA'})=\arg a' - \arg a=\arg\dfrac{a'}{a}=\arg e^{i\theta}=\theta$. Montrons la seconde partie. $||\vr{\Omega M}||=||\vr{O A}||=|a|=|z-\omega|=|(z-\omega)e^{i\theta}|=||\vr{O A'}||=||\vr{\Omega M'}||$.}
+
+\rems{\item Dans le cas particulier où $\theta=\pi$ on dit que $\mathscr{R}_{\Omega,\pi}$ est une \textit{symétrie centrée en} $\Omega$ (ce qui consiste à faire faire un demi-tour à tous les points autour de $\Omega$). A noter également qu'une symétrie centrale possède une définition par homothétie, en effet : $\mathscr{R}_{\Omega,\pi}=\mathscr{H}_{\Omega,-1}$.
+
+\item Même si ce n'est pas obligatoire, il est préférable d'exprimer $\theta$ dans une mesure commode, soit en mesure principale (le mieux selon moi) soit dans $[0,2\pi[$.}
+
+\defi{(projection orthogonale) Soit $\Delta$ une droite de $\pc$ dirigée par le vecteur ${w}\neq{0}$ d'affixe $z_w=a+ib$ et passant par $D\in\pc$ d'affixe $d=\alpha+i\beta$. On appelle \textit{projection orthogonale sur} $\Delta$ l'application \fons{p_\Delta}{\C}{\C}{z}{\dfrac{a^2 c_1 + abc_2+b^2 c_3}{a^2+b^2}} où : \sys{c_1 &=& \re z + i\beta \\
+c_2 &=& \im z-\beta+i(\re z -\alpha) \\
+c_3 &=& \alpha +i\im z}.}
+
+\rem{Attention : cette application n'est pas bijective, par conséquent elle n'admet pas de transformation associée.}
+
+\pro{\label{intgeo} (interprétation géométrique) Soit $\Delta$ une droite de $\pc$, $M\in\pc$ d'affixe $z$ et $P$ l'image de $p_\Delta (z)$. Alors $P\in\Delta$ et $\Delta\perp (MP)$.}
+
+\rem{Cas particuliers facilement vérifiables :
+
+\begin{itemize}
+\item Si $\Delta=(O,{u})$, \cad si $b=\beta=0$ alors pour tout $z\in\C$, $p_\Delta (z)=\re z$ (c'est une projection sur l'axe des abscisses).
+\item Si $\Delta=(O,{v})$, \cad si $a=\alpha=0$ alors pour tout $z\in\C$, $p_\Delta (z)=\im z$ (c'est une projection sur l'axe des ordonnées).
+\item Si $M\in\Delta$, alors $p_\Delta(z)=z$ où $z$ est l'affixe de $M$ (il est inchangé).
+\end{itemize}}
+
+\lemme{(appartenance à une droite) Soit $\Delta$ une droite de $\pc$ dirigée par le vecteur ${w}\neq{0}$ d'affixe $z_w=a+ib$ et passant par $D\in\pc$ d'affixe $d=\alpha+i\beta$. Soit $P\in\pc$ d'affixe $z=x+iy$. Alors $P\in\Delta\eqv a(y-\beta)=b(x-\alpha)$.}
+
+\preuve{$P\in\Delta$ \ssi ${w}$ et $\vr{DP}$ sont colinéaires. Or $\vr{DP}$ a pour affixe $x-\alpha+i(y-\beta)$, d'où le résultat.}
+
+\lemme{(perpendicularité de deux droites) Soit $\Delta,\Delta'$ deux droites de $\pc$ dirigées par les vecteurs ${w},{w'}\neq{0}$ et d'affixes $z_w=a+ib$ et $z_w'=a'+ib'$. Alors $\Delta\perp\Delta'\eqv aa'+bb'=0$}
+
+\preuve{$\Delta\perp\Delta'\eqv{w}\cdot{w'}=0$ d'où le résultat.}
+
+\preuve{(de la proposition \ref{intgeo}). 
+
+\begin{itemize}
+\item Montrons que $P\in\Delta$. Soit $z$ l'affixe de $M$ et $p=p_\Delta (z)$ celui de $P$. Alors en appliquant le premier lemme en posant $x=\re p$ et $y=\im p$ (en laissant faire les calculs à XCas), on vérifie ce résultat.
+\item Montrons que $\Delta\perp (MP)$. Supposons $M\neq P$ (autrement le résultat est immédiat). $(MP)$ est dirigée par $\vr{MP}\neq{0}$ d'affixe $p-z$. Alors en appliquant le second lemme en posant $a'=\re (p-z)$ et $b'=\im (p-z)$ (en laissant faire les calculs à XCas), on vérifie ce résultat.
+\end{itemize}}
+
+\defi{(réflexion) Soit $\Delta$ une droite de $\pc$. On appelle \textit{réflexion} ou \textit{symétrie d'axe} $\Delta$ la transformation $\mathscr{S}_\Delta$ associée à l'application \fons{s_\Delta}{\C}{\C}{z}{h_{p,-1}} où $p=p_\Delta (z)$.}
+
+\rem{Comme nous l'avons vu, on peut remplacer $h_{p,-1}$ par $r_{p,\pi}$.}
+
+\pro{(interprétation géométrique) Soit $\Delta$ une droite de $\pc$, $M\in\pc$ et $M'=\mathscr{S}_\Delta (M)$. Alors $\vr{MM'}=2\vr{MP}$ et $\Delta\perp\vr{MM'}$.}
+\preuve{On a $\vr{PM'}=-\vr{PM}$ (interprétation de l'homothétie). D'où $\vr{MM'}=\vr{MP}+\vr{PM'}=2\vr{MP}$. Ce résultat nous dit de plus que $(MM')$ et $(MP)$ sont parallèles. Or nous savons que $\Delta\perp (MP)$ d'où $\Delta\perp\vr{MM'}$.}
+
+\subsection{Classes de transformations}
+
+Selon leurs propriétés, on peut classer les transformations en différentes catégories. Dans cette partie nous considérerons \fone{\tau}{\pc}{\pc} une transformation. Nous munissons $\pc$ de $\dis$ la distance euclidienne entre deux points de $\pc$. Soit dans cette partie $A,B,C\in\pc$ et $A'=\tau (A),B'=\tau (B),C'=\tau (C)$
+
+\defi{(isométrie) On dit que $\tau$ est une \textit{isométrie} si elle conserve les distances, \cad si $\dis(A',B')=\dis(A,B)$.}
+
+\defi{(déplacement) On dit que $\tau$ est un \textit{déplacement} si :
+
+\begin{enumerate}[i)]
+\item elle conserve les distances,
+\item elle conserve les angles orientés, \cad $(\vr{A'B'}, \vr{A'C'})=(\vr{AB}, \vr{AC})$.
+\end{enumerate}}
+
+\rem{Un déplacement est donc une isométrie.}
+
+\defi{(similitude) On dit que $\tau$ est une \textit{similitude} si elle vérifie l'une ou l'autre des conditions équivalentes suivantes.
+\begin{itemize}
+\item Elle conserve les rapports de distance, c'est-à-dire qu'il existe $k\in]0,+\infty[$, appelé \textit{rapport de $\tau$} tel que $\dis(A',B')=k\dis(A,B)$.
+\item Elle conserve les angles géométriques, \ie les angles non orientés, \ie $(\vr{A'B'}, \vr{A'C'})=\pm(\vr{AB}, \vr{AC})$. Si $\tau$ conserve les angles orientés, on dit que $\tau$ est une \textit{similitude directe}, autrement que $\tau$ est une \textit{similitude indirecte}.
+\end{itemize}}
+
+\preuve{Montrons que ces deux conditions sont équivalentes.
+
+\begin{itemize}
+
+\item ($\Rightarrow$) Supposons que $\tau$ conserve les rapports de distances. Il existe donc $k\in\left] 0,+\infty\right[$ tel que $\mathrm{d}(A',B')=k \mathrm{d}(A,B)$, $\mathrm{d}(B',C')=k \mathrm{d}(B,C)$ et $\mathrm{d}(C',A')=k \mathrm{d}(C,A)$. Donc les triangles $A'B'C'$ et $ABC$ sont semblables leurs côtés étant proportionnels. Donc leurs angles géométriques sont conservés d'où $(\overrightarrow{A'B'},\overrightarrow{A'C'})=\pm(\overrightarrow{AB},\overrightarrow{AC})$
+
+\item ($\Leftarrow$) Supposons que $\tau$ conserve les angles géométriques. De même, $A'B'C'$ et $ABC$ sont semblables leurs angles géométriques étant égaux et il existe donc $k\in\left] 0,+\infty\right[$ tel que $\mathrm{d}(A',B')=k \mathrm{d}(A,B)$
+
+\end{itemize}}
+
+\rem{Les isométries sont des similitudes. Ainsi, si on note $I$ l'ensemble des isométries, $D$ celui des déplacements et $S$ celui des similitudes, nous avons $D\subset I\subset S$. }
+
+\pro{(stabilité des classes) Soit $\tau,\upsilon$ deux transformations appartenant à la même classe (parmi les trois précédentes). Alors $\tau\circ\upsilon$ appartient également à cette classe.}
+
+\preuve{Soit $A,B,C\in\pc$, $A'=\upsilon(A),B'=\upsilon(B),C'=\upsilon(C)$, $A''=\tau(A'),B''=\tau(B'),C''=\tau(C')$.
+
+\begin{itemize}
+\item (pour les isométries) $\dis (A',B')=\dis (A,B)$ car $\upsilon$ est une isométrie d'une part et $\dis (A'',B'')=\dis (A',B')$ car $\tau$ est une isométrie d'autre part donc $\dis (A'',B'')=\dis (A,B)$ donc $\tau\circ\upsilon$ est une isométrie.
+
+\item (pour les déplacements) Tout déplacement est une isométrie, donc $\tau\circ\upsilon$ est une isométrie donc conserve les distances. $(\vr{A'B'}, \vr{A'C'})=(\vr{AB}, \vr{AC})$ car $\upsilon$ est un déplacement d'une part et $(\vr{A''B''}, \vr{A''C''})=(\vr{A'B'}, \vr{A'C'})$ d'autre part car $\tau$ est un déplacement. D'où $(\vr{A''B''}, \vr{A''C''})=(\vr{AB}, \vr{AC})$ donc $\tau\circ\upsilon$ est un déplacement.
+
+\item (pour les similitudes) Soit $t,u\in\R^*$ les rapports respectifs de $\tau$ et $\upsilon$. $\dis(A',B')=u\dis(A,B)$ car $\upsilon$ est une similitude d'une part et $\dis(A'',B'')=t\dis(A',B')$ car $\tau$ est une similitude d'autre part. D'où $\dis(A'',B'')=tu\dis(A,B)$ avec $tu\in\R^*$ donc $\tau\circ\upsilon$ est une similitude.
+
+\end{itemize}}
+
+\pro{(classes des transformations usuelles)
+
+\begin{tabular}{|c|c|c|c|c|} \hline
+ & Translations & Homothéties & Rotations & Réflexions \\ \hline
+Déplacements & \cmark & \xmark & \cmark & \xmark \\ \hline
+Isométries & \cmark & \xmark & \cmark & \cmark \\ \hline
+Similitudes & \cmark & \cmark & \cmark & \cmark \\ \hline
+\end{tabular}}
+
+\rem{Attention de ne pas mal interpréter le symbole \xmark . Il signfie, par exemple, qu'en général, une homothétie n'est pas un déplacement. En revanche, il existe des homothéties qui sont effectivement des déplacements, par exemple les homothéties de rapport $k=\pm 1$ (en fait ce sont les seules). Le symbole \cmark, au contraire indique que \textit{toutes} les homothéties sont des similitudes par exemple.}
+
+\preuve{Immédiat en utilisant les interprétations géométriques de chaque transformation.}
+
+\theo{(des similitudes fondamentales) Les quatre transformations étudiées (translations, homothéties, rotations, réflexions) sont appelées \textit{similitudes fondamentales}. Soit $\sigma$ une similitude. Alors ou bien $\sigma$ est une similitude fondamentale, ou bien $\sigma$ est la composition de deux différentes d'entre elles.}
+\preuve{Admise.}
+
+\exo{Nous considérons \href{https://zupimages.net/up/19/28/aylp.png}{cette image} que nous munissons d'un repère $\mathscr{R}=(O,{u},{v})$ tel que :
+\begin{itemize}
+\item $O$ coïncide avec le coin sud-ouest de l'image,
+\item $||{u}||=||{v}||=1\text{px}$,
+\item l'axe $(O,{u})$ est horizontal par rapport à l'écran.
+\end{itemize}
+
+Après application d'une similitude $\sigma$ à cette image, nous obtenons \href{https://zupimages.net/up/19/28/cqzp.png}{cette seconde image} (muni du même repère). Écrire $\sigma$ comme une composition de similitudes fondamentales (théoriquement comme nous l'avons dit, il est possible de n'en utiliser que deux, mais dans cet exercice le nombre est illimité). }
+
+\section{Suites complexes}
+
+Chapitre non au programme de terminale, je fais une section sur les suites complexes car cela se passe de façon très similaire aux suites réelles.
+
+\subsection{Généralités}
+
+\defi{(suites complexes) Une suite complexe est une suite à termes complexes.}
+
+Dans toute la suite, on pose \suite{Z} une suite complexe. On pose également \suite{X} et \suite{Y} les suites réelles définies pour tout $n\in\N$ par $X_n=\re (Z_n)$ et $Y_n=\im (Z_n)$ respectivement. Ces suites vont nous servir à faire le lien entre les suites complexes et réelles.
+
+\defi{(boule) Soit $c\in\C$ et $r\in\R_+$. On appelle \textit{boule (ouverte) centrée en $c$ et de rayon $r$}, notée $B(c,r)$, l'ensemble $\ens{z\in\C, |z-c|<r}$.}
+
+\rems{\item Graphiquement, l'image de $B(c,r)$ est le disque ouvert de centre l'image de $c$ et de rayon $r$. On a besoin de la notion de boule afin d'avoir des définitions analogues à celles des suites réelles.
+\item Il existe aussi les boules \textit{fermées}, la différence est simplement que l'inégalité est large au lieu d'être stricte (et du coup l'image d'une boule fermée est un disque fermé).
+\item On peut se demander pourquoi on n'appelle pas cet objet «~disque~» au lieu de «~boule~». C'est parce que la boule est une notion beaucoup plus générale de topologie, et il m'a semblé qu'il est intéressant de s'habituer dès maintenant à ce que ce qu'on appelle boule en topologie n'est pas forcément représenté par une boule. La boule de certains espaces sont parfois représentées par des losanges !}
+
+\defi{(bornée) On dit que $(Z_n)$ est bornée si il existe $c\in\C,r\in\R_+$ tel que pour tout $n\in\N$, $Z_n\in B(c,r)$.}
+
+\rems{\item Graphiquement, cela signifie que $(Z_n)$ est bornée si l'image de tous ses termes sont compris dans un disque.
+
+\item Il n'y a pas l'équivalent de la notion de majoration pour les suites complexes (car on ne peut pas comparer deux complexes comme on compare deux réels). Cela signifie aussi qu'il n'y pas de notion de croissance.}
+
+\pro{(centrage du disque à l'origine) $(Z_n)$ est bornée \ssi il existe $\rho\in\R_+$ tel que pour tout $n\in\N$, $Z_n\in B(0,\rho)$.}
+
+\rem{Cela signifie que si $(Z_n)$ est bornée, alors on peut inclure les images de ses termes dans un disque centré à l'origine.}
+
+\preuve{\begin{itemize}
+\item ($\Leftarrow$) Immédiat.
+\item ($\Rightarrow$) Supposons que $(Z_n)$ est bornée. Alors il existe $c\in\C,r\in\R_+$ tel que pour tout $n\in\N$, $Z_n\in B(c,r)$. Posons $\rho=|c|+r$. Soit $n\in\N$. Montrons que $Z_n\in B(0,\rho)$. $|Z_n-0|=|Z_n-c+c|\le |Z_n-c|+|c|<r+|c|=\rho$, d'où $Z_n\in B(0,\rho)$.
+\end{itemize}}
+
+\pro{(lien avec les suites réelles) $(Z_n)$ est bornée (au sens complexe) \ssi $(X_n)$ et $(Y_n)$ sont bornées (au sens réel).}
+
+\preuve{\begin{itemize}
+
+\item ($\Rightarrow$) Rappel d'une propriété du module : pour tout $z\in\C$, $|\re z|\le |z|$ et $|\im z|\le |z|$. Supposons $(Z_n)$ bornée. Il existe donc $c\in\C,r\in\R_+$ tel que pour tout $n\in\N$, $Z_n\in B(c,r)$. Soit $n\in\N$. Alors $r>|Z_n-c|\ge |\re (Z_n-c)|=|X_n-\re c|$. Donc $|X_n-\re c|<r$ \cad $\re c-r<X_n < \re c + r$, donc $(X_n)$ est bornée. De même, $(Y_n)$ est bornée.
+
+\item ($\Leftarrow$) Petit lemme : pour tout $a,b\in\R_+,\sqrt{a+b}\le \sqrt{a}+\sqrt{b}$. Supposons $(X_n)$ et $(Y_n)$ bornées. Soit $M\in\R_+$ tel que pour tout $n\in\N$,  $-M<X_n,Y_n<M$. Posons $c=0$ et $r=2M+1$. Soit $n\in\N$. Montrons que $Z_n\in B(c,r)$, \ie $|Z_n-0|<r$. $|Z_n|=\sqrt{X_n^2+Y_n^2}\le \sqrt{X_n^2}+\sqrt{Y_n^2}= |X_n|+|Y_n|\le 2M<2M+1$ d'où $|Z_n|<r$. Donc $(Z_n)$ est bornée.
+\end{itemize}}
+
+\pro{(lien avec le module) Soit \suite{M} la suite réelle et positive définie pour tout $n\in\N$ par $M_n=|Z_n|$. $(Z_n)$ est bornée \ssi $(M_n)$ est majorée.}
+
+\preuve{\begin{itemize}
+\item ($\Leftarrow$) Supposons $(M_n)$ majorée. Il existe donc $\rho\in\R_+$ tel que pour tout $n\in\N$, $M_n<\rho$. Soit $n\in\N$. Montrons que $Z_n\in B(0,\rho)$. $|Z_n-0|=M_n<\rho$ donc $Z_n\in B(0,\rho)$ donc $(Z_n)$ est bornée.
+\item ($\Rightarrow$) Supposons que $(Z_n)$ est bornée. Alors il existe $\rho\in\R_+$ tel que pour tout $n\in\N$, $Z_n\in B(0,\rho)$.  Soit $n\in\N$. Alors $|Z_n-0|<\rho$ \ie $M_n<\rho$ d'où $(M_n)$ est majorée par $\rho$.
+\end{itemize}}
+
+\defi{(convergence) Soit $l\in\C$. On dit que $(Z_n)$ \textit{converge vers $l$} si pour tout réel $r>0$, il existe $n_r\in\N$ tel que pour tout entier $n\ge n_r$, $Z_n\in B(l,r)$. On note alors $\limc{n}{+\infty} Z_n = l$ ou encore $Z_n\underset{n\rightarrow +\infty}{\longrightarrow} l$.}
+
+\rem{Graphiquement, $(Z_n)$ converge vers $l$ si pour tout $r>0$, tous les termes de $(Z_n)$ sont dans le disque image de $B(l,r)$ à partir d'un certain rang.}
+
+\defi{(divergence) 
+
+\begin{itemize}
+\item On dit que $(Z_n)$ \textit{converge} si il existe $l\in\C$ tel que $(Z_n)$ converge vers $l$.
+\item On dit que $(Z_n)$ \textit{diverge} si elle ne converge pas.
+\end{itemize}}
+
+\rem{Puisqu'il n'y a pas de notion de majoration, il n'y a pas de notion de divergence vers $\pm\infty$ comme pour les suites réelles.}
+
+\theo{(lien avec les suites réelles) Soit $l\in\C$.
+
+\begin{itemize}
+\item $Z_n \underset{n\rightarrow +\infty}{\longrightarrow} l$ (au sens complexe) \ssi $X_n \underset{n\rightarrow +\infty}{\longrightarrow} \re (l)$ et $Y_n \underset{n\rightarrow +\infty}{\longrightarrow} \im (l)$ (au sens réel).
+\item $(Z_n)$  converge (au sens complexe) \ssi $(X_n)$ et $(Y_n)$ convergent (au sens réel).
+\item $(Z_n)$ diverge (au sens complexe) \ssi $(X_n)$ ou $(Y_n)$ diverge (au sens réel).
+\end{itemize}}
+
+\preuve{\begin{itemize}
+\item 
+\begin{itemize}
+\item ($\Rightarrow$) Supposons que $(Z_n)$ converge vers $l\in\C$. Soit un réel $r>0$. Posons un entier $n_r$ tel que pour tout entier $n\ge n_r$, $Z_n\in B(l,r)$. Soit un entier $n\ge n_r$. $(Z_n)$ est donc bornée à partir du rang $n_r$ donc $(X_n)$ et $(Y_n)$ sont bornées à partir du rang $n_r$ et comme nous l'avons vu dans la preuve du lien entre suite complexe bornée et suite réelle bornée, $\re l - r < X_n<\re l +r$ et $\re l - r < Y_n<\re l +r$, d'où $(X_n)$ et $(Y_n)$ convergent respectivement vers $\re l$ et $\im l$.
+\item ($\Leftarrow$) Supposons maintenant que $(X_n)$ et $(Y_n)$ convergent respectivement vers $\re l$ et $\im l$. Soit un réel $R>0$ et posons $r=\dfrac{R}{2}$. Posons $n_r\in\N$ tel que pour tout entier $n\ge n_r, |X_n-\re l|<r$ et $|Y_n-\re l| < r$. Soit un entier $n\ge n_r$. Montrons que $Z_n\in B(l,R)$, \ie $|Z_n-l|<R$. $|Z_n-l|=\sqrt{(X_n-\re l)^2+(Y_n-\im l)^2}\le |X_n-\re l| + |Y_n-\im l|<2r=R$. Donc $Z_n\in B(l,R)$ et donc $(Z_n)$ converge vers $l$.
+\end{itemize}
+\item Immédiat.
+\item Immédiat.
+\end{itemize}}
+
+\rem{Ce théorème nous permet d'étudier le comportement des suites complexes en utilisant tout l'arsenal dont on dispose pour les suites réels. }
+
+\pro{Si $(Z_n)$ converge alors $(Z_n)$ est bornée. La réciproque est fausse.}
+
+\preuve{Supposons que $(Z_n)$ converge. Alors $(X_n)$ et $(Y_n)$ convergent, or on sait que toute suite réelle convergente est bornée. Donc $(X_n)$ et $(Y_n)$ sont bornées et par conséquent $(Z_n)$ est bornée. Contre-exemple pour la réciproque : supposons que pour tout $n\in\N$, $Z_n=(-1)^n$. Alors $(Y_n)$ est constante à 0 donc elle est bornée, les valeurs de $(X_n)$ alternent entre 1 et -1 donc elle est bornée, donc $(Z_n)$ est bornée, pourtant $(Z_n)$ ne converge pas car $(X_n)$ diverge.}
+
+\pro{(lien avec le module) Soit \suite{M} la suite réelle et positive définie pour tout $n\in\N$ par $M_n=|Z_n|$.
+
+\begin{itemize}
+\item Si $(Z_n)$ converge vers $l\in\C$ alors $(M_n)$ converge vers $|l|$. La réciproque est fausse.
+\item$\limc{n}{+\infty} M_n = 0 \eqv \limc{n}{+\infty} Z_n = 0$.
+\end{itemize}}
+
+\preuve{\begin{itemize}
+\item Supposons que $Z_n$ converge vers $l\in\C$. Alors $\limc{n}{+\infty} X_n = \re l$ et $\limc{n}{+\infty} Y_n = \im l$. Or pour tout $n\in\N$, $M_n=\sqrt{X_n^2+Y_n^2}$. Par la caractérisation séquentielle des limites \ref{caraseq}, \suite{(X_n^2)} et \suite{(Y_n^2)} convergent respectivement vers $(\re l)^2$ et $(\im l)^2$. Par sommation, \suite{(X_n^2+Y_n^2)} converge vers $(\re l)^2+(\im l)^2$ et enfin par la caractérisation séquentielle, $M_n$ converge vers $\sqrt{(\re l)^2+(\im l)^2}=|l|$. Pour la réciproque, il suffit de considérer que pour tout $n\in\N$, $Z_n=(-1)^n$. $(M_n)$ est constant à 1 et pourtant $(Z_n)$ diverge.
+\item Le sens $\Leftarrow$ est immédiat d'après le point précédent. Supposons que $(M_n)$ converge vers 0.  Supposons par l'absurde que $(X_n)$ ou $(Y_n)$ diverge. Alors $(Z_n)$ diverge, donc ne converge pas vers 0, \cad qu'il existe un réel $r>0$ tel que pour tout $n_s\in\N$, il existe un entier $n_\sigma\ge n_s$ tel que $|Z_n-0|=M_n>r$. Nous venons exactement d'écrire la traduction mathématique de la proposition «~$(M_n)$ ne converge pas vers 0~», ce qui est absurde. Donc $(X_n)$ et $(Y_n)$ convergent et notons $\alpha$ et $\beta$ leur limite respective. Par la caractérisation séquentielle et par sommation des limites, \suite{(\sqrt{X_n^2+Y_n^2})}, \ie $(M_n)$, converge vers $\sqrt{\alpha^2+\beta^2}$. Mais on a supposé que $(M_n)$ converge vers 0 donc par unicité de la limite, on a $\sqrt{\alpha^2+\beta^2}=0$ \cad $\alpha^2+\beta^2=0$ \cad $\alpha=\beta=0$. Donc $(Z_n)$ converge vers 0. 
+\end{itemize}}
+
+\subsection{Représentation avec XCas}
+
+\subsubsection{Sous forme explicite}
+
+Soit \suite{Z} la suite définie pour tout $n\in\N$ par $Z_{n}=\dfrac{10}{n+1}{e^{i\dfrac{2n\pi}{7}}}$. Pour représenter graphiquement les 8 premiers termes de $(Z_n)$ avec XCas, on peut taper successivement les deux commandes suivantes. \\
+
+\verb&z(n):=10/(n+1)*e^(i*(2*n*pi)/7)& \\
+\verb&for(n:=0;n<8;n:=n+1) {point(z(n))}& \\
+
+Attention cependant : la fenêtre du graphique peut ne pas zoomer automatiquement, il faut le faire manuellement. De plus, ces commandes, si elles marchent très bien sur XCas en ligne, ne semblent pas fonctionner avec le XCas de bureau.
+
+\subsubsection{Sous forme récurrente}
+
+Soit \suite{Z} la suite définie par $Z_0=2-i$ et telle que pour tout $n\in\N$, $Z_{n+1}=\dfrac{Z_n}{n+i}$.  Pour le coup, GeoGebra semble mieux s'en sortir que XCas. Prendre le tableur de GeoGebra, dans A1 mettre $n$ (la colonne $A$ sera réservée aux rangs) et dans B1 mettre $Z_n$. Dans A2 mettre $0$ et dans B2 mettre $2-i$. Dans A3 mettre \verb&=A2+1& et dans B3 mettre \verb&=B2/(A2+1)&. Ensuite étirer A3 et B3 jusqu'à avoir le nombre de termes souhaité, par exemple juqu'à la ligne 10. En principe les images sont représentés dans le plan, sinon sélectionner B3:B10, clique droit, Show Object.
+
+\subsection{Une jolie application des suites complexes}
+
+Pour tout $c\in\C$, on considère \suite{Z} la suite complexe, dépendante de $c$, définie par récurrence comme suit.
+
+\sys{Z_0 &=& 0 \\
+Z_{n+1} &=& Z_{n}^2+c,\forall n\in\N}
+
+Nous nous intéressons aux valeurs de $c$ pour lesquelles $(Z_n)$ est bornée. Quelques exemples.
+
+\begin{itemize}
+\item Si $c=0$ alors $(Z_n)$ est constante à 0, elle est donc bornée.
+\item Si $c=1$, alors $(Z_n)$ est une suite réelle non majorée, elle est n'est donc pas bornée.
+\item Si $c=\dfrac{1}{4}$, alors à l'aide du théorème du point fixe \ref{ptfixe} on montre que $(Z_n)$ converge vers $\dfrac{1}{2}$ donc $(Z_n)$ est bornée.
+\item Si $c=i$ alors on montre par récurrence que pour tout $n\ge 2$, si $n$ est pair alors $Z_n=-1+i$ et si $n$ est impair alors $Z_n=-i$. Donc $(Z_n)$ est bornée.
+\item Si $c=1+i$, $(Z_n)$ n'est visuellement pas bornée.
+\item Si $c=-1-\dfrac{1}{4}i$, $(Z_n)$ est visuellement bornée (graphiquement on a deux îlots de points).
+\end{itemize}
+
+On note $\mathscr{M}$ l'ensemble des $c\in\C$ pour lesquels $(Z_n)$ est bornée. Ainsi $0\in\mathscr{M}$, $1\notin\mathscr{M}$, $\dfrac{1}{4}\in\mathscr{M}$, $i \in\mathscr{M}$, $1+i\notin\mathscr{M}$, $-1-\dfrac{1}{4}i\in\mathscr{M}$. \\
+
+On appelle $\mathscr{M}$ «~ensemble de Mandelbrot~» du nom du mathématicien \href{https://fr.wikipedia.org/wiki/Beno\%C3\%AEt_Mandelbrot}{Benoît Mandelbrot} (1924-2010). L'image de $\mathscr{M}$ dans un plan complexe, représentée ci-dessous, révèle une figure extrêmement célèbre dans le monde des mathématiques : il s'agit d'une fractale avec un nombre immense de propriétés que je ne saurais résumer correctement ici, la \href{https://fr.wikipedia.org/wiki/Ensemble_de_Mandelbrot}{page Wikiépédia dédiée} est une excellente approche.
+
+\includegraphics[scale=0.5]{figures/pdf/mandelbrot-eps-converted-to.pdf}
+
+Ce n'est pas lui qui a découvert $\mathscr{M}$ mais Gaston Julia (1893-1978) et Pierre Fatou (1878-1929). En revanche, on lui doit les représentations graphiques qu'il a réalisées. C'est aussi lui qui est l'inventeur du concept de fractale, si utile pour modéliser notre monde.
+
+\subsection{Ensembles de Julia}
+
+Nous considérons, pour tout $c,\alpha\in\C$, la \suite{Z} la suite complexe, définie par récurrence comme suit.
+
+\sys{Z_0 &=& \alpha \\
+Z_{n+1} &=& Z_{n}^2+c,\forall n\in\N}
+
+Pour tout $c\in\C$, note $J_c$ l'ensemble des $\alpha\in\C$ pour lesquels $(Z_n)$ est bornée. On l'appelle «~ensemble de Julia~». Attention, même si on a l'impression, $\mathscr{M}$ n'est pas un ensemble de Julia particulier. En revanche, si $c\in\mathscr{M}$ alors $J_c$ est topologiquement connexe, \ie fait d'une seule pièce, donc même si l'ensemble de Mandelbrot n'est pas un ensemble de Julia il y a un lien fort entre ces ensembles. Les images des ensembles de Julia \href{https://fr.wikipedia.org/wiki/Ensemble_de_Julia}{peuvent offrir de très esthétiques représentations}. Le domaine des mathématiques étudiant ces structures est la \textit{dynamique holomorphe}.

@@ -1,0 +1,226 @@
+\chapter{Les fondamentaux}
+
+\section{La démonstration}
+
+La démonstration consiste à \textit{prouver une proposition}, c'est-à-dire un énoncé qui a pour valeur de vérité soit \textit{vrai} soit \textit{faux}, à l'aide d'une suite de raisonnements logiques. En mathématiques, il y a beaucoup de manières d'établir des raisonnements, chacune étant plus adaptée à certaines situations. Nous allons dans cette section décrire quelques raisonnements très classiques.
+
+A chaque fois que le lecteur rédige ou lit une démonstration, nous l'encourageons à détecter le raisonnement précis sur lequel se base cette démonstration : cela aide à la compréhension et donc à l'apprentissage.
+
+Bien évidemment, les raisonnements qui suivent sont loin d'être exhaustifs : souvent une démonstration utilise un mixte de tous ceux-là. C'est pourquoi il est utile d'avoir un répertoire le plus large possible, d'autant que plus le niveau avance, moins les démonstrations diront explicitement le raisonnement qu'elles utilisent.
+
+\subsection{Raisonnements sur les réels et les fonctions réelles}
+
+\subsubsection{\textcolor{brown}{Prouver une égalité}}
+
+Il s'agit de prouver une proposition de type $a=b$ où $a,b\in\R$.
+
+\begin{enumerate}
+\item \textbf{Chaîne d'égalités}. On prouve que $a=r_1$ puis que $r_1=r_2$ et ainsi de suite jusqu'à trouver un $n$ tel que $r_n=b$.
+
+\item \textbf{Double inégalité}. On prouve $a\le b$ puis $b\le a$. C'est une méthode à laquelle on ne pense pas souvent, elle peut pourtant parfois totalement débloquer le problème. En général, un sens est immédiat et l'autre est plus difficile.
+
+\item \textbf{Par retranchement}. On prouve que $a-b=0$.
+
+\item \textbf{Par quotient}. On prouve que $\dfrac{a}{b}=1$.
+
+\item \textbf{Par l'absurde}. On suppose que $a\neq b$ et on en déduit une absurdité.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver qu'une fonction est constante}}
+
+On veut prouver que \fone{f}{I}{\R} est constante sur $I$ avec $I$ un intervalle de $\R$.
+
+\begin{enumerate}
+\item \textbf{Par dérivation}. Montrer que $f$ est dérivable sur $I$ et constater que pour tout $x\in I$, $f'(x)=0$.
+
+\item \textbf{Par primitive}. Montrer que $f$ admet une primitive $F$ sur $I$ et constater que $F$ est linéaire sur $I$.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver une propriété sur les entiers}}
+
+Soit $P(n)$ un prédicat sur les entiers naturels. On souhaite prouver une propriété sur $P(n)$. \textit{Note : le raisonnement par récurrence fera l'objet de toute une section ultérieure.}
+
+\begin{enumerate}
+\item \textbf{Par récurrence simple}. On prouve que $P(0)$ est vraie : c'est l'\textit{initialisation}. On suppose qu'il existe $n\in \N$ tel que $P(n)$ est vraie et on en déduit que $P(n+1)$ est vraie : c'est l'\textit{hérédité}.
+\item \textbf{Par récurrence double}. On prouve que $P(0)$ et $P(1)$ sont vraies : c'est l'\textit{initialisation}. On suppose qu'il existe $n\in \N$ tel que $P(n-1)$  et $P(n)$ sont vraies et on en déduit que $P(n+1)$ est vraie : c'est l'\textit{hérédité}. On peut de la même manière faire une récurrence triple, quadruple etc. si besoin.
+\item \textbf{Par récurrence forte}. On prouve que $P(0)$ est vraie : c'est l'\textit{initialisation}. On suppose qu'il existe $n\in \N$ tel que pour tout entier $0\le m\le n$, $P(m)$ est vraie et on en déduit que $P(n+1)$ est vraie : c'est l'\textit{hérédité forte}. Ce type de raisonnement est particulièrement adapté lorsque $P(n)$ est une somme notamment.
+\end{enumerate}
+
+\subsection{Raisonnements de type implication}
+
+\subsubsection{\textcolor{brown}{Prouver une implication}}
+
+Il s'agit de prouver une proposition de type «~$A\Rightarrow B$~».
+
+\begin{enumerate}
+\item \textbf{Prouver que $A$ est faux}. En effet, le faux impliquant n'importe quoi, ce type de proposition sera toujours vraie si $A$ est faux. En général, c'est très rare qu'on ait affaire à ce cas de figure : $A$ est en général vraie ou alors vraie dans certains cas (prédicats).
+
+\item \textbf{Démonstration directe}. On suppose que $A$ est vraie, et on en déduit que $B$ est vraie aussi.
+
+\item \textbf{Par l'absurde}. On suppose que $A$ est vraie. On suppose que $B$ est faux, et on trouve une absurdité (par exemple $1=0$).
+
+\item \textbf{Par contraposée}. On prouve la proposition $\neg B \Rightarrow \neg A $ en utilisant l'un des 3 raisonnements précédent.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver qu'une implication est fausse}}
+
+Il s'agit de prouver une proposition de type «$\neg(A\Rightarrow B)$~».
+
+\begin{enumerate}
+\item \textbf{Démonstration directe}. On suppose que $A$ est vraie, et on en déduit que $B$ est faux.
+\item \textbf{Par l'absurde}. On suppose que $A$ est vraie. On suppose que $B$ est vraie, et on trouve une absurdité (par exemple $1=0$).
+\item \textbf{Par contraposée}. On prouve la proposition $\neg(\neg B \Rightarrow \neg A )$ en utilisant l'un des 2 raisonnements précédent.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver une équivalence}}
+
+Il s'agit de prouver une proposition de type «$P=A\Longleftrightarrow B$~».
+
+\begin{enumerate}
+\item \textbf{Démonstration directe}. On suppose que $P$ est vraie, et par une chaîne d'équivalences, on en déduit que c'est équivalent à une autre équivalence $P'$ dont on sait qu'elle est vraie.
+
+\item \textbf{Double implication}. On prouve $A\Rightarrow B$ et $B\Rightarrow A$ en utilisant l'un des raisonnements précédent. En général, un sens est immédiat et l'autre est plus difficile.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver une chaîne d'équivalences}}
+
+Soit $P_1,...,P_n$ des propositions. Il s'agit de prouver une proposition de type «$P_1\Longleftrightarrow...\Longleftrightarrow P_n$~».
+
+\begin{enumerate}
+\item \textbf{Démonstration directe}. On prouve successivement $P_1\Longleftrightarrow P_2$ puis $P_2\Longleftrightarrow P_3$ et ainsi de suite jusqu'à $P_{n-1}\Longleftrightarrow P_n$ (peu importe l'ordre).
+
+\item \textbf{Chaîne d'implications}. On prouve $P_1\Rightarrow P_2$ puis $P_2\Rightarrow P_3$ et ainsi de suite jusqu'à $P_n\Rightarrow P_1$ (il est important de fermer la boucle). L'ordre a ici une importance.
+\end{enumerate}
+
+\subsection{Raisonnements sur les ensembles}
+
+\subsubsection{\textcolor{brown}{Prouver une appartenance}}
+
+Soit $E$ un ensemble. On veut prouver qu'un certain $x\in E$.
+
+\begin{enumerate}
+\item \textbf{Par caractérisation}. Si $E$ est défini par une certaine caractérisation (par exemple, une propriété ou une équation), montrer que $x$ respecte cette caractérisation.
+
+\item \textbf{Par sous-ensemble}. Si on sait que $F\subset E$, montrer que $x\in F$.
+
+\item \textbf{Par l'absurde}. Supposer que $x\not\in F$ et en déduire une absurdité.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver une inclusion}}
+
+Soit $E,F$ deux ensembles. On veut prouver $E\subset F$.
+
+\begin{enumerate}
+\item \textbf{Par élément}. Supposer que $x\in E$ puis montrer que $x\in F$.
+
+\item \textbf{Par chaîne d'inclusions}. Prouver que $E\subset E_1$ puis que $E_1\subset E_2$ et ainsi de suite jusqu'à montrer qu'il existe $n$ tel que $E_n\subset F$.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver une égalité d'ensembles}}
+
+Soit $E,F$ deux ensembles. On veut prouver $E= F$.
+
+\begin{enumerate}
+\item \textbf{Par double inclusion}. Montrer que $E\subset F$ puis que $F\subset E$. En général, un sens est immédiat et l'autre est plus difficile.
+
+\item \textbf{Par chaîne d'égalités}. Prouver que $E= E_1$ puis que $E_1=E_2$ et ainsi de suite jusqu'à montrer qu'il existe $n$ tel que $E_n= F$.
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver le cardinal d'un ensemble}}
+
+Soit $E$ un ensemble. On souhaite prouver que $E$ a pour cardinal $n\in N$.
+
+\begin{enumerate}
+\item \textbf{Par comptage direct}. On énumère un à un tous les éléments de $E$ et on constate qu'il y en a $n$. Bien entendu, dans le majorité des cas cela n'est pas convenable.
+
+\item \textbf{Par bijection}. On prouve l'existence de n'importe quelle bijection \fone{f}{E}{\lint 1,n\rint} ou \fone{f}{\lint 1,n\rint} {E}. C'est la méthode usuelle. Dans le cas où on veut prouver que le cardinal d'un ensemble est infini, il suffit de trouver n'importe quelle bijection \fone{f}{E}{\N}.
+\end{enumerate}
+
+
+
+
+\subsection{Raisonnements existence-unicité}
+
+\subsubsection{\textcolor{brown}{Prouver une existence}}
+
+On souhaite prouver l'existence d'un objet répondant à un critère $C$.
+
+\begin{enumerate}
+\item \textbf{Par vérification directe}. On conjecture que $X$ est candidat, et on vérifie qu'il vérifie $C$.
+
+\item \textbf{Par analyse-synthèse}. On suppose l'existence d'un $Y$ vérifiant $C$. On en déduit des propriétés sur $Y$, et on finit par isoler un objet $X_1$ qu'on suppose être candidat : c'est l'\textit{analyse}. Et on vérifie que $X_1$ convient en utilisant le point précédent : c'est la \textit{synthèse}. Si $X_1$ ne marche pas, on continue à trouver de nouvelles propriétés sur $Y$ jusqu'à trouver un $X_2$ qui semble convenir, et ainsi de suite. 
+\end{enumerate}
+
+\subsubsection{\textcolor{brown}{Prouver une unicité}}
+
+On sait qu'il existe un objet $X$ répondant à un critère $C$ et on souhaite prouver qu'il est unique.
+
+\begin{enumerate}
+\item \textbf{Par identification}. On suppose l'existence d'un $Y$ répondant au critère $C$ et on prouve qu'alors $Y=X$. Dans le cas particulier où $X$ est une fonction réelle, on pourra poser $f=Y-X$ et prouver que $f$ est constante à 0 en utilisant la technique dédiée.
+\item \textbf{Par l'absurde}. On suppose l'existence d'un $Y\neq X$ répondant au critère $C$ et on en déduit une absurdité.
+\end{enumerate}
+
+
+
+\section{Raisonnement par récurrence}
+
+\subsection{Définitions et théorème}
+Le raisonnement par récurrence est un raisonnement qui permet de démontrer des propositions dépendant d'entiers naturels. Extrêmement efficace dans beaucoup de cas, il faut toujours y penser quand on doit démontrer ce genre de choses. Cependant il faut \textit{toujours} chercher avant s'il n'y a pas une manière plus simple pour s'y prendre (inutile par exemple d'utiliser un raisonnement par récurrence pour montrer que $n^2-6n+9$ est positif pour tout $n\in\N$).
+
+Commençons par deux définitions afin de poser les bases.
+
+\defi{(proposition) une \textit{proposition} est un énoncé qui peut prendre l'une des deux valeurs de vérité : \textit{vrai} ou \textit{faux}. Lorsque une proposition dépend de variables et que selon leur valeur, sa valeur de vérité change, on l'appelle \textit{prédicat}.}
+
+\rem{On rencontre aussi le terme \textit{assertion} qui est synonyme de \textit{proposition}.}
+
+\ex{\begin{itemize}
+\item "2<8" est une proposition, vraie.
+\item "51 est premier" est une proposition, fausse.
+\item "$n^2-6n+9> 0$" est un prédicat dont la variable est ici $n$. Si $n\in\N\neq 3$ elle est vraie, si $n=3$ elle est fausse.
+\end{itemize}}
+
+\defi{\programme (hérédité) Soit $P(n)$ un prédicat. 
+
+On dit que $P(n)$ est \textit{héréditaire} sur $\N$ si pour tout $n\in\N$, $P(n)\Longrightarrow P(n+1)$.}
+
+\exo{\begin{itemize}
+\item Soit $P(n)$ le prédicat "$\sum\limits_{k=0}^n k = n^2$". $P$ est-il héréditaire ?
+\item Trouver un prédicat non héréditaire.
+\end{itemize}}
+
+\theo{\programme Soit $P(n)$ un prédicat. Si $P(0)$ est vraie et que $P(n)$ est héréditaire, alors pour tout $n\in\N$, $P(n)$ est vrai.}
+
+\rem{\begin{itemize}
+\item L'étape consistant à montrer que $P(0)$ est vrai s'appelle \textit{initialisation}.
+\item Le théorème formel ne sera pas donné tel quel en cours. Notamment la notion de prédicat n'est pas du tout au programme.
+\end{itemize}}
+
+\preuve{Tout sous-ensemble de $\N$ non vide admet un minimum car minoré par $0$, donc tout sous-ensemble de $\N$ qui n'admet aucun minimum est l'ensemble vide. Soit $P(n)$ un prédicat héréditaire et tel que $P(0)$ est vrai. Soit $F=\{n\in\N|\urcorner P(n)\}$. Supposons que $F$ admet un minimum $m$. $m>0$ puisque $P(0)$ est vrai. $P(m)$ est donc faux et pour tout $n\in\lint 0; m\lint$, $P(n)$ est vrai. Donc $P(m-1)$ est vrai or par hérédité, $P(m)$ aussi ce qui est absurde. $F$ n'admet donc pas de minimum donc $F=\emptyset$.}
+
+On peut prendre l'exemple des dominos pour illustrer le raisonnement par récurrence : supposons une infinité de dominos alignés numérotés en commençant à 0. Soit $P(n)$ le prédicat "le domino $n$ tombe". $P(0)$ est traduit par le fait que le domino 0 tombe (par exemple en le poussant manuellement) et $P(n)$ héréditaire par le fait que quand un domino tombe le suivant tombe aussi (par exemple parce qu'ils sont suffisament peu espacés). On voit bien intuitivement que pour être certain que les tous les dominos tombent il faut absolument que les deux conditions soient respectées.
+
+\subsection{Utilisation}
+
+Au lycée, les enseignants ne sont pas très regardant sur la rédaction des raisonnements par récurrence. Mais ce n'est pas le cas en prépa et il est extrêmement facile d'écrire une rédaction incorrecte, par conséquent autant prendre les bonnes habitudes dès la terminale. Voici un exemple de rédaction correcte d'un raisonnement par récurrence, il est fortement recommandé au lecteur de s'en servir comme modèle.
+
+\ex{ Soit $n\in\N$. Montrons que $\sum\limits_{k=0}^n k = \dfrac{n(n+1)}{2}$.
+Pour tout $n\in\N$, notons $P(n)$ la proposition « $\sum\limits_{k=0}^n k = \dfrac{n(n+1)}{2}$ » (on évitera d'utiliser le terme plus précis de "prédicat" au lycée pour éviter aux enseignants d'avoir à chercher ce que cela signifie). Montrons par récurrence que pour tout $n\in\N$, $P(n)$ est vrai.
+
+\begin{description}
+\item[Initialisation] Montrons que $P(0)$ est vraie (la formulation "montrons $P(0)$" est strictement équivalente mais on l'évitera au lycée). Pour $n=0$, $\sum\limits_{k=0}^n k=\sum\limits_{k=0}^0 k=0$ et $\dfrac{n(n+1)}{2}=\dfrac{0(0+1)}{2}=0$ or $0=0$ donc $P(0)$ est vraie.
+\item[Hérédité] Montrons que $P(n)$ est héréditaire. Soit $n\in\N$ et supposons que $P(n)$ est vraie (on dit que $P(n)$ est l'\textit{hypothèse de récurrence}). Montrons que $P(n+1)$ est vraie, c'est-à-dire que $\sum\limits_{k=0}^{n+1} k = \dfrac{(n+1)(n+2)}{2}$.
+
+$\sum\limits_{k=0}^{n+1} k=\sum\limits_{k=0}^{n} k + (n+1)$ donc par hypothèse de récurrence, $\sum\limits_{k=0}^{n+1} k = \dfrac{n(n+1)}{2} + (n+1)=(n+1)\lp\dfrac{n}{2}+1\rp=\dfrac{(n+1)(n+2)}{2}$.
+
+On a donc $P(n+1)$ donc $P(n)$ est héréditaire.
+
+\item[Conclusion] $P(0)$ est vraie et $P(n)$ est héréditaire donc pour tout $n\in\N$, $P(n)$ est vraie. Donc pour tout $n\in\N$, $\sum\limits_{k=0}^n k = \dfrac{n(n+1)}{2}$.
+\end{description}} 
+
+\rem{Cette rédaction peut sembler très lourde, mais elle a le mérite d'être adaptée au lycée et d'être parfaitement claire et rigoureuse. En prépa certains raccourcis pourront être pris (avec prudence toutefois). Nous conseillons au lecteur d'utiliser mot pour mot cette rédaction par défaut car elle est irréprochable, cependant nous rappelons que la rédaction qui prime est toujours celle de l'enseignant, s'il vous demande explicitement de rédiger d'une certaine façon, forcez-vous y (même si elle risque du coup d'être moins rigoureuse).}
+
+\exo{\label{exrecu}\begin{itemize}
+\item Soit $(U_n)_{n\in\N}$ la suite réelle définie par $U_0=\dfrac{\pi}{4}$ et telle que pour tout $n\in\N$, $U_{n+1}=6U_n-4$. Montrer que pour tout $n\in\N$, $U_n\le \dfrac{4}{5}$.
+\item Soit $P(n)$ un prédicat. Nier "$P(n)$ est héréditaire". 
+\item Soit $P(n)$ un prédicat tel que $P(0)$ est vrai et qui n'est pas héréditaire. Déterminer la valeur de vérité de la proposition "pour tout $n\in\N^*$, $P(n)$ est faux".
+\end{itemize}}

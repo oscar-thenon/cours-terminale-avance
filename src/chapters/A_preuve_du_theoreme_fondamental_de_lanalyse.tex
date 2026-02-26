@@ -1,0 +1,67 @@
+\chapter{Preuve du théorème fondamental de l'analyse}
+\label{tfa}
+
+Rappelons l'énoncé du théorème :
+
+\theo{(Théorème Fondamental de l'Analyse) Soit $I=[a,b]$ un intervalle de $\R$ et \fone{f}{I}{\R} continue et positive sur $I$.
+
+\begin{enumerate}[i)]
+\item \fons{F}{I}{\R}{x}{\intg{a}{x}{f(x)}} est la primitive de $f$ sur $I$ qui s'annule en $a$.
+\item $\intg{a}{b}{f(x)}=F(b)-F(a)$ où $F$ est une primitive de $f$ sur $I$.
+\end{enumerate}}
+
+Il s'agit ici de montrer le premier point, nous avons vu dans le cours que le second n'est en fait qu'un corollaire. Soit donc $I=[a,b]$ un intervalle de $\R$ et \fone{f}{I}{\R} continue et positive sur $I$.
+
+\section{Définition de la fonction}
+
+Montrons que \fons{F}{I}{\R}{x}{\intg{a}{x}{f(x)}} est une fonction bien définie. Pour tout $x\in I$, $a\le x\le b$ donc $\intg{a}{x}{f(x)}$ est bien définie.
+
+\section{\texorpdfstring{$F$ est une primitive de $f$}{F est une primitive de f}}
+
+Nous souhaitons montrer que $F$ est une primitive de $f$, \cad d'une part que $F$ est dérivable et d'autre part que $F'=f$. Que signifie que $F$ est dérivable sur $I$ ? Soit $c\in I$. Écrivons donc le taux d'accroissement de $F$ en $c$ : il s'agit de la fonction \fons{\tau_{f,c}}{I\sauf{c}}{\R}{x}{\dfrac{F(x)-F(c)}{x-c}}. $F$ est dérivable sur $I$ signifie que $\tau_{f,c}$ admet une limite finie en $c$ et que cette limite vaut $F'(c)$, \cad, en écrivant avec une définition epsilon-delta~:
+
+\[ \forall\epsilon>0,\exists\delta>0,\forall x\in I\sauf{c}, |x-c|< \delta\Rightarrow \left|\dfrac{F(x)-F(c)}{x-c}-F'(c)\right|< \epsilon \]
+
+Et puisqu'en plus, on veut montrer que $F'=f$, alors on veut montrer :
+
+
+\[ \forall\epsilon>0,\exists\delta>0,\forall x\in I\sauf{c}, |x-c|<\delta\Rightarrow \left|\dfrac{F(x)-F(c)}{x-c}-f(c)\right|<\epsilon \text{     }(\star)\] 
+
+Ainsi, si on montre $(\star)$, on montre que $F$ est une primitive de $f$.
+
+Soit $\epsilon>0$. $f$ est continue sur $I$ donc sur $c$, donc il existe $\delta>0$ tel que pour tout $x\in I$, si $|x-c|<\delta$ alors $|f(x)-f(c)|<\epsilon$. Posons un tel $\delta$ et soit $x\in I\sauf{c}$ tel que $|x-c|<\delta$. Alors $|f(x)-f(c)|<\epsilon$. D'autre part :
+
+\chaine{\left|\dfrac{F(x)-F(c)}{x-c}-f(c)\right| &=& \left|\dfrac{\intg{a}{x}{f(x)}-\intg{a}{c}{f(x)}}{x-c}-f(c)\right|}
+
+Supposons que $c\in [a,x]$. Alors par la relation de Chasles :
+
+\chaine{\left|\dfrac{\intg{a}{x}{f(x)}-\intg{a}{c}{f(x)}}{x-c}-f(c)\right| &=& \left|\dfrac{\intg{a}{c}{f(x)}+\intg{c}{x}{f(x)}-\intg{a}{c}{f(x)}}{x-c}-f(c)\right| \\
+
+&=& \left|\dfrac{\intg{c}{x}{f(x)}}{x-c}-f(c)\right|}
+
+Puisque $\intg{c}{x}{f(c)}=(x-c)f(c)$, alors :
+
+\chaine{\left|\dfrac{\intg{c}{x}{f(x)}}{x-c}-f(c)\right| &=& \left|\dfrac{\intg{c}{x}{f(x)}}{x-c}-\dfrac{\intg{c}{x}{f(c)}}{x-c}\right| \\
+
+&=& \left|\dfrac{\intg{c}{x}{\parent{f(x)-f(c)}}}{x-c}\right|}
+
+A priori il y a un problème : le cadre de la théorie du cours ne nous autorise à utiliser la linéarité de l'intrégale que si $\lambda\ge0$ or ici $\lambda=-1$. En fait cela n'est pas grave, nous avons déjà fait remarqué dans le cours qu'on pouvait tout à fait étendre la définition et les propriétés de l'intégrale aux fonctions parfois négatives sur les bornes d'intégration, et donc l'extension marche très bien lorsque $\lambda<0$.
+
+Or $|f(x)-f(c)|<\epsilon$, donc $f(x)-f(c)<\epsilon$, donc $\intg{c}{x}{\parent{f(x)-f(c)}}< \intg{c}{x}{\epsilon}$. Et ainsi :
+
+\chaine{\left|\dfrac{\intg{c}{x}{\parent{f(x)-f(c)}}}{x-c}\right| &<& \left|\dfrac{\intg{c}{x}{\epsilon}}{x-c}\right| \\
+
+&=& \left|\dfrac{(x-c)\epsilon}{x-c}\right| \\
+
+&=& \epsilon}
+
+Nous avons prouvé que si $c\in [a,x]$, alors $\left|\dfrac{F(x)-F(c)}{x-c}-f(c)\right|<\epsilon$. Si maintenant $c\not\in [a,x]$, alors on reprend la démonstration à la relation de Chasles en écrivant $\intg{a}{x}{f(x)}=\intg{a}{c}{f(x)}-\intg{x}{c}{f(x)}$ et grâce aux valeurs absolues qui règle le problème de signe, le reste est similaire. Ainsi, nous avons prouvé que pour tout $c\in I$,  $\left|\dfrac{F(x)-F(c)}{x-c}-f(c)\right|<\epsilon$. Nous avons donc montré $(\star)$, conclusion $F$ est bien une primitive de $f$.
+
+
+
+\section{\texorpdfstring{Annulation en $a$}{Annulation en a}}
+
+C'est immédiat : $F(a)=\intg{a}{a}{f(x)}=0$. \\
+
+Nous avons prouvé le théorème fondamental de l'analyse. 
+\begin{flushright}$\square$\end{flushright}

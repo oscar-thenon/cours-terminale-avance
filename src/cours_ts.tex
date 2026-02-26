@@ -1,0 +1,241 @@
+\documentclass{report}
+
+% --- LES PAQUETS
+
+\usepackage[utf8]{inputenc} % Français
+\usepackage[T1]{fontenc} % Français
+
+\usepackage{amsmath} % Formules mathématiques, ex: DeclareMathOperator
+\usepackage{amssymb} % Symboles spéciaux, ex: square
+\usepackage{amsthm} % Théorèmes, ex: theoremstyle
+\usepackage{enumerate} % Options sur les listes, ex: [(i)]
+\usepackage{textcomp} % Symboles texte pour gensymb
+\usepackage{gensymb} % Quelques unités, ex: degree
+\usepackage{graphicx} % Insère des graphiques
+\usepackage{hyperref} % Permet les hyperliens
+\usepackage[left=2.25cm,right=2.25cm,top=2.25cm,bottom=2.25cm]{geometry} % Mise en page
+\usepackage{xcolor} % Gère les couleurs, ex: fcolorbox
+\usepackage{diagbox} % Perlet de faire des diagonales dans les tableaux
+\usepackage{mathrsfs} % Police lettres attachées
+\usepackage{pifont} % check et croix
+\usepackage{tcolorbox} % Encadrage arrondi et couleurs
+
+% --- LES THÉORÈMES
+
+\theoremstyle{definition}
+\newtheorem{definition}{Définition}[section] % Définition
+\newtheorem{exemple}{Exemple}[section] % Exemple
+\newtheorem{exercice}{Exercice}[section] % Exercice
+\newtheorem{lem}{Lemme}[section] % Exercice
+\newtheorem{notation}{Notation}[section] % Théorème 
+\newtheorem{prop}{Proposition}[section] % Proposition
+\newtheorem{coro}{Corollaire}[section] % Corollaire
+\newtheorem{remarque}{Remarque}[section] % Remarque
+\newtheorem{theorem}{Théorème}[section] % Théorème 
+
+% --- NOUVELLES COMMANDES
+
+% --- ENVIRONNEMENTS
+
+% Majeurs
+
+\newcommand{\defi}[1]{\begin{tcolorbox}[boxrule=1.85pt,arc=1ex, colback=cbdefi, colframe=cfdefi, left=3pt, right=3pt, top=3pt, bottom=2pt]\begin{definition}#1\end{definition}\end{tcolorbox}} % Définitions
+
+\newcommand{\nota}[1]{\begin{tcolorbox}[boxrule=1.85pt,arc=1ex, colback=cbnota, colframe=cfnota, left=3pt, right=3pt, top=3pt, bottom=2pt]\begin{notation}#1\end{notation}\end{tcolorbox}} % Notations
+
+\newcommand{\pro}[1]{\begin{tcolorbox}[boxrule=1.85pt,arc=1ex, colback=cbpro, colframe=cfpro, left=3pt, right=3pt, top=3pt, bottom=2pt]\begin{prop}#1\end{prop}\end{tcolorbox}} % Propositions
+
+\newcommand{\lemme}[1]{\begin{tcolorbox}[boxrule=1.85pt,arc=1ex, colback=cblemme, colframe=cflemme, left=3pt, right=3pt, top=3pt, bottom=2pt]\begin{lem}#1\end{lem}\end{tcolorbox}} % Lemmes
+
+\newcommand{\theo}[1]{\begin{tcolorbox}[boxrule=1.85pt,arc=1ex, colback=cbtheo, colframe=cftheo, left=3pt, right=3pt, top=3pt, bottom=2pt]\begin{theorem}#1\end{theorem}\end{tcolorbox}} % Théorèmes
+
+\newcommand{\cor}[1]{\begin{tcolorbox}[boxrule=1.85pt,arc=1ex, colback=cbcor, colframe=cfcor, left=3pt, right=3pt, top=3pt, bottom=2pt]\begin{coro}#1\end{coro}\end{tcolorbox}} % Corollaires
+
+% Mineurs
+
+\newcommand{\ex}[1]{\begin{exemple}#1\end{exemple}} % Exemple
+
+\newcommand{\exo}[1]{\begin{exercice}#1\end{exercice}} % Exercice
+
+\newcommand{\preuve}[1]{\begin{proof}#1\end{proof}} % Preuve
+
+\newcommand{\rem}[1]{\begin{remarque}#1\end{remarque}} % Remarque
+
+\newcommand{\rems}[1]{\begin{remarque}\begin{itemize}#1\end{itemize}\end{remarque}} % Remarques multiples
+
+% Notation mathématiques
+
+\newcommand{\C}{\mathbf{C}} % Ensemble des complexes
+\newcommand{\chaine}[1]{\[
+\begin{array}{r c l}
+#1
+\end{array}
+\]}
+\newcommand{\cjg}[1]{\overline{#1}}
+\newcommand{\cmark}{\textcolor{brown}{\ding{51}}} % check
+\newcommand{\contient}{\supseteq} % Contenance
+\newcommand{\doubleimp}[2]{\begin{itemize}\item[($\Rightarrow$)] #1 \item[($\Leftarrow$)] #2 \end{itemize}} % Double implication
+\newcommand{\doubleimpi}[2]{\begin{itemize}\item[($\Leftarrow$)] #1 \item[($\Rightarrow$)] #2 \end{itemize}} % Double implication inverse
+\newcommand{\dt}{\mathscr{D}}
+\newcommand{\eqv}{\Longleftrightarrow}
+\newcommand{\estdans}{\subseteq} % Appartenance
+\newcommand{\fons}[5]{$\begin{array}{lrcl}
+#1 : & #2 & \longrightarrow & #3 \\
+    & #4 & \longmapsto & #5 \end{array}$} % Fonction standard
+    \newcommand{\fonsn}[4]{$\begin{array}{lrcl}
+& #1 & \longrightarrow & #2 \\
+    & #3 & \longmapsto & #4 \end{array}$} % Fonction standard sans nom
+\newcommand{\fone}[3]{$#1: #2\to #3$} % Fonction ensembliste
+\newcommand{\fonen}[2]{$#1\longrightarrow #2$} % Fonction ensembliste sans nom
+\newcommand{\fonl}[5]{$#1: #2\to #3,#4\mapsto #5$} % Fonction ligne
+\newcommand{\imp}{\Longrightarrow} % Implication
+\newcommand{\Lim}{\lim\limits_} % Limite
+\newcommand{\limc}[2]{\lim\limits_{#1\to #2}} % Limite
+\newcommand{\la}{\left|} % Valeur absolue gauche
+\newcommand{\lc}{\left[} % Crochet gauche
+\newcommand{\lint}{[\![} % [[
+\newcommand{\lp}{\left(} % Parenthèse gauche
+\newcommand{\N}{\mathbf{N}} % Ensemble des naturels
+\newcommand{\norm}[1]{\left\parallel #1 \right\parallel}
+\newcommand{\pc}{\mathscr{P}} % Plan complexe
+\newcommand{\plan}{\mathscr{P}} % Plan
+\newcommand{\poly}{\mathbf{C}[z]} % Ensemble des polynômes
+\newcommand{\polyd}[1]{\mathbf{C}_{#1}[z]} % Ensemble des polynômes
+\newcommand{\produit}[2]{\prod\limits_{#1}^{#2}} % Somme
+\newcommand{\programme}{\textcolor{blue}{$\circledast$ }} % Au programme
+\newcommand{\Q}{\mathbf{Q}} % Ensemble des rationnels
+\newcommand{\R}{\mathbf{R}} % Ensemble des réels
+\newcommand{\Rp}{\mathbf{R}} % Ensemble des réels
+\newcommand{\Rm}{\mathbf{R_{-}}} 
+\newcommand{\Ret}{\mathbf{R^*}}
+\newcommand{\Rep}{\mathbf{R^*_{+}}} 
+\newcommand{\Rem}{\mathbf{R^*_{-}}} 
+
+\newcommand{\ra}{\right|} % Valeur absolue droite
+\newcommand{\rc}{\right]} % Crochet droit
+\newcommand{\rep}{\mathscr{R}} % repère
+\newcommand{\rint}{]\! ]} % [[
+\newcommand{\rp}{\right)} % Parenthèse droite
+\newcommand{\sph}{\mathscr{S}}
+\newcommand{\sauf}[1]{\backslash\left\{#1\right\}}
+\newcommand{\somme}[2]{\sum\limits_{#1}^{#2}} % Somme
+\newcommand{\suite}[1]{$(#1_n)_{n\in\N}$} % Définition suite
+\newcommand{\suiten}[1]{$(#1_n)_{n\in\N^*}$} % Définition suite commençant à 0
+\newcommand{\suiteq}[2]{$(#1_n)_{n\in#2}$} % Définition suite commençant n'importe où.
+\newcommand{\sys}[1]{\[
+\left\{
+\begin{array}{r c l}
+#1
+\end{array}
+\right.
+\]}
+\newcommand{\U}{\mathbf{U}} % Ensemble des naturels
+\newcommand{\vr}[1]{\overrightarrow{#1}}
+\newcommand{\vre}[3]{\parent{\begin{matrix} #1 \\ #2 \\ #3 \end{matrix}}} % vecteur c
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}} % croix
+\newcommand{\Z}{\mathbf{Z}} % Ensemble des entiers
+
+\newcommand{\intent}[1]{[\![#1]\!]}
+
+% Délimitations
+
+\newcommand{\abs}[1]{\left|#1\right|} % ||
+\newcommand{\cro}[1]{\left[#1\right]} % []
+\newcommand{\ens}[1]{\left\{#1\right\}} % {}
+\newcommand{\parent}[1]{\left(#1\right)} % ()
+\newcommand{\spoiler}[1]{$\blacktriangleright$\textcolor{white}{ #1 }$\blacktriangleleft$}
+
+% Expressions
+
+\newcommand{\cad}{c'est-à-dire } % C'est-à-dire
+\newcommand{\ie}{\emph{i.e} } % id est
+\newcommand{\iex}{il existe } % il existe
+\newcommand{\pt}{pour tout } % C'est-à-dire
+\newcommand{\ssi}{si et seulement si } % SSi
+\newcommand{\tq}{tel que } % SSi
+\newcommand{\gug}{ « } % Guillement gauche
+\newcommand{\gud}{ » } % Guillement droit
+
+% --- RENOUVELLEMENT DE COMMANDES
+
+\renewcommand{\abstractname}{Avant-propos}
+\renewcommand{\appendixname}{Annexe}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\chaptername}{Chapitre}
+\renewcommand{\contentsname}{Sommaire}
+\renewcommand{\partname}{Partie}
+\renewcommand*{\proofname}{Preuve}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\newcommand{\intg}[3]{\int_{#1}^{#2} #3 \, \mathrm{d}x}
+\newcommand{\intgv}[4]{\int_{#1}^{#2} #3 \, \mathrm{d}#4}
+
+% --- LES DÉFINITIONS
+
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\dis}{d}
+\DeclareMathOperator{\I}{I}
+\DeclareMathOperator{\id}{Id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\re}{Re}
+
+% Couleurs
+
+\definecolor{cbdefi}{RGB}{248,226,255} % Définition fond
+\definecolor{cfdefi}{RGB}{169,160,172} % Définition bordure
+
+\definecolor{cbnota}{RGB}{224,220,255} % Notation fond
+\definecolor{cfnota}{RGB}{146,145,182} % Notation bordure
+
+\definecolor{cbpro}{RGB}{235,235,235} % Proposition fond
+\definecolor{cfpro}{RGB}{157,157,157} % Proposition bordure
+
+\definecolor{cblemme}{RGB}{255,237,188} % Lemme fond
+\definecolor{cflemme}{RGB}{182,149,116} % Lemme bordure
+
+\definecolor{cbtheo}{RGB}{255,210,210} % Théorème fond
+\definecolor{cftheo}{RGB}{157,129,129} % Théorème bordure
+
+\definecolor{cbcor}{RGB}{255,210,180} % Corollaire fond
+\definecolor{cfcor}{RGB}{157,139,127} % Corollaire bordure
+
+% --- SIMPLIFICATIONS LATEX
+
+\newcommand{\tend}{\\ \hline}
+
+% --- EN-TÊTE
+
+\title{Cours de Mathématiques \\ Terminale Scientifique}
+\author{Oscar \textsc{Thenon}}
+\date{Dernière mise à jour : août 2019}
+
+\begin{document}
+\begin{large}
+\maketitle
+
+\begin{abstract}
+Ce cours couvre une partie du programme de l'enseignement spécifique de la classe de mathématiques de Terminale Scientifique, tel que cadré par le \href{https://www.education.gouv.fr/pid285/bulletin_officiel.html?pid_bo=25847}{bulletin officiel spécial numéro 8 du 13 octobre 2011}. Ce programme n'est actuellement plus à jour, il a été modifié conformément au \href{https://www.education.gouv.fr/pid285/bulletin_officiel.html?pid_bo=39051}{bulletin officiel spécial numéro 8 du 25 juillet 2019}. Les parties traitées ici sont les suites réelles, les nombres complexes, la géométrie dans l'espace et enfin les fonctions.
+
+Ce cours est destiné au premier chef aux élèves souhaitant poursuivre des études de mathématiques dans le supérieur. Il y a en effet de très nombreuses preuves et théories hors-programme dont la complexité - toute relative - peut rebuter les élèves ne souhaitant que se cantonner au programme officiel. Toutefois cette complexité n'est pas poussée à l'extrême, il ne s'agit pas d'une préparation aux CPGE, ce cours a simplement l'ambition d'un cours de terminale très approfondi, ce qui nous semble profitable pour le public visé.
+
+Les éléments explicitement au programme officiel sont clairement signalés par le sigle \programme. J'espère que le lecteur prendra autant de plaisir à feuilleter ce cours que j'en ai eu à le rédiger.
+\end{abstract}
+
+\tableofcontents
+
+
+\include{chapters/1_les_fondamentaux}
+\include{chapters/2_suites_reelles}
+\include{chapters/3_nombres_complexes}
+\include{chapters/4_geometrie_dans_lespace}
+\include{chapters/5_fonctions}
+
+\begin{appendix}
+
+\include{chapters/A_preuve_du_theoreme_fondamental_de_lanalyse}
+\include{chapters/B_existence_de_la_fonction_exponentielle}
+
+\end{appendix}
+
+\end{large}
+\end{document}
