@@ -3,6 +3,8 @@
 Livre $\LaTeX$ destiné aux élèves de Terminale allant en prépa.
 _Dernière version : août 2019._
 
+![Preview] (dist/cours_terminale_avance.pdf)
+
 # Auteur
 
 [Oscar Thenon](mailto:oscar.thenon@etu.univ-amu.fr)
